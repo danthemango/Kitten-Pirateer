@@ -1,8 +1,8 @@
 //Edited by: Keenan Longair.
-//Last Update: 8:00PM January 28, 2016.
+//Last Update: 8:30PM February 8th, 2016.
 //Purpose: To prototype the interface needed to create a spash screen
 //and main menu.
-//Version: 0.1
+//Version: 0.5
 
 #ifndef MENU_H_
 #define MENU_H_
@@ -16,7 +16,7 @@
 #include <cstdio>
 #include "ImageLoader.h"
 
-//class imageLoader;
+class imageLoader;
 
 class Menu {
 	
@@ -35,24 +35,19 @@ class Menu {
 		int m_height;
 
 	public:
-	
-		//Still working on making this a proper singleton.
-		static Menu& getMenu()
-		{
-			
-			static Menu instance;
-			return instance;
-			
-		};
 		
+		//Required Functions:
 		void init();//Prepares the various files.
-		void update();//Handles updateing any menu information.
+		void update();//Handles updateing any menu information if needed.
 		void splashScreen();//Provides the spashscreen for pausing the
 		//game.
 		void mainMenu();//Provides the main menu presented at the start
 		//of the game.
-		//void inventorymenu();//Provides an inventory menu. Not implemented
-		//but will be an extra goal.
+
+		//Extra goal functions:
+		//void inventorymenu();//Provides an inventory menu.
+		//void winScreen();//Provides the screen presenting the win message.
+		//void loseScreen();//Provides the screen presenting the lose message.
 		
 };
 
