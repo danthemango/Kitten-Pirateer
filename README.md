@@ -1,2 +1,0 @@
-# Kitty_Pirateer_prototype
-Kitty_Pirateer_prototype
