@@ -4,11 +4,12 @@
  * ./sounds/_.wav
  *************************************************************/
 //Editor: Keenan Longair
-//Last Update: 8:30PM February 8th, 2016.
+//Last update: 11:50AM February 24th, 2016.
 //Purpose: Handles the work for playing a .wav file.
-#include "../hdr/Jukebox.h"
-#include <cstdio>
+//Version: 0.4
 
+//Libraries required:
+#include <cstdio>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
@@ -16,7 +17,10 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_audio.h>
 
-#define NUM_SOUNDS 5
+//Files required:
+#include "Jukebox.h"
+
+#define NUM_SOUNDS 5//Defines how many sounds there will be?
 
 struct sample {
     Uint8 *data;
@@ -24,7 +28,7 @@ struct sample {
     Uint32 dlen;
 } sounds[NUM_SOUNDS];
 
-void Jukebox::mixaudio(void *unused, Uint8 *stream, int len)
+void Jukebox::MixAudio(void *unused, Uint8 *stream, int len)
 {
 	int i;
 	Uint32 amount;
@@ -101,6 +105,9 @@ bool Jukebox::init()
     return true;
 }
 
+
+
+//Next code used for the debugging of this file only.
 /*
 int main(int argc, char *argv[])
 {
