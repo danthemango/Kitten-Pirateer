@@ -13,27 +13,21 @@ Purpose:
 #ifndef HUD_H
 #define HUD_H
 
-#include "GameObject.h"
-
-#include "Game.h"
-#include "Map.h"
+#include "../hdr/Game.h"
+#include "../hdr/pc.h"
+#include <GL/glut.h>
 
 class HUD {
 
 	protected:
-		display(); // Display function that implements the overlaid graphics on main window.
+		
 	private:
 		GLfloat m_width, m_length;
-
-		// Displays minimap
-		HUD::display();
-
 
 	public:
 		HUD(); // Default constructor. 
 			   // ~HUD(); // Don't implement: using singleton.
 		
-		update();
 };
 
 #endif // !HUD_H

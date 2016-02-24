@@ -51,6 +51,14 @@ void Game::idle() {
    
 }
 
+int getWidth() {
+	return m_width;
+}
+
+int getHeight() {
+	return m_height;
+}
+
 void Game::run() {
 
     Game::getInstance().update();   

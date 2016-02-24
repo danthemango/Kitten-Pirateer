@@ -106,7 +106,8 @@ class Game {
 		void init();//Set to be public incase any objects inheriting from this needs their init
 		//to be public aswell.
 		GLfloat frand();//Random number function. Here incase we need it.
-		
+		int getWidth();
+		int getHeight();
 };
 
 
