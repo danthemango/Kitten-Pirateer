@@ -1,0 +1,13 @@
+I use this as the standard template header for all of my .h and .cpp files:
+   - Dan
+
+// **********************************************
+// Filename: 
+// Author: 
+// Date: 2016-02-01
+// Class: CSCI 331
+// Project: Kitty Pirateer
+// 
+// Purpose: 
+//    
+// ************************************************
