@@ -1,8 +1,8 @@
 //Edited by: Keenan Longair.
-//Last update: 11:50AM February 24th, 2016.
+//Last update: 2:00PM February 24th, 2016.
 //Purpose: To implement the prototyped functions found in the Menu.h file
 //which will provide the menus of the game.
-//Version: 0.4
+//Version: 0.5
 
 //Libraries required:
 #include <stdlib.h>
@@ -13,7 +13,7 @@
 #include <cstdio>
 
 //Required files:
-#include "ImageLoader.h"//Dependancy for images.
+#include "../hdr/ImageLoader.h"//Dependancy for images.
 
 void Menu::init()
 //Prepare any Menu variables here.

@@ -1,7 +1,7 @@
 //Edited by: Keenan Longair.
-//Last update: 11:50AM February 24th, 2016.
+//Last update: 2:00PM February 24th, 2016.
 //Purpose: Contains the body of the game file prototyped in the Game.h file.
-//Version: 0.7
+//Version: 0.8
 
 //Required Libraries:
 #include <cstdio>
@@ -12,10 +12,10 @@
 #include <GL/freeglut.h>
 
 //Required Files:
-#include "Game.h"
-#include "Jukebox.h"//Dependancy for Sound.
-#include "Obstacle.h"//Dependancy for Obstacles.
-#include "ImageLoader.h"//Dependancy for Images.
+#include "../hdr/Game.h"
+#include "../hdr/Jukebox.h"//Dependancy for Sound.
+#include "../hdr/Obstacle.h"//Dependancy for Obstacles.
+#include "../hdr/ImageLoader.h"//Dependancy for Images.
 
 bool Game::c_run = false;//Set the game to display the main menu. Once changed this
 //moves the game along.

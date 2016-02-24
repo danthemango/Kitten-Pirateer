@@ -4,9 +4,9 @@
  * ./sounds/_.wav
  *************************************************************/
 //Editor: Keenan Longair
-//Last update: 11:50AM February 24th, 2016.
+//Last update: 2:00PM February 24th, 2016.
 //Purpose: Handles the work for playing a .wav file.
-//Version: 0.4
+//Version: 0.5
 
 //Libraries required:
 #include <cstdio>
@@ -18,7 +18,7 @@
 #include <SDL/SDL_audio.h>
 
 //Files required:
-#include "Jukebox.h"
+#include "../hrd/Jukebox.h"
 
 #define NUM_SOUNDS 5//Defines how many sounds there will be?
 
