@@ -4,15 +4,16 @@
 //Version: 0.5
 
 //Libraries included until all dependancies are worked out.
-#include "Game.h"
-#include "Jukebox.h"//Dependancy for sound.
+#include "../hdr/Game.h"
+#include "../hdr/Jukebox.h" //Dependancy for sound.
+#include "../hdr/Menu.h"
 #include <cstdio>
 #include <stdlib.h>
 #include <GL/glut.h>    /* glut.h includes gl.h and glu.h */
 #include <math.h>
 #include <time.h>
 #include <GL/freeglut.h>
-#include "ImageLoader.h"//Dependancy for images.
+#include "../hdr/ImageLoader.h" //Dependency for images.
 
 bool Game::c_running = false;//Set the running state to false to start the game
 //with the splashscreen displayed.
@@ -20,8 +21,7 @@ bool Game::c_running = false;//Set the running state to false to start the game
 
 //Function to return a random number if needed. May be removed if 
 //not used before final presentation.
-GLfloat Game::frand()
-
+GLfloat Game::frand(){
     return random()/(GLfloat)RAND_MAX;
 
 }
@@ -63,11 +63,11 @@ void Game::run() {
 
 void Game::key(unsigned char key, int x, int y)
 {
-	
+	/* TODO fix this section once Player.cpp is written
     switch (key){
 		
         case ' ' :
-            Game::c_running = !Game::c_running;
+            Game::c_running = ! Game::c_running;
             break;
 			
         case 'a' :
@@ -96,6 +96,7 @@ void Game::key(unsigned char key, int x, int y)
 			
     }
     //glutPostRedisplay();
+    */
 	
 }
 
@@ -123,8 +124,7 @@ void Game::update()
 
 	if(!Game::c_running)
 	{
-	   
-		return Menu::splashscreen();
+		Menu::splashscreen();
 	 
 	}
 

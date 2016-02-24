@@ -81,7 +81,7 @@ void Game::key(unsigned char key, int x, int y)
 
 void Game::splashScreen()
 {
-   // Other parts of the program have been doing speical things with
+   // Other parts of the program have been doing special things with
    // lights and textures. We want a flat rectangle so turn them all off.
    glDisable(GL_TEXTURE_2D); // Disable any textures. We want color!
    glDisable (GL_LIGHTING);  // Also turn off any lights

@@ -6,7 +6,7 @@
 #include <time.h>
 #include <GL/freeglut.h>
 
-#include "ImageLoader.h"
+#include "../hdr/ImageLoader.h"
 
 
 

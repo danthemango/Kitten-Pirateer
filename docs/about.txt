@@ -1,0 +1,4 @@
+the final project for CSCI331 at VIU
+Kitty-Pirateer
+
+This is a game about a Pirate kat who must find his way across an island, in search for lemons to help his crewmates suffering from scurvy. 

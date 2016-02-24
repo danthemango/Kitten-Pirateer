@@ -11,7 +11,7 @@
 #include <time.h>
 #include <GL/freeglut.h>
 #include <cstdio>
-#include "ImageLoader.h"//Dependancy for images.
+#include "../hdr/ImageLoader.h"//Dependancy for images.
 
 void Menu::init()
 {

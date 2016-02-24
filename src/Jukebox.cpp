@@ -6,7 +6,7 @@
 //Editor: Keenan Longair
 //Last Update: 8:30PM February 8th, 2016.
 //Purpose: Handles the work for playing a .wav file.
-#include "Jukebox.h"
+#include "../hdr/Jukebox.h"
 #include <cstdio>
 
 #include <stdlib.h>
