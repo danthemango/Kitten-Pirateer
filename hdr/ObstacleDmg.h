@@ -7,9 +7,7 @@
 // 
 // Purpose: child class of obstacle that will also cause the Character that collides 
 // with it to take a set amount of damage based on the obstacle type set on construction
-//    
 // ************************************************
-
 
 #ifndef OBSTACLEDMG_H_
 #define OBSTACLEDMG_H_
