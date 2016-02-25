@@ -19,3 +19,4 @@ Directory layout:
    Overall design:         docs/design.txt
    Implementation plan:    docs/implement.txt
    Header example:         docs/genericHeader.txt
+   Compilation:            docs/compile.txt
