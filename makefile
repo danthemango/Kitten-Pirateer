@@ -33,8 +33,13 @@ OBJ=$(addprefix $(OBJDIR)/,$(SRCNAMES:.cpp=.o))
 # Executeable targets
 EXE=bin/game
       
-all: $(SRC) $(EXE)
-	mkdir -p bin obj
+all: bin $(OBJDIR) $(SRC) $(EXE)
+
+bin:
+	mkdir bin
+
+$(OBJDIR):
+	mkdir $(OBJDIR)
 
 $(EXE): $(OBJ)
 	$(CC) $(LDFLAGS) $(OBJ) -o $@

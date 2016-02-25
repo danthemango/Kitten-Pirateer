@@ -1,6 +1,6 @@
 #ifndef IMAGE_LOADER_H_
 #define IMAGE_LOADER_H_
-
+// TODO GLuint needs to be defined (missing header?)
 
 class ImageLoader {  
    private:

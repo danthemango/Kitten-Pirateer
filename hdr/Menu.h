@@ -37,6 +37,7 @@ class Menu {
 		//Menu and splashScreen height and width variables.
 		int m_width;
 		int m_height;
+      GLuint m_splashTexture;
 
 	public:
 		
