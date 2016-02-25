@@ -7,7 +7,7 @@ class ImageLoader {
 
    public:
     static GLuint LoadTexture( const char * filename );
-    static void drawBox(GLfloat size, GLenum type, int x, int y, int xangle, int yangle);
+    static void drawBox(GLfloat size, GLenum type, int x, int y, int xangle, int yangle, int zangle);
     static void RenderString(float x, float y, void *font, const char* string);
     static void arc(GLfloat x, GLfloat y, GLfloat r, int n, int s, int e);
     static void circle(GLfloat x, GLfloat y, GLfloat r, int n);

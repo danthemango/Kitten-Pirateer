@@ -9,11 +9,12 @@
 #include "ImageLoader.h"
 
 
-
 GLuint ImageLoader::LoadTexture( const char * filename )
 {
   GLuint texture;
-  int width, height;
+  int width = 1024, height = 512;
+
+  unsigned short depth;
   unsigned char * data;
   unsigned long i;                    // standard counter.
 
@@ -26,109 +27,125 @@ GLuint ImageLoader::LoadTexture( const char * filename )
      return 0;
   }
 
-  width = 1024;
-  height = 512;
-
    int fileSize;
-   int offsetStart;
-   
-   fseek(file, 10, SEEK_SET);
-   fread(&offsetStart, 1, 4, file);
-   rewind (file);
-   
-   
-   fseek (file , 0 , SEEK_END);  //returns file size of BMP file
-   fileSize = ftell (file);
-   rewind (file);
-  /* 
-   fseek (file, 18, SEEK_SET);
-   fread(&width, 4, 1, file);
-   rewind (file);
-   
-   fseek (file, 22, SEEK_SET);
-   fread (&height, 4, 1, file);
-   rewind (file);
-   */
-   
-   
-  
-  
-  
-   /*
-   fseek (file , 2, SEEK_END);
+   fseek(file, 2, SEEK_SET);
    if ((i = fread(&fileSize, 4, 1, file)) != 1) 
 	{
 		printf("Error reading file size from %s.\n", filename);
 		return 0;
     }
     //printf("Size of %s: %lu\n", filename, fileSize);
-    */
-   
 
+   // seek through the bmp header, up to the width/height:
+   fseek(file, 18, SEEK_SET);
+   // read the width
+   if ((i = fread(&width, 4, 1, file)) != 1) 
+   {
+      printf("Error reading width from %s.\n", filename);
+      return 0;
+   }
+   //printf("Width of %s: %lu\n", filename, width); 
 
+   // read the height 
+   if ((i = fread(&height, 4, 1, file)) != 1) 
+   {
+      printf("Error reading height from %s.\n", filename); 
+      return 0;
+   }
+   //printf("Height of %s: %lu\n", filename, height);
 
+   // read the colour depth
+   fseek(file, 28, SEEK_SET);
+   if ((i = fread(&depth, 2, 1, file)) != 1)
+   {
+      printf("Error reading colour depth from %s.\n", filename); 
+      return 0;
+   }
+   //printf("Depth of %s: %lu\n", filename, depth); 
 
+   // this file will only read files with depth of 24 and 32
+   if(depth != 24 && depth != 32){
+      printf("Unexpected colour depth");
+      return 0;
+   }
 
+   // get the size of the header
+   fseek(file, 10, SEEK_SET);
+   int offset;
+   if ((i = fread(&offset, 4, 1, file)) != 1) 
+   {
+      printf("Error reading offset from %s.\n", filename);
+      return 0;
+   }
+   //printf("offset of %s: %lu\n", filename, offset); 
 
-    // seek through the bmp header, up to the width/height:
-    fseek(file, 18, SEEK_SET);  // read the width
-    if ((i = fread(&width, 4, 1, file)) != 1) 
-	{
-		printf("Error reading width from %s.\n", filename);
-		return 0;
-    }
-    //printf("Width of %s: %lu\n", filename, width); 
-    
-    // read the height 
-    if ((i = fread(&height, 4, 1, file)) != 1) 
-	{
-		printf("Error reading height from %s.\n", filename); 
-		return 0;
-    }
-    //printf("Height of %s: %lu\n", filename, height);
+   fseek(file, offset, SEEK_SET); 
 
-	
+   //fseek(file,headersize,SEEK_SET);
 
-  
-  fseek(file, offsetStart, SEEK_SET); // Debug Dr. J Seek past the header. How big is the 
-                               // header of a bmp file?
-  data = (unsigned char *)malloc( width * height * 3 );
-  //int size = fseek(file,);
-  fread( data, width * height * 3, 1, file );
-  fclose( file );
+   // pixelval is the number of ints (4 bytes) per pixel
+   // ex: for a 24-bit BMP file we expect 3 ints per pixel
+   unsigned short pixelval = depth / 8;
+   data = (unsigned char *)malloc( width * height * pixelval );
+   //int size = fseek(file,);
+   fread( data, width * height * pixelval, 1, file );
+   fclose( file );
 
+   if(pixelval == 3){
+      for(int i = 0; i < width * height ; ++i)
+      {
+         int index = i*3;
+         unsigned char B,R;
+         B = data[index];
+         R = data[index+2];
 
+         data[index] = R;
+         data[index+2] = B;
+      }
+   }else if(pixelval == 4){
+      for(int i = 0; i < width * height ; ++i)
+      {
+//Comes in as ABGR
 
+//need RGBA
+         int index = i*4;
+         unsigned char A, G, B,R;
+         A = data[index];
+         B = data[index+1];
+         G = data[index+2];
+         R = data[index+3];
 
-  for(int i = 0; i < width * height ; ++i)
-  {
-     int index = i*3;
-     unsigned char B,R;
-     B = data[index];
-     R = data[index+2];
-
-     data[index] = R;
-     data[index+2] = B;
-  }
-
+         data[index] = R;
+         data[index+1] = G;
+         data[index+2] = B;
+         data[index+3] = A;
+      }
+   }
 
    glGenTextures( 1, &texture );
    glBindTexture( GL_TEXTURE_2D, texture );
    glTexEnvf( GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_MODULATE );
    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST );
 
-
    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR );
    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,GL_REPEAT );
    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,GL_REPEAT );
-   gluBuild2DMipmaps( GL_TEXTURE_2D, 3, width, height,GL_RGB, GL_UNSIGNED_BYTE, data );
+   if(pixelval == 3){
+      gluBuild2DMipmaps( GL_TEXTURE_2D, 3, width, height,GL_RGB, GL_UNSIGNED_BYTE, data );
+   }else if(pixelval == 4){
+      gluBuild2DMipmaps( GL_TEXTURE_2D, 4, width, height,GL_RGBA, GL_UNSIGNED_BYTE, data );
+   }
    free( data );
 
    return texture;
 }
 
-void ImageLoader::drawBox(GLfloat size, GLenum type, int x, int y, int xangle, int yangle)
+void ImageLoader::drawBox(GLfloat size, GLenum type, int x, int y, int xangle, int yangle, int zangle)
 {
+   // Enable alpha layer transparency
+   glEnable(GL_BLEND);
+   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+   // End alpha
   static GLfloat n[6][3] =
   {
     {-1.0, 0.0, 0.0},
@@ -161,9 +178,10 @@ void ImageLoader::drawBox(GLfloat size, GLenum type, int x, int y, int xangle, i
   glTranslated(x,y,0);
   glRotated(xangle, 1.0, 0.0, 0.0);
   glRotated(yangle, 0.0, 1.0, 0.0);
+  glRotated(zangle, 0.0f, 0.0f, 1.0f);
 
   for (i = 5; i >= 0; i--) {
-    glBegin(GL_POLYGON);
+    glBegin(GL_QUADS);
     glNormal3fv(&n[i][0]);
     glTexCoord2i(0, 0);glVertex3fv(&v[faces[i][0]][0]);
     glTexCoord2i(0, 1);glVertex3fv(&v[faces[i][1]][0]);
@@ -206,6 +224,10 @@ void ImageLoader::circle(GLfloat x, GLfloat y, GLfloat r, int n)
 
 void ImageLoader::rectangle(GLfloat x, GLfloat y, GLfloat width, GLfloat height) 
 {
+   // Enable alpha layer transparency
+   glEnable(GL_BLEND);
+   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+   // End alpha
    glTranslated(x,y,0);
    glBegin(GL_QUADS); // Note: A GL_QUADS is similar to a GL_POLYGON, but it limits the 
                       // number of vertices to 4. This allows OpenGL to break it up 
