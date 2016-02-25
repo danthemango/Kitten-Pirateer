@@ -13,7 +13,7 @@
 #include <GL/glut.h>    /* glut.h includes gl.h and glu.h */
 
 //Required files:
-#include "Player.h"
+#include "../hdr/PC.h"
 
 //Various required classes:
 class Player;

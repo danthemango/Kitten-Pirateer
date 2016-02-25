@@ -12,7 +12,8 @@
 #define ZombieHandler_H
 #include "Zombie.h"
 
-class ZombieHandler{
+class ZombieHandler
+{
    private:
       // number of zombie current instatiated
       int m_numZombies;
@@ -29,5 +30,10 @@ class ZombieHandler{
       void update();
       // draws all zombies
       void display();
+      // damages every Zombie in the range
+      // x1 y1 - bottom left corner coordinates
+      // x2 y2 - top right corner coordinates
+      // int damage - damage amount
+      void attacked(int x1, int y1, int x2, int y2, int damage);
 };
 #endif

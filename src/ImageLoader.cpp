@@ -5,14 +5,29 @@
 #include <math.h>
 #include <time.h>
 #include <GL/freeglut.h>
-
+#include <soil.h>
 #include "../hdr/ImageLoader.h"
 
 
 
 GLuint ImageLoader::LoadTexture( const char * filename )
 {
-  GLuint texture;
+  	GLuint texture;
+  /* load an image file directly as a new OpenGL texture */
+  	texture = SOIL_load_OGL_texture
+	(
+		filename,
+		SOIL_LOAD_AUTO,
+		SOIL_CREATE_NEW_ID,
+		SOIL_FLAG_MIPMAPS | SOIL_FLAG_INVERT_Y | SOIL_FLAG_NTSC_SAFE_RGB | SOIL_FLAG_COMPRESS_TO_DXT
+	);
+
+	return texture;  
+  
+  
+  
+  
+  /*
   int width, height;
   unsigned char * data;
   unsigned long i;                    // standard counter.
@@ -64,7 +79,7 @@ GLuint ImageLoader::LoadTexture( const char * filename )
 
 
 
-
+/*
     // seek through the bmp header, up to the width/height:
     fseek(file, 18, SEEK_SET);  // read the width
     if ((i = fread(&width, 4, 1, file)) != 1) 
@@ -118,8 +133,8 @@ GLuint ImageLoader::LoadTexture( const char * filename )
    glTexParameterf( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,GL_REPEAT );
    gluBuild2DMipmaps( GL_TEXTURE_2D, 3, width, height,GL_RGB, GL_UNSIGNED_BYTE, data );
    free( data );
-
-   return texture;
+*/
+   
 }
 
 void ImageLoader::drawBox(GLfloat size, GLenum type, int x, int y, int xangle, int yangle)

@@ -14,6 +14,7 @@
 
 //Required files:
 #include "../hdr/ImageLoader.h"//Dependancy for images.
+#include "../hdr/Menu.h"
 
 void Menu::init()
 //Prepare any Menu variables here.

@@ -18,7 +18,7 @@
 #include <SDL/SDL_audio.h>
 
 //Files required:
-#include "../hrd/Jukebox.h"
+#include "../hdr/Jukebox.h"
 
 #define NUM_SOUNDS 5//Defines how many sounds there will be?
 
@@ -91,7 +91,7 @@ bool Jukebox::init()
 	fmt.format = AUDIO_S16;
 	fmt.channels = 2;
 	fmt.samples = 512;        /* A good value for games */
-	fmt.callback = Jukebox::mixaudio;
+	fmt.callback = Jukebox::MixAudio;
 	fmt.userdata = NULL;
 	/* Open the audio device. */
 	if (SDL_OpenAudio(&fmt, NULL) < 0) {

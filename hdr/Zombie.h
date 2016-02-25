@@ -15,7 +15,12 @@
 
 class Zombie: HostileNPC{
    private:
+      // amount of damage the zombie can take
       int health;
+      // if Zombie is dead, it won't attack the player or take an attack from the player
+      bool isDead;
+      // if zombie is visible, not even a dead zombie will be shown on screen
+      bool isVisible;
    public:
       Zombie();
       // update takes in the player's position

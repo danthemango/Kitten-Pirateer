@@ -20,8 +20,8 @@
 #define OBSTACLE_H_
 #define CONDITION 0
 
-#include "GameObject.h"
-#inlcude "Player.h"
+#include "../hdr/GameObject.h"
+#include "../hdr/PC.h"
 
 class Obstacle: public GameObject {
 
@@ -45,4 +45,4 @@ public:
 	
 };
 
-#endif OBSTACLE_H_
+#endif // OBSTACLE_H_
