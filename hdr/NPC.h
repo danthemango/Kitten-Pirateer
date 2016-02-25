@@ -1,9 +1,9 @@
 // **********************************************
-// Filename: NPC.h
-// Author: Daniel Guenther
-// Date: 2016-02-01
-// Class: CSCI 331
-// Project: Kitty Pirateer
+// Filename:   NPC.h
+// Author:     Daniel Guenther
+// Date:       2016-02-01
+// Class:      CSCI 331
+// Project:    Kitty Pirateer
 // 
 // Purpose: 
 //    The generic 'non-player character' type

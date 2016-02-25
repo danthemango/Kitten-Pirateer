@@ -1,9 +1,9 @@
 // **********************************************
-// Filename: HostileNPC.h
-// Author: Daniel Guenther
-// Date: 2016-02-01
-// Class: CSCI 331
-// Project: Kitty Pirateer
+// Filename:   HostileNPC.h
+// Author:     Daniel Guenther
+// Date:       2016-02-01
+// Class:      CSCI 331
+// Project:    Kitty Pirateer
 // 
 // Purpose: 
 //    abstract class for hostile non-player characters
