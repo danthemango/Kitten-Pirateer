@@ -1,0 +1,13 @@
+=================================================
+== Filename:   glossary.txt
+== Author:     created by Daniel Guenther
+== Date:       2016-02-24
+== Class:      CSCI 331
+== Project:    Kitty Pirateer
+== 
+== Purpose: 
+==    Explain the terminology which might be unique to this project
+===================================================
+
+Tile - one screen. Since the map is bigger than the window, it is tiled.
+Zombie - Enemy creature which damages the player on contact
