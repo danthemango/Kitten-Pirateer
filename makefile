@@ -18,13 +18,13 @@ LDLIBS = -lSOIL -lglut -lGLU -lGL -lX11 -lm `sdl-config --cflags --libs`  -lSDL_
 
 # list of source files
 SRCDIR=src
-SRCNAMES=Game.cpp \
+SRCNAMES=Menu.cpp \
     ImageLoader.cpp \
     Jukebox.cpp \
-    Menu.cpp \
     HUD.cpp \
-    HealthHUD.cpp
-SRC=$(addprefix $(SRCDIR)/,$(SRCNAMES:.cpp=.o))
+    HealthHUD.cpp \
+    Game.cpp
+SRC=$(addprefix $(SRCDIR)/,$(SRCNAMES))
 
 # list of object files to be created
 OBJDIR=obj
@@ -34,9 +34,10 @@ OBJ=$(addprefix $(OBJDIR)/,$(SRCNAMES:.cpp=.o))
 EXE=bin/game
       
 all: $(SRC) $(EXE)
+	mkdir -p bin obj
 
 $(EXE): $(OBJ)
 	$(CC) $(LDFLAGS) $(OBJ) -o $@
 
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $(OBJDIR)/$@
+$(OBJ): $(SRC)
+	$(CC) $(CFLAGS) $< -o $@

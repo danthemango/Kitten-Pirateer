@@ -15,3 +15,7 @@ In its final form this game is intended to be developed for Debian systems, usin
    -GLFW
    -GLEW
    -GLM
+
+Installation of dependencies for ubuntu:
+sudo apt-get install gcc freeglut3 freeglut3-dev libsoil-dev libsdl1.2-dev xorg-dev libgl1-mesa-dev
+
