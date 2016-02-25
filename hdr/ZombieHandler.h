@@ -1,31 +1,27 @@
 // **********************************************
-// Filename: ZombieHandler.h
-// Author: Daniel Guenther
-// Date: 2016-02-01
-// Class: CSCI 331
-// Project: Kitty Pirateer
+// Filename:   ZombieHandler.h
+// Author:     Daniel Guenther
+// Date:       2016-02-01
+// Class:      CSCI 331
+// Project:    Kitty Pirateer
 // 
 // Purpose: 
 //    instatiates and holds Zombies (objects)
+//
+// Note:
+//    ZombieHandler is a singleton class, every method must be 
+//    used like: ZombieHandler::getInstance().method()
 // ************************************************
 #ifndef ZombieHandler_H
 #define ZombieHandler_H
 #include "Zombie.h"
+#include "config.h"
 
 class ZombieHandler
 {
-   private:
-      // number of zombie current instatiated
-      int m_numZombies;
-      // a linked list containing the zombie objects
-      struct m_zlist{
-         Zombie* n;
-        m_zlist* next;
-      }
-      m_zlist* head;
    public:
-      ZombieHandler();
-      ~ZombieHander();
+      // returns the currently existing instance
+      static ZombieHandler &getInstance();
       // updates all contained zombies
       void update();
       // draws all zombies
@@ -35,5 +31,39 @@ class ZombieHandler
       // x2 y2 - top right corner coordinates
       // int damage - damage amount
       void attacked(int x1, int y1, int x2, int y2, int damage);
+      // tell the ZombieHandler we're moving to the next tile
+      void down();
+      void up();
+      void left();
+      void right();
+      // turn all zombies into corpses
+      void killAllZombies();
+      // make all zombies disappear
+      void disappearAllZombies();
+   private:
+      // number of zombie current instatiated
+      int m_numZombies;
+      // a linked list containing the zombie objects
+      Zombie m_ZombieList[MAXZOMBIES];
+      // load zombie positions from config/Zombies
+      void loadZombies();
+      // number of zombies in each tile
+      int m_numZombies[TILE_NUM_X][TILE_NUM_Y];
+      // defines an x,y position
+      struct pos{
+         int x,y;
+      }
+      // array to hold positions of zombies
+      // in order, this array holds the 
+      // [tilepositionx][y][zombienumber][zombiepositionx][y]
+      pos m_ZombiePosition[TILE_NUM_X][TILE_NUM_Y][MAXZOMBIES];
+      // current tile position
+      int x,y;
+
+      // for a singleton, we don't share the default methods
+      ZombieHandler();
+      ZombieHandler(const ZombieHandler &old); // no copying
+      const ZombieHandler &operator= (const ZombieHandler &old); // no assignment
+      ~ZombieHander();
 };
 #endif
