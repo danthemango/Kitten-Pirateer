@@ -48,6 +48,10 @@ void Game::init()
     glDepthFunc(GL_LESS);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+	//Alpha layer code:
+	glEnable(GL_ALPHA_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUC_SRC_ALPHA);
 	
     //gluOrtho2D(0, m_width+m_margine, 0, m_height+m_margine);
 	
