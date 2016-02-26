@@ -1,135 +1,93 @@
 //Edited by: Keenan Longair.
-//Last update: 2:00PM February 24th, 2016.
+//Last update: 3:00PM February 26th, 2016.
 //Purpose: Contains the body of the game file prototyped in the Game.h file.
-//Version: 0.8
+//Version: 1.1
 
 //Required Libraries:
 #include <cstdio>
 #include <stdlib.h>
-#include <GL/glut.h>    /* glut.h includes gl.h and glu.h */
+#include <GL/glut.h>/*glut.h includes gl.h and glu.h*/
 #include <math.h>
 #include <time.h>
 #include <GL/freeglut.h>
 
 //Required Files:
-#include "../hdr/Game.h"
+#include "../hdr/Game.h"//Prototype of this file.
 #include "../hdr/Jukebox.h"//Dependancy for Sound.
 #include "../hdr/Obstacle.h"//Dependancy for Obstacles.
 #include "../hdr/ImageLoader.h"//Dependancy for Images.
+#include "../hdr/MapHandler.h"//Dependancy for the Map.
+#include "../hdr/Player.h"//Dependancy for the Player.
 
+//Main Variables:
 bool Game::c_run = false;//Set the game to display the main menu. Once changed this
 //moves the game along.
 bool Game::c_running = false;//Set the running state to false to start the game
 //with the splashscreen displayed.
 
-//Function to return a random number if needed. May be removed if 
-//not used before final presentation.
-GLfloat Game::frand()
-
-    return random()/(GLfloat)RAND_MAX;
-
-}
-
-// Called by Game::idle this function sends a signal to update the screen
-void Game::timer(int id)
+/****Main Work Functions***************************************************************/
+void Game::init()
+//Initialization function.
 {
 	
-   if(id == 513) {
-      // Redisplay frame
-      glutPostRedisplay();
-   }
-   
-}
+    // Set the seed for the random variable generator just in case we need it.
+    srandom(time(NULL));
 
-//This function handles the delay between the update signals for the screen.
-void Game::idle() {
-	
-   glutTimerFunc(Game::c_interval, // in this many miliseconds
-     Game::timer,      // call the funtion timer
-     513               // with this parameter
-   );
-   
-}
+    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);//Use double buffering for smoother images
+    glutInitWindowSize(m_width, m_height);
+    glutInitWindowPosition(0, 0);
+    glutCreateWindow("Kitty Piratier - Adventure of Zombie Island");
 
-int Game::getWidth() {
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glShadeModel(GL_SMOOTH);
+    glEnable(GL_LIGHTING);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_DEPTH_TEST);
+    glDepthFunc(GL_LESS);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 	
-	return m_width;
+	//Prepared code:
+	m_gameObjects = 0;                            //x   y   len  bre
+    m_myGameObjects3[m_gameObjects] = new Obstacle(170, 210, 154 , 150, 0); //square
+                                                  //x   y    r   circleflag  cond
+    m_myGameObjects4[m_gameObjects] = new Obstacle(217, 245, 85, 0, 0);  
+    m_gameObjects = m_gameObjects+1;
+    
+    m_myGameObjects3[m_gameObjects] = new Obstacle( 498, 369, 449,296,0);
+    m_gameObjects = m_gameObjects+1;
+    m_myGameObjects3[m_gameObjects] = new Obstacle( 650, 222, 151, 147,0);
 	
-}
+	//Provided code:
+    //gluOrtho2D(0, m_width+m_margine, 0, m_height+m_margine);
+    glOrtho(0, m_width+m_margine, 0, m_height+m_margine, 0, 1000);
 
-int Game::getHeight() {
-	
-	return m_height;
-	
-}
+	//In event-driven programming, like you have in interactive OpenGL 
+	//applications, the main application loop generally does three things:
+	//  1. check the current event queues, and process any events (e.g., 
+	//     mouse movement, key presses, etc.) that have occurred since the last check
+	//  2. update the application state - things like player and object positions, 
+	//     game physics, etc. - in preparation of the next rendering frame
+	//  3. render the current frame.
+	// GLUT does these steps implicitly in its glutMainLoop()
 
-void Game::run() {
+	//Set up the callbacks that will be taken care of in step 1:
+    glutKeyboardFunc(Game::key); // Keyboard input
+    glutDisplayFunc(Game::run);  // Display frames
+	glutKeyboardUpFunc(Game::keyUp);
+    //glutIdleFunc(Game::run);    // Wait time between frames.
 
-    Game::getInstance().update();   
-    // flush the graphics pipele and display the objects we have specified
-    //Since we are using double buffering this means we swap the buffer be just drew
-    //on to the screen.
-    glutSwapBuffers();
-    Game::idle();
-	
-}
 
-void Game::key(unsigned char key, int x, int y)
-//This function handles key input from the user.
-{
-	
-    switch (key){
-		
-        case ' ' :
-		
-			//If the space bar is hit, the game first checks to see if the c_run
-			//has changed from false yet. 
-			if (Game::c_run == false) {
-				
-				//If c_run is still false, then we would start the game and set c_run 
-				//and c_running to true and allow the game to run.
-				Game::c_run = !Game::c_run;
-				Game::c_running = !Game::c_running;
-				
-            } else {
-				//If c_run has changed to true, then the game has been started and 
-				//we simply deal with the c_running variable to decide upon displaying 
-				//the pause screen or allowing game play.
-				Game::c_running = !Game::c_running;
-				
-            }
-			break;
-			
-		//W, S, A, D movement controls are handled seperatly by the keyOperations function. 
-        //case 'a' :
-            //Game::getInstance().;
-            //break;
-			
-        //case 'd':
-            //Game::getInstance().;
-            //break;
-			
-        //case 's':
-			//Game::getInstance().;
-			//break;
-			
-        //case 'w':
-			//Game::getInstance().;
-            //break;
-			
-        case 'e':
-			//e will handle the interactions?
-			//Game::getInstance().;
-			break;
-			
-		case 'q':
-			//q could handle the item use.
-			//Game::getInstance().;
-			break;
-			
-    }
-    //glutPostRedisplay();
-	
+	m_backgroundTexture= ImageLoader::LoadTexture( "./imgs/south.bmp" );
+	//Place init here for the main GameObject (probably the PC character).
+	m_myPlayer.init();
+	m_MapHandler = new MapHandler;//Creates the MapHandler using the new function.
+
+    glutMainLoop(); // glutMainLoop enters the GLUT event processing loop. 
+                    //This routine should be called at most once in a GLUT program. 
+                    //Once called, this routine will never return. 
+                    //It will call as necessary any callbacks that have been registered.
+
 }
 
 void Game::update()
@@ -177,10 +135,45 @@ void Game::update()
 
 
 	//Call the update and display functions of the GameObjects here:
+	//MapHandler::updateTile();
 	m_myPlayer.update(m_myGameObjects3,3,4);
 	m_myPlayer.update(m_myGameObjects4,1,3);
 	m_myPlayer.display();
 	
+}
+
+void Game::run() 
+{
+
+    Game::getInstance().update();   
+    // flush the graphics pipele and display the objects we have specified
+    //Since we are using double buffering this means we swap the buffer be just drew
+    //on to the screen.
+    glutSwapBuffers();
+    Game::idle();
+	
+}
+
+// Called by Game::idle this function sends a signal to update the screen
+void Game::timer(int id)
+{
+	
+   if(id == 513) {
+      // Redisplay frame
+      glutPostRedisplay();
+   }
+   
+}
+
+//This function handles the delay between the update signals for the screen.
+void Game::idle() 
+{
+	
+   glutTimerFunc(Game::c_interval, // in this many miliseconds
+     Game::timer,      // call the funtion timer
+     513               // with this parameter
+   );
+   
 }
 
 /* Handler for window re-size event. Called back when the window first appears and
@@ -196,68 +189,61 @@ void Game::reshape(GLsizei newwidth, GLsizei newheight)
     glutPostRedisplay();
 }
 
-void Game::init()
-//Initialization function.
+void Game::updateTile(GLuint x)
+//Function which allows the background texture variable to be altered when required.
 {
 	
-    // Set the seed for the random variable generator just in case we need it.
-    srandom(time(NULL));
-
-    glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB); // Use double buffering for smoother images
-    glutInitWindowSize(m_width, m_height);
-    glutInitWindowPosition(0, 0);
-    glutCreateWindow("Kitty Piratier - Adventure of Zombie Island");
-
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    glShadeModel(GL_SMOOTH);
-    glEnable(GL_LIGHTING);
-    glEnable(GL_LIGHT0);
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LESS);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
+	m_backgroundTexture = x;
 	
-	//Prepared code:
-	m_gameObjects = 0;                            //x   y   len  bre
-    m_myGameObjects3[m_gameObjects] = new Obstacle(170, 210, 154 , 150, 0); //square
-                                                  //x   y    r   circleflag  cond
-    m_myGameObjects4[m_gameObjects] = new Obstacle(217, 245, 85, 0, 0);  
-    m_gameObjects = m_gameObjects+1;
-    
-    m_myGameObjects3[m_gameObjects] = new Obstacle( 498, 369, 449,296,0);
-    m_gameObjects = m_gameObjects+1;
-    m_myGameObjects3[m_gameObjects] = new Obstacle( 650, 222, 151, 147,0);
+}
+/****End of Main Work Functions*********************************************************/
+
+
+/****Key Functions**********************************************************************/
+void Game::key(unsigned char key, int x, int y)
+//This function handles key input from the user for non-movement controls.
+{
 	
-	//Provided code:
-    //gluOrtho2D(0, m_width+m_margine, 0, m_height+m_margine);
-    glOrtho(0, m_width+m_margine, 0, m_height+m_margine, 0, 1000);
-
-	//In event-driven programming, like you have in interactive OpenGL 
-	//applications, the main application loop generally does three things:
-	//  1. check the current event queues, and process any events (e.g., 
-	//     mouse movement, key presses, etc.) that have occurred since the last check
-	//  2. update the application state - things like player and object positions, 
-	//     game physics, etc. - in preparation of the next rendering frame
-	//  3. render the current frame.
-	// GLUT does these steps implicitly in its glutMainLoop()
-
-	//Set up the callbacks that will be taken care of in step 1:
-    glutKeyboardFunc(Game::key); // Keyboard input
-    glutDisplayFunc(Game::run);  // Display frames
-	glutKeyboardUpFunc(Game::keyUp);
-    //glutIdleFunc(Game::run);    // Wait time between frames.
-
-
-	m_backgroundTexture= ImageLoader::LoadTexture( "./imgs/south.bmp" );
-	//m_backgroundTexture= ::getTile();//Use this function call to get the background texture.
-	//Place init here for the main GameObject (probably the PC character).
-	m_myPlayer.init();
-
-    glutMainLoop(); // glutMainLoop enters the GLUT event processing loop. 
-                    //This routine should be called at most once in a GLUT program. 
-                    //Once called, this routine will never return. 
-                    //It will call as necessary any callbacks that have been registered.
-
+    switch (key){
+		
+        case ' ' :
+		
+			//If the space bar is hit, the game first checks to see if the c_run
+			//has changed from false yet. 
+			if (Game::c_run == false) {
+				
+				//If c_run is still false, then we would start the game and set c_run
+				//and c_running to true and allow the game to run.
+				Game::c_run = !Game::c_run;
+				Game::c_running = !Game::c_running;
+				
+            } else {
+				//If c_run has changed to true, then the game has been started and 
+				//we simply deal with the c_running variable to decide upon displaying
+				//the pause screen or allowing game play.
+				Game::c_running = !Game::c_running;
+				
+            }
+			break;
+			
+        case 'e':
+			//e could handle the interactions.
+			//Game::getInstance().;
+			break;
+			
+		case 'q':
+			//q could handle the item use.
+			//Game::getInstance().;
+			break;
+			
+		case 'h':
+			//h could handle the attack command.
+			//Game::getInstance().;
+			break;
+			
+    }
+    //glutPostRedisplay();
+	
 }
 
 void Game::keyOperations()
@@ -310,14 +296,17 @@ void Game::keyOperations()
 }
 
 void Game::keyUp(unsigned char key, int x, int y)
+//Sets the proper key to be false.
 {
 	
    keystates[key] = false;
 
 }
+/****End of Key Functions**************************************************************/
 
-/**************************************************************************************/
-//Provided functions.
+
+/****Other Functions*******************************************************************/
+//Possibly helpful functions.
 //These functions are here to provide their possible use for the project.
 //Anything not used by the end will be removed.
 int Game::getArrayPos()
@@ -337,9 +326,37 @@ void Game::changeScreen(int dir)
 	m_backgroundTexture= ImageLoader::LoadTexture(tiles[dir]);
 	
 }
-/**********************************************************************************/
 
-int main(int argc, char **argv) {
+/*Get Width and Get Height are not required now that the size of the screen will be
+located within the config.h*/
+int Game::getWidth() 
+{
+	
+	return m_width;
+	
+}
+
+int Game::getHeight() 
+{
+	
+	return m_height;
+	
+}
+
+//Function to return a random number if needed. May be removed if 
+//not used before final presentation.
+GLfloat Game::frand()
+//Random number generating function.
+{
+    return random()/(GLfloat)RAND_MAX;
+
+}
+/****End of Other Functions************************************************************/
+
+
+/****Main Function*********************************************************************/
+int main(int argc, char **argv) 
+{
 	
     if(!Jukebox::init())
        exit;
@@ -348,3 +365,4 @@ int main(int argc, char **argv) {
     SDL_CloseAudio();
 	
 }
+/****End Main Function*****************************************************************/

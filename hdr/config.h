@@ -21,11 +21,14 @@
 #define NUM_TILES_Y 3
 // size of the screen
 //TODO please enter the correct number
-#define SCREEN_SIZE_X 200
-#define SCREEN_SIZE_Y 200 
+#define SCREEN_SIZE_X 800//Width
+#define SCREEN_SIZE_Y 1000//Height
 // maximum number of zombies on a single screen-tile
 #define MAXZOMBIES 20
 // path to the zombie configuration file
 #define ZOMBIE_CONFIG_PATH "../config/Zombies"
+//Margine size
+//TODO set up the correct margine size.
+#define MARGINE 4
 
 #endif
