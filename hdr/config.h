@@ -11,6 +11,11 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// default sprite size
+#define SPRITE_SIZE_X 30
+#define SPRITE_SIZE_Y 30
+
+#define START_TILE 3
 // number of tiles in the map
 #define NUM_TILES_X 3
 #define NUM_TILES_Y 3
