@@ -12,12 +12,14 @@
 //    ZombieHandler is a singleton class, every method must be 
 //    used like: ZombieHandler::getInstance().method()
 // ************************************************
+
 #ifndef ZombieHandler_H
 #define ZombieHandler_H
 #include "Zombie.h"
+#include "GameObject.h"
 #include "config.h"
 
-class ZombieHandler
+class ZombieHandler: public GameObject
 {
    public:
       // returns the currently existing instance
@@ -39,16 +41,14 @@ class ZombieHandler
       // turn all zombies into corpses
       void killAllZombies();
       // make all zombies disappear
-      void disappearAllZombies();
+      void removeAllZombies();
    private:
-      // number of zombie current instatiated
-      int m_numZombies;
       // a linked list containing the zombie objects
       Zombie m_ZombieList[MAXZOMBIES];
       // load zombie positions from config/Zombies
       void loadZombies();
       // number of zombies in each tile
-      int m_numZombies[TILE_NUM_X][TILE_NUM_Y];
+      int m_numZombies[NUM_TILES_X][NUM_TILES_Y];
       // defines an x,y position
       struct pos{
          int x,y;

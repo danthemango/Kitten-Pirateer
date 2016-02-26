@@ -9,6 +9,7 @@
 //    A 'Zombie' is a NPC which slowly follows the player
 //    and deals damage when close enough
 // ************************************************
+
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
 #include "HostileNPC.h"
@@ -30,7 +31,5 @@ class Zombie: HostileNPC{
       virtual void display();
       // causes damage to the zombie (reduces health by amount)
       void damage(int amount);
-      // returns true if Zombie has health <= 0
-      int isDead();
 };
 #endif

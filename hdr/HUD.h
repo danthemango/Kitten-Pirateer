@@ -31,4 +31,3 @@ class HUD {
 };
 
 #endif // !HUD_H
-

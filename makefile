@@ -18,7 +18,8 @@ LDLIBS = -lSOIL -lglut -lGLU -lGL -lX11 -lm `sdl-config --cflags --libs`  -lSDL_
 
 # list of source files
 SRCDIR=src
-SRCNAMES=Menu.cpp \
+SRCNAMES=ZombieHandler \
+    Menu.cpp \
     ImageLoader.cpp \
     Jukebox.cpp \
     HUD.cpp \
@@ -33,8 +34,7 @@ OBJ=$(addprefix $(OBJDIR)/,$(SRCNAMES:.cpp=.o))
 # Executeable targets
 EXE=bin/game
       
-all: bin $(OBJDIR) $(SRC) $(EXE)
-
+all: bin $(OBJDIR) $(SRC) $(EXE) 
 bin:
 	mkdir bin
 
