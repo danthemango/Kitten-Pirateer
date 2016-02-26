@@ -10,4 +10,6 @@
 ===================================================
 
 Tile - one screen. Since the map is bigger than the window, it is tiled.
+   NOTE: tiles have integer values, starting at 0 on the top left,
+      read left to right then top to bottom
 Zombie - Enemy creature which damages the player on contact

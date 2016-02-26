@@ -16,33 +16,25 @@ CC = g++
 CFLAGS =
 LDLIBS = -lSOIL -lglut -lGLU -lGL -lX11 -lm `sdl-config --cflags --libs`  -lSDL_mixer 
 
-# list of source files
+# get list of source files
 SRCDIR=src
-SRCNAMES=ZombieHandler \
-    Menu.cpp \
-    ImageLoader.cpp \
-    Jukebox.cpp \
-    HUD.cpp \
-    HealthHUD.cpp \
-    Game.cpp
-SRC=$(addprefix $(SRCDIR)/,$(SRCNAMES))
-
-# list of object files to be created
 OBJDIR=obj
-OBJ=$(addprefix $(OBJDIR)/,$(SRCNAMES:.cpp=.o))
+CPP_FILES := $(wildcard $(SRCDIR)/*.cpp)
+# get list of object files
+OBJ_FILES := $(addprefix $(OBJDIR)/,$(notdir $(CPP_FILES:.cpp=.o)))
 
 # Executeable targets
 EXE=bin/game
       
 all: bin $(OBJDIR) $(SRC) $(EXE) 
 bin:
-	mkdir bin
+	mkdir $@
 
-$(OBJDIR):
-	mkdir $(OBJDIR)
+obj:
+	mkdir $@
 
-$(EXE): $(OBJ)
-	$(CC) $(LDFLAGS) $(OBJ) -o $@
+$(EXE): $(OBJ_FILES)
+	$(CC) $(LDFLAGS) -o $@ $^
 
-$(OBJ): $(SRC)
-	$(CC) $(CFLAGS) $< -o $@
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp
+	$(CC) $(CFLAGS) -c -o $@ $<
