@@ -8,6 +8,8 @@
 // Purpose: 
 //    To set defaults shared in the project
 // ************************************************
+#ifndef CONFIG_H
+#define CONFIG_H
 
 // number of tiles in the map
 #define NUM_TILES_X 3
@@ -20,3 +22,5 @@
 #define MAXZOMBIES 20
 // path to the zombie configuration file
 #define ZOMBIE_CONFIG_PATH "../config/Zombies"
+
+#endif
