@@ -1,9 +1,9 @@
 //Edited by: Keenan Longair.
-//Last update: 2:30PM February 26th, 2016.
+//Last update: 3:00PM February 26th, 2016.
 //Purpose: Prototyping of the main "GameBoard" and its interface. This is implemented
 //as a singleton and thus can only have one instance. Use the Game::getInstance() function
 //to gain access to the instance.
-//Version: 1.0
+//Version: 1.1
 
 #ifndef GAME_H_
 #define GAME_H_
@@ -13,12 +13,15 @@
 #include <GL/glut.h>    /* glut.h includes gl.h and glu.h */
 
 //Required files:
-#include "../hdr/PC.h"
-#include "config.h"
+#include "../hdr/config.h"//Include the configuration settings.
+#include "../hdr/PC.h"//Include the PC class.
+#include "../hdr/Player.h"//Include the Player class.
+#include "../hdr/Obstacle.h"//Include the Obstacle class.
+#include "../hdr/MapHandler.h"//Include the MapHandler class.
 
 //Various required classes:
-class Player;
-class Obstacle;
+class Player;//Gives access to the Player.
+class Obstacle;//Gives access to the Obstacle.
 class ImageLoader;//Gives access to the ImageLoader.
 class Menu;//Gives access to the Menu.
 

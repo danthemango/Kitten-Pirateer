@@ -1,7 +1,7 @@
 //Edited by: Keenan Longair.
-//Last update: 2:00PM February 26th, 2016.
+//Last update: 3:00PM February 26th, 2016.
 //Purpose: Contains the body of the game file prototyped in the Game.h file.
-//Version: 1.0
+//Version: 1.1
 
 //Required Libraries:
 #include <cstdio>
@@ -17,7 +17,9 @@
 #include "../hdr/Obstacle.h"//Dependancy for Obstacles.
 #include "../hdr/ImageLoader.h"//Dependancy for Images.
 #include "../hdr/MapHandler.h"//Dependancy for the Map.
+#include "../hdr/Player.h"//Dependancy for the Player.
 
+//Main Variables:
 bool Game::c_run = false;//Set the game to display the main menu. Once changed this
 //moves the game along.
 bool Game::c_running = false;//Set the running state to false to start the game
