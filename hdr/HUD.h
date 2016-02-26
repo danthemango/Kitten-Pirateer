@@ -13,8 +13,10 @@ Purpose:
 #ifndef HUD_H
 #define HUD_H
 
+#include <cstring>
+
 #include "../hdr/Game.h"
-#include "../hdr/pc.h"
+//#include "../hdr/PC.h"
 #include <GL/glut.h>
 
 class HUD {

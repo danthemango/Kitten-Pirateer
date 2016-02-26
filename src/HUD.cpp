@@ -12,26 +12,29 @@ Purpose:
 #include "../hdr/HUD.h"
 
 HUD::HUD() {
+	// get the game width
 	Game::getWidth() = m_width;
+	// get the game height
 	Game::getHeight() = m_height;
-//	pc::check_pc_ammo(
+	// implement an overlay for the HUD so it doesnt affect the undlerlying game
 	if (glutLayerGet(GLUT_OVERLAY_POSSIBLE)) {
 		void glutEstablishOverlay();
 	}
 }
 
+// Prints strings onto the screen
 void Game::RenderString(float x, float y, void *font, const char* string)
 {  
   char *c;
 
   const unsigned char* string2 = (const unsigned char*)string;
 
-  glColor3f(1.0, 0.0, 0.0); 
+  glColor3f(0.0, 0.0, 0.0); // black
   glRasterPos2f(x, y);
-
   glutBitmapString(font, string2);
 } 
 
+// Function to be overwritten by subclasses. 
 void displayHUD() {
 
 }
