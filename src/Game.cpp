@@ -51,12 +51,16 @@ void Game::idle() {
    
 }
 
-int getWidth() {
+int Game::getWidth() {
+	
 	return m_width;
+	
 }
 
-int getHeight() {
+int Game::getHeight() {
+	
 	return m_height;
+	
 }
 
 void Game::run() {
@@ -96,28 +100,31 @@ void Game::key(unsigned char key, int x, int y)
             }
 			break;
 			
-        case 'a' :
-            Game::getInstance().;
-            break;
+		//W, S, A, D movement controls are handled seperatly by the keyOperations function. 
+        //case 'a' :
+            //Game::getInstance().;
+            //break;
 			
-        case 'd':
-            Game::getInstance().;
-            break;
+        //case 'd':
+            //Game::getInstance().;
+            //break;
 			
-        case 's':
-			Game::getInstance().;
-			break;
+        //case 's':
+			//Game::getInstance().;
+			//break;
 			
-        case 'w':
-			Game::getInstance().;
-            break;
+        //case 'w':
+			//Game::getInstance().;
+            //break;
 			
         case 'e':
-			Game::getInstance().;
+			//e will handle the interactions?
+			//Game::getInstance().;
 			break;
 			
 		case 'q':
-			Game::getInstance().;
+			//q could handle the item use.
+			//Game::getInstance().;
 			break;
 			
     }
@@ -166,7 +173,6 @@ void Game::update()
 
 	//Call the update and display functions of the GameObjects here:
 	m_myPlayer.update(m_myGameObjects3,3,4);
-     
 	m_myPlayer.update(m_myGameObjects4,1,3);
 	m_myPlayer.display();
 	
@@ -233,11 +239,12 @@ void Game::init()
 	//Set up the callbacks that will be taken care of in step 1:
     glutKeyboardFunc(Game::key); // Keyboard input
     glutDisplayFunc(Game::run);  // Display frames
-	glutKeyboardUpFunc(Game::keuUp);
+	glutKeyboardUpFunc(Game::keyUp);
     //glutIdleFunc(Game::run);    // Wait time between frames.
 
 
 	m_backgroundTexture= ImageLoader::LoadTexture( "./imgs/south.bmp" );
+	//m_backgroundTexture= ::getTile();//Use this function call to get the background texture.
 	//Place init here for the main GameObject (probably the PC character).
 	m_myPlayer.init();
 
@@ -245,6 +252,62 @@ void Game::init()
                     //This routine should be called at most once in a GLUT program. 
                     //Once called, this routine will never return. 
                     //It will call as necessary any callbacks that have been registered.
+
+}
+
+void Game::keyOperations()
+//keyOpertations handles smooth movement control input.
+//It was found that using a switch case for handling the controls, there would
+//be some incorrect movement which was undesired.
+{
+	
+   if(keystates['a']){
+	   
+      Game::getInstance().m_myPlayer.left();
+      Game::getInstance().m_myPlayer.c_left = true;
+	  
+   }else{
+	   
+   	Game::getInstance().m_myPlayer.c_left = false;
+	
+   }
+   if(keystates['w']){
+	   
+      Game::getInstance().m_myPlayer.up();
+      Game::getInstance().m_myPlayer.c_up = true;
+	  
+   }else{
+	   
+   	Game::getInstance().m_myPlayer.c_up = false;
+	
+   }
+   if(keystates['d']){
+	   
+      Game::getInstance().m_myPlayer.right();
+      Game::getInstance().m_myPlayer.c_right = true;
+	  
+   }else{
+	   
+   	Game::getInstance().m_myPlayer.c_right = false;
+	
+   }
+   if(keystates['s']){
+	   
+      Game::getInstance().m_myPlayer.down();
+      Game::getInstance().m_myPlayer.c_down = true;
+	  
+   }else{
+	   
+   	Game::getInstance().m_myPlayer.c_down = false;
+	
+   }
+
+}
+
+void Game::keyUp(unsigned char key, int x, int y)
+{
+	
+   keystates[key] = false;
 
 }
 
@@ -262,46 +325,12 @@ void Game::setArrayPos(int pos)
    m_arraypos = pos;
 }
 
-void Game::keyOperations()
-{
-   if(keystates['a']){
-      Game::getInstance().m_myPlayer.left();
-      Game::getInstance().m_myPlayer.c_left = true;
-   }else{
-   	Game::getInstance().m_myPlayer.c_left = false;
-   }
-   if(keystates['w']){
-      Game::getInstance().m_myPlayer.up();
-      Game::getInstance().m_myPlayer.c_up = true;
-   }else{
-   	Game::getInstance().m_myPlayer.c_up = false;
-   }
-   if(keystates['d']){
-      Game::getInstance().m_myPlayer.right();
-      Game::getInstance().m_myPlayer.c_right = true;
-   }else{
-   	Game::getInstance().m_myPlayer.c_right = false;
-   }
-   if(keystates['s']){
-      Game::getInstance().m_myPlayer.down();
-      Game::getInstance().m_myPlayer.c_down = true;
-   }else{
-   	Game::getInstance().m_myPlayer.c_down = false;
-   }
-
-}
-void Game::keyUp(unsigned char key, int x, int y)
-{
-   keystates[key] = false;
-
-}
 void Game::changeScreen(int dir)
 {
 
 	const char* tiles[5] =  {"","./imgs/north.bmp","./imgs/east.bmp","./imgs/south.bmp","./imgs/west.bmp"};
 	m_backgroundTexture= ImageLoader::LoadTexture(tiles[dir]);
 	
-
 }
 /**********************************************************************************/
 
