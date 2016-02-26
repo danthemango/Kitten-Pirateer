@@ -18,6 +18,15 @@
 //TODO please enter the correct number
 #define SCREEN_SIZE_X 200
 #define SCREEN_SIZE_Y 200 
+
+//default sprite size
+#define SPRITE_SIZE_X 30 //width
+#define SPRITE SIZE_Y 30 //height
+
+//default player start position
+#define PLAYER_START_X 500
+#define PLAYER_START_y 500
+
 // maximum number of zombies on a single screen-tile
 #define MAXZOMBIES 20
 // path to the zombie configuration file
