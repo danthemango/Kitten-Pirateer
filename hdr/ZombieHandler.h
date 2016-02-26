@@ -33,17 +33,14 @@ class ZombieHandler: public GameObject
       // x2 y2 - top right corner coordinates
       // int damage - damage amount
       void attacked(int x1, int y1, int x2, int y2, int damage);
-      // tell the ZombieHandler we're moving to the next tile
-      void down();
-      void up();
-      void left();
-      void right();
+      // switch to a new tile
+      void updateTile(int x);
       // turn all zombies into corpses
       void killAllZombies();
       // make all zombies disappear
       void removeAllZombies();
    private:
-      // a linked list containing the zombie objects
+      // an array containing the zombie objects
       Zombie m_ZombieList[MAXZOMBIES];
       // load zombie positions from config/Zombies
       void loadZombies();
