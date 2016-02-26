@@ -18,6 +18,8 @@
 #include "../hdr/ImageLoader.h"//Dependancy for Images.
 #include "../hdr/MapHandler.h"//Dependancy for the Map.
 #include "../hdr/Player.h"//Dependancy for the Player.
+#include "../hdr/ItemHandler.h"//
+
 
 //Main Variables:
 bool Game::c_run = false;//Set the game to display the main menu. Once changed this
@@ -30,8 +32,8 @@ void Game::init()
 //Initialization function.
 {
 	
-    // Set the seed for the random variable generator just in case we need it.
-    srandom(time(NULL));
+    //Set the seed for the random variable generator just in case we need it.
+    //srandom(time(NULL));
 
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);//Use double buffering for smoother images
     glutInitWindowSize(m_width, m_height);
@@ -47,19 +49,8 @@ void Game::init()
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 	
-	//Prepared code:
-	m_gameObjects = 0;                            //x   y   len  bre
-    m_myGameObjects3[m_gameObjects] = new Obstacle(170, 210, 154 , 150, 0); //square
-                                                  //x   y    r   circleflag  cond
-    m_myGameObjects4[m_gameObjects] = new Obstacle(217, 245, 85, 0, 0);  
-    m_gameObjects = m_gameObjects+1;
-    
-    m_myGameObjects3[m_gameObjects] = new Obstacle( 498, 369, 449,296,0);
-    m_gameObjects = m_gameObjects+1;
-    m_myGameObjects3[m_gameObjects] = new Obstacle( 650, 222, 151, 147,0);
-	
-	//Provided code:
     //gluOrtho2D(0, m_width+m_margine, 0, m_height+m_margine);
+	
     glOrtho(0, m_width+m_margine, 0, m_height+m_margine, 0, 1000);
 
 	//In event-driven programming, like you have in interactive OpenGL 
@@ -72,13 +63,14 @@ void Game::init()
 	// GLUT does these steps implicitly in its glutMainLoop()
 
 	//Set up the callbacks that will be taken care of in step 1:
-    glutKeyboardFunc(Game::key); // Keyboard input
-    glutDisplayFunc(Game::run);  // Display frames
-	glutKeyboardUpFunc(Game::keyUp);
+    glutKeyboardFunc(Game::key);//Keyboard input
+    glutDisplayFunc(Game::run);//Display frames
+	glutKeyboardUpFunc(Game::keyUp);//Keyboard Movement input.
     //glutIdleFunc(Game::run);    // Wait time between frames.
 
-
-	m_backgroundTexture= ImageLoader::LoadTexture( "./imgs/south.bmp" );
+	//Load the default texture into the ImageLoader. 
+	m_backgroundTexture = ImageLoader::LoadTexture( "./imgs/south.bmp" );
+	
 	//Place init here for the main GameObject (probably the PC character).
 	m_myPlayer.init();
 	m_MapHandler = new MapHandler;//Creates the MapHandler using the new function.
@@ -114,25 +106,28 @@ void Game::update()
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
 
-	if(!Game::c_run) {
-	
-		//This should only call the mainMenu once at the start of the game.
-		return Menu::mainMenu();
-		
-	}
-	
 	if(!Game::c_running) {
-	   
-		//This will call the splash screen when ever the user pauses the game
-		//using the space bar.
-		return Menu::splashScreen();
+		
+	   	if(!Game::c_run) {
+	
+			//This should only call the mainMenu once at the start of the game.
+			return Menu::mainMenu();
+		
+		} else {
+			
+			//This will call the splash screen when ever the user pauses the game
+			//using the space bar.
+			return Menu::splashScreen();
+			
+		}
 	 
 	}
 
-	//Call the update and display functions of the GameObjects here:
-	//MapHandler::updateTile();
-	m_myPlayer.update(m_myGameObjects3,3,4);
-	m_myPlayer.update(m_myGameObjects4,1,3);
+	//OBJECT UPDATE CALLS HERE:
+	//MapHandler::
+	//Item update must happen before the player display.
+	//ItemHandler::getInstance().update();
+	//Player display should be one of the very last, if not last.
 	m_myPlayer.display();
 	
 }
@@ -141,7 +136,7 @@ void Game::run()
 {
 
     Game::getInstance().update();   
-    // flush the graphics pipele and display the objects we have specified
+    //Flush the graphics pipele and display the objects we have specified
     //Since we are using double buffering this means we swap the buffer be just drew
     //on to the screen.
     glutSwapBuffers();
@@ -223,17 +218,14 @@ void Game::key(unsigned char key, int x, int y)
 			
         case 'e':
 			//e could handle the interactions.
-			//Game::getInstance().;
 			break;
 			
 		case 'q':
 			//q could handle the item use.
-			//Game::getInstance().;
 			break;
 			
 		case 'h':
 			//h could handle the attack command.
-			//Game::getInstance().;
 			break;
 			
     }
@@ -242,9 +234,7 @@ void Game::key(unsigned char key, int x, int y)
 }
 
 void Game::keyOperations()
-//keyOpertations handles smooth movement control input.
-//It was found that using a switch case for handling the controls, there would
-//be some incorrect movement which was undesired.
+//keyOpertations handles smooth movement from the control input.
 {
 	
    if(keystates['a']){
@@ -252,37 +242,40 @@ void Game::keyOperations()
       Game::getInstance().m_myPlayer.left();
       Game::getInstance().m_myPlayer.c_left = true;
 	  
-   }else{
+   } else {
 	   
    	Game::getInstance().m_myPlayer.c_left = false;
 	
    }
-   if(keystates['w']){
+   
+   if (keystates['w']) {
 	   
       Game::getInstance().m_myPlayer.up();
       Game::getInstance().m_myPlayer.c_up = true;
 	  
-   }else{
+   } else {
 	   
    	Game::getInstance().m_myPlayer.c_up = false;
 	
    }
-   if(keystates['d']){
+   
+   if (keystates['d']) {
 	   
       Game::getInstance().m_myPlayer.right();
       Game::getInstance().m_myPlayer.c_right = true;
 	  
-   }else{
+   } else {
 	   
    	Game::getInstance().m_myPlayer.c_right = false;
 	
    }
-   if(keystates['s']){
+   
+   if (keystates['s']) {
 	   
       Game::getInstance().m_myPlayer.down();
       Game::getInstance().m_myPlayer.c_down = true;
 	  
-   }else{
+   } else {
 	   
    	Game::getInstance().m_myPlayer.c_down = false;
 	
@@ -304,23 +297,23 @@ void Game::keyUp(unsigned char key, int x, int y)
 //Possibly helpful functions.
 //These functions are here to provide their possible use for the project.
 //Anything not used by the end will be removed.
-int Game::getArrayPos()
-{
-   return m_arraypos;
-}
+//int Game::getArrayPos()
+//{
+  //return m_arraypos;
+//}
 
-void Game::setArrayPos(int pos)
-{
-   m_arraypos = pos;
-}
+//void Game::setArrayPos(int pos)
+//{
+   //m_arraypos = pos;
+//}
 
-void Game::changeScreen(int dir)
-{
+//void Game::changeScreen(int dir)
+//{
 
-	const char* tiles[5] =  {"","./imgs/north.bmp","./imgs/east.bmp","./imgs/south.bmp","./imgs/west.bmp"};
-	m_backgroundTexture= ImageLoader::LoadTexture(tiles[dir]);
+	//const char* tiles[5] =  {"","./imgs/north.bmp","./imgs/east.bmp","./imgs/south.bmp","./imgs/west.bmp"};
+	//m_backgroundTexture= ImageLoader::LoadTexture(tiles[dir]);
 	
-}
+//}
 
 /*Get Width and Get Height are not required now that the size of the screen will be
 located within the config.h*/
@@ -340,12 +333,13 @@ int Game::getHeight()
 
 //Function to return a random number if needed. May be removed if 
 //not used before final presentation.
-GLfloat Game::frand()
+//GLfloat Game::frand()
 //Random number generating function.
-{
-    return random()/(GLfloat)RAND_MAX;
+//{
+	
+    //return random()/(GLfloat)RAND_MAX;
 
-}
+//}
 /****End of Other Functions************************************************************/
 
 
