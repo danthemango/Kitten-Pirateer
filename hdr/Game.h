@@ -1,9 +1,9 @@
 //Edited by: Keenan Longair.
-//Last update: 11:50AM February 24th, 2016.
+//Last update: 2:30PM February 26th, 2016.
 //Purpose: Prototyping of the main "GameBoard" and its interface. This is implemented
 //as a singleton and thus can only have one instance. Use the Game::getInstance() function
 //to gain access to the instance.
-//Version: 0.8
+//Version: 1.0
 
 #ifndef GAME_H_
 #define GAME_H_
@@ -14,6 +14,7 @@
 
 //Required files:
 #include "../hdr/PC.h"
+#include "config.h"
 
 //Various required classes:
 class Player;
@@ -32,9 +33,9 @@ class Game {
         //If you want to get the instance use Game::getInstance() function provided in the public
 		//section.
         Game() {
-           m_margine = 4;
-           m_width = 507*2;
-           m_height = 432*2;
+           m_margine = MARGINE;
+           m_width = SCREEN_SIZE_X;
+           m_height = SCREEN_SIZE_Y;
         };//Default Constructor.
         
 		Game(Game const&);           //Don't Implement
@@ -47,7 +48,6 @@ class Game {
 		int m_width;
 		int m_height;
 		int m_margine;
-		
 		int m_arraypos;
 		int m_gameObjects;
 		
@@ -60,6 +60,12 @@ class Game {
 
 		//Player objects:
 		Player m_myPlayer;
+		
+		//MapHandler object:
+		//Place holder to help remind me to add the creation of the MapHandler.
+		//Most likly this will be done with new inside of the Game.cpp init itself instead
+		//of being done here.
+		MapHandler m_MapHandler;
 		
 	public:
 	    //Insead of a constructor, use this static method to create an instance
@@ -76,13 +82,11 @@ class Game {
 		//to false, the game waits on the main menu. Once this is changed to true, the game
 		//runs until the c_running variable is changed. This variable allows us to possibly
 		//implement a system of restarting the game through a wide scope control variable.
-		
 		static bool c_running;//Variable to tell update if the game is to be paused or not.
 		//The c_running variable is public, to allow other objects to alter this, in essence
 		//allowing events to pause the game if necessary.
 		
-		
-		//Various provided functions:
+		//Public Functions:
 		//Possible functions: These are pulled from the collision lab 
 		//to be prepared incase anything is transfered over. 
 		//Anything unused will be removed before the final due date.
@@ -94,7 +98,7 @@ class Game {
 		int getArrayPos();
 		void setArrayPos(int pos);
 		
-		//Provided functions:
+		//Required functions:
 		static void key(unsigned char key, int x, int y);//Key takes in the key commands 
 		//used to call the control functions of the controllable character.
 		static void run();//Run is the computing loop which calls update.
@@ -105,10 +109,16 @@ class Game {
 		int LoadImage(char *filename);//Required for loading an image.
 		void init();//Set to be public incase any objects inheriting from this needs their init
 		//to be public aswell.
+		void updateTile(GLuint X);//Call this function with the new background tile texture as input
+		//to change the background tile variable.
+		
+		
 		GLfloat frand();//Random number function. Here incase we need it.
+		//These last two functions may not be needed since Width and Height are stored within the
+		//config.h file.
 		int getWidth();
 		int getHeight();
+		
 };
-
 
 #endif /* GAME_H_ */
