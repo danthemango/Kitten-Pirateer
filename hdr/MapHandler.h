@@ -39,6 +39,8 @@ private:
     
 public:
 	
+	static MapHandler &getInstance();
+	
 	int getNumObstacles() {return m_numObs[m_currTile]};
 	Obstacle getObstacles() {return m_obs;};
 	Gluint getTile() {return m_tileTextureArray[m_currTile];};
