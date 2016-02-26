@@ -11,30 +11,22 @@ Purpose:
 
 #include "../hdr/HUD.h"
 
-HUD::HUD() {
-	// get the game width
-	Game::getWidth() = m_width;
-	// get the game height
-	Game::getHeight() = m_height;
-	// implement an overlay for the HUD so it doesnt affect the undlerlying game
-	if (glutLayerGet(GLUT_OVERLAY_POSSIBLE)) {
-		void glutEstablishOverlay();
+
+	void HUD::RenderString(float x, float y, void *font, const char* string)
+	{  
+	  char *c;
+
+	  const unsigned char* string2 = (const unsigned char*)string;
+
+	  glColor3f(0.0, 0.0, 0.0); // black
+	  glRasterPos2f(x, y);
+
+	  glutBitmapString(font, string2);
+	} 
+
+	void HUD::displayHUD() {
+		RenderString(m_width - 150, m_height - 50, GLUT_BITMAP_TIMES_ROMAN_24, "Health");
+		RenderString(m_width - 150, m_height - 200, GLUT_BITMAP_TIMES_ROMAN_24, "Weapon");
 	}
-}
 
-// Prints strings onto the screen
-void Game::RenderString(float x, float y, void *font, const char* string)
-{  
-  char *c;
 
-  const unsigned char* string2 = (const unsigned char*)string;
-
-  glColor3f(0.0, 0.0, 0.0); // black
-  glRasterPos2f(x, y);
-  glutBitmapString(font, string2);
-} 
-
-// Function to be overwritten by subclasses. 
-void displayHUD() {
-
-}

@@ -24,12 +24,23 @@ class HUD {
 	protected:
 		
 	private:
-		GLfloat m_width, m_length;
+		float m_width, m_height;
 
 	public:
-		HUD(); // Default constructor. 
-			   // ~HUD(); // Don't implement: using singleton.
+		HUD(int width, int height) {
+			m_width = width;
+			m_height = height;
+			if (glutLayerGet(GLUT_OVERLAY_POSSIBLE)) {
+				void glutEstablishOverlay();
+			}
+
+		} // Default constructor. 
+
+		// ~HUD(); // Don't implement: using singleton.
+		void RenderString(float x, float y, void *font, const char* string);
+		void displayHUD();
 		
 };
 
 #endif // !HUD_H
+
