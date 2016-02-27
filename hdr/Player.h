@@ -18,6 +18,7 @@
 #include "GameObject.h"
 #include "Obstacle.h"
 #include "Weapon.h"
+#include "ImageLoader.h"
 #include "config.h"
 
 class Player
@@ -40,6 +41,8 @@ class Player
       //returns the height of the player spright
       int getHeight();
       //returns the width of the player spright
+
+      bool stopup,stopdown,stopleft,stopright;
       int getWidth();
       void left();
       void right();
@@ -48,6 +51,7 @@ class Player
       void displayTexture();
       void init();
       void collisions();
+      void addHealth(int x);
    private:
       // for a singleton, we don't share the default methods
       Player();
@@ -60,7 +64,8 @@ class Player
       int m_y; //pos of player
       float m_speed; //player movement speed
       int m_arraypos;
-      bool stopup,stopdown,stopleft,stopright;
+      bool c_up,c_down,c_left,c_right;
+      GLuint m_PlayerTexture;
 };
 #endif
 
