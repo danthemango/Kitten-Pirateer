@@ -19,6 +19,7 @@
 #include "../hdr/MapHandler.h"//Dependancy for the Map.
 #include "../hdr/Player.h"//Dependancy for the Player.
 #include "../hdr/ItemHandler.h"//
+#include "../hdr/HUD.h" // Dependancy for the HUD
 
 
 //Main Variables:
@@ -138,7 +139,6 @@ void Game::update()
 	//Display the HUD
 	HUD m_hud(m_width, m_height);
 	m_hud.displayHUD();
-<<<<<<< HEAD
 	
 
 
@@ -146,9 +146,8 @@ void Game::update()
 	//MapHandler::updateTile();
 	m_myPlayer.update(m_myGameObjects3,3,4);
 	m_myPlayer.update(m_myGameObjects4,1,3);
-=======
 	//Player display should be one of the very last, if not last.	
->>>>>>> 2871bc54368496d439091de4e5694da5141a8761
+//>>>>>>> 2871bc54368496d439091de4e5694da5141a8761
 	m_myPlayer.display();
 	
 }

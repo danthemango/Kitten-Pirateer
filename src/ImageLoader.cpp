@@ -5,7 +5,7 @@
 #include <math.h>
 #include <time.h>
 #include <GL/freeglut.h>
-#include <soil.h>
+#include <SOIL/SOIL.h>
 #include "../hdr/ImageLoader.h"
 
 
