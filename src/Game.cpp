@@ -135,7 +135,10 @@ void Game::update()
 	//MapHandler::
 	//Item update must happen before the player display.
 	//ItemHandler::getInstance().update();
-	//Player display should be one of the very last, if not last.
+	//Display the HUD
+	HUD m_hud(m_width, m_height);
+	m_hud.displayHUD();
+	//Player display should be one of the very last, if not last.	
 	m_myPlayer.display();
 	
 }

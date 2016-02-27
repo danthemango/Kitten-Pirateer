@@ -11,27 +11,22 @@ Purpose:
 
 #include "../hdr/HUD.h"
 
-HUD::HUD() {
-	Game::getWidth() = m_width;
-	Game::getHeight() = m_height;
-//	pc::check_pc_ammo(
-	if (glutLayerGet(GLUT_OVERLAY_POSSIBLE)) {
-		void glutEstablishOverlay();
+
+	void HUD::RenderString(float x, float y, void *font, const char* string)
+	{  
+	  char *c;
+
+	  const unsigned char* string2 = (const unsigned char*)string;
+
+	  glColor3f(0.0, 0.0, 0.0); // black
+	  glRasterPos2f(x, y);
+
+	  glutBitmapString(font, string2);
+	} 
+
+	void HUD::displayHUD() {
+		RenderString(m_width - 150, m_height - 50, GLUT_BITMAP_TIMES_ROMAN_24, "Health");
+		RenderString(m_width - 150, m_height - 200, GLUT_BITMAP_TIMES_ROMAN_24, "Weapon");
 	}
-}
 
-void Game::RenderString(float x, float y, void *font, const char* string)
-{  
-  char *c;
 
-  const unsigned char* string2 = (const unsigned char*)string;
-
-  glColor3f(1.0, 0.0, 0.0); 
-  glRasterPos2f(x, y);
-
-  glutBitmapString(font, string2);
-} 
-
-void displayHUD() {
-
-}
