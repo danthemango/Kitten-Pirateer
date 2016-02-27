@@ -4,12 +4,7 @@
 //********** Purpose:             **********//
 //******************************************//
 
-/*
-#include "Items.h"
-#include "ImageLoader.h"
-#include "Game.h"
-*/
-#include "../hdr/PC.h"
+#include "../hdr/Player.h"
 #include "../hdr/ImageLoader.h"
 #include "../hdr/Items.h"
 #include "../hdr/Game.h"
@@ -19,7 +14,7 @@
 #include <string>
 #include <iostream>
 //REMOVE
-//#include "pc.h"
+//#include "Player.h"
 
 class ImageLoader;
 
@@ -30,37 +25,43 @@ void Items::setAmmount(int x)
 
 void Items::pickUp(Items* item)
 {  
-   //temp x, y and size for player to keep code cleaner
+   //temp x, y and size for Player to keep code cleaner
    
    //REMOVE Comments
-   int playerX = PC::getInstance().getX();
-   int playerY = PC::getInstance().getY();
-   int playerSize = PC::getInstance().getSize();
    
+   int PlayerX = Player::getInstance().getX();
+   int PlayerY = Player::getInstance().getY();
+   int PlayerWidth = Player::getInstance().getWidth();
+   int PlayerHeight = Player::getInstance().getHeight();
+   /*
          //following was used for testing
-   //int playerX = Game::getInstance().m_myPlayer.getX();
-   //int playerY = Game::getInstance().m_myPlayer.getY();
-   //int playerSize = Game::getInstance().m_myPlayer.getSize();
-   
-   //checks if item is colliding with player
-   if(playerX + playerSize > m_x && playerX < m_x + 25 && 
-      playerY + playerSize > m_y && playerY < m_y + 25 &&
+   int PlayerX = Game::getInstance().m_myPlayer.getX();
+   int PlayerY = Game::getInstance().m_myPlayer.getY();
+   int PlayerWidth = Game::getInstance().m_myPlayer.getWidth();
+   int PlayerHeight = Game::getInstance().m_myPlayer.getHeight();
+   */
+   //checks if item is colliding with Player
+   if(PlayerX + PlayerWidth > m_x && PlayerX < m_x + m_itemWidth && 
+      PlayerY + PlayerHeight > m_y && PlayerY < m_y + m_itemWidth &&
       //Game::getInstance().getArrayPos() == m_tilePos){
-      PC.getInstance().getTile() == m_tilePos){
+      Player.getInstance().getTile() == m_tilePos){
       if(m_pickedUp == false){//if Item hasn't been picked up yet
          m_pickedUp = true;
          switch (m_itemID){
             case 10://add item to inventory
                ItemHandler::getInstance().addItemToInv(item);
                break;
-            case 11://heal player
-               //need a healPlayer(int x) which will add x to player health
+            case 11://heal Player
+               //need a healPlayer(int x) which will add x to Player health
                
                //REMOVEComments
-               PC::getInstance().healPlayer(10);
+               Player::getInstance().addHealth(10);
                
-               //std::cout << "health Increased" << std::endl;   
+               //std::cout << "health Increased:10" << std::endl;   
                break;
+            case 12:
+               Player::getInstance().addHealth(20);
+               //std::cout << "health Increased: 20" << std::endl;                  
       
          }
       }     
@@ -72,8 +73,7 @@ void Items::display()
    //display if character is in correct tile
    //if(Game::getInstance().getArrayPos() == m_tilePos){
    
-   //REMOVE
-   if(PC::getInstance().getTile() == m_tilePos){
+   if(Player::getInstance().getTile() == m_tilePos){
    
       if(m_pickedUp == false){
          //draw image
@@ -81,7 +81,7 @@ void Items::display()
    
          glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
          glBindTexture (GL_TEXTURE_2D, m_itemTexture);
-         ImageLoader::rectangle(m_x, m_y, 25, 25);
+         ImageLoader::rectangle(m_x, m_y, m_itemWidth, m_itemWidth);
    
          glDisable(GL_TEXTURE_2D);
          glFlush();
@@ -106,18 +106,18 @@ Items::Items(int r, int inv, int id, std::string name,bool pickup,int x, int y, 
    m_x = x;
    m_y = y;
    m_tilePos = tile;
+   m_itemWidth = 30;
 
    //switchcase
    switch (m_itemID){
       case 10:
-         //m_itemTexture = ImageLoader::LoadTexture("./imgs/lemon.png");
-         //REMOVE
-         m_itemTexture = ImageLoader::LoadTexture("../imgs/lemon.png");
+         m_itemTexture = ImageLoader::LoadTexture("./imgs/lemon.png");
          break;
       case 11:
-         //m_itemTexture = ImageLoader::LoadTexture("./imgs/heart.png");
-         //REMOVE
-         m_itemTexture = ImageLoader::LoadTexture("../imgs/heart.png");
+         m_itemTexture = ImageLoader::LoadTexture("./imgs/heart.png");
+         break;
+      case 12:
+         m_itemTexture = ImageLoader::LoadTexture("./imgs/healthPotion.png");
          break; 
    }
    

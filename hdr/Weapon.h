@@ -8,13 +8,12 @@
 #ifndef WEAPONS_H_
 #define WEAPONS_H_
 #include <string>
-//#include "Items.h"
 #include "../hdr/Items.h"
 class Weapon: public Items{
    private:
       int m_damage;  //weapon damage
       int m_type; //weapon type
-                  //0:melee
+                  //0:melee all types are melee right now
                   //1:gun
                   //2:spell
 

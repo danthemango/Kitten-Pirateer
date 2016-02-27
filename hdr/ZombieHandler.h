@@ -43,19 +43,18 @@ class ZombieHandler: public GameObject
       // an array containing the zombie objects
       Zombie m_ZombieList[MAXZOMBIES];
       // load zombie positions from config/Zombies
-      void loadZombies();
       // number of zombies in each tile
       int m_numZombies[NUM_TILES_X][NUM_TILES_Y];
       // defines an x,y position
-      struct pos{
+      struct m_pos{
          int x,y;
       }
       // array to hold positions of zombies
       // in order, this array holds the 
       // [tilepositionx][y][zombienumber][zombiepositionx][y]
       pos m_ZombiePosition[TILE_NUM_X][TILE_NUM_Y][MAXZOMBIES];
-      // current tile position
-      int x,y;
+      // currently loaded tile
+      int m_tile;
 
       // for a singleton, we don't share the default methods
       ZombieHandler();

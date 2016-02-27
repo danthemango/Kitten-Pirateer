@@ -4,10 +4,7 @@
 //********** Purpose:             **********//
 //******************************************//
 
-/*
-#include "Weapon.h"
-#include "Items.h"
-*/
+
 #include "../hdr/Weapon.h"
 #include "../hdr/Items.h"
 #include <GL/glut.h>

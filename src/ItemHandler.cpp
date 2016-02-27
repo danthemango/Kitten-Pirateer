@@ -4,12 +4,14 @@
 //********** Purpose:               **********//
 //********************************************//
 
-/*
-#include "ItemHandler.h"
-#include "Items.h"
-*/
+
 #include "../hdr/ItemHandler.h"
 #include "../hdr/Items.h"
+
+/*
+#include "../hdr/ItemHandler.h"
+#include "../hdr/Items.h"
+*/
 #include <iostream>
 #include <string>
 
@@ -47,11 +49,11 @@ void ItemHandler::iSwitch()
       m_currItem = m_currItem +1;   
    }
  
- /*  FOR TESTING
-   std::string name = m_itemInv[m_currItem]->getName();
-   int ammount = m_itemInv[m_currItem]->getAmmount();
-   std::cout << name << ": " << ammount << std::endl;
-*/
+ //  FOR TESTING
+  // std::string name = m_itemInv[m_currItem]->getName();
+   //int ammount = m_itemInv[m_currItem]->getAmmount();
+   //std::cout << name << ": " << ammount << std::endl;
+
 }
 
 void ItemHandler::wSwitch()

@@ -316,6 +316,11 @@ MapHandler::updateTile(int x)
           m_obs3DArray[m_currTile][i][4]
          );
    }
+	
+	Game::getInstance.updateTile(m_tileTextureArray[x]);
+	ZombieHandler::getInstance.updateTile(x);
+	ItemHandler::getInstance.updateTile(x);
+
 }
 
 

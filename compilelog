@@ -1,0 +1,222 @@
+In file included from src/Game.cpp:15:0:
+src/../hdr/Game.h:98:15: error: ‘static void Game::key(unsigned char, int, int)’ cannot be overloaded
+   static void key(unsigned char key, int x, int y);//Key takes in the key commands 
+               ^
+src/../hdr/Game.h:91:15: error: with ‘static void Game::key(unsigned char, int, int)’
+   static void key(unsigned char key, int x, int y);
+               ^
+In file included from src/../hdr/Game.h:16:0,
+                 from src/Game.cpp:15:
+src/../hdr/../hdr/Player.h: In constructor ‘Game::Game()’:
+src/../hdr/../hdr/Player.h:36:7: error: ‘Player::Player()’ is private
+       Player();
+       ^
+In file included from src/Game.cpp:15:0:
+src/../hdr/Game.h:34:16: error: within this context
+         Game() {
+                ^
+In file included from src/../hdr/Game.h:16:0,
+                 from src/Game.cpp:15:
+src/../hdr/../hdr/Player.h:39:7: error: ‘Player::~Player()’ is private
+       ~Player();
+       ^
+In file included from src/Game.cpp:15:0:
+src/../hdr/Game.h:34:16: error: within this context
+         Game() {
+                ^
+In file included from src/../hdr/Game.h:16:0,
+                 from src/Game.cpp:15:
+src/../hdr/../hdr/Player.h: In destructor ‘Game::~Game()’:
+src/../hdr/../hdr/Player.h:39:7: error: ‘Player::~Player()’ is private
+       ~Player();
+       ^
+In file included from src/Game.cpp:15:0:
+src/../hdr/Game.h:28:7: error: within this context
+ class Game {
+       ^
+src/../hdr/Game.h: In static member function ‘static Game& Game::getInstance()’:
+src/../hdr/Game.h:69:25: note: synthesized method ‘Game::~Game()’ first required here 
+             static Game instance;//Guaranteed to be destroyed.
+                         ^
+In file included from src/../hdr/Obstacle.h:24:0,
+                 from src/Game.cpp:17:
+src/../hdr/../hdr/PC.h: At global scope:
+src/../hdr/../hdr/PC.h:16:21: error: ‘check_boundary’ has not been declared
+       void movement(check_boundary); //function responsible for PC's movement and checking screen boundary
+                     ^
+src/../hdr/../hdr/PC.h:17:19: error: ‘weapons’ has not been declared
+       void attack(weapons,var_health);//function to attack the NPC using the weapons available 
+                   ^
+src/../hdr/../hdr/PC.h:17:27: error: ‘var_health’ has not been declared
+       void attack(weapons,var_health);//function to attack the NPC using the weapons available 
+                           ^
+src/../hdr/../hdr/PC.h:26:23: error: ‘var_health’ is not a type
+       void get_damage(var_health); //function to get damage from npc attacks
+                       ^
+src/../hdr/../hdr/PC.h:27:26: error: ‘weapons’ has not been declared
+       bool check_pc_ammo(weapons->ammo);// checks for ammo everytime the gun is fired
+                          ^
+src/../hdr/../hdr/PC.h:27:33: error: expected ‘,’ or ‘...’ before ‘->’ token
+       bool check_pc_ammo(weapons->ammo);// checks for ammo everytime the gun is fired
+                                 ^
+src/../hdr/../hdr/PC.h:28:28: error: ‘var_health’ is not a type
+       bool check_pc_health(var_health);// checks pc health for every refresh of the screen
+                            ^
+src/../hdr/../hdr/PC.h:29:19: error: ‘var_health’ is not a type
+       void update(var_health,weapons->ammo,Inventory);// updates the necessary variables to be displayed in HUD
+                   ^
+src/../hdr/../hdr/PC.h:29:30: error: ‘weapons’ has not been declared
+       void update(var_health,weapons->ammo,Inventory);// updates the necessary variables to be displayed in HUD
+                              ^
+src/../hdr/../hdr/PC.h:29:37: error: expected ‘,’ or ‘...’ before ‘->’ token
+       void update(var_health,weapons->ammo,Inventory);// updates the necessary variables to be displayed in HUD
+                                     ^
+In file included from src/Game.cpp:17:0:
+src/../hdr/Obstacle.h: In member function ‘int Obstacle::getC()’:
+src/../hdr/Obstacle.h:35:35: error: expected ‘;’ before ‘}’ token
+       int getC() {return CONDITION};
+                                   ^
+src/Game.cpp: In member function ‘GLfloat Game::frand()’:
+src/Game.cpp:29:5: error: named return values are no longer supported
+     return random()/(GLfloat)RAND_MAX;
+     ^
+src/Game.cpp:37:7: error: ‘id’ was not declared in this scope
+    if(id == 513) {
+       ^
+src/Game.cpp: In member function ‘void Game::update()’:
+src/Game.cpp:162:10: error: incomplete type ‘Menu’ used in nested name specifier
+   return Menu::mainMenu();
+          ^
+src/Game.cpp:162:25: error: return-statement with a value, in function returning 'void' [-fpermissive]
+   return Menu::mainMenu();
+                         ^
+src/Game.cpp:170:10: error: incomplete type ‘Menu’ used in nested name specifier
+   return Menu::splashScreen();
+          ^
+src/Game.cpp:170:29: error: return-statement with a value, in function returning 'void' [-fpermissive]
+   return Menu::splashScreen();
+                             ^
+src/Game.cpp:175:40: error: no matching function for call to ‘Player::update(Obstacle* [10], int, int)’
+  m_myPlayer.update(m_myGameObjects3,3,4);
+                                        ^
+In file included from src/../hdr/Game.h:16:0,
+                 from src/Game.cpp:15:
+src/../hdr/../hdr/Player.h:26:12: note: candidate: void Player::update()
+       void update();
+            ^
+src/../hdr/../hdr/Player.h:26:12: note:   candidate expects 0 arguments, 3 provided
+src/Game.cpp:176:40: error: no matching function for call to ‘Player::update(Obstacle* [10], int, int)’
+  m_myPlayer.update(m_myGameObjects4,1,3);
+                                        ^
+In file included from src/../hdr/Game.h:16:0,
+                 from src/Game.cpp:15:
+src/../hdr/../hdr/Player.h:26:12: note: candidate: void Player::update()
+       void update();
+            ^
+src/../hdr/../hdr/Player.h:26:12: note:   candidate expects 0 arguments, 3 provided
+src/Game.cpp: In member function ‘void Game::init()’:
+src/Game.cpp:217:74: error: no matching function for call to ‘Obstacle::Obstacle(int, int, int, int, int)’
+     m_myGameObjects3[m_gameObjects] = new Obstacle(170, 210, 154 , 150, 0); //square
+                                                                          ^
+In file included from src/Game.cpp:17:0:
+src/../hdr/Obstacle.h:41:7: note: candidate: Obstacle::Obstacle()
+       Obstacle(){};
+       ^
+src/../hdr/Obstacle.h:41:7: note:   candidate expects 0 arguments, 5 provided
+src/../hdr/Obstacle.h:40:7: note: candidate: Obstacle::Obstacle(int, int, int, int)
+       Obstacle(int x, int y, int w, int h);
+       ^
+src/../hdr/Obstacle.h:40:7: note:   candidate expects 4 arguments, 5 provided
+src/../hdr/Obstacle.h:26:7: note: candidate: Obstacle::Obstacle(const Obstacle&)
+ class Obstacle: public GameObject {
+       ^
+src/../hdr/Obstacle.h:26:7: note:   candidate expects 1 argument, 5 provided
+src/Game.cpp:219:70: error: no matching function for call to ‘Obstacle::Obstacle(int, int, int, int, int)’
+     m_myGameObjects4[m_gameObjects] = new Obstacle(217, 245, 85, 0, 0);  
+                                                                      ^
+In file included from src/Game.cpp:17:0:
+src/../hdr/Obstacle.h:41:7: note: candidate: Obstacle::Obstacle()
+       Obstacle(){};
+       ^
+src/../hdr/Obstacle.h:41:7: note:   candidate expects 0 arguments, 5 provided
+src/../hdr/Obstacle.h:40:7: note: candidate: Obstacle::Obstacle(int, int, int, int)
+       Obstacle(int x, int y, int w, int h);
+       ^
+src/../hdr/Obstacle.h:40:7: note:   candidate expects 4 arguments, 5 provided
+src/../hdr/Obstacle.h:26:7: note: candidate: Obstacle::Obstacle(const Obstacle&)
+ class Obstacle: public GameObject {
+       ^
+src/../hdr/Obstacle.h:26:7: note:   candidate expects 1 argument, 5 provided
+src/Game.cpp:222:72: error: no matching function for call to ‘Obstacle::Obstacle(int, int, int, int, int)’
+     m_myGameObjects3[m_gameObjects] = new Obstacle( 498, 369, 449,296,0);
+                                                                        ^
+In file included from src/Game.cpp:17:0:
+src/../hdr/Obstacle.h:41:7: note: candidate: Obstacle::Obstacle()
+       Obstacle(){};
+       ^
+src/../hdr/Obstacle.h:41:7: note:   candidate expects 0 arguments, 5 provided
+src/../hdr/Obstacle.h:40:7: note: candidate: Obstacle::Obstacle(int, int, int, int)
+       Obstacle(int x, int y, int w, int h);
+       ^
+src/../hdr/Obstacle.h:40:7: note:   candidate expects 4 arguments, 5 provided
+src/../hdr/Obstacle.h:26:7: note: candidate: Obstacle::Obstacle(const Obstacle&)
+ class Obstacle: public GameObject {
+       ^
+src/../hdr/Obstacle.h:26:7: note:   candidate expects 1 argument, 5 provided
+src/Game.cpp:224:73: error: no matching function for call to ‘Obstacle::Obstacle(int, int, int, int, int)’
+     m_myGameObjects3[m_gameObjects] = new Obstacle( 650, 222, 151, 147,0);
+                                                                         ^
+In file included from src/Game.cpp:17:0:
+src/../hdr/Obstacle.h:41:7: note: candidate: Obstacle::Obstacle()
+       Obstacle(){};
+       ^
+src/../hdr/Obstacle.h:41:7: note:   candidate expects 0 arguments, 5 provided
+src/../hdr/Obstacle.h:40:7: note: candidate: Obstacle::Obstacle(int, int, int, int)
+       Obstacle(int x, int y, int w, int h);
+       ^
+src/../hdr/Obstacle.h:40:7: note:   candidate expects 4 arguments, 5 provided
+src/../hdr/Obstacle.h:26:7: note: candidate: Obstacle::Obstacle(const Obstacle&)
+ class Obstacle: public GameObject {
+       ^
+src/../hdr/Obstacle.h:26:7: note:   candidate expects 1 argument, 5 provided
+src/Game.cpp:249:13: error: ‘class Player’ has no member named ‘init’
+  m_myPlayer.init();
+             ^
+src/Game.cpp: In member function ‘void Game::keyOperations()’:
+src/Game.cpp:266:38: error: ‘class Player’ has no member named ‘left’
+       Game::getInstance().m_myPlayer.left();
+                                      ^
+src/Game.cpp:267:38: error: ‘class Player’ has no member named ‘c_left’
+       Game::getInstance().m_myPlayer.c_left = true;
+                                      ^
+src/Game.cpp:271:36: error: ‘class Player’ has no member named ‘c_left’
+     Game::getInstance().m_myPlayer.c_left = false;
+                                    ^
+src/Game.cpp:276:38: error: ‘class Player’ has no member named ‘up’
+       Game::getInstance().m_myPlayer.up();
+                                      ^
+src/Game.cpp:277:38: error: ‘class Player’ has no member named ‘c_up’
+       Game::getInstance().m_myPlayer.c_up = true;
+                                      ^
+src/Game.cpp:281:36: error: ‘class Player’ has no member named ‘c_up’
+     Game::getInstance().m_myPlayer.c_up = false;
+                                    ^
+src/Game.cpp:286:38: error: ‘class Player’ has no member named ‘right’
+       Game::getInstance().m_myPlayer.right();
+                                      ^
+src/Game.cpp:287:38: error: ‘class Player’ has no member named ‘c_right’
+       Game::getInstance().m_myPlayer.c_right = true;
+                                      ^
+src/Game.cpp:291:36: error: ‘class Player’ has no member named ‘c_right’
+     Game::getInstance().m_myPlayer.c_right = false;
+                                    ^
+src/Game.cpp:296:38: error: ‘class Player’ has no member named ‘down’
+       Game::getInstance().m_myPlayer.down();
+                                      ^
+src/Game.cpp:297:38: error: ‘class Player’ has no member named ‘c_down’
+       Game::getInstance().m_myPlayer.c_down = true;
+                                      ^
+src/Game.cpp:301:36: error: ‘class Player’ has no member named ‘c_down’
+     Game::getInstance().m_myPlayer.c_down = false;
+                                    ^
+make[1]: *** [obj/Game.o] Error 1

@@ -14,14 +14,7 @@
 #define ZOMBIE_H
 #include "HostileNPC.h"
 
-class Zombie: HostileNPC{
-   private:
-      // amount of damage the zombie can take
-      int health;
-      // if Zombie is dead, it won't attack the player or take an attack from the player
-      bool isDead;
-      // if zombie is visible, not even a dead zombie will be shown on screen
-      bool isVisible;
+class Zombie: public HostileNPC{
    public:
       Zombie();
       // update takes in the player's position
@@ -31,5 +24,14 @@ class Zombie: HostileNPC{
       virtual void display();
       // causes damage to the zombie (reduces health by amount)
       void damage(int amount);
+   private:
+      // amount of damage the zombie can take
+      int m_health;
+      // if Zombie is dead, it won't attack the player or take an attack from the player
+      bool m_isDead;
+      // if zombie is visible, not even a dead zombie will be shown on screen
+      bool m_isVisible;
+      int m_speed; // speed
+      int m_direction; // direction
 };
 #endif

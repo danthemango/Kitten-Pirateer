@@ -11,9 +11,14 @@
 
 #include "../hdr/ZombieHandler.h"
 
-// returns the currently existing instance
-// NOTE: only access methods of this class with ZombieHandler::getInstance().methodname()
-static ZombieHandler::ZombieHandler &getInstance()
+// load zombie positions from config/Zombies
+void ZombieHandler::loadZombies()
+{
+   //TODO
+}
+
+// returns the current instance
+static ZombieHandler ZombieHandler::&getInstance()
 {
    static ZombieHandler *instance = new ZombieHandler;
    return *instance; // alway return same instance
@@ -27,14 +32,13 @@ ZombieHandler::ZombieHandler()
 
 ZombieHandler::~ZombieHandler()
 {
-   //TODO
+   // Nothing to do here
 }
 
 // updates all contained zombies
 void ZombieHandler::update()
 {
    for(int i = 0; i < m_numZombies; i++){
-
 }
 
 // draws all zombies
@@ -52,29 +56,8 @@ void ZombieHandler::attacked(int x1, int y1, int x2, int y2, int damage)
    //TODO
 }
 
-// tell the ZombieHandler we're moving to the next tile
-void ZombieHandler::down()
-{
-   //TODO
-}
-
-void ZombieHandler::up()
-{
-   //TODO
-}
-
-void ZombieHandler::left()
-{
-   //TODO
-}
-
-void ZombieHandler::right()
-{
-   //TODO
-}
-
-// load zombie positions from config/Zombies
-void ZombieHandler::loadZombies()
+// switch to a new tile
+void ZombieHandler::updateTile(int x)
 {
    //TODO
 }

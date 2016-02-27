@@ -16,8 +16,8 @@
 //**********   8:                 **********//
 //**********   9:                 **********//
 //**********   10:lemon           **********//
-//**********   11:health          **********//
-//**********   12:                **********//
+//**********   11:heart           **********//
+//**********   12:health Potion   **********//
 //**********   13:                **********//
 //**********   14:                **********//
 //**********   15:                **********//
@@ -32,15 +32,16 @@
 #define ITEMHANDLER_H_
 #define MAXITEMS 50
 #define MAXINV 10
-/*
+
 #include "Items.h"
 #include "GameObject.h"
 #include "Weapon.h"
-*/
+
+/*
 #include "../hdr/Items.h"
 #include "../hdr/GameObject.h"
 #include "../hdr/Weapon.h"
-
+*/
 class ItemHandler {
    public:
       static ItemHandler& getInstance()
@@ -55,7 +56,7 @@ class ItemHandler {
          m_currItem = 0;
          m_lastWeapon = 0;
          m_lastItem = 0;
-         m_numOfItems = 0;
+         m_numOfItems = 20;
          //start with a sword and 1 lemon
          m_weaponInv[0] = new Weapon(10,3,0,0,"Sword", 0,true,-1,-1,-1);
          m_itemInv[0] = new Items(0,0,10, "Lemon",true,-1,-1,-1);
@@ -67,12 +68,29 @@ class ItemHandler {
          //of the lemons.
          
          
-         //*********TEST ITEMS FOR USE WITH COLLISIONSLAB*********/
-         //m_itemList[0] = new Items(0,-1, 10, "Lemon", false, 100, 100, 1);
-         //m_itemList[1] = new Items(0, -1, 11, "heart", false, 200,200,2);
-         //m_itemList[2] = new Items(0,-1, 10, "Lemon", false, 500, 100, 3);
-          
-         
+         //*********       List of all Items     *********/
+         m_itemList[0] = new Items(0,-1, 10, "Lemon", false, 246, 596, 0);
+         m_itemList[1] = new Items(0,-1, 11, "heart", false, 507, 297, 0);
+         m_itemList[2] = new Items(0,-1, 11, "Heart", false, 729, 603, 0);
+         m_itemList[3] = new Items(0,-1, 10, "Lemon", false, 203, 572, 1);
+         m_itemList[4] = new Items(0,-1, 12, "Potion", false, 795, 105, 1);
+         m_itemList[5] = new Items(0,-1, 11, "Heart", false, 208, 130, 2);
+         m_itemList[6] = new Items(0,-1, 11, "Heart", false, 621, 462, 2);
+         m_itemList[7] = new Items(0,-1, 11, "Heart", false, 838, 90, 3);
+         m_itemList[8] = new Items(0,-1, 10, "Lemon", false, 214, 380, 4);
+         m_itemList[9] = new Items(0,-1, 11, "Heart", false, 834, 695, 4);
+         m_itemList[10] = new Items(0,-1, 12, "Potion", false, 422, 159, 4);
+         m_itemList[11] = new Items(0,-1, 11, "Heart", false, 313, 799, 4);
+         m_itemList[12] = new Items(0,-1, 12, "Potion", false, 471, 136, 5);
+         m_itemList[13] = new Items(0,-1, 11, "Heart", false, 201, 446, 5);
+         m_itemList[14] = new Items(0,-1, 10, "Lemon", false, 687, 478, 6);
+         m_itemList[15] = new Items(0,-1, 11, "Heart", false, 504, 480, 6);
+         m_itemList[16] = new Items(0,-1, 11, "Heart", false, 820, 215, 7);
+         m_itemList[17] = new Items(0,-1, 12, "Potion", false, 445, 764, 7);
+         m_itemList[18] = new Items(0,-1, 10, "Lemon", false, 474, 13, 8);
+         m_itemList[19] = new Items(0,-1, 11, "Heart", false, 336, 824, 8);
+
+                   
       }
       
       ItemHandler(ItemHandler const&);
@@ -94,19 +112,28 @@ class ItemHandler {
       //may be implemented if we implement inventory screen
       Items* getWeaponInv() {return *m_weaponInv;} 
       Items* getItemInv() {return *m_itemInv;}
+
       //may be implemented if we implement inventory screen
       int getWeaponSlot() {return m_currWeapon;}
       int getItemSlot() {return m_currItem;}
-      //returns current Item to use for HUD&Player
+
+      //returns pointer to current Item to use for HUD&Player
+      //then use that to access that items methods like so:
+      // Items* item = getItem();
+      //item->getName();
       Items* getWeapon() {return m_weaponInv[m_currWeapon];}
       Items* getItem() {return m_itemInv[m_currItem];}
+
       //add new item to inventory Used by Items.cpp
       void addItemToInv(Items* item);
+
       //calls Items::display(), and Items::pickUp()
       void update();
+
       //switch current Item to next one, loops around when at last item 
       void iSwitch();
       void wSwitch();
+
       //use Current Item (to be implemented later)
       void iUse();      
 

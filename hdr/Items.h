@@ -10,8 +10,8 @@
 
 #include <string>
 #include <GL/freeglut.h>
-#include "../hdr/GameObject.h"
-//#include "GameObject.h"
+//#include "../hdr/GameObject.h"
+#include "GameObject.h"
 
 class Items: public GameObject{
    protected:
@@ -26,6 +26,7 @@ class Items: public GameObject{
       int m_tilePos; //which tile item is in
       int m_x;//Xposition of item, -1 if N/A
       int m_y;//YPosition of item, -1 if N/A
+      int m_itemWidth;
       
       GLuint m_itemTexture;
 
