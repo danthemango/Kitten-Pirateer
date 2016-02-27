@@ -1,9 +1,10 @@
 //Edited by: Keenan Longair.
-//Last update: 3:00PM February 26th, 2016.
+//Last update: 3:30PM February 26th, 2016.
 //Purpose: Prototyping of the main "GameBoard" and its interface. This is implemented
-//as a singleton and thus can only have one instance. Use the Game::getInstance() function
-//to gain access to the instance.
-//Version: 1.1
+//as a singleton and thus can only have one instance. Use the Game::getInstance() 
+//function to gain access to the instance.
+//Version: 1.2
+//**************************************************************************************
 
 #ifndef GAME_H_
 #define GAME_H_
@@ -25,9 +26,6 @@ class Obstacle;//Gives access to the Obstacle.
 class ImageLoader;//Gives access to the ImageLoader.
 class Menu;//Gives access to the Menu.
 
-#define MAX_OBJECTS 50//50 is Default for now, may be increased once # of objects has been
-//determined.
-
 //Class definition of Game below:
 class Game {
 	
@@ -35,10 +33,13 @@ class Game {
 	
         //If you want to get the instance use Game::getInstance() function provided in the public
 		//section.
-        Game() {
+        Game() 
+		{
+			
            m_margine = MARGINE;
            m_width = SCREEN_SIZE_X;
            m_height = SCREEN_SIZE_Y;
+		   
         };//Default Constructor.
         
 		Game(Game const&);           //Don't Implement
@@ -47,12 +48,12 @@ class Game {
 		const static int c_interval = 1000 / 60;//60 frames per second, c_interval sets up
 		//the screens refresh rate and fps.
 
-		//Variables:
+		//Game Variables:
 		int m_width;
 		int m_height;
 		int m_margine;
-		int m_arraypos;
-		int m_gameObjects;
+		//int m_arraypos;
+		//int m_gameObjects;
 		
 		//Background texture:
 		GLuint m_backgroundTexture;

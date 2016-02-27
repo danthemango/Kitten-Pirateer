@@ -30,5 +30,9 @@
 //Margine size
 //TODO set up the correct margine size.
 #define MARGINE 4
+//Max number of Objects.
+//TODO determine if this is needed when the handlers are in control
+//of how many obects there are.
+#define MAX_OBJECTS 50
 
 #endif
