@@ -71,13 +71,17 @@ void Game::init()
     glutDisplayFunc(Game::run);//Display frames
 	glutKeyboardUpFunc(Game::keyUp);//Keyboard Movement input.
     //glutIdleFunc(Game::run);    // Wait time between frames.
-
+	
+	//Create the MapHandler so we can call the map.
+	m_MapHandler = new MapHandler;//Creates the MapHandler using the new function.
+	
 	//Load the default texture into the ImageLoader. 
-	m_backgroundTexture = ImageLoader::LoadTexture( "./imgs/south.bmp" );
+	//m_backgroundTexture = ImageLoader::LoadTexture( "./imgs/south.bmp" );
+	m_backgroundTexture = m_MapHandler.getTile();
 	
 	//Place init here for the main GameObject (probably the PC character).
 	m_myPlayer.init();
-	m_MapHandler = new MapHandler;//Creates the MapHandler using the new function.
+
 
     glutMainLoop(); // glutMainLoop enters the GLUT event processing loop. 
                     //This routine should be called at most once in a GLUT program. 
