@@ -3,11 +3,13 @@
 */
 
 #include "../hdr/HUD.h"
+#include "../hdr/PC.h"
 
 class HealthHUD : HUD {
 
+	int health = PC::getInstance().getHealth();
 	void displayHUD() {
-		RenderString(m_width-50, m_height-50, GLUT_BITMAP_TIME_ROMAN_24, "Health");
+		HUD::RenderString(m_width - 150, m_height - 75, GLUT_BITMAP_TIMES_ROMAN_24 , health.c_str())
 	}
 
 };

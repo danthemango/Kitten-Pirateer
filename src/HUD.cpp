@@ -27,6 +27,8 @@ Purpose:
 	void HUD::displayHUD() {
 		RenderString(m_width - 150, m_height - 50, GLUT_BITMAP_TIMES_ROMAN_24, "Health");
 		RenderString(m_width - 150, m_height - 200, GLUT_BITMAP_TIMES_ROMAN_24, "Weapon");
+		RenderString(m_width - 150, m_height - 250, GLUT_BITMAP_TIMES_ROMAN_24, "Inventory");
+		
 	}
 
 

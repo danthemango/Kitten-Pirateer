@@ -132,6 +132,7 @@ void Game::update()
 	// Display the HUD
 	HUD m_hud(m_width, m_height);
 	m_hud.displayHUD();
+	
 
 
 	//Call the update and display functions of the GameObjects here:
