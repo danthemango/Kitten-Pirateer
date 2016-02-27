@@ -1,8 +1,8 @@
 //Edited by: Keenan Longair.
-//Last update: 11:50AM February 24th, 2016.
+//Last update: 3:30PM February 26th, 2016.
 //Purpose: To prototype the interface needed to create a spash screen
 //and main menu.
-//Version: 0.6
+//Version: 0.7
 
 #ifndef MENU_H_
 #define MENU_H_
@@ -16,7 +16,8 @@
 #include <cstdio>
 
 //Required files:
-#include "ImageLoader.h"
+#include "../hdr/ImageLoader.h"
+#include "../hdr/config.h"
 
 //Classes required:
 class imageLoader;
@@ -29,15 +30,17 @@ class Menu {
 		//Contructor
 		Menu() {
 			
-			m_width = 500;//Need a set width.			
-			m_height = 500;//Need a set height.
+			//These size variables may not be needed since
+			//all menu does is loads and displays a bmp.
+			m_width = SCREEN_SIZE_X - 100;//Need a set width.			
+			m_height = SCREEN_SIZE_Y - 100;//Need a set height.
 			
 		};
 		
 		//Menu and splashScreen height and width variables.
 		int m_width;
 		int m_height;
-      GLuint m_splashTexture;
+		GLuint m_splashTexture;
 
 	public:
 		
