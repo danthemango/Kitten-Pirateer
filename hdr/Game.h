@@ -1,9 +1,9 @@
 //Edited by: Keenan Longair.
-//Last update: 3:30PM February 26th, 2016.
+//Last update: 2:00PM February 28th, 2016.
 //Purpose: Prototyping of the main "GameBoard" and its interface. This is implemented
 //as a singleton and thus can only have one instance. Use the Game::getInstance() 
 //function to gain access to the instance.
-//Version: 1.2
+//Version: 1.3
 //**************************************************************************************
 
 #ifndef GAME_H_
@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <GL/glut.h>    /* glut.h includes gl.h and glu.h */
 
-//Required files:
+//Required .h files:
 #include "../hdr/config.h"//Include the configuration settings.
 #include "../hdr/Player.h"//Include the Player class.
 #include "../hdr/Obstacle.h"//Include the Obstacle class.
@@ -31,8 +31,8 @@ class Game {
 	
     private:
 	
-        //If you want to get the instance use Game::getInstance() function provided in the public
-		//section.
+        //If you want to get the instance use Game::getInstance() function provided in 
+		//the public section.
         Game() 
 		{
 			
@@ -45,8 +45,8 @@ class Game {
 		Game(Game const&);           //Don't Implement
         void operator=(Game const&); //Don't implement
 		
-		const static int c_interval = 1000 / 60;//60 frames per second, c_interval sets up
-		//the screens refresh rate and fps.
+		const static int c_interval = 1000 / 60;//60 frames per second, c_interval sets 
+		//up the screens refresh rate and fps.
 
 		//Game Variables:
 		int m_width;
@@ -67,11 +67,12 @@ class Game {
 		
 		//MapHandler object:
 		//Place holder to help remind me to add the creation of the MapHandler.
-		//Most likly this will be done with new inside of the Game.cpp init itself instead
-		//of being done here.
+		//Most likly this will be done with new inside of the Game.cpp init itself 
+		//instead of being done here.
 		MapHandler m_MapHandler;
 		
 	public:
+	
 	    //Insead of a constructor, use this static method to create an instance
         //(or use the already created instance) of Game making this a singleton.
         static Game& getInstance()
@@ -90,21 +91,24 @@ class Game {
 		//The c_running variable is public, to allow other objects to alter this, in essence
 		//allowing events to pause the game if necessary.
 		
-		//Public Functions:
-		//Possible functions: These are pulled from the collision lab 
-		//to be prepared incase anything is transfered over. 
-		//Anything unused will be removed before the final due date.
+		//Control Input Functions:
 		static bool* keystates;
 		static void keyUp(unsigned char key, int x, int y);
 		static void key(unsigned char key, int x, int y);
 		void keyOperations();
-		void changeScreen(int dir);
-		int getArrayPos();
-		void setArrayPos(int pos);
+		
+		//Possible functions: These are pulled from the collision lab 
+		//to be prepared incase anything is transfered over. 
+		//Anything unused will be removed before the final due date.
+		//void changeScreen(int dir);
+		//int getArrayPos();
+		//void setArrayPos(int pos);
+		int getWidth();
+		int getHeight();
 		
 		//Required functions:
 		static void key(unsigned char key, int x, int y);//Key takes in the key commands 
-		//used to call the control functions of the controllable character.
+		//used to call the switch control functions.
 		static void run();//Run is the computing loop which calls update.
 		static void idle();//Handles the delay between screen updates. 
 		static void timer(int id);//Times and calls the update on the screen.
@@ -113,16 +117,13 @@ class Game {
 		int LoadImage(char *filename);//Required for loading an image.
 		void init();//Set to be public incase any objects inheriting from this needs their init
 		//to be public aswell.
-		void updateTile(GLuint X);//Call this function with the new background tile texture as input
+		void updateTile(GLuint X);//Call this function with the next tile texture as input
 		//to change the background tile variable.
-		
 		
 		GLfloat frand();//Random number function. Here incase we need it.
 		//These last two functions may not be needed since Width and Height are stored within the
 		//config.h file.
-		int getWidth();
-		int getHeight();
-		
+
 };
 
 #endif /* GAME_H_ */

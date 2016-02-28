@@ -1,7 +1,8 @@
 //Edited by: Keenan Longair.
-//Last update: 3:00PM February 26th, 2016.
+//Last update: 2:00PM February 28th, 2016.
 //Purpose: Contains the body of the game file prototyped in the Game.h file.
-//Version: 1.1
+//Version: 1.2
+//**************************************************************************************
 
 //Required Libraries:
 #include <cstdio>
@@ -18,9 +19,8 @@
 #include "../hdr/ImageLoader.h"//Dependancy for Images.
 #include "../hdr/MapHandler.h"//Dependancy for the Map.
 #include "../hdr/Player.h"//Dependancy for the Player.
-#include "../hdr/ItemHandler.h"//
+#include "../hdr/ItemHandler.h"//Dependancy for the item handler.
 #include "../hdr/HUD.h" // Dependancy for the HUD
-
 
 //Main Variables:
 bool Game::c_run = false;//Set the game to display the main menu. Once changed this
@@ -84,7 +84,7 @@ void Game::init()
 	m_myPlayer.init();
 
 
-    glutMainLoop(); // glutMainLoop enters the GLUT event processing loop. 
+    glutMainLoop(); //glutMainLoop enters the GLUT event processing loop. 
                     //This routine should be called at most once in a GLUT program. 
                     //Once called, this routine will never return. 
                     //It will call as necessary any callbacks that have been registered.
@@ -136,18 +136,16 @@ void Game::update()
 	//MapHandler::
 	//Item update must happen before the player display.
 	//ItemHandler::getInstance().update();
-	//Display the HUD
+	//Display the HUD:
 	HUD m_hud(m_width, m_height);
 	m_hud.displayHUD();
 	
-
-
 	//Call the update and display functions of the GameObjects here:
 	//MapHandler::updateTile();
-	m_myPlayer.update(m_myGameObjects3,3,4);
-	m_myPlayer.update(m_myGameObjects4,1,3);
-	//Player display should be one of the very last, if not last.	
-//>>>>>>> 2871bc54368496d439091de4e5694da5141a8761
+	//m_myPlayer.update(m_myGameObjects3,3,4);
+	//m_myPlayer.update(m_myGameObjects4,1,3);
+	//Player display should be one of the very last, if not last.
+	//>>>>>>> 2871bc54368496d439091de4e5694da5141a8761//What is this line?????????
 	m_myPlayer.display();
 	
 }
@@ -168,10 +166,10 @@ void Game::run()
 void Game::timer(int id)
 {
 	
-   if(id == 513) {
-      // Redisplay frame
-      glutPostRedisplay();
-   }
+	if(id == 513) {
+		//Redisplay frame
+		glutPostRedisplay();
+	}
    
 }
 
@@ -179,10 +177,10 @@ void Game::timer(int id)
 void Game::idle() 
 {
 	
-   glutTimerFunc(Game::c_interval, // in this many miliseconds
-     Game::timer,      // call the funtion timer
-     513               // with this parameter
-   );
+	glutTimerFunc(Game::c_interval, // in this many miliseconds
+		Game::timer,      // call the funtion timer
+		513               // with this parameter
+	);
    
 }
 
@@ -228,6 +226,7 @@ void Game::key(unsigned char key, int x, int y)
 				Game::c_running = !Game::c_running;
 				
             } else {
+				
 				//If c_run has changed to true, then the game has been started and 
 				//we simply deal with the c_running variable to decide upon displaying
 				//the pause screen or allowing game play.
@@ -236,16 +235,22 @@ void Game::key(unsigned char key, int x, int y)
             }
 			break;
 			
-        case 'e':
-			//e could handle the interactions.
+		//The following controls are not finite. They may be changed later on however 
+		//this will allow us to test them ass we need them.
+        case 'f':
+			//f could handle the interactions.
 			break;
 			
-		case 'q':
-			//q could handle the item use.
+		case 'e':
+			//e could handle the item use.
 			break;
 			
+		case 'r':
+			//r could handle the item swap.
+			break;
+		
 		case 'h':
-			//h could handle the attack command.
+			//h could handle the attack call.
 			break;
 			
     }
@@ -257,54 +262,54 @@ void Game::keyOperations()
 //keyOpertations handles smooth movement from the control input.
 {
 	
-   if(keystates['a']){
+	if (keystates['a']) {
 	   
-      Game::getInstance().m_myPlayer.left();
-      Game::getInstance().m_myPlayer.c_left = true;
+		Game::getInstance().m_myPlayer.left();
+		Game::getInstance().m_myPlayer.c_left = true;
 	  
-   } else {
+	} else {
 	   
-   	Game::getInstance().m_myPlayer.c_left = false;
+		Game::getInstance().m_myPlayer.c_left = false;
 	
-   }
+	}
    
-   if (keystates['w']) {
+	if (keystates['w']) {
 	   
-      Game::getInstance().m_myPlayer.up();
-      Game::getInstance().m_myPlayer.c_up = true;
+		Game::getInstance().m_myPlayer.up();
+		Game::getInstance().m_myPlayer.c_up = true;
 	  
-   } else {
+	} else {
 	   
-   	Game::getInstance().m_myPlayer.c_up = false;
+		Game::getInstance().m_myPlayer.c_up = false;
 	
-   }
+	}
    
-   if (keystates['d']) {
+	if (keystates['d']) {
 	   
-      Game::getInstance().m_myPlayer.right();
-      Game::getInstance().m_myPlayer.c_right = true;
+		Game::getInstance().m_myPlayer.right();
+		Game::getInstance().m_myPlayer.c_right = true;
 	  
-   } else {
+	} else {
 	   
-   	Game::getInstance().m_myPlayer.c_right = false;
+		Game::getInstance().m_myPlayer.c_right = false;
 	
-   }
+	}
    
-   if (keystates['s']) {
+	if (keystates['s']) {
 	   
-      Game::getInstance().m_myPlayer.down();
-      Game::getInstance().m_myPlayer.c_down = true;
+		Game::getInstance().m_myPlayer.down();
+		Game::getInstance().m_myPlayer.c_down = true;
 	  
-   } else {
+	} else {
 	   
-   	Game::getInstance().m_myPlayer.c_down = false;
+		Game::getInstance().m_myPlayer.c_down = false;
 	
-   }
+	}
 
 }
 
 void Game::keyUp(unsigned char key, int x, int y)
-//Sets the proper key to be false.
+//Sets the proper key state to be false.
 {
 	
    keystates[key] = false;
