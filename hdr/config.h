@@ -21,6 +21,9 @@
 #define NUM_TILES_X 3
 #define NUM_TILES_Y 3
 
+//player movement speed
+#define PLAYER_SPEED 10.0	
+
 // size of the screen
 #define SCREEN_SIZE_X 800//Width
 #define SCREEN_SIZE_Y 1000//Height

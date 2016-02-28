@@ -9,8 +9,8 @@
 
 // constructor to initialize the variables
 
-#include "Player.h"
-#include "Jukebox.h"
+#include "../hdr/Player.h"
+#include "../hdr/Jukebox.h"
 #include <GL/glut.h>    /* glut.h includes gl.h and glu.h */
 #include <math.h>
 #include <stdlib.h>
@@ -18,8 +18,8 @@
 #include <GL/freeglut.h>
 #include <iostream>
 
-#include "ImageLoader.h" 
-#include "Game.h"
+#include "../hdr/ImageLoader.h" 
+#include "../hdr/Game.h"
 
 Player::Player()
 {
@@ -28,10 +28,8 @@ Player::Player()
   m_y = PLAYER_START_Y; //start Y-pos of player
   stopup=stopdown=stopleft=stopright=false;
   m_arraypos = 0;
-  m_speed = 1;
+  m_speed = PLAYER_SPEED;
   c_up=c_down=c_left=c_right=false;
-
-
 
 }
 
@@ -47,16 +45,21 @@ int Player::getHealth()
    return m_health;        
 }
 //returns the player height 
-int getHeight() 
+int Player:: getHeight() 
 {
    return SPRITE_SIZE_Y;
 }
 //returns the player width
-int getWidth()
+int Player::getWidth()
 {
    return SPRITE_SIZE_X;
 }
 
+//returns the player direction used by robert
+int Player::getDirection()
+{
+   return m_direction;
+}
 void Player::init()
 {
    m_PlayerTexture = ImageLoader::LoadTexture("./imgs/Up.png");   
@@ -89,9 +92,69 @@ void Player::displayTexture()
    glFlush();
 }
 
+void Player::collision()
+{
+
+}
+
+void Player::update()
+{
+   ZombieHandler::getInstance().update(m_x,m_y);
+
+
+}
+
+void Player::attacked(int x1, int y1, int x2, int y2, int damage)
+{
+   
+
+}
+
 void Player::attack()
 {
    //what to do here??
+   //0 = melee attacks
+   //1 = gun
+   //2 = spell
+   weaponId = ItemHandler::getinstance().getType(); // stores the weapon id
+   int weaponDamage = ItemHandler::getinstance().getDamage() // gets the damage for the weapon
+   int weaponRange = ItemHandler::getinstance().getRange();  
+   int midpointx = SPRITE_SIZE_X / 2 + m_x;
+   int midpointy = SPRITE_SIZE_y / 2 + m_y;
+   
+   switch (m_direction)
+   {
+      case 0://u
+        float x1 = midpointx - weaponRange;
+        float x2 = midpointx + weaponRange;
+        float y1 = m_y + SPRITE_SIZE_Y;
+        float y2 = m_y + SPRITE_SIZE_Y + 2*weaponRange;
+        ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
+        break;
+      case 2://d
+        float x1 = midpointx - weaponRange;
+        float y1 = m_y - 2*weaponRange;
+        float x2 = midpointx + weaponRange;
+        float y2 = m_y;
+        ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
+        break;
+      case 3://l
+        float x1 = m_x - 2*weaponRange; 
+        float y1 = midpointy - weponRange;
+        float x2 = m_x; 
+        float y2 = midpointy + weaponRange;
+        ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
+        break;
+      case 1;//r
+        float x1 = m_x; 
+        float y1 = midpointy - weaponRange;
+        float x2 = m_x + SPRITE_SIZE_X + 2*weaponRange;
+        float y2 = midpointy + weaponRange;
+        ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
+        break;
+
+   }
+   
 }
 
 void Player::down ()
@@ -111,6 +174,7 @@ void Player::down ()
            m_y -= 4 * m_speed;
         }
      }
+     m_x = m_x - m_speed; //updates the position of the player
      m_direction = 2;
      PlayerTexture= ImageLoader::LoadTexture( "./imgs/Down.bmp" );
 }
@@ -134,6 +198,7 @@ void Player::up ()
                  m_y +=4*m_speed;
               }
            }
+    m_x = m_x + m_speed;
     m_direction = 0;
     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Up.png" );
 }
@@ -156,6 +221,7 @@ void Player::right ()
                  m_x += 4*m_speed;
               }
           }
+    m_y = m_y + m_speed;
     m_direction = 1;
     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Right.png" );
 }
@@ -178,6 +244,7 @@ void Player::left ()
              m_x -= 4*m_speed;
           }
        }
+    m_y = m_y - m_speed;
     m_direction = 3;
     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Left.png" );
 }
