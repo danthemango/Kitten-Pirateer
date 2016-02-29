@@ -13,11 +13,7 @@
 #define POSITIONMAP_H
 
 #include "config.h"
-
-// structure which can contain the position of an object
-struct Position{
-   int x,y;
-};
+#include "Shapes.h"
 
 // class which contains the position of elements on a single tile
 class PositionMap{
@@ -25,37 +21,37 @@ class PositionMap{
       PositionMap();
       ~PositionMap();
       // inserts an element to the map at position x,y
-      void addElement(int x, y);
+      void add(int x, y);
+      // returns the number of elements in map
+      int size();
    private:
       // node in a linked list which contains the data of the element
       struct node{
-         Position* data;
+         Point* data;
          node* next;
       };
       node* m_head;
+      node* m_tail;
       // number of elements in this map
       int m_num;
    public: 
-      // returns the number of elements in map
-      int size();
       // this is an iterator which is able to traverse the list of positions
       // PATTERN: iterator
-      class PositionMapIterator()
+      class Iterator()
       {
          public:
-            PositionMapIterator(node* start):
+            Iterator(node* start):
                m_cur_node(start);
-            //~PositionMapIterator();
             // prefix increment
-            const PositionMapIterator &operator++()
+            const Iterator &operator++()
             {
                m_cur_node = m_cur_node->next;
                return *this;
             }
             // postfix increment
-            PositionMapIterator operator++(int)
+            Iterator operator++(int)
             {
-               PositionMapIterator temp = *this;
+               Iterator temp = *this;
                m_cur_node = m_cur_node->next;
                return temp;
             }
@@ -68,12 +64,19 @@ class PositionMap{
                   return NULL;
                }
             }
+            Iterator &operator=(Iterator& other){
+               m_cur_node = other.m_cur_node;
+               return *this;
+            }
          private:
             node* m_cur_node;
       };
       // iterator to the start of the list
       Iterator Begin(){
-         Iterator(m_head);
+         return Iterator(m_head);
+      }
+      Iterator End(){
+         return Iterator(m_tail);
       }
 };
 #endif

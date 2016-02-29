@@ -14,7 +14,8 @@
 PositionMap::PositionMap()
 {
    // ensure we are aware that no elements have been created in the list
-   m_head = NULL;
+   m_head = new Point(0,0);
+   m_tail = m_head;
 }
 
 PositionMap::~PositionMap()
@@ -38,7 +39,8 @@ void PositionMap::addElement(int x, y)
       temp = temp->next;
    }
    // insert the data in this position
-   temp->next = new pos;
+   temp->next = new Point(x,y);
+   m_tail = temp->next;
 }
 
 // returns the number of elements in map
