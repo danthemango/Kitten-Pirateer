@@ -14,7 +14,7 @@ Purpose:
 	// Prints a text string to the screen. 
 	void HUD::RenderString(float x, float y, void *font, const char* string)
 	{  
-	  char *c;
+	  //char *c;
 
 	  const unsigned char* string2 = (const unsigned char*)string;
 

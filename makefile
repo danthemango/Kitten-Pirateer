@@ -14,7 +14,7 @@
 # compiler and flags
 CC = g++
 CFLAGS =
-LDLIBS = -lSOIL -lglut -lGLU -lGL -lX11 -lm `sdl-config --cflags --libs`  -lSDL_mixer 
+LDLIBS = -lSOIL -lglut -lGLU -lGL -lX11 -lm `sdl-config --cflags --libs`  -lSDL_mixer -std=c++11
 
 # get list of source files
 SRCDIR=src

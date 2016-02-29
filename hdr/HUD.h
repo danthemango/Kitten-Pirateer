@@ -21,11 +21,13 @@ Purpose:
 class HUD {
 
 	protected:
-		// values used to store the game width and height.
-		float m_width, m_height;
+		friend class HealthHUD;
+		friend class ItemHUD;
 	private:
 		
 	public:
+		// values used to store the game width and height.
+		static int m_width, m_height;
 		// Default constructor for HUD
 		HUD(int width, int height) {
 			m_width = width;
@@ -43,6 +45,7 @@ class HUD {
 		void displayHUD();	
 		// Display minimap for the player
 		void minimap(); // not yet implemented.	
+		
 };
 
 #endif // !HUD_H
