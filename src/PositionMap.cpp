@@ -14,7 +14,7 @@
 PositionMap::PositionMap()
 {
    // ensure we are aware that no elements have been created in the list
-   m_head = new Point(0,0);
+   m_head = new CoordPoint(0,0);
    m_tail = m_head;
 }
 
@@ -39,7 +39,7 @@ void PositionMap::addElement(int x, y)
       temp = temp->next;
    }
    // insert the data in this position
-   temp->next = new Point(x,y);
+   temp->next = new CoordPoint(x,y);
    m_tail = temp->next;
 }
 

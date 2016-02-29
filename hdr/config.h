@@ -18,6 +18,7 @@
 #define START_TILE 3
 
 // number of tiles in the map
+#define NUM_TILES 9
 #define NUM_TILES_X 3
 #define NUM_TILES_Y 3
 

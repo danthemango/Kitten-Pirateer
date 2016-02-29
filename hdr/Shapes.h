@@ -10,22 +10,26 @@
 // ************************************************
 
 #include <cmath>
+using namespace std;
+
+#ifndef SHAPES_H
+#define SHAPES_H
 
 // coordinate plane point
-class Point{
+class CoordPoint{
    public:
-      Point(int x, int y){
+      CoordPoint(int x, int y){
          set(x,y);
       }
       // change the coordinates of the point
-      set(int x, int y){
+      void set(int x, int y){
          m_x = x;
          m_y = y;
       }
-      getX(){return m_x;}
-      getY(){return m_y;}
+      int getX(){return m_x;}
+      int getY(){return m_y;}
       // get the distance between two points
-      float distance(Point& other){
+      float distance(CoordPoint& other){
          // calculate delta x and y
          int dx = abs(m_x - other.m_x);
          int dy = abs(m_y - other.m_y);
@@ -63,3 +67,4 @@ class Square{
       // m_x2, m_y2 - coordinates of the top right corner
       int m_x1, m_y1, m_x2, m_y2;
 };
+#endif // SHAPES_H

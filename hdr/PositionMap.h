@@ -21,13 +21,13 @@ class PositionMap{
       PositionMap();
       ~PositionMap();
       // inserts an element to the map at position x,y
-      void add(int x, y);
+      void add(int x, int y);
       // returns the number of elements in map
       int size();
    private:
       // node in a linked list which contains the data of the element
       struct node{
-         Point* data;
+         CoordPoint* data;
          node* next;
       };
       node* m_head;
@@ -37,11 +37,11 @@ class PositionMap{
    public: 
       // this is an iterator which is able to traverse the list of positions
       // PATTERN: iterator
-      class Iterator()
+      class Iterator
       {
          public:
             Iterator(node* start):
-               m_cur_node(start);
+               m_cur_node(start){}
             // prefix increment
             const Iterator &operator++()
             {
@@ -56,7 +56,7 @@ class PositionMap{
                return temp;
             }
             // dereferencer
-            Position* operator*()
+            CoordPoint* operator*()
             {
                if(m_cur_node){
                   return m_cur_node->data;

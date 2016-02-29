@@ -54,6 +54,6 @@ class ZombieHandler: public GameObject
       ZombieHandler();
       ZombieHandler(const ZombieHandler &old); // no copying
       const ZombieHandler &operator= (const ZombieHandler &old); // no assignment
-      ~ZombieHander();
+      ~ZombieHandler();
 };
 #endif
