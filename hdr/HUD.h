@@ -16,7 +16,6 @@ Purpose:
 #include <cstring>
 
 #include "../hdr/Game.h"
-//#include "../hdr/PC.h"
 #include <GL/glut.h>
 
 class HUD {
@@ -27,19 +26,17 @@ class HUD {
 		float m_width, m_height;
 
 	public:
+		// Default constructor for HUD
 		HUD(int width, int height) {
 			m_width = width;
 			m_height = height;
 			if (glutLayerGet(GLUT_OVERLAY_POSSIBLE)) {
 				void glutEstablishOverlay();
 			}
-
-		} // Default constructor. 
-
+		}  
 		// ~HUD(); // Don't implement: using singleton.
 		void RenderString(float x, float y, void *font, const char* string);
-		void displayHUD();
-		
+		void displayHUD();		
 };
 
 #endif // !HUD_H
