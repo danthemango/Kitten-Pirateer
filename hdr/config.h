@@ -18,6 +18,7 @@
 #define START_TILE 3
 
 // number of tiles in the map
+#define NUM_TILES 9
 #define NUM_TILES_X 3
 #define NUM_TILES_Y 3
 
@@ -35,15 +36,16 @@
 
 // maximum number of zombies on a single screen-tile
 #define MAXZOMBIES 20
-// path to the zombie configuration file
-#define ZOMBIE_CONFIG_PATH "../config/Zombies"
 
 //Margine size
 //TODO set up the correct margine size.
 #define MARGIN 4
+
 //Max number of Objects.
 //TODO determine if this is needed when the handlers are in control
 //of how many obects there are.
 #define MAX_OBJECTS 50
 
 #endif
+
+
