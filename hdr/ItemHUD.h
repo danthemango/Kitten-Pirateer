@@ -21,8 +21,11 @@ class ItemHUD : public HUD {
 		// iterator used to count through an array containing all the items in the 
 		// inventory of the player to be printed to the screen
 		static int count;
+		// Name of the current weapon equipped.
 		const char * weaponName;
+		// Name of the current item equipped
 		const char * itemName;
+		// Amount of the current item equipped
 		int itemAmount;
 
 	protected:
