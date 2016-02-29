@@ -21,22 +21,28 @@ Purpose:
 class HUD {
 
 	protected:
-		
-	private:
+		// values used to store the game width and height.
 		float m_width, m_height;
-
+	private:
+		
 	public:
 		// Default constructor for HUD
 		HUD(int width, int height) {
 			m_width = width;
 			m_height = height;
+			// Create an overlay view over the main game as not to disrupt the primary functions of the game
+			// Can be later implepented to be turned off through settings
 			if (glutLayerGet(GLUT_OVERLAY_POSSIBLE)) {
 				void glutEstablishOverlay();
 			}
 		}  
 		// ~HUD(); // Don't implement: using singleton.
+		// Create string to be printed to the overlay
 		void RenderString(float x, float y, void *font, const char* string);
-		void displayHUD();		
+		// Display the primary labels for the HUD - subclasses will override.
+		void displayHUD();	
+		// Display minimap for the player
+		void minimap(); // not yet implemented.	
 };
 
 #endif // !HUD_H

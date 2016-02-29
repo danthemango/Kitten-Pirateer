@@ -9,22 +9,19 @@ Purpose:
 #ifndef HEALTHHUD_H
 #define HEALTHHUD_H
 
-#include "pc.h"
+#include "../hdr/HUD.h"
+#include "../hdr/Player.h"
 
-class HUD; 
-
-class HealthHUD {
-	
-	protected: 
+class HealthHUD : public HUD { 
 	
 	private:
-		int m_health;
-		// Displays the health of the character
-		HealthHUD::display(m_health); // Overrides HUD display
+		int m_health; // health amount of the player
+		std::string healthString; // String to convert player health to be printed to HUD
 
 	public:
-		HealthHUD(); // Constructor
+		HealthHUD(); // Constructor - singleton
 		// ~HealthHUD(); // Destructor not required: singleton
+		void displayHUD(); // Display health of the player
 };
 
 #endif // !HEALTHHUD_H

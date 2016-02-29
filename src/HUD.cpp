@@ -34,4 +34,8 @@ Purpose:
 		
 	}
 
+	// Future implementation: create and display a minimap for the player.
+	void minimap() {
+
+	}
 

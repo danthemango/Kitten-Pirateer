@@ -21,6 +21,8 @@
 #include "../hdr/Player.h"//Dependancy for the Player.
 #include "../hdr/ItemHandler.h"//Dependancy for the item handler.
 #include "../hdr/HUD.h" // Dependancy for the HUD
+#include "../hdr/ItemHUD.h"
+#include "../hdr/HealthHUD.h"
 
 //Main Variables:
 bool Game::c_run = false;//Set the game to display the main menu. Once changed this
@@ -137,15 +139,19 @@ void Game::update()
 	//Item update must happen before the player display.
 	//ItemHandler::getInstance().update();
 	//Display the HUD:
-	HUD m_hud(m_width, m_height);
+	HUD m_hud(m_width, m_height); // wouldn't work unless I created the object here instead of header file. 
 	m_hud.displayHUD();
+	HealthHUD m_healthhud;
+	m_healthhud.displayHUD();
+	ItemHUD m_itemhud;
+	m_itemhud.displayHUD();
 	
 	//Call the update and display functions of the GameObjects here:
 	//MapHandler::updateTile();
 	//m_myPlayer.update(m_myGameObjects3,3,4);
 	//m_myPlayer.update(m_myGameObjects4,1,3);
 	//Player display should be one of the very last, if not last.
-	//>>>>>>> 2871bc54368496d439091de4e5694da5141a8761//What is this line?????????
+	//>>>>>>> 2871bc54368496d439091de4e5694da5141a8761//What is this line????????? // a commit message that stayed from a merge - can be deleted
 	m_myPlayer.display();
 	
 }
