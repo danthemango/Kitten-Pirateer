@@ -10,7 +10,6 @@
 // ************************************************
 
 #include <cmath>
-using namespace std;
 
 // coordinate plane point
 class Point{
@@ -19,12 +18,12 @@ class Point{
          set(x,y);
       }
       // change the coordinates of the point
-      void set(int x, int y){
+      set(int x, int y){
          m_x = x;
          m_y = y;
       }
-      int getX(){return m_x;}
-      int getY(){return m_y;}
+      getX(){return m_x;}
+      getY(){return m_y;}
       // get the distance between two points
       float distance(Point& other){
          // calculate delta x and y
