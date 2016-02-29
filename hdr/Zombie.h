@@ -15,6 +15,7 @@
 #ifndef ZOMBIE_H
 #define ZOMBIE_H
 #include "HostileNPC.h"
+#include "Shapes.h"
 
 #define UP 0
 #define DOWN 1
@@ -27,7 +28,7 @@ class Zombie: public HostileNPC{
       // update takes in the player's position
       // this function will act as the NPC's 'AI' 
       virtual void update(int x, int y);
-      virtual void update(Point &playerpos);
+      virtual void update(CoordPoint &playerpos);
       // display is used to draw this object
       virtual void display();
       // causes damage to the zombie (reduces health by amount)
@@ -38,10 +39,12 @@ class Zombie: public HostileNPC{
       void disappear();
       // make the zombie appear at a position
       void spawn(int x, int y);
-      void spawn(Point &pos);
-      // receives damage if zombie is in the area of the square specified
+      void spawn(CoordPoint &pos);
+      // receives damage if zombie is in the area of the rectangle specified
       void attacked(int x1, int y1, int x2, int y2, int damage);
    private:
+      // attack the player
+      void attack();
       // amount of damage the zombie can take
       int m_health;
       // if Zombie is dead, it won't attack the player or take an attack from the player
@@ -52,5 +55,7 @@ class Zombie: public HostileNPC{
       int m_direction; // direction
       // position of the zombie
       int m_x, m_y;
+      // attack strength of the zombie
+      int m_damage;
 };
 #endif

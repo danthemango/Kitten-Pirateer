@@ -11,7 +11,7 @@
 
 #ifndef OBSTACLEDMG_H_
 #define OBSTACLEDMG_H_
-#define CONDITION 2
+#define DMGCONDITION 2
 
 #include "Obstacle.h"
 
@@ -22,11 +22,11 @@ private:
 	int m_dmg;
 
 public:
-	void update ();
-	void display ();
-	void collide (Character *C);
+	void update (){};
+	void display (){};
+	bool collide (Player *C){};
 	ObstacleDmg(int x, int y, int w, int h, int dmg);
 
 };
 
-#endif OBSTACLEDMG_H_
+#endif 

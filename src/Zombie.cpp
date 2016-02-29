@@ -7,27 +7,68 @@
 //    A 'Zombie' is a NPC which slowly follows the player
 //    and deals damage when close enough
 // ************************************************
+#include "../hdr/Zombie.h"
+#include "../hdr/config.h"
 
 Zombie::Zombie()
 {
    m_visible = false;
+   m_speed = PLAYER_SPEED /2;
+   m_dead = false;
    m_direction = UP;
+   // this is the attack strength of the zombie
+   m_damage = 5;
+}
+
+// determine the absolute difference between two numbers
+int difference(int a, int b){
+   if(a < b){
+      return b - a;
+   }else{
+      return a - b;
+   }
 }
 
 // update takes in the player's position
 // this function will act as the NPC's 'AI' 
-virtual void Zombie::update(int x, int y)
+void Zombie::update(int x, int y)
 {
    if(!m_visible || m_dead){
       return;
    }
-   // TODO
+
+   // if zombie is close enough to the player
+   // round down the difference between the player and zombie if zombie is close 
+   if(difference(x,m_x) < m_speed){
+      m_x = x;
+   }
+   if(difference(y,m_y) < m_speed){
+      m_y = y;
+   }
+
+   // follow the player
+   if(x < m_x){
+      m_x -= m_speed;
+   }else if(x > m_x){
+      m_x += m_speed;
+   }
+}
+
+// attack the player
+void attack()
+{
+   //TODO ensure zombie doesn't attack too often
 }
 
 // display is used to draw this object
-virtual void Zombie::display()
+void Zombie::display()
 {
-   // TODO
+   if(!m_visible){
+      return;
+   }
+   if(m_dead){
+      // TODO draw dead zombie
+   }
 }
 
 // kill the zombie immediately
@@ -59,7 +100,7 @@ void Zombie::attacked(int x1, int y1, int x2, int y2, int damage)
    }
    // see if the sprite box touches the 'damage' box
    Square damageBox(x1, y1, x2, y2);
-   Square spriteBox(m_x, m_y, m_x + SPRITE_SIZE_X, m_y + SRITE_SIZE_Y);
+   Square spriteBox(m_x, m_y, m_x + SPRITE_SIZE_X, m_y + SPRITE_SIZE_Y);
    // take damage if zombie is in attack range
    if(damageBox.collides(spriteBox)){
       m_health -= damage;
@@ -70,12 +111,12 @@ void Zombie::attacked(int x1, int y1, int x2, int y2, int damage)
    }
 }
 
-virtual void Zombie::update(Point &playerpos)
+void Zombie::update(CoordPoint &playerpos)
 {
    update(playerpos.getX(),playerpos.getY());
 }
 
-void Zombie::spawn(Point &pos)
+void Zombie::spawn(CoordPoint &pos)
 {
    spawn(pos.getX(),pos.getY());
 }

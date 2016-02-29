@@ -9,8 +9,8 @@
 //    
 // ************************************************
 
-#include "ObstacleDmg.h"
-#include "Player.h"
+#include "../hdr/ObstacleDmg.h"
+#include "../hdr/Player.h"
 
 
 

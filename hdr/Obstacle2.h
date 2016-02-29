@@ -18,30 +18,27 @@
 
 #ifndef OBSTACLE_H_
 #define OBSTACLE_H_
+#define CONDITION 0
 
-#include "GameObject.h"
-#include "Player.h"
-class Player;
+#include "../hdr/GameObject.h"
+#include "../hdr/PC.h"
 
 class Obstacle: public GameObject {
+   private:
+      int m_x, m_y, m_width, m_height;
 
-private:
-	int m_x, m_y, m_width, m_height;
-	int m_cond;
-    
-public:
-	int getX() {return m_x;};
-    int getY() {return m_y;};
-    int getW() {return m_width;};
-    int getH() {return m_height;};
-    int getC() {return m_cond;};
-	
-	void update (){};
-	void display (){};
-	bool collide (Player *C){};
-	Obstacle(int x, int y, int w, int h);
-   Obstacle(){};
-	
+   public:
+      int getX() {return m_x;};
+      int getY() {return m_y;};
+      int getW() {return m_width;};
+      int getH() {return m_height;};
+      int getC() {return CONDITION};
+
+      void update (){};
+      void display (){};
+      bool collide (Player *C){};
+      Obstacle(int x, int y, int w, int h);
+      Obstacle(){};
 };
 
-#endif /*OBSTACLE_H_*/
+#endif // OBSTACLE_H_

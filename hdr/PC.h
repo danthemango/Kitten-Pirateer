@@ -1,5 +1,5 @@
 //Author: Anand Sundar
-//Purpose: Player control or PC is a singletonn class. Only one instance of this classes can be used
+//Purpose: Player control or PC is not a singletonn class. Its an abstract class
 //for the entire program
 
 #ifndef PC_H_

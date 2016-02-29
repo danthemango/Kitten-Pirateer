@@ -98,7 +98,7 @@ void Player::collision(int xpos, int ypos, int width, int height, int cond)
    //the check
 
    //bool check = ItemHandler::getInstance().
-   if(m_x+m_width > xpos && m_x < xpos + width && m_y+m_height > ypos && m_y < ypos+height){
+   if(m_x+m_size > xpos && m_x < xpos + width && m_y+m_size > ypos && m_y < ypos+height){
 	   if(cond == 0){   
 	      if(c_up){
       	   m_y -=m_stepSize;
