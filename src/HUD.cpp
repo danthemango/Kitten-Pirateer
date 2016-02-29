@@ -11,6 +11,15 @@ Purpose:
 
 #include "../hdr/HUD.h"
 
+    HUD::HUD()  {
+			m_width = Game::getInstance().getWidth();
+			m_height = Game::getInstance().getHeight();
+			// Create an overlay view over the main game as not to disrupt the primary functions of the game
+			// Can be later implepented to be turned off through settings
+			if (glutLayerGet(GLUT_OVERLAY_POSSIBLE)) {
+				void glutEstablishOverlay();
+			}
+		}  
 	// Prints a text string to the screen. 
 	void HUD::RenderString(float x, float y, void *font, const char* string)
 	{  
@@ -23,15 +32,8 @@ Purpose:
 	  glutBitmapString(font, string2);
 	} 
 
-	// Display the main sections for the HUD
+	// Display the main sections for the HUD 
 	void HUD::displayHUD() {
-		// The health of the player will be available to the controller.
-		RenderString(m_width - 150, m_height - 50, GLUT_BITMAP_TIMES_ROMAN_24, "Health");
-		// The current Weapon equipped by the player.
-		RenderString(m_width - 150, m_height - 200, GLUT_BITMAP_TIMES_ROMAN_24, "Weapon");
-		// The current item equipped by the player
-		RenderString(m_width - 150, m_height - 250, GLUT_BITMAP_TIMES_ROMAN_24, "Inventory");
-		
 	}
 
 	// Future implementation: create and display a minimap for the player.

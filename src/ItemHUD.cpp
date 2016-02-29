@@ -12,11 +12,26 @@ Purpose:
 /*
 To be completed for final: display all items and sprites of items within the inventory
 */
+
 void ItemHUD::displayHUD() {
+    // Get the weapon name to be printed to the HUD.
+	weaponName = ItemHandler::getInstance().getWeapon()->getName().c_str();
+    
+    // Current item being equipped to the player
+    //Items currItem;
+	// Current item name
+	itemName = ItemHandler::getInstance().getItem()->getName().c_str();
+	// The amount of the item currently equipped.
+    itemAmount = ItemHandler::getInstance().getItem()->getAmmount();
+    amount = std::to_string(itemAmount).c_str();
+	// The current Weapon equipped by the player.
+	RenderString(m_width - 150, m_height - 200, GLUT_BITMAP_TIMES_ROMAN_24, "Weapon");
 	// Display the equipped weapon name to the HUD
-	HUD::RenderString(m_width - 150, m_height - 225, GLUT_BITMAP_TIMES_ROMAN_24, ItemHUD::weaponName);
+	HUD::RenderString(m_width - 150, m_height - 225, GLUT_BITMAP_TIMES_ROMAN_24, weaponName);
+	// The current item equipped by the player
+	RenderString(m_width - 150, m_height - 275, GLUT_BITMAP_TIMES_ROMAN_24, "Inventory");
 	// Display the current item in inventory to the HUD
-	HUD::RenderString(m_width - 150, m_height - 275, GLUT_BITMAP_TIMES_ROMAN_24, ItemHUD::itemName);
+	HUD::RenderString(m_width - 150, m_height - 300, GLUT_BITMAP_TIMES_ROMAN_24, itemName);
 	// Display the current item amount to the HUD
-	HUD::RenderString(m_width - 100, m_height - 275, GLUT_BITMAP_TIMES_ROMAN_24, "X"+ItemHUD::itemAmount);
+	HUD::RenderString(m_width - 50, m_height - 300, GLUT_BITMAP_TIMES_ROMAN_24, amount);
 }

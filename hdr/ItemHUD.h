@@ -14,6 +14,7 @@ Purpose:
 
 #include "../hdr/HUD.h"
 #include "../hdr/Items.h"
+#include "../hdr/ItemHandler.h"
 
 class ItemHUD : public HUD {
 	
@@ -27,23 +28,12 @@ class ItemHUD : public HUD {
 		const char * itemName;
 		// Amount of the current item equipped
 		int itemAmount;
+        const char * amount;
 
 	protected:
 	
 	public:
-		ItemHUD() : HUD(m_width, m_height)  {
-			// Current weapon the player is using/has equipped.
-			Items currWeapon;
-			// Get the weapon name to be printed to the HUD.
-			weaponName = currWeapon.getName().c_str();
-
-			// Current item being equipped to the player
-			Items currItem;
-			// Current item name
-			itemName = currItem.getName().c_str();
-			// The amount of the item currently equipped.
-			itemAmount = currItem.getAmount();	
-		}; // Default Constructor - singleton
+		ItemHUD(int m_width, int m_height) {}; // Default Constructor
 
 		void displayHUD(); // Display all the weapon and items associated with the player
 };

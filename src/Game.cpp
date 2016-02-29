@@ -20,9 +20,7 @@
 #include "../hdr/MapHandler.h"//Dependancy for the Map.
 #include "../hdr/Player.h"//Dependancy for the Player.
 #include "../hdr/ItemHandler.h"//Dependancy for the item handler.
-#include "../hdr/HUD.h" // Dependancy for the HUD
-#include "../hdr/ItemHUD.h"
-#include "../hdr/HealthHUD.h"
+#include "../hdr/HUDHandler.h" // HUD Deppendency
 
 //Main Variables:
 bool Game::c_run = false;//Set the game to display the main menu. Once changed this
@@ -139,12 +137,8 @@ void Game::update()
 	//Item update must happen before the player display.
 	//ItemHandler::getInstance().update();
 	//Display the HUD:
-	HUD m_hud(m_width, m_height); // wouldn't work unless I created the object here instead of header file. 
-	m_hud.displayHUD();
-	HealthHUD m_healthhud;
-	m_healthhud.displayHUD();
-	ItemHUD m_itemhud;
-	m_itemhud.displayHUD();
+	// HUD
+    HUDHandler::getInstance().displayHUD(); 
 	
 	//Call the update and display functions of the GameObjects here:
 	//MapHandler::updateTile();
