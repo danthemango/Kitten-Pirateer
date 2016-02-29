@@ -15,7 +15,7 @@
 
 #ifndef OBSTACLESLOW_H_
 #define OBSTACLESLOW_H_
-#define CONDITION 1
+#define SLOWCONDITION 1
 
 #include "Obstacle.h"
 
@@ -26,11 +26,12 @@ private:
 	int m_slow;
 
 public:
-	void update ();
-	void display ();
-	void collide (Character *C);
+	void update (){};
+	void display (){};
+	bool collide (Player *C){};
 	ObstacleSlow(int x, int y, int w, int h, int slow);
+	~ObstacleSlow(){};
 
 };
 
-#endif OBSTACLESLOW_H_
+#endif 

@@ -37,7 +37,7 @@ class Items: public GameObject{
       //get's Item ID, 
       int getItemID(){return m_itemID;}
       //Gets ammount of Items, default is 1
-      int getAmmount(){return m_ammount;}
+      int getAmount(){return m_ammount;}
       //Gets range of Item
       int getRange(){return m_range;}
       //Gets Name of Item

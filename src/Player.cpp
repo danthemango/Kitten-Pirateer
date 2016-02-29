@@ -92,8 +92,55 @@ void Player::displayTexture()
    glFlush();
 }
 
-void Player::collision()
+void Player::collision(int xpos, int ypos, int width, int height, int cond)
 {
+   //send the player position to the itemhandler and store the returned bool value and do
+   //the check
+
+   //bool check = ItemHandler::getInstance().
+   if(m_x+m_width > xpos && m_x < xpos + width && m_y+m_height > ypos && m_y < ypos+height){
+	   if(cond == 0){   
+	      if(c_up){
+      	   m_y -=m_stepSize;
+         }
+         if(c_right){
+      	   m_x -=m_stepSize;
+         }
+         if(c_down){
+      	   m_y +=m_stepSize;
+         }
+         if(c_left){
+      	   m_x +=m_stepSize;
+         }
+      }else if(cond == 1){
+         m_speed = 0.5;
+      }
+	}else{
+	   m_speed = 1;
+	}
+	
+   if(m_x+m_stepSize+m_size > xpos && m_x < xpos + width
+      && m_y+m_size > ypos && m_y < ypos+height){
+      stopright = true;
+      m_x -=m_stepSize;
+   }else if(m_x+m_size > xpos && m_x-m_stepSize < xpos + width
+      && m_y+m_size > ypos && m_y < ypos+height){
+      stopleft = true;
+      m_x+=m_stepSize;
+   }else if(m_y-m_stepSize < ypos+height  && m_y > ypos
+      && m_x +m_size > xpos && m_x < xpos+width){
+      stopdown = true;
+      m_y+=m_stepSize;
+   }else if(m_y+m_size+m_stepSize> ypos && m_y < ypos+height
+      && m_x+m_size > xpos && m_x < xpos+width){
+      stopup = true;
+      m_y-=m_stepSize;
+   }else{
+      stopright = false;
+      stopleft = false;
+      stopup = false;
+      stopdown = false;
+   }
 
 }
 
@@ -101,12 +148,28 @@ void Player::update()
 {
    ZombieHandler::getInstance().update(m_x,m_y);
 
+   //code from collision detection lab
+   int size = MapHandler::getInstance().getNumObstacles();
+   Obstacle* ob;
+   ob = MapHandler::getInstance().getObstacles();
+  
+   for(int i=0;i<size;i++){
+      int xpos = ob[i].getX();
+      int ypos = ob[i].getY();
+      int width = ob[i].getW();
+      int height = ob[i].getH();
+      int cond = ob[i].getC();
+
+      collisions(xpos, ypos, width, height, cond);
+      if(stopright == true || stopleft == true||stopup==true||stopdown==true)
+      	break;   
+   }
 
 }
 
 void Player::attacked(int x1, int y1, int x2, int y2, int damage)
 {
-   
+    m_health -= 10;   
 
 }
 
@@ -248,3 +311,5 @@ void Player::left ()
     m_direction = 3;
     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Left.png" );
 }
+
+

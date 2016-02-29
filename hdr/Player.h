@@ -54,6 +54,8 @@ class Player : public GameObject
       void collisions();
       void addHealth(int x);
       int getDirection();
+      bool c_up,c_down,c_left,c_right;
+
    private:
       // for a singleton, we don't share the default methods
       Player();
@@ -66,7 +68,6 @@ class Player : public GameObject
       int m_y; //pos of player
       float m_speed; //player movement speed
       int m_arraypos;
-      bool c_up,c_down,c_left,c_right;
       GLuint m_PlayerTexture;
 };
 #endif
