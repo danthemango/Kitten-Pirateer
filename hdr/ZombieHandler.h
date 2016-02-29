@@ -11,6 +11,7 @@
 // Note:
 //    ZombieHandler is a singleton class, every method must be 
 //    used like: ZombieHandler::getInstance().method()
+//    ZombieHandler is also a proxy for the Zombie Objects
 // ************************************************
 
 #ifndef ZombieHandler_H
@@ -18,6 +19,7 @@
 #include "Zombie.h"
 #include "GameObject.h"
 #include "config.h"
+#include "PositionMap.h"
 
 class ZombieHandler: public GameObject
 {
@@ -25,7 +27,7 @@ class ZombieHandler: public GameObject
       // returns the currently existing instance
       static ZombieHandler &getInstance();
       // updates all contained zombies
-      void update();
+      void update(int x, int y);
       // draws all zombies
       void display();
       // damages every Zombie in the range
@@ -41,21 +43,14 @@ class ZombieHandler: public GameObject
       void removeAllZombies();
    private:
       // an array containing the zombie objects
-      Zombie m_ZombieList[MAXZOMBIES];
-      // load zombie positions from config/Zombies
-      // number of zombies in each tile
-      int m_numZombies[NUM_TILES_X][NUM_TILES_Y];
-      // defines an x,y position
-      struct m_pos{
-         int x,y;
-      }
-      // array to hold positions of zombies
-      // in order, this array holds the 
-      // [tilepositionx][y][zombienumber][zombiepositionx][y]
-      pos m_ZombiePosition[TILE_NUM_X][TILE_NUM_Y][MAXZOMBIES];
+      Zombie* m_ZombieList[MAXZOMBIES];
+      // map which stores the positions with respect to the tiles of the map
+      PositionMap m_map[NUM_TILES];
+      // current number of zombies
+      int m_num_zombies;
       // currently loaded tile
       int m_tile;
-
+      
       // for a singleton, we don't share the default methods
       ZombieHandler();
       ZombieHandler(const ZombieHandler &old); // no copying
