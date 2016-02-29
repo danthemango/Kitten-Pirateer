@@ -50,7 +50,6 @@ class ZombieHandler: public GameObject
       int m_num_zombies;
       // currently loaded tile
       int m_tile;
-      
       // for a singleton, we don't share the default methods
       ZombieHandler();
       ZombieHandler(const ZombieHandler &old); // no copying
