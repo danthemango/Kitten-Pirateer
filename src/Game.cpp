@@ -29,6 +29,7 @@ bool Game::c_run = false;//Set the game to display the main menu. Once changed t
 bool Game::c_running = false;//Set the running state to false to start the game
 //with the splashscreen displayed.
 bool* Game::keystates = new bool[256];
+int Game::m_lastSong = 6000000;
 
 bool Game::c_firstLoad = true;
 
@@ -90,10 +91,10 @@ void Game::update()
    int now;
    int miliseconds;
    now = glutGet(GLUT_ELAPSED_TIME);
-   miliseconds =  now - m_lastSong;
+   miliseconds =  now - Game::m_lastSong;
    if (miliseconds > 32600){
       Jukebox::PlaySound("./sounds/Song.wav");
-      m_lastSong = glutGet(GLUT_ELAPSED_TIME);
+      Game::m_lastSong = glutGet(GLUT_ELAPSED_TIME);
    }
 	
 	Game::getInstance().keyOperations();
@@ -124,8 +125,8 @@ void Game::update()
 		
 	   	if(!Game::c_run) {
 	   	  if(Game::c_firstLoad){
-               Jukebox::PlaySound("./sounds/Song.wav");
-               m_lastSong = glutGet(GLUT_ELAPSED_TIME);
+               //Jukebox::PlaySound("./sounds/Song.wav");
+               //m_lastSong = glutGet(GLUT_ELAPSED_TIME);
                c_firstLoad = false;
             }
 			//This should only call the mainMenu once at the start of the game.
@@ -224,6 +225,8 @@ void Game::key(unsigned char key, int x, int y)
 				//and c_running to true and allow the game to run.
 				Game::c_run = !Game::c_run;
 				Game::c_running = !Game::c_running;
+				Jukebox::PlaySound("./sounds/Song.wav");
+                Game::m_lastSong = glutGet(GLUT_ELAPSED_TIME);
 				
             } else {
 				
