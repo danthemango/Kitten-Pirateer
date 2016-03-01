@@ -18,11 +18,6 @@
 #include "Shapes.h"
 #include "ImageLoader.h"
 
-#define UP 0
-#define DOWN 1
-#define LEFT 2 
-#define RIGHT 3
-
 class Zombie: public HostileNPC{
    public:
       Zombie();
@@ -62,6 +57,13 @@ class Zombie: public HostileNPC{
       int m_x, m_y;
       // attack strength of the zombie
       int m_damage;
+      // current displaying texture
       GLuint m_texture;
+      // if the player is further away than this, attack the player
+      int m_attackRange;
+      // if the last attack was this many milliseconds ago, attack again
+      long int m_attackDelay;
+      // animation rate
+      long int m_animDelay;
 };
 #endif

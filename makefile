@@ -47,6 +47,11 @@ $(EXE): $(OBJ_FILES)
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-#
+#removes the objects and executeables
 clean:
 	rm -rf bin $(OBJDIR)
+
+redo:
+	make clean
+	reset
+	make all

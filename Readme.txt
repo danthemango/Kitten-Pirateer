@@ -13,6 +13,7 @@ Directory layout:
    docs: all project documentation other than this readme
    ass: game assets (like sounds, and sprites)
    proto: complete prototype used to demonstrate the game
+   test: files used to test functions
 
    any further documentation can be found in the following files:
    About the game:         docs/about.txt
