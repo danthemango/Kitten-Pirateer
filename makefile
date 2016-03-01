@@ -14,7 +14,7 @@
 # compiler and flags
 CC = g++
 CFLAGS =-std=c++11
-LDLIBS =-lSOIL -lglut -lGLU -lGL -lX11 -lm `sdl-config --cflags --libs`  -lSDL_mixer -std=c++11
+LDLIBS =-lSOIL -lglut -lGLU -lGL -lX11 -lm `sdl-config --cflags --libs`  -lSDL_mixer
 
 # get list of source files
 SRCDIR=src
@@ -41,7 +41,7 @@ obj:
 
 #executeables
 $(EXE): $(OBJ_FILES)
-	$(CC) $(LDFLAGS) -o $@ $^
+	$(CC) $^ $(LDLIBS) -o $@ 
 
 #object files
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
