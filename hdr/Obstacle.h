@@ -21,6 +21,7 @@
 
 #include "GameObject.h"
 #include "Player.h"
+
 class Player;
 
 class Obstacle: public GameObject {

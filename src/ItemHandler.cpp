@@ -7,6 +7,8 @@
 
 #include "../hdr/ItemHandler.h"
 #include "../hdr/Items.h"
+#include "../hdr/Jukebox.h"
+#include "../hdr/Game.h"
 
 /*
 #include "../hdr/ItemHandler.h"
@@ -20,7 +22,7 @@ void ItemHandler::addItemToInv(Items* item)
    bool placed;
    for(int i=0;i<=m_lastItem;i++){
       if(item->getItemID() == m_itemInv[i]->getItemID()){
-         m_itemInv[i]->setAmmount(item->getAmmount() + m_itemInv[i]->getAmmount());
+         m_itemInv[i]->setAmount(item->getAmount() + m_itemInv[i]->getAmount());
          placed = true;
       }
    }
@@ -50,9 +52,9 @@ void ItemHandler::iSwitch()
    }
  
  //  FOR TESTING
-  // std::string name = m_itemInv[m_currItem]->getName();
-   //int ammount = m_itemInv[m_currItem]->getAmmount();
-   //std::cout << name << ": " << ammount << std::endl;
+   //std::string name = m_itemInv[m_currItem]->getName();
+   //int amount = m_itemInv[m_currItem]->getAmount();
+   //std::cout << name << ": " << amount << std::endl;
 
 }
 
@@ -66,7 +68,20 @@ void ItemHandler::wSwitch()
 }
 
 void ItemHandler::iUse()
-{
+{  int id = getItem()->getItemID();
+
+   switch (id){
+      case 12:
+         if(getItem()->getAmount() > 0){
+            Jukebox::PlaySound("./sounds/HealthPotionUse.wav");
+            //std::cout << "health: + 20" << std::endl;
+            Player::getInstance().addHealth(20);
+            //Game::getInstance().m_myPlayer.addHealth(20);
+            getItem()->decreaseAmount();
+         }
+         break;
+   }
+   
    
 }
 
