@@ -13,7 +13,7 @@ class Weapon: public Items{
    private:
       int m_damage;  //weapon damage
       int m_type; //weapon type
-                  //0:melee all types are melee right now
+                  //0:melee
                   //1:gun
                   //2:spell
 
@@ -26,6 +26,8 @@ class Weapon: public Items{
       int getType(){return m_type;}
       //displays weapons on map
       void display();
+      //attack function for weapon
+      void attack();
     
       void update();
       Weapon(int d, int r, int invs, int id, std::string name, int type, bool pickup,int x, int y, int tile);

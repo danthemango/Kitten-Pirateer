@@ -17,7 +17,7 @@ class Items: public GameObject{
    protected:
       int m_range;//range of item 0 if N/A
       std::string m_name;
-      int m_ammount;
+      int m_amount;
       int m_invslot; //which inventory slot
                      //item is currently in
       int m_itemID;  //item id states which
@@ -36,14 +36,16 @@ class Items: public GameObject{
       int getInvSlot(){return m_invslot;}//get current inv slot
       //get's Item ID, 
       int getItemID(){return m_itemID;}
-      //Gets ammount of Items, default is 1
-      int getAmount(){return m_ammount;}
+      //Gets amount of Items, default is 1
+      int getAmount(){return m_amount;}
+      //sets amount for use in Item use
+      void decreaseAmount(){m_amount--;}
       //Gets range of Item
       int getRange(){return m_range;}
       //Gets Name of Item
       std::string getName(){return m_name;}
-      //Sets ammount the Item has. Ex: picked up another lemon, set ammount to 2
-      void setAmmount(int x);
+      //Sets amount the Item has. Ex: picked up another lemon, set amount to 2
+      void setAmount(int x);
       //deals with picking up the Item
       void pickUp(Items* item);  //when picked up
       //displays Item
