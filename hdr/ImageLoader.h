@@ -1,6 +1,8 @@
 #ifndef IMAGE_LOADER_H_
 #define IMAGE_LOADER_H_
-// TODO GLuint needs to be defined (missing header?)
+#include <GL/glut.h>    /* glut.h includes gl.h and glu.h */
+#include <GL/freeglut.h>
+#include <SOIL/SOIL.h>
 
 class ImageLoader {  
    private:
