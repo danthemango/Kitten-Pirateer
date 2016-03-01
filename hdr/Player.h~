@@ -24,6 +24,7 @@
 class Player : public GameObject
 {
    public:
+      Player();
       // returns the currently existing instance
       static Player &getInstance();
       // updates all contained zombies
@@ -54,9 +55,10 @@ class Player : public GameObject
       void collisions();
       void addHealth(int x);
       int getDirection();
+      bool c_up,c_down,c_left,c_right;
+
    private:
       // for a singleton, we don't share the default methods
-      Player();
       Player(const Player &old); // no copying
       const Player &operator= (const Player &old); // no assignment
       ~Player();
@@ -66,7 +68,7 @@ class Player : public GameObject
       int m_y; //pos of player
       float m_speed; //player movement speed
       int m_arraypos;
-      bool c_up,c_down,c_left,c_right;
+      int m_stepSize;
       GLuint m_PlayerTexture;
 };
 #endif
