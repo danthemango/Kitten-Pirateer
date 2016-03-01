@@ -19,7 +19,7 @@ using namespace std;
 // coordinate plane point
 class Point{
    public:
-      Point(int x, int y): m_x = x, m_y = y {}
+      Point(int x, int y): m_x(x), m_y(y) {}
       // change the coordinates of the point
       int getX();
       int getY();
