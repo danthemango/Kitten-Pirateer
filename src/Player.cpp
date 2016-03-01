@@ -23,7 +23,7 @@
 
 Player::Player()
 {
-  m_health =20; //full health when the singleton is created
+  m_health = MAX_PLAYER_HEALTH; //full health when the singleton is created
   m_x = PLAYER_START_X; //start X-pos of player
   m_y = PLAYER_START_Y; //start Y-pos of player
   stopup=stopdown=stopleft=stopright=false;
@@ -119,13 +119,15 @@ void Player::display()
 
 void Player::addHealth(int addHealth)
 {
-   if(m_health < 100 ) 
+   if(m_health < MAX_PLAYER_HEALTH ) 
    {
-      m_health+= addHealth;
-      if(m_health == 100)
+      if((MAX_PLAYER_HEALTH - m_health) < addHealth)
       {
-         m_health = 100;
-      } 
+         m_health = MAX_PLAYER_HEALTH;
+      }else{
+
+      m_health+= addHealth;
+      }
    }
 }
 void Player::displayTexture()
