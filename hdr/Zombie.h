@@ -28,8 +28,12 @@ class Zombie: public HostileNPC{
       Zombie();
       // update takes in the player's position
       // this function will act as the NPC's 'AI' 
-      virtual void update(int x, int y);
-      virtual void update(Point &playerpos);
+      void update(int x, int y);
+      void update(Point &playerpos);
+      void update()
+      {
+         //
+      };
       // display is used to draw this object
       virtual void display();
       // causes damage to the zombie (reduces health by amount)
