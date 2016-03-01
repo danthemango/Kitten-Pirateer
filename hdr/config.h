@@ -25,9 +25,9 @@
 //player movement speed
 #define PLAYER_SPEED 10.0
 
-// size of the screen
-#define SCREEN_SIZE_X 800//Width
-#define SCREEN_SIZE_Y 1000//Height
+//Size of the screen
+#define SCREEN_SIZE_X 1055//Width
+#define SCREEN_SIZE_Y 1055//Height
 
 //default player start position
 #define PLAYER_START_X 500
@@ -44,10 +44,14 @@
 
 //Margine size
 //TODO set up the correct margine size.
-#define MARGIN 4
+#define MARGINE 4
 //Max number of Objects.
 //TODO determine if this is needed when the handlers are in control
 //of how many obects there are.
 #define MAX_OBJECTS 50
+
+//Starting tile:
+//Set this to the starting tile required.
+#define START_TILE 3
 
 #endif

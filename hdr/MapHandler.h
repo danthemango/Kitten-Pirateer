@@ -13,7 +13,7 @@
 
 
 
-#ifndef MAPPHANDLER_H_
+#ifndef MAPHANDLER_H_
 #define MAPHANDLER_H_
 #define NUMTILES 9
 #define ATTRIBUTES 5
@@ -27,21 +27,33 @@
 #include "ImageLoader.h"
 
 
-class MapHandler: public GameObject {
+class MapHandler {
 
 private:
 	
 	Obstacle m_obs[MAXOBS];
     GLuint m_tileTextureArray[NUMTILES];
-    int m_currTile = 3; 
-    int m_numObs[NUMTILES] = {22,22,23,25,22,24,27,26,25};
+    int m_currTile; 
+    int m_numObs[NUMTILES];
     
     double ***m_obs3DArray;
     
     MapHandler(MapHandler const&);
     void operator=(MapHandler const&);
+    
     MapHandler()
     {
+	m_currTile = 3;
+	m_numObs[0] = 22;
+	m_numObs[1] = 22;
+	m_numObs[2] = 23;
+	m_numObs[3] = 25;
+	m_numObs[4] = 22;
+	m_numObs[5] = 24;
+	m_numObs[6] = 27;
+	m_numObs[7] = 26;
+	m_numObs[8] = 25;			
+			
 	m_tileTextureArray[0] = ImageLoader::LoadTexture("./imgs/tile0.png");
 	m_tileTextureArray[1] = ImageLoader::LoadTexture("./imgs/tile1.png");
 	m_tileTextureArray[2] = ImageLoader::LoadTexture("./imgs/tile2.png");
@@ -1357,7 +1369,7 @@ m_obs3DArray[8][24][4] = 0;
 	
 	
 	for(int i=0;i<m_numObs[m_currTile];i++)
-   {
+	{
       m_obs[i] = ObjectFactory::createObstacle
          (
           m_obs3DArray[m_currTile][i][0],
@@ -1367,7 +1379,7 @@ m_obs3DArray[8][24][4] = 0;
           m_obs3DArray[m_currTile][i][4]
          );
 
-   }
+	}
 	
 	
 	}
@@ -1386,14 +1398,13 @@ public:
 	   Obstacle * pointer;
 	   pointer = m_obs;
 	   return pointer;};
+	
 	GLuint getTile(int n){return m_tileTextureArray[n];};
 	
 	void updateTile(int x);
 	
 	
-	void update (){};
-	void display (){};
-	bool collide (Player *C){};
+	
 	
 	
 };

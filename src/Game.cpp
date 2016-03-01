@@ -49,42 +49,29 @@ void Game::init()
     glDepthFunc(GL_LESS);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+	
 	//Alpha layer code:
 	glEnable(GL_ALPHA_TEST);
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUC_SRC_ALPHA);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
     //gluOrtho2D(0, m_width+m_margine, 0, m_height+m_margine);
 	
     glOrtho(0, m_width+m_margine, 0, m_height+m_margine, 0, 1000);
 
-	//In event-driven programming, like you have in interactive OpenGL 
-	//applications, the main application loop generally does three things:
-	//  1. check the current event queues, and process any events (e.g., 
-	//     mouse movement, key presses, etc.) that have occurred since the last check
-	//  2. update the application state - things like player and object positions, 
-	//     game physics, etc. - in preparation of the next rendering frame
-	//  3. render the current frame.
-	// GLUT does these steps implicitly in its glutMainLoop()
-
 	//Set up the callbacks that will be taken care of in step 1:
     glutKeyboardFunc(Game::key);//Keyboard input
     glutDisplayFunc(Game::run);//Display frames
 	glutKeyboardUpFunc(Game::keyUp);//Keyboard Movement input.
-    //glutIdleFunc(Game::run);    // Wait time between frames.
+    //glutIdleFunc(Game::run);//Wait time between frames.
 	
-	//Create the MapHandler so we can call the map.
-	//m_MapHandler = new MapHandler;//Creates the MapHandler using the new function.
-	
-	//Load the default texture into the ImageLoader. 
-	//m_backgroundTexture = ImageLoader::LoadTexture( "./imgs/south.bmp" );
-	m_backgroundTexture = MapHandler::getInstance().getTile(3);
-	//Can use a variable called m_StartTile to make it easier to load the start tile.
+	//Load the default texture into the member variable:
+	m_backgroundTexture = MapHandler::getInstance().getTile(START_TILE);
 	
 	//Place init here for the main GameObject (probably the PC character).
 	Player::getInstance();
-
-
+	
+	//Run the main glut loop for processing the game. 
     glutMainLoop(); //glutMainLoop enters the GLUT event processing loop. 
                     //This routine should be called at most once in a GLUT program. 
                     //Once called, this routine will never return. 
@@ -143,7 +130,8 @@ void Game::update()
     HUDHandler::getInstance().displayHUD(); 
 
 	//Player display should be one of the very last, if not last.
-	//Player::getInstance().
+	//Update the player:
+	Player::getInstance().display();
 	
 }
 
@@ -234,20 +222,22 @@ void Game::key(unsigned char key, int x, int y)
 			
 		//The following controls are not finite. They may be changed later on however 
 		//this will allow us to test them ass we need them.
-        case 'f':
-			//f could handle the interactions.
+        case 'k':
+			//k will handle item use.
 			break;
 			
-		case 'e':
-			//e could handle the item use.
-			break;
-			
-		case 'r':
-			//r could handle the item swap.
+		case 'i':
+			//i will handle item swap.
+			ItemHandler::getInstance().iSwap();
 			break;
 		
-		case 'h':
-			//h could handle the attack call.
+		case 'j':
+			//j uses the currently equipted weapon to attack or do something else.
+			break;
+			
+		case 'u':
+			//u handles weapon swap.
+			ItemHandler::getInstance().wSwap();
 			break;
 			
     }
@@ -261,45 +251,45 @@ void Game::keyOperations()
 	
 	if (keystates['a']) {
 	   
-		Game::getInstance().m_myPlayer.left();
-		Game::getInstance().m_myPlayer.c_left = true;
+		Player::getInstance().left();
+		Player::getInstance().c_left = true;
 	  
 	} else {
 	   
-		Game::getInstance().m_myPlayer.c_left = false;
+		Player::getInstance().c_left = false;
 	
 	}
    
 	if (keystates['w']) {
 	   
-		Game::getInstance().m_myPlayer.up();
-		Game::getInstance().m_myPlayer.c_up = true;
+		Player::getInstance().up();
+		Player::getInstance().c_up = true;
 	  
 	} else {
 	   
-		Game::getInstance().m_myPlayer.c_up = false;
+		Player::getInstance().c_up = false;
 	
 	}
    
 	if (keystates['d']) {
 	   
-		Game::getInstance().m_myPlayer.right();
-		Game::getInstance().m_myPlayer.c_right = true;
+		Player::getInstance().right();
+		Player::getInstance().c_right = true;
 	  
 	} else {
 	   
-		Game::getInstance().m_myPlayer.c_right = false;
+		Player::getInstance().c_right = false;
 	
 	}
    
 	if (keystates['s']) {
 	   
-		Game::getInstance().m_myPlayer.down();
-		Game::getInstance().m_myPlayer.c_down = true;
+		Player::getInstance().down();
+		Player::getInstance().c_down = true;
 	  
 	} else {
 	   
-		Game::getInstance().m_myPlayer.c_down = false;
+		Player::getInstance().c_down = false;
 	
 	}
 
@@ -319,26 +309,9 @@ void Game::keyUp(unsigned char key, int x, int y)
 //Possibly helpful functions.
 //These functions are here to provide their possible use for the project.
 //Anything not used by the end will be removed.
-//int Game::getArrayPos()
-//{
-  //return m_arraypos;
-//}
-
-//void Game::setArrayPos(int pos)
-//{
-   //m_arraypos = pos;
-//}
-
-//void Game::changeScreen(int dir)
-//{
-
-	//const char* tiles[5] =  {"","./imgs/north.bmp","./imgs/east.bmp","./imgs/south.bmp","./imgs/west.bmp"};
-	//m_backgroundTexture= ImageLoader::LoadTexture(tiles[dir]);
-	
-//}
 
 /*Get Width and Get Height are not required now that the size of the screen will be
-located within the config.h*/
+located within the config.h
 int Game::getWidth() 
 {
 	
@@ -355,13 +328,14 @@ int Game::getHeight()
 
 //Function to return a random number if needed. May be removed if 
 //not used before final presentation.
-//GLfloat Game::frand()
+GLfloat Game::frand()
 //Random number generating function.
-//{
+{
 	
-    //return random()/(GLfloat)RAND_MAX;
+    return random()/(GLfloat)RAND_MAX;
 
-//}
+}
+*/
 /****End of Other Functions************************************************************/
 
 
@@ -370,7 +344,7 @@ int main(int argc, char **argv)
 {
 	
     if(!Jukebox::init())
-       exit;
+		exit;
     glutInit(&argc, argv);
     Game::getInstance().init();
     SDL_CloseAudio();
