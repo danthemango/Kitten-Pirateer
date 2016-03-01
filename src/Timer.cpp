@@ -16,6 +16,7 @@ using namespace std;
 // updates timer to current time
 void Timer::set()
 {
+   m_isSet = true;
    struct timeval tp;
    gettimeofday(&tp, NULL);
    m_timeSinceSet = tp.tv_sec * 1000 + tp.tv_usec / 1000;
@@ -31,4 +32,16 @@ bool Timer::elapsed(int t)
    long int curtime = tp.tv_sec * 1000 + tp.tv_usec / 1000;
    // return true if the difference between last setting is larger than t
    return curtime - m_timeSinceSet > t;
+}
+
+// returns true if Timer has been set
+bool Timer::isSet()
+{
+   return m_isSet;
+}
+
+// unset the clock
+void Timer::unSet()
+{
+   m_isSet = false;
 }

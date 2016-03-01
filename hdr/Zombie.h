@@ -17,6 +17,7 @@
 #include "HostileNPC.h"
 #include "Shapes.h"
 #include "ImageLoader.h"
+#include "../hdr/Timer.h"
 
 class Zombie: public HostileNPC{
    public:
@@ -59,8 +60,12 @@ class Zombie: public HostileNPC{
       // if the player is further away than this, attack the player
       int m_attackRange;
       // if the last attack was this many milliseconds ago, attack again
+      Timer m_lastAttack;
       long int m_attackDelay;
       // animation rate
       long int m_animDelay;
+      // let the zombies disappear after a few moments
+      Timer m_killedTime;
+      int m_disappearTime;
 };
 #endif

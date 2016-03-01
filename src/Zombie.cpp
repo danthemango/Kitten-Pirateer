@@ -32,6 +32,7 @@ Zombie::Zombie()
    m_attackRange = SPRITE_SIZE_Y /2;
    m_attackDelay = 800;
    m_animDelay = 200;
+   m_disappearTime = 3000;
 }
 
 // determine the absolute difference between two numbers
@@ -88,9 +89,8 @@ void Zombie::attack()
 {
    //TODO attack sound
    // ensure the attack doesn't happen too often
-   static Timer lastAttack;
-   if(lastAttack.elapsed(m_attackDelay)){
-      lastAttack.set();
+   if(m_lastAttack.elapsed(m_attackDelay)){
+      m_lastAttack.set();
       Jukebox::PlaySound("./sounds/ZombieAttack2.wav");
       Player::getInstance().attacked(m_damage);
    }
@@ -103,8 +103,16 @@ void Zombie::display()
       return;
    }
    if(m_dead){
-      m_texture = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/Dead.png");
-      
+      // TODO fix this
+      if(!m_killedTime.isSet()){
+         m_killedTime.set();
+      }
+      if(m_killedTime.elapsed(m_disappearTime)){
+         m_killedTime.unSet();
+         disappear();
+      }else{
+         m_texture = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/Dead.png");
+      }
    }else{
       m_texture = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/DownA.png");
    }

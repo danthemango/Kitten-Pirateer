@@ -45,7 +45,7 @@ class ZombieHandler: public GameObject
       // an array containing the zombie objects
       Zombie* m_ZombieList[MAXZOMBIES];
       // map which stores the positions with respect to the tiles of the map
-      PositionMap m_map[NUM_TILES];
+      PositionMap m_map[NUM_TILES+1];
       // current number of zombies
       int m_num_zombies;
       // currently loaded tile

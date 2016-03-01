@@ -18,9 +18,6 @@ void ZombieHandler::loadZombies()
 {
    // TODO put zombies in better positions
    // add the positions of the zombies
-   m_map[0].add(3,3);
-   m_map[0].add(300,300);
-   m_map[0].add(500,300);
    m_map[1].add(3,3);
    m_map[1].add(300,300);
    m_map[1].add(500,300);
@@ -45,6 +42,9 @@ void ZombieHandler::loadZombies()
    m_map[8].add(3,3);
    m_map[8].add(300,300);
    m_map[8].add(500,300);
+   m_map[9].add(3,3);
+   m_map[9].add(300,300);
+   m_map[9].add(500,300);
 }
 
 // returns the current instance
@@ -118,7 +118,7 @@ void ZombieHandler::removeAllZombies()
 // switch to a new tile
 void ZombieHandler::updateTile(int x)
 {
-   if(x >= NUM_TILES || x < 0){
+   if(x > NUM_TILES || x < 1){
       return;
    }
    m_tile = x;
