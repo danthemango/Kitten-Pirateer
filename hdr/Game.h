@@ -53,7 +53,6 @@ class Game {
 		int m_width;
 		int m_height;
 		int m_margine;
-		bool m_paused;
 		int m_lastSong;
 		Menu m_menu;
 		

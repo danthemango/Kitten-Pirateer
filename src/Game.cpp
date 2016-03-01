@@ -32,7 +32,6 @@ bool Game::c_running = false;//Set the running state to false to start the game
 //with the splashscreen displayed.
 bool* Game::keystates = new bool[256];
 int Game::m_lastSong = 6000000;
-bool Game::m_paused = false;
 
 
 /****Main Work Functions***************************************************************/
@@ -234,11 +233,6 @@ void Game::key(unsigned char key, int x, int y)
 				Game::c_running = !Game::c_running;
 				Jukebox::PlaySound("./sounds/Song.wav");
                 Game::m_lastSong = glutGet(GLUT_ELAPSED_TIME);
-				if (Game::m_paused) {
-					
-					Game::m_paused = !Game::m_paused;
-
-				}	
 				
             } else {
 				
@@ -246,11 +240,6 @@ void Game::key(unsigned char key, int x, int y)
 				//we simply deal with the c_running variable to decide upon displaying
 				//the pause screen or allowing game play.
 				Game::c_running = !Game::c_running;
-				if (Game::m_paused) {
-					
-					Game::m_paused = !Game::m_paused; 
-				
-				}
 				
             }
 			break;
