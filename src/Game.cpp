@@ -134,19 +134,17 @@ void Game::update()
 
 	//OBJECT UPDATE CALLS HERE:
 	//MapHandler::
+	
 	//Item update must happen before the player display.
-	//ItemHandler::getInstance().update();
-	//Display the HUD:
-	// HUD
+	ItemHandler::getInstance().update();
+	
     HUDHandler::getInstance().displayHUD(); 
 	
 	//Call the update and display functions of the GameObjects here:
 	//MapHandler::updateTile();
-	//m_myPlayer.update(m_myGameObjects3,3,4);
-	//m_myPlayer.update(m_myGameObjects4,1,3);
+
 	//Player display should be one of the very last, if not last.
-	//>>>>>>> 2871bc54368496d439091de4e5694da5141a8761//What is this line????????? // a commit message that stayed from a merge - can be deleted
-	m_myPlayer.display();
+	//m_myPlayer.display();
 	
 }
 
