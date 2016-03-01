@@ -56,6 +56,21 @@ int Player::getDirection()
 {
    return m_direction;
 }
+
+int Player::getX()
+{
+    return m_x;
+}
+
+int Player::getY()
+{
+   return m_y;
+}
+
+int Player::getTile()
+{
+   return m_currTile;
+}
 void Player::init()
 {
    m_PlayerTexture = ImageLoader::LoadTexture("./imgs/Up.png");   

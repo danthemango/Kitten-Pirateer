@@ -61,21 +61,12 @@ class Player : public GameObject
       void addHealth(int x);
       int getDirection();
       bool c_up,c_down,c_left,c_right;
-
+      int getTile();
+      int getX();
+      int get_Y();
    private:
-      Player()
-      {
-	  m_health =100; //full health when the singleton is created
-	  m_x = PLAYER_START_X; //start X-pos of player
-	  m_y = PLAYER_START_Y; //start Y-pos of player
-	  stopup=stopdown=stopleft=stopright=false;
-	  m_arraypos = 0;
-	  m_speed = PLAYER_SPEED;
-	  c_up=c_down=c_left=c_right=false;
-	  m_stepSize = 4;
-	  m_currTile = 3;
-	}	
-      ~Player(){};
+      Player();
+      ~Player();
       // for a singleton, we don't share the default methods
       Player(Player const &); // no copying
       void operator= (Player const &); // no assignment

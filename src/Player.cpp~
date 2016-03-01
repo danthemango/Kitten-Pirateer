@@ -21,7 +21,18 @@
 #include "../hdr/ImageLoader.h" 
 #include "../hdr/Game.h"
 
-
+Player::Player()
+{
+  m_health =100; //full health when the singleton is created
+  m_x = PLAYER_START_X; //start X-pos of player
+  m_y = PLAYER_START_Y; //start Y-pos of player
+  stopup=stopdown=stopleft=stopright=false;
+  m_arraypos = 0;
+  m_speed = PLAYER_SPEED;
+  c_up=c_down=c_left=c_right=false;
+  m_stepSize = 4;
+  m_currTile = 3;
+}
 
 //player singleton
 
@@ -45,6 +56,18 @@ int Player::getDirection()
 {
    return m_direction;
 }
+
+int Player::getX()
+{
+    return m_x;
+}
+
+int Player::getY()
+{
+   return m_y;
+}
+
+
 void Player::init()
 {
    m_PlayerTexture = ImageLoader::LoadTexture("./imgs/Up.png");   
@@ -223,7 +246,7 @@ void Player::down ()
      }
      m_x = m_x - m_speed; //updates the position of the player
      m_direction = 2;
-     PlayerTexture= ImageLoader::LoadTexture( "./imgs/Down.bmp" );
+     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Down.bmp" );
 }
 
 void Player::up ()
