@@ -228,7 +228,7 @@ void Game::key(unsigned char key, int x, int y)
 			
 		case 'i':
 			//i will handle item swap.
-			ItemHandler::getInstance().iSwap();
+			ItemHandler::getInstance().iSwitch();
 			break;
 		
 		case 'j':
@@ -237,7 +237,7 @@ void Game::key(unsigned char key, int x, int y)
 			
 		case 'u':
 			//u handles weapon swap.
-			ItemHandler::getInstance().wSwap();
+			ItemHandler::getInstance().wSwitch();
 			break;
 			
     }

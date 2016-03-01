@@ -234,7 +234,7 @@ void Player::down ()
      }
      m_x = m_x - m_speed; //updates the position of the player
      m_direction = 2;
-     PlayerTexture= ImageLoader::LoadTexture( "./imgs/Down.bmp" );
+     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Down.bmp" );
 }
 
 void Player::up ()
