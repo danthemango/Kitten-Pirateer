@@ -57,10 +57,12 @@ void Items::pickUp(Items* item)
                //need a healPlayer(int x) which will add x to Player health
                
                //REMOVEComments
-               //Game::getInstance().m_myPlayer.addHealth(10);               
-               Player::getInstance().addHealth(10);
-               Jukebox::PlaySound("./sounds/HeartPickUp.wav");               
-               //std::cout << "health Increased:10" << std::endl;   
+               //Game::getInstance().m_myPlayer.addHealth(10); 
+               if(Player::getInstance().getHealth() < MAX_PLAYER_HEALTH){             
+					Player::getInstance().addHealth(10);
+					Jukebox::PlaySound("./sounds/HeartPickUp.wav");               
+					//std::cout << "health Increased:10" << std::endl;   
+					}
                break;
             case 12:
                //Player::getInstance().addHealth(20);
