@@ -40,6 +40,7 @@ class Game {
            m_margine = MARGINE;
            m_width = SCREEN_SIZE_X;
            m_height = SCREEN_SIZE_Y;
+		   m_lastSong = 6000000;
 		   
         };//Default Constructor.
         
