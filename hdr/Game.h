@@ -18,7 +18,7 @@
 #include "../hdr/Player.h"//Include the Player class.
 #include "../hdr/Obstacle.h"//Include the Obstacle class.
 #include "../hdr/MapHandler.h"//Include the MapHandler class.
-#include "../hdr/ZombieHandler.h"
+#include "../hdr/ZombieHandler.h"//Include the ZombieHandler.h
 
 //Various required classes:
 class Player;//Gives access to the Player.
@@ -33,7 +33,7 @@ class Game {
 	
         //If you want to get the instance use Game::getInstance() function provided in 
 		//the public section.
-        Game() 
+        Game()
 		{
 			
            m_margine = MARGINE;
@@ -54,20 +54,13 @@ class Game {
 		int m_margine;
 		
 		//Background texture:
-		GLuint m_backgroundTexture;
-
-		//Obstacle objects:
-		Obstacle *m_myGameObjects3[10];
-		Obstacle *m_myGameObjects4[10];
-
-		//Player objects:
-		Player m_myPlayer;
+		GLuint m_backgroundTexture;	
 		
 		//MapHandler object:
 		//Place holder to help remind me to add the creation of the MapHandler.
 		//Most likly this will be done with new inside of the Game.cpp init itself 
 		//instead of being done here.
-		MapHandler m_MapHandler;
+		//MapHandler m_MapHandler;
 		
 	public:
 	
@@ -89,21 +82,19 @@ class Game {
 		//The c_running variable is public, to allow other objects to alter this, in essence
 		//allowing events to pause the game if necessary.
 		
-		//Control Input Functions:
-		static bool* keystates;
-		static void keyUp(unsigned char key, int x, int y);
-		void keyOperations();
-		
 		//Possible functions: These are pulled from the collision lab 
 		//to be prepared incase anything is transfered over. 
 		//Anything unused will be removed before the final due date.
 		//void changeScreen(int dir);
 		//int getArrayPos();
 		//void setArrayPos(int pos);
-		int getWidth();
-		int getHeight();
-		
+		//int getWidth();
+		//int getHeight();
+
 		//Required functions:
+		static bool* keystates;
+		static void keyUp(unsigned char key, int x, int y);
+		void keyOperations();
 		static void key(unsigned char key, int x, int y);//Key takes in the key commands 
 		//used to call the switch control functions.
 		static void run();//Run is the computing loop which calls update.
@@ -114,10 +105,10 @@ class Game {
 		int LoadImage(char *filename);//Required for loading an image.
 		void init();//Set to be public incase any objects inheriting from this needs their init
 		//to be public aswell.
-		void updateTile(GLuint X);//Call this function with the next tile texture as input
+		void updateTile(GLuint x);//Call this function with the next tile texture as input
 		//to change the background tile variable.
 		
-		GLfloat frand();//Random number function. Here incase we need it.
+		//GLfloat frand();//Random number function. Here incase we need it.
 		//These last two functions may not be needed since Width and Height are stored within the
 		//config.h file.
 
