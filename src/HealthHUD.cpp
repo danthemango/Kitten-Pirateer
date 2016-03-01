@@ -17,7 +17,7 @@ void HealthHUD::displayHUD() {
 
     // The health of the player will be available to the controller.
 
-	RenderString(m_width + 70, m_height - 144, GLUT_BITMAP_TIMES_ROMAN_24, "Health");
+	RenderString(m_width + 70, m_height - 144, GLUT_BITMAP_TIMES_ROMAN_24, "Health:");
 	RenderString(m_width + 90, m_height - 175, GLUT_BITMAP_TIMES_ROMAN_24 , m_printHealth);
 
 	/*

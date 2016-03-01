@@ -26,12 +26,19 @@ void ItemHUD::displayHUD() {
     std::string stringAmount = std::to_string(itemAmount);
     amount = stringAmount.c_str();
    // amount = std::to_string(itemAmount).c_str();
+	// The damage of the weapon. 
+	dmg = ItemHandler::getInstance().getWeapon()->getDamage();
+	std::string damageString = std::to_string(dmg);
+	damage = damageString.c_str();
 	// The current Weapon equipped by the player.
-	HUD::RenderString(m_width+60, m_height-660, GLUT_BITMAP_TIMES_ROMAN_24, "Weapon");
+	HUD::RenderString(m_width+60, m_height-660, GLUT_BITMAP_TIMES_ROMAN_24, "Weapon:");
 	// Display the equipped weapon name to the HUD
 	HUD::RenderString(m_width +65, m_height - 690, GLUT_BITMAP_TIMES_ROMAN_24, weaponName);
+	// The damage of the weapon is printed to the HUD
+	HUD::RenderString(m_width + 60, m_height - 720, GLUT_BITMAP_TIMES_ROMAN_24, "Damage: ");
+	HUD::RenderString(m_width + 90, m_height - 750, GLUT_BITMAP_TIMES_ROMAN_24, damage);
 	// The current item equipped by the player
-	RenderString(m_width +60, m_height - 816, GLUT_BITMAP_TIMES_ROMAN_24, "Inventory");
+	RenderString(m_width +60, m_height - 816, GLUT_BITMAP_TIMES_ROMAN_24, "Inventory:");
 	// Display the current item in inventory to the HUD
 	HUD::RenderString(m_width +65, m_height - 846, GLUT_BITMAP_TIMES_ROMAN_24, itemName);
 	// Display the current item amount to the HUD
