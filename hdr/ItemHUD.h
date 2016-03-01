@@ -28,7 +28,10 @@ class ItemHUD : public HUD {
 		const char * itemName;
 		// Amount of the current item equipped
 		int itemAmount;
-        const char * amount;
+	        const char * amount;
+		// Damage of the weapon equipped
+		int dmg;
+		const char * damage;
 
 	protected:
 	
