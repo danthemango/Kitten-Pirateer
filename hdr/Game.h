@@ -56,12 +56,6 @@ class Game {
 		//Background texture:
 		GLuint m_backgroundTexture;	
 		
-		//MapHandler object:
-		//Place holder to help remind me to add the creation of the MapHandler.
-		//Most likly this will be done with new inside of the Game.cpp init itself 
-		//instead of being done here.
-		//MapHandler m_MapHandler;
-		
 	public:
 	
 	    //Insead of a constructor, use this static method to create an instance

@@ -53,7 +53,7 @@ void Game::init()
 	//Alpha layer code:
 	glEnable(GL_ALPHA_TEST);
 	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUC_SRC_ALPHA);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	
     //gluOrtho2D(0, m_width+m_margine, 0, m_height+m_margine);
 	
@@ -228,7 +228,7 @@ void Game::key(unsigned char key, int x, int y)
 			
 		case 'i':
 			//i will handle item swap.
-			ItemHandler::getInstance().iswap();
+			ItemHandler::getInstance().iSwap();
 			break;
 		
 		case 'j':
@@ -237,7 +237,7 @@ void Game::key(unsigned char key, int x, int y)
 			
 		case 'u':
 			//u handles weapon swap.
-			ItemHandler::getInstance().wswap();
+			ItemHandler::getInstance().wSwap();
 			break;
 			
     }
@@ -251,45 +251,45 @@ void Game::keyOperations()
 	
 	if (keystates['a']) {
 	   
-		Game::getInstance().m_myPlayer.left();
-		Game::getInstance().m_myPlayer.c_left = true;
+		Player::getInstance().left();
+		Player::getInstance().c_left = true;
 	  
 	} else {
 	   
-		Game::getInstance().m_myPlayer.c_left = false;
+		Player::getInstance().c_left = false;
 	
 	}
    
 	if (keystates['w']) {
 	   
-		Game::getInstance().m_myPlayer.up();
-		Game::getInstance().m_myPlayer.c_up = true;
+		Player::getInstance().up();
+		Player::getInstance().c_up = true;
 	  
 	} else {
 	   
-		Game::getInstance().m_myPlayer.c_up = false;
+		Player::getInstance().c_up = false;
 	
 	}
    
 	if (keystates['d']) {
 	   
-		Game::getInstance().m_myPlayer.right();
-		Game::getInstance().m_myPlayer.c_right = true;
+		Player::getInstance().right();
+		Player::getInstance().c_right = true;
 	  
 	} else {
 	   
-		Game::getInstance().m_myPlayer.c_right = false;
+		Player::getInstance().c_right = false;
 	
 	}
    
 	if (keystates['s']) {
 	   
-		Game::getInstance().m_myPlayer.down();
-		Game::getInstance().m_myPlayer.c_down = true;
+		Player::getInstance().down();
+		Player::getInstance().c_down = true;
 	  
 	} else {
 	   
-		Game::getInstance().m_myPlayer.c_down = false;
+		Player::getInstance().c_down = false;
 	
 	}
 
