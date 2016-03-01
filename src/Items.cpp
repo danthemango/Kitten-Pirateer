@@ -45,7 +45,7 @@ void Items::pickUp(Items* item)
    if(PlayerX + PlayerWidth > m_x && PlayerX < m_x + m_itemWidth && 
       PlayerY + PlayerHeight > m_y && PlayerY < m_y + m_itemWidth &&
       //Game::getInstance().getArrayPos() == m_tilePos){
-      Player.getInstance().getTile() == m_tilePos){
+      Player::getInstance().getTile() == m_tilePos){
       if(m_pickedUp == false){//if Item hasn't been picked up yet
          m_pickedUp = true;
          switch (m_itemID){

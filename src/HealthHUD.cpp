@@ -6,11 +6,12 @@ Purpose:
 */
 
 #include "../hdr/HealthHUD.h"
+#include "../hdr/Player.h"
 
 // Display the health of the player to the screen. 	
 void HealthHUD::displayHUD() {
     
-    m_health = Game::getInstance().m_myPlayer.getHealth();
+    m_health = Player::getInstance().getHealth();
 	m_healthString = std::to_string(m_health);
     m_printHealth = m_healthString.c_str();
 

@@ -50,7 +50,7 @@ void ZombieHandler::loadZombies()
 }
 
 // returns the current instance
-static ZombieHandler ZombieHandler::&getInstance()
+ZombieHandler &ZombieHandler::getInstance()
 {
    static ZombieHandler *instance = new ZombieHandler;
    return *instance; // alway return same instance
@@ -76,7 +76,7 @@ ZombieHandler::~ZombieHandler()
 // updates all contained zombies
 void ZombieHandler::update(int x, int y)
 {
-   for(int i = 0; i < m_numZombies; i++){
+   for(int i = 0; i < m_num_zombies; i++){
       m_ZombieList[i]->update(x,y);
    }
 }
@@ -84,7 +84,7 @@ void ZombieHandler::update(int x, int y)
 // draws all zombies
 void ZombieHandler::display()
 {
-   for(int i = 0; i < m_numZombies; i++){
+   for(int i = 0; i < m_num_zombies; i++){
       m_ZombieList[i]->display();
    }
 }
@@ -95,26 +95,23 @@ void ZombieHandler::display()
 // int damage - damage amount
 void ZombieHandler::attacked(int x1, int y1, int x2, int y2, int damage)
 {
-   Square damageArea(x1,y1,x2,y2);
-   for(int i = 0; i < m_numZombies; i++){
-      m_ZombieList[i]->attacked(damageArea);
+   for(int i = 0; i < m_num_zombies; i++){
+      m_ZombieList[i]->attacked(x1,y1,x2,y2, damage);
    }
 }
 
 // turn all zombies into corpses
 void ZombieHandler::killAllZombies()
 {
-   Square damageArea(x1,y1,x2,y2);
-   for(int i = 0; i < m_numZombies; i++){
+   for(int i = 0; i < m_num_zombies; i++){
       m_ZombieList[i]->kill();
    }
 }
 
 // make all zombies disappear
-void ZombieHandler::disappearAllZombies()
+void ZombieHandler::removeAllZombies()
 {
-   Square damageArea(x1,y1,x2,y2);
-   for(int i = 0; i < m_numZombies; i++){
+   for(int i = 0; i < m_num_zombies; i++){
       m_ZombieList[i]->disappear();
    }
 }
@@ -128,7 +125,7 @@ void ZombieHandler::updateTile(int x)
    m_num_zombies = curmap.size();
    
    // cap the number of zombies
-   if(m_num_zomies > MAXZOMBIES){
+   if(m_num_zombies > MAXZOMBIES){
       m_num_zombies = MAXZOMBIES;
    }
    // ensure the superfluous zombies aren't on the map
@@ -138,8 +135,8 @@ void ZombieHandler::updateTile(int x)
    int i = 0;
    // spawn the zombies at the specified locations
    for(PositionMap::Iterator zombiePoint = curmap.Begin();
-         zombiePoint != curmap.End(); zombiepoint++){
-      Point ZombiePos(*zombiePoint);
+         zombiePoint != curmap.End(); zombiePoint++){
+      Point ZombiePos(**zombiePoint);
       m_ZombieList[i]->spawn(ZombiePos);
       i++;
    }

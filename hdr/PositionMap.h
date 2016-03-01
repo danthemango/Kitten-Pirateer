@@ -65,6 +65,9 @@ class PositionMap{
                   return NULL;
                }
             }
+            bool operator!=(Iterator const &other){
+               return other.m_cur_node != m_cur_node;
+            }
             Iterator &operator=(Iterator& other){
                m_cur_node = other.m_cur_node;
                return *this;
