@@ -33,8 +33,8 @@ private:
 	
 	Obstacle m_obs[MAXOBS];
     GLuint m_tileTextureArray[NUMTILES];
-    int m_currTile = 3; 
-    int m_numObs[NUMTILES] = {22,22,23,25,22,24,27,26,25};
+    int m_currTile; 
+    int m_numObs[NUMTILES];
     
     double ***m_obs3DArray;
     
@@ -42,6 +42,17 @@ private:
     void operator=(MapHandler const&);
     MapHandler()
     {
+	m_currTile = 3;
+	m_numObs[0] = 22;
+	m_numObs[1] = 22;
+	m_numObs[2] = 23;
+	m_numObs[3] = 25;
+	m_numObs[4] = 22;
+	m_numObs[5] = 24;
+	m_numObs[6] = 27;
+	m_numObs[7] = 26;
+	m_numObs[8] = 25;			
+			
 	m_tileTextureArray[0] = ImageLoader::LoadTexture("./imgs/tile0.png");
 	m_tileTextureArray[1] = ImageLoader::LoadTexture("./imgs/tile1.png");
 	m_tileTextureArray[2] = ImageLoader::LoadTexture("./imgs/tile2.png");
