@@ -13,7 +13,7 @@
 
 
 
-#ifndef MAPPHANDLER_H_
+#ifndef MAPHANDLER_H_
 #define MAPHANDLER_H_
 #define NUMTILES 9
 #define ATTRIBUTES 5
@@ -27,7 +27,7 @@
 #include "ImageLoader.h"
 
 
-class MapHandler: public GameObject {
+class MapHandler {
 
 private:
 	
@@ -40,6 +40,7 @@ private:
     
     MapHandler(MapHandler const&);
     void operator=(MapHandler const&);
+    
     MapHandler()
     {
 	m_currTile = 3;
@@ -1368,7 +1369,7 @@ m_obs3DArray[8][24][4] = 0;
 	
 	
 	for(int i=0;i<m_numObs[m_currTile];i++)
-   {
+	{
       m_obs[i] = ObjectFactory::createObstacle
          (
           m_obs3DArray[m_currTile][i][0],
@@ -1378,7 +1379,7 @@ m_obs3DArray[8][24][4] = 0;
           m_obs3DArray[m_currTile][i][4]
          );
 
-   }
+	}
 	
 	
 	}
@@ -1397,14 +1398,13 @@ public:
 	   Obstacle * pointer;
 	   pointer = m_obs;
 	   return pointer;};
+	
 	GLuint getTile(int n){return m_tileTextureArray[n];};
 	
 	void updateTile(int x);
 	
 	
-	void update (){};
-	void display (){};
-	bool collide (Player *C){};
+	
 	
 	
 };
