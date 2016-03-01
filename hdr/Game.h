@@ -53,6 +53,7 @@ class Game {
 		int m_width;
 		int m_height;
 		int m_margine;
+		int m_lastSong;
 		Menu m_menu;
 		
 		//Background texture:
@@ -70,6 +71,7 @@ class Game {
         };
 		
 		//Public Variables:
+		static bool c_firstLoad;
 		static bool c_run;//Variable to handle the start up of the game. When this is set
 		//to false, the game waits on the main menu. Once this is changed to true, the game
 		//runs until the c_running variable is changed. This variable allows us to possibly

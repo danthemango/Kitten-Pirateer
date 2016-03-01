@@ -42,7 +42,7 @@ class Player : public GameObject
       // x1 y1 - bottom left corner coordinates
       // x2 y2 - top right corner coordinates
       // int damage - damage amount
-      void attacked(int x1, int y1, int x2, int y2, int damage);
+      void attacked(int damage);
       void attack(); //to attack someone
       //returns the height of the player spright
       int getHeight();
@@ -66,7 +66,18 @@ class Player : public GameObject
       int getY();
    private:
       Player();
-      ~Player();
+      /*{
+         m_health =100; //full health when the singleton is created
+         m_x = PLAYER_START_X; //start X-pos of player
+         m_y = PLAYER_START_Y; //start Y-pos of player
+          stopup=stopdown=stopleft=stopright=false;
+         m_arraypos = 0;
+         m_speed = PLAYER_SPEED;
+         c_up=c_down=c_left=c_right=false;
+         m_stepSize = 4;
+         m_currTile = 3;
+      }*/
+      ~Player(){};
       // for a singleton, we don't share the default methods
       Player(Player const &); // no copying
       void operator= (Player const &); // no assignment
@@ -78,6 +89,7 @@ class Player : public GameObject
       int m_arraypos;
       int m_stepSize;
       int m_currTile;
+      int m_lastStep;
       GLuint m_PlayerTexture;
 };
 #endif

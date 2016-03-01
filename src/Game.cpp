@@ -27,6 +27,10 @@ bool Game::c_run = false;//Set the game to display the main menu. Once changed t
 //moves the game along.
 bool Game::c_running = false;//Set the running state to false to start the game
 //with the splashscreen displayed.
+bool* Game::keystates = new bool[256];
+
+bool Game::c_firstLoad = true;
+
 
 /****Main Work Functions***************************************************************/
 void Game::init()
@@ -69,7 +73,7 @@ void Game::init()
 	m_backgroundTexture = MapHandler::getInstance().getTile(START_TILE);
 	
 	//Place init here for the main GameObject (probably the PC character).
-	Player::getInstance();
+	Player::getInstance().init();
 	
 	//Run the main glut loop for processing the game. 
     glutMainLoop(); //glutMainLoop enters the GLUT event processing loop. 
@@ -82,6 +86,14 @@ void Game::init()
 void Game::update()
 //Function handling the update of the game.
 {
+   int now;
+   int miliseconds;
+   now = glutGet(GLUT_ELAPSED_TIME);
+   miliseconds =  now - m_lastSong;
+   if (miliseconds > 32600){
+      Jukebox::PlaySound("./sounds/Song.wav");
+      m_lastSong = glutGet(GLUT_ELAPSED_TIME);
+   }
 	
 	Game::getInstance().keyOperations();
 	
@@ -106,11 +118,15 @@ void Game::update()
 	if(!Game::c_running) {
 		
 	   	if(!Game::c_run) {
-	
+	   	  if(Game::c_firstLoad){
+               Jukebox::PlaySound("./sounds/Song.wav");
+               m_lastSong = glutGet(GLUT_ELAPSED_TIME);
+               c_firstLoad = false;
+            }
 			//This should only call the mainMenu once at the start of the game.
 			return m_menu.mainMenu();
 		
-		} else {
+		   } else {
 			
 			//This will call the splash screen when ever the user pauses the game
 			//using the space bar.
@@ -123,6 +139,7 @@ void Game::update()
 	//OBJECT UPDATE CALLS HERE:
 	//MapHandler::
 	
+   Player::getInstance().display();
 	//Update the items:
 	ItemHandler::getInstance().update();
 	
@@ -131,7 +148,8 @@ void Game::update()
 
 	//Player display should be one of the very last, if not last.
 	//Update the player:
-	Player::getInstance().display();
+	//Player::getInstance().display();
+	//Player::getInstance().update();
 	
 }
 
@@ -196,7 +214,7 @@ void Game::updateTile(GLuint x)
 void Game::key(unsigned char key, int x, int y)
 //This function handles key input from the user for non-movement controls.
 {
-	
+	keystates[key] = true;
     switch (key){
 		
         case ' ' :
@@ -223,6 +241,7 @@ void Game::key(unsigned char key, int x, int y)
 		//The following controls are not finite. They may be changed later on however 
 		//this will allow us to test them ass we need them.
         case 'k':
+         ItemHandler::getInstance().iUse();
 			//k will handle item use.
 			break;
 			
@@ -252,6 +271,7 @@ void Game::keyOperations()
 	if (keystates['a']) {
 	   
 		Player::getInstance().left();
+	   Player::getInstance().update();
 		Player::getInstance().c_left = true;
 	  
 	} else {
@@ -263,6 +283,7 @@ void Game::keyOperations()
 	if (keystates['w']) {
 	   
 		Player::getInstance().up();
+		Player::getInstance().update();
 		Player::getInstance().c_up = true;
 	  
 	} else {
@@ -274,6 +295,7 @@ void Game::keyOperations()
 	if (keystates['d']) {
 	   
 		Player::getInstance().right();
+		Player::getInstance().update();
 		Player::getInstance().c_right = true;
 	  
 	} else {
@@ -285,6 +307,7 @@ void Game::keyOperations()
 	if (keystates['s']) {
 	   
 		Player::getInstance().down();
+		Player::getInstance().update();
 		Player::getInstance().c_down = true;
 	  
 	} else {

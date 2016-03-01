@@ -53,7 +53,7 @@ void Menu::mainMenu()
 {
 	
 	//Call the main menu image wwe need to display at the start of the game.
-	m_splashTexture= ImageLoader::LoadTexture( "./imgs/menus/mainmenu.bmp" );
+	m_splashTexture= ImageLoader::LoadTexture( "./imgs/menus/pausemenu.bmp" );
    
 	glEnable(GL_TEXTURE_2D);
 	ImageLoader::rectangle(200, 250, 600, 215);

@@ -23,11 +23,11 @@
 #define NUM_TILES_Y 3
 
 //player movement speed
-#define PLAYER_SPEED 10.0
+#define PLAYER_SPEED 1.0
 
 //Size of the screen
-#define SCREEN_SIZE_X 1055//Width
-#define SCREEN_SIZE_Y 1055//Height
+#define SCREEN_SIZE_X 1054//Width
+#define SCREEN_SIZE_Y 1054//Height
 
 //default player start position
 #define PLAYER_START_X 500

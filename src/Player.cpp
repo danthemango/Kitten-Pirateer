@@ -23,7 +23,7 @@
 
 Player::Player()
 {
-  m_health =100; //full health when the singleton is created
+  m_health =20; //full health when the singleton is created
   m_x = PLAYER_START_X; //start X-pos of player
   m_y = PLAYER_START_Y; //start Y-pos of player
   stopup=stopdown=stopleft=stopright=false;
@@ -32,6 +32,7 @@ Player::Player()
   c_up=c_down=c_left=c_right=false;
   m_stepSize = 4;
   m_currTile = 3;
+  m_lastStep = glutGet(GLUT_ELAPSED_TIME);
 }
 
 //player singleton
@@ -73,7 +74,7 @@ int Player::getTile()
 }
 void Player::init()
 {
-   m_PlayerTexture = ImageLoader::LoadTexture("./imgs/Up.png");   
+   m_PlayerTexture = ImageLoader::LoadTexture("./imgs/CatUpB.png");   
 }
 
 void Player::display()
@@ -98,7 +99,7 @@ void Player::displayTexture()
    glEnable(GL_TEXTURE_2D);
    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
    glBindTexture (GL_TEXTURE_2D, m_PlayerTexture);
-   ImageLoader::rectangle(m_x,m_y, 50, 50);
+   ImageLoader::rectangle(m_x,m_y, SPRITE_SIZE_X, SPRITE_SIZE_Y);
    glDisable(GL_TEXTURE_2D);
    glFlush();
 }
@@ -107,7 +108,7 @@ void Player::collision(int xpos, int ypos, int width, int height, int cond)
 {
    //send the player position to the itemhandler and store the returned bool value and do
    //the check
-
+/*
    //bool check = ItemHandler::getInstance().
    if(m_x+SPRITE_SIZE_X > xpos && m_x < xpos + width && m_y+SPRITE_SIZE_Y > ypos && m_y < ypos+height){
 	   if(cond == 0){   
@@ -129,7 +130,7 @@ void Player::collision(int xpos, int ypos, int width, int height, int cond)
 	}else{
 	   m_speed = 1;
 	}
-	
+	*/
    if(m_x+m_stepSize+SPRITE_SIZE_X > xpos && m_x < xpos + width
       && m_y+SPRITE_SIZE_Y > ypos && m_y < ypos+height){
       stopright = true;
@@ -157,7 +158,7 @@ void Player::collision(int xpos, int ypos, int width, int height, int cond)
 
 void Player::update()
 {
-   ZombieHandler::getInstance().update(m_x,m_y);
+   //ZombieHandler::getInstance().update(m_x,m_y);
 
    //code from collision detection lab
    int size = MapHandler::getInstance().getNumObstacles();
@@ -178,7 +179,7 @@ void Player::update()
 
 }
 
-void Player::attacked(int x1, int y1, int x2, int y2, int damage)
+void Player::attacked(int damage)
 {
     m_health -= damage;   
 
@@ -234,34 +235,52 @@ void Player::attack()
 
 void Player::down ()
 {
+  int now;
+  int seconds;
+  now = glutGet(GLUT_ELAPSED_TIME);
+  
+  seconds =  now - m_lastStep;
+  if (seconds > 400){
+   Jukebox::PlaySound("./sounds/Step.wav");
+     m_lastStep = glutGet(GLUT_ELAPSED_TIME);
+  }  
     if(!stopdown){
 
        if(m_y-5 <= 0)
        {
-         if(m_currTile != 3 && m_currTile!= 4){
-              m_arraypos +=2;
+         if(m_currTile != 6 && m_currTile!= 7 && m_currTile!=8){
+              m_currTile +=3;
               MapHandler::getInstance().updateTile(m_currTile);
-              m_y = 676;
+              m_y = 1054-SPRITE_SIZE_Y;
          }
-        }else{
+       }else{
            m_y -= 4 * m_speed;
         }
      }
-     m_x = m_x - m_speed; //updates the position of the player
+     //m_x = m_x - m_speed; //updates the position of the player
      m_direction = 2;
-     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Down.bmp" );
+     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/CatDownB.png" );
 }
 
 void Player::up ()
 {
+   int now;
+  int seconds;
+  now = glutGet(GLUT_ELAPSED_TIME);
+  
+  seconds =  now - m_lastStep;
+  if (seconds > 400){
+   Jukebox::PlaySound("./sounds/Step.wav");
+     m_lastStep = glutGet(GLUT_ELAPSED_TIME);
+  }  
            if(!stopup)
            {
 
-              if(m_y+60 >= 731)
+              if(m_y+SPRITE_SIZE_Y >= 1054)
               {
-                 if(m_currTile != 1 && m_currTile != 2)
+                 if(m_currTile != 0 && m_currTile != 1 && m_currTile != 2)
                  {
-                    m_arraypos-=2;
+                    m_currTile-=3;
                     MapHandler::getInstance().updateTile(m_currTile);
                     m_y = 5;
                  }
@@ -269,21 +288,30 @@ void Player::up ()
                  m_y +=4*m_speed;
               }
            }
-    m_x = m_x + m_speed;
+    //m_x = m_x + m_speed;
     m_direction = 0;
-    m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Up.png" );
+    m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/CatUpB.png" );
 }
 
 void Player::right ()
-{
+{ 
+  int now;
+  int seconds;
+  now = glutGet(GLUT_ELAPSED_TIME);
+  
+  seconds =  now - m_lastStep;
+  if (seconds > 400){
+   Jukebox::PlaySound("./sounds/Step.wav");
+     m_lastStep = glutGet(GLUT_ELAPSED_TIME);
+  }  
            if(!stopright)
            {
  
-              if(m_x+55 >= 1023)
+              if(m_x+ SPRITE_SIZE_X>= 1054)
               {
-                 if(m_currTile != 2 && m_currTile != 4)
+                 if(m_currTile != 2 && m_currTile != 5 && m_currTile != 8)
                  {
-                    m_arraypos +=1;
+                    m_currTile +=1;
                     MapHandler::getInstance().updateTile(m_currTile);
                     m_x = 5;
                  }
@@ -291,31 +319,40 @@ void Player::right ()
                  m_x += 4*m_speed;
               }
           }
-    m_y = m_y + m_speed;
+    //m_y = m_y + m_speed;
     m_direction = 1;
-    m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Right.png" );
+    m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/CatRightB.png" );
 }
 
 void Player::left ()
 {
+  int now;
+  int seconds;
+  now = glutGet(GLUT_ELAPSED_TIME);
+  
+  seconds =  now - m_lastStep;
+  if (seconds > 400){
+   Jukebox::PlaySound("./sounds/Step.wav");
+   m_lastStep = glutGet(GLUT_ELAPSED_TIME);
+  }  
        if(!stopleft)
        {
           
           if(m_x-5 <= 0)
           {
-             if(m_currTile != 3 && m_currTile != 1)
+             if(m_currTile != 0 && m_currTile != 3 && m_currTile != 6)
              {
                 m_currTile -= 1;
                 MapHandler::getInstance().updateTile(m_currTile);
-                m_x = 968 ;
+                m_x = 1054-SPRITE_SIZE_X ;
              }
           }else{
              m_x -= 4*m_speed;
           }
        }
-    m_y = m_y - m_speed;
+    //m_y = m_y - m_speed;
     m_direction = 3;
-    m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Left.png" );
+    m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/CatLeftB.png" );
 }
 
 

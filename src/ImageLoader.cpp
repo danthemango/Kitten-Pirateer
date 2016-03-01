@@ -213,16 +213,21 @@ void ImageLoader::circle(GLfloat x, GLfloat y, GLfloat r, int n)
 
 void ImageLoader::rectangle(GLfloat x, GLfloat y, GLfloat width, GLfloat height) 
 {
-   glTranslated(x,y,0);
+  // glTranslated(x,y,0);
    glBegin(GL_QUADS); // Note: A GL_QUADS is similar to a GL_POLYGON, but it limits the 
                       // number of vertices to 4. This allows OpenGL to break it up 
                       // into two triangles quite simply for faster processing. 
                       // This is needed if we are adding textures.
    {
+            glTexCoord2i(0, 0); glVertex2i(x,   y);
+           glTexCoord2i(0, 1); glVertex2i(x,  y+height);
+           glTexCoord2i(1, 1); glVertex2i(x+width, y+height);
+           glTexCoord2i(1, 0); glVertex2i(x+width, y);
+           /*
            glTexCoord2i(0, 0); glVertex2i(0,   0);
            glTexCoord2i(0, 1); glVertex2i(0,   height);
            glTexCoord2i(1, 1); glVertex2i(width, height);
-           glTexCoord2i(1, 0); glVertex2i(width, 0);
+           glTexCoord2i(1, 0); glVertex2i(width, 0);*/
    }
    glEnd();
 }
