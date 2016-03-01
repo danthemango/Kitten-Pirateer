@@ -1394,6 +1394,8 @@ public:
 		};
 	
 	int getNumObstacles() {return m_numObs[m_currTile];};
+	
+	
 	Obstacle* getObstacles() {
 	   Obstacle * pointer;
 	   pointer = m_obs;

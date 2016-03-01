@@ -45,9 +45,9 @@ void MapHandler::updateTile(int x)
          );
    }
 	
-	//Game::getInstance.updateTile(m_tileTextureArray[x]);
-	//ZombieHandler::getInstance.updateTile(x);
-	//ItemHandler::getInstance.updateTile(x);
+	Game::getInstance().updateTile(m_tileTextureArray[x]);
+	//ZombieHandler::getInstance().updateTile(x);
+	//ItemHandler::getInstance().updateTile(x);
 
 }
 
