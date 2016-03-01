@@ -41,8 +41,8 @@ class Menu {
 			//all menu does is loads and displays a bmp.
 			m_width = SCREEN_SIZE_X - 100;//Need a set width.			
 			m_height = SCREEN_SIZE_Y - 100;//Need a set height.
-			m_splashTexture= ImageLoader::LoadTexture( "./imgs/menus/pausemenu.bmp" );
-			m_menuTexture = ImageLoader::LoadTexture( "./imgs/menus/mainmenu.bmp" );
+			m_splashTexture = ImageLoader::LoadTexture( "./imgs/menus/pausemenu.bmp" );
+			m_menuTexture = ImageLoader::LoadTexture( "./imgs/menus/mainmenu.png" );
 			
 		};
 		
