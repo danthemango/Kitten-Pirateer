@@ -27,7 +27,7 @@ class PositionMap{
    private:
       // node in a linked list which contains the data of the element
       struct node{
-         CoordPoint* data;
+         Point* data;
          node* next;
       };
       node* m_head;
@@ -56,7 +56,7 @@ class PositionMap{
                return temp;
             }
             // dereferencer
-            CoordPoint* operator*()
+            Point* operator*()
             {
                if(m_cur_node){
                   return m_cur_node->data;
