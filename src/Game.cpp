@@ -74,14 +74,15 @@ void Game::init()
     //glutIdleFunc(Game::run);    // Wait time between frames.
 	
 	//Create the MapHandler so we can call the map.
-	m_MapHandler = new MapHandler;//Creates the MapHandler using the new function.
+	//m_MapHandler = new MapHandler;//Creates the MapHandler using the new function.
 	
 	//Load the default texture into the ImageLoader. 
 	//m_backgroundTexture = ImageLoader::LoadTexture( "./imgs/south.bmp" );
-	m_backgroundTexture = m_MapHandler.getTile();
+	m_backgroundTexture = MapHandler::getInstance().getTile(3);
+	//Can use a variable called m_StartTile to make it easier to load the start tile.
 	
 	//Place init here for the main GameObject (probably the PC character).
-	m_myPlayer.init();
+	//Player::getInstance();
 
 
     glutMainLoop(); //glutMainLoop enters the GLUT event processing loop. 
@@ -135,16 +136,14 @@ void Game::update()
 	//OBJECT UPDATE CALLS HERE:
 	//MapHandler::
 	
-	//Item update must happen before the player display.
+	//Update the items:
 	ItemHandler::getInstance().update();
 	
+	//Update the HUD:
     HUDHandler::getInstance().displayHUD(); 
-	
-	//Call the update and display functions of the GameObjects here:
-	//MapHandler::updateTile();
 
 	//Player display should be one of the very last, if not last.
-	//m_myPlayer.display();
+	//
 	
 }
 

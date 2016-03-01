@@ -52,8 +52,6 @@ class Game {
 		int m_width;
 		int m_height;
 		int m_margine;
-		//int m_arraypos;
-		//int m_gameObjects;
 		
 		//Background texture:
 		GLuint m_backgroundTexture;
