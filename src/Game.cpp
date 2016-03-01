@@ -3,6 +3,8 @@
 //Purpose: Contains the body of the game file prototyped in the Game.h file.
 //Version: 1.2
 //**************************************************************************************
+//TODO: Add a restart function ability to the code so we can restart the game from within.
+
 
 //Required Libraries:
 #include <cstdio>
@@ -30,8 +32,7 @@ bool Game::c_running = false;//Set the running state to false to start the game
 //with the splashscreen displayed.
 bool* Game::keystates = new bool[256];
 int Game::m_lastSong = 6000000;
-
-bool Game::c_firstLoad = true;
+bool Game::m_paused = false;
 
 
 /****Main Work Functions***************************************************************/
@@ -76,7 +77,7 @@ void Game::init()
 	
 	//Place init here for the main GameObject (probably the PC character).
 	Player::getInstance().init();
-   ZombieHandler::getInstance();
+	ZombieHandler::getInstance();
 	
 	//Run the main glut loop for processing the game. 
     glutMainLoop(); //glutMainLoop enters the GLUT event processing loop. 
@@ -88,14 +89,14 @@ void Game::init()
 void Game::update()
 //Function handling the update of the game.
 {
-   int now;
-   int miliseconds;
-   now = glutGet(GLUT_ELAPSED_TIME);
-   miliseconds =  now - Game::m_lastSong;
-   if (miliseconds > 32600){
-      Jukebox::PlaySound("./sounds/Song.wav");
-      Game::m_lastSong = glutGet(GLUT_ELAPSED_TIME);
-   }
+	int now;
+	int miliseconds;
+	now = glutGet(GLUT_ELAPSED_TIME);
+	miliseconds =  now - Game::m_lastSong;
+	if (miliseconds > 32600){
+		Jukebox::PlaySound("./sounds/Song.wav");
+		Game::m_lastSong = glutGet(GLUT_ELAPSED_TIME);
+	}
 	
 	Game::getInstance().keyOperations();
 	
@@ -118,38 +119,44 @@ void Game::update()
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
    
-   //Update the HUD:
-   HUDHandler::getInstance().displayHUD(); 
+	//Update the HUD:
+	HUDHandler::getInstance().displayHUD(); 
 
 	if(!Game::c_running) {
 		
 	   	if(!Game::c_run) {
-	   	  if(Game::c_firstLoad){
-               //Jukebox::PlaySound("./sounds/Song.wav");
-               //m_lastSong = glutGet(GLUT_ELAPSED_TIME);
-               c_firstLoad = false;
-            }
+
 			//This should only call the mainMenu once at the start of the game.
-			return m_menu.mainMenu();
-		
-		   } else {
+			if (!Game::m_paused) {
+			
+				Game::m_paused = true;
+				return m_menu.mainMenu();
+			
+			}
+			
+		} else {
 			
 			//This will call the splash screen when ever the user pauses the game
 			//using the space bar.
-			return m_menu.splashScreen();
+			if (!Game::m_paused) {
+				
+				Game::m_paused = true;
+				return m_menu.splashScreen();
+			
+			}
 			
 		}
 	 
 	}
 
-   // display and update the zombies
-   ZombieHandler::getInstance().display();
-   ZombieHandler::getInstance().update();
+	// display and update the zombies
+	ZombieHandler::getInstance().display();
+	ZombieHandler::getInstance().update();
 	//Update the items:
 	ItemHandler::getInstance().update();
 	
 	//Player display should be one of the very last, if not last.
-   Player::getInstance().display();
+	Player::getInstance().display();
 }
 
 void Game::run() 
@@ -227,6 +234,11 @@ void Game::key(unsigned char key, int x, int y)
 				Game::c_running = !Game::c_running;
 				Jukebox::PlaySound("./sounds/Song.wav");
                 Game::m_lastSong = glutGet(GLUT_ELAPSED_TIME);
+				if (Game::m_paused) {
+					
+					Game::m_paused = !Game::m_paused;
+
+				}	
 				
             } else {
 				
@@ -234,6 +246,11 @@ void Game::key(unsigned char key, int x, int y)
 				//we simply deal with the c_running variable to decide upon displaying
 				//the pause screen or allowing game play.
 				Game::c_running = !Game::c_running;
+				if (Game::m_paused) {
+					
+					Game::m_paused = !Game::m_paused; 
+				
+				}
 				
             }
 			break;
