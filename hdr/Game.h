@@ -94,7 +94,6 @@ class Game {
 		//Control Input Functions:
 		static bool* keystates;
 		static void keyUp(unsigned char key, int x, int y);
-		static void key(unsigned char key, int x, int y);
 		void keyOperations();
 		
 		//Possible functions: These are pulled from the collision lab 
