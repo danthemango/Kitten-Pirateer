@@ -51,7 +51,13 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 clean:
 	rm -rf bin $(OBJDIR)
 
+#remake everything from scratch
 redo:
 	make clean
 	reset
 	make all
+
+#use debug functions
+debug: CFLAGS=-std=c++11 -g
+debug: clean
+debug: all
