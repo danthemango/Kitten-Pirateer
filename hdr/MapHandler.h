@@ -20,7 +20,7 @@
 #define MAXOBS 30
 
 
-#include "GameObject.h"
+#include "Game.h"
 #include "Obstacle.h"
 #include "ObjectFactory.h"
 #include <SOIL/SOIL.h>
