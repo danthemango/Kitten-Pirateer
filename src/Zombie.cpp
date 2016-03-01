@@ -51,7 +51,7 @@ void Zombie::update(int x, int y)
    }
 
    // attack the player if he's close
-   if(difference(x,m_x) < m_attackRange && difference(y,m_x) < m_attackRange){
+   if(difference(x,m_x) < m_attackRange && difference(y,m_y) < m_attackRange){
       attack();
    }
 
@@ -73,10 +73,10 @@ void Zombie::update(int x, int y)
       m_x += m_speed;
       m_direction = RIGHT;
    }
-   if(y < m_x){
+   if(y < m_y){
       m_y -= m_speed;
       m_direction = DOWN;
-   }else if(y > m_x){
+   }else if(y > m_y){
       m_y += m_speed;
       m_direction = UP;
    }
@@ -157,7 +157,7 @@ void Zombie::spawn(int x, int y)
    // revive or vive the zombie
    m_dead = false;
    m_visible = true;
-   m_health = 100;
+   m_health = 20;
    m_x = x;
    m_y = y;
 }

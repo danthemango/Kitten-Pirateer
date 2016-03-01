@@ -58,7 +58,7 @@ class ItemHandler {
          m_lastItem = 0;
          m_numOfItems = 20;
          //start with a sword and 1 lemon
-         m_weaponInv[0] = new Weapon(10,3,0,0,"Sword", 0,true,-1,-1,-1);
+         m_weaponInv[0] = new Weapon(10,25,0,0,"Sword", 0,true,-1,-1,-1);
          m_itemInv[0] = new Items(0,0,10, "Lemon",true,-1,-1,-1);
          
          
