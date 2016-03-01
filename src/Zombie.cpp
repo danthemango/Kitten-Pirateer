@@ -13,6 +13,7 @@
 #include "../hdr/config.h"
 #include "../hdr/Timer.h"
 #include "../hdr/Player.h"
+#include "../hdr/Jukebox.h"
 
 // define the directions
 #define UP 0
@@ -90,6 +91,7 @@ void Zombie::attack()
    static Timer lastAttack;
    if(lastAttack.elapsed(m_attackDelay)){
       lastAttack.set();
+      Jukebox::PlaySound("./sounds/ZombieAttack2.wav");
       Player::getInstance().attacked(m_damage);
    }
 }

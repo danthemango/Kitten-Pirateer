@@ -301,7 +301,7 @@ void Player::attack()
 {
 	if(m_attacking == 0){
 		m_attacking = 1;
-	
+	Jukebox::PlaySound("./sounds/Sword2.wav");
 		
 
 	
