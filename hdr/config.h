@@ -44,7 +44,8 @@
 
 //Margine size
 //TODO set up the correct margine size.
-#define MARGINE 4
+#define MARGINE 5
+#define HUD_WIDTH 200
 //Max number of Objects.
 //TODO determine if this is needed when the handlers are in control
 //of how many obects there are.

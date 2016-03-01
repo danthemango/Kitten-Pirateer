@@ -42,7 +42,7 @@ void Game::init()
     //srandom(time(NULL));
 
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);//Use double buffering for smoother images
-    glutInitWindowSize(m_width, m_height);
+    glutInitWindowSize(m_width+HUD_WIDTH, m_height);
     glutInitWindowPosition(0, 0);
     glutCreateWindow("Kitten Pirateer - Adventure of Zombie Island");
 
@@ -62,7 +62,7 @@ void Game::init()
 	
     //gluOrtho2D(0, m_width+m_margine, 0, m_height+m_margine);
 	
-    glOrtho(0, m_width+m_margine, 0, m_height+m_margine, 0, 1000);
+    glOrtho(0, m_width+HUD_WIDTH, 0, m_height, 0, 1000);
 
 	//Set up the callbacks that will be taken care of in step 1:
     glutKeyboardFunc(Game::key);//Keyboard input
@@ -102,7 +102,7 @@ void Game::update()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
 	//Clear the screen
-	glClearColor(1.0, 1.0, 1.0, 0.0); // Set the clear color to white
+	glClearColor(1.0, 1.0, 1.0, 1.0); // Set the clear color to white
 	glClear(GL_COLOR_BUFFER_BIT);     // clear the screen
 
 	glMatrixMode(GL_MODELVIEW);
@@ -116,6 +116,9 @@ void Game::update()
 	ImageLoader::rectangle(0,0, m_width, m_height);
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
+   
+   //Update the HUD:
+   HUDHandler::getInstance().displayHUD(); 
 
 	if(!Game::c_running) {
 		
@@ -144,9 +147,6 @@ void Game::update()
 	//Update the items:
 	ItemHandler::getInstance().update();
 	
-	//Update the HUD:
-   HUDHandler::getInstance().displayHUD(); 
-
 	//Player display should be one of the very last, if not last.
    Player::getInstance().display();
 }

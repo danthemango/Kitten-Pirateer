@@ -27,9 +27,9 @@ Purpose:
 	  //char *c;
 
 	  const unsigned char* string2 = (const unsigned char*)string;
-
+     glEnable(GL_COLOR_MATERIAL);
+     glRasterPos2f(x, y);
 	  glColor3f(0.0, 0.0, 0.0); // black
-	  glRasterPos2f(x, y);
 	  glutBitmapString(font, string2);
 	} 
 
