@@ -108,13 +108,13 @@ void Game::update()
 	   	if(!Game::c_run) {
 	
 			//This should only call the mainMenu once at the start of the game.
-			return Menu::mainMenu();
+			return m_menu.mainMenu();
 		
 		} else {
 			
 			//This will call the splash screen when ever the user pauses the game
 			//using the space bar.
-			return Menu::splashScreen();
+			return m_menu.splashScreen();
 			
 		}
 	 
