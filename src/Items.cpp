@@ -47,11 +47,11 @@ void Items::pickUp(Items* item)
       //Game::getInstance().getArrayPos() == m_tilePos){
       Player::getInstance().getTile() == m_tilePos){
       if(m_pickedUp == false){//if Item hasn't been picked up yet
-         m_pickedUp = true;
          switch (m_itemID){
             case 10://add item to inventory
                ItemHandler::getInstance().addItemToInv(item);
                Jukebox::PlaySound("./sounds/ItemPickUp.wav");
+               m_pickedUp = true;
                break;
             case 11://heal Player
                //need a healPlayer(int x) which will add x to Player health
@@ -60,15 +60,14 @@ void Items::pickUp(Items* item)
                //Game::getInstance().m_myPlayer.addHealth(10); 
                if(Player::getInstance().getHealth() < MAX_PLAYER_HEALTH){             
 					Player::getInstance().addHealth(10);
-					Jukebox::PlaySound("./sounds/HeartPickUp.wav");               
-					//std::cout << "health Increased:10" << std::endl;   
+					Jukebox::PlaySound("./sounds/HeartPickUp.wav");
+					m_pickedUp = true;               
 					}
                break;
             case 12:
-               //Player::getInstance().addHealth(20);
                Jukebox::PlaySound("./sounds/ItemPickUp.wav");
-               //std::cout << "health Increased: 20" << std::endl;
-               ItemHandler::getInstance().addItemToInv(item);      
+               ItemHandler::getInstance().addItemToInv(item); 
+               m_pickedUp = true;     
                break;            
       
          }

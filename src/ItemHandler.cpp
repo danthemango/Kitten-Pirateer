@@ -73,11 +73,11 @@ void ItemHandler::iUse()
    switch (id){
       case 12:
          if(getItem()->getAmount() > 0){
-            Jukebox::PlaySound("./sounds/HealthPotionUse.wav");
-            //std::cout << "health: + 20" << std::endl;
-            Player::getInstance().addHealth(20);
-            //Game::getInstance().m_myPlayer.addHealth(20);
-            getItem()->decreaseAmount();
+			if(Player::getInstance().getHealth() < MAX_PLAYER_HEALTH){
+				Jukebox::PlaySound("./sounds/HealthPotionUse.wav");
+				Player::getInstance().addHealth(20);
+				getItem()->decreaseAmount();
+			}
          }
          break;
    }
