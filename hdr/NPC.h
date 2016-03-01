@@ -14,15 +14,9 @@
 #define NPC_H
 
 class NPC{
-   private:
-      // coordinates of the 
-      int m_x, m_y;
-      // direction that the NPC is facing 
-      int direction;
    public:
-      NPC();
       // update should be run in every frame that the game is going on for
-      virtual void update();
+      virtual void update() = 0;
       // display is used to draw this object
       virtual void display() = 0;
 };

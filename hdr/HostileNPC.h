@@ -14,11 +14,11 @@
 
 class HostileNPC: NPC{
    public:
-      HostileNPC();
       // update takes in the player's position
       // this function will act as the NPC's 'AI' 
-      virtual void update(int x, int y) = 0;
+      virtual void update(int x, int y){}
+      virtual void update(){}
       // display is used to draw this object
-      virtual void display() = 0;
+      virtual void display(){}
 };
 #endif
