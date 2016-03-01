@@ -9,13 +9,7 @@
 ==    explain the compilation process and targets
 ===================================================
 
-In its final form this game is intended to be developed for Debian systems, using the following libraries:  
-   -openGL (with MESA, GLU and GLUT)
-   -SOIL
-   -GLFW
-   -GLEW
-   -GLM
+This game is being developed for Debian systems, and will probably only work on linux systems.
 
 Installation of dependencies for ubuntu:
 sudo apt-get install gcc freeglut3 freeglut3-dev libsoil-dev libsdl1.2-dev xorg-dev libgl1-mesa-dev
-

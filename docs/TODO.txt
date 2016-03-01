@@ -1,0 +1,19 @@
+=================================================
+== Filename:   TODO.txt
+== Author:     created by Daniel Guenther
+== Date:       2016-03-01
+== Class:      CSCI 331
+== Project:    Kitty Pirateer
+== 
+== Purpose: 
+==    Outlines a list of things that should be fixed or implemented
+==    some things in here are a wish list.
+===================================================
+
+- fix Zombie Animation
+- Zombie attack sprite?
+- Zombie attack sound?
+- fix zombie collisions
+- create random positions for zombies
+   - do not spawn within objects
+- create skeletons
