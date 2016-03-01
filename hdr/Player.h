@@ -64,6 +64,12 @@ class Player : public GameObject
       int getTile();
       int getX();
       int getY();
+      void displayAttack();
+      void displayAttackUp(int frame);
+	  void displayAttackRight(int frame);
+	  void displayAttackDown(int frame);
+	  void displayAttackLeft(int frame);
+
    private:
       Player();
       /*{
@@ -90,7 +96,14 @@ class Player : public GameObject
       int m_stepSize;
       int m_currTile;
       int m_lastStep;
+      int m_frame;
+	  int m_lastFrame;
       GLuint m_PlayerTexture;
+      GLuint m_AttackTexture;
+      GLuint m_downTexture[4],m_upTexture[4],m_leftTexture[4],m_rightTexture[4];
+      int m_stepNum;
+      int m_attacking;
+      GLuint m_attackDown[4], m_attackUp[4], m_attackLeft[4], m_attackRight[4];
 };
 #endif
 

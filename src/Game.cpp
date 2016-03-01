@@ -108,6 +108,7 @@ void Game::update()
 	glLoadIdentity();
 
 	//Draw the background
+	
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_backgroundTexture);
@@ -252,6 +253,7 @@ void Game::key(unsigned char key, int x, int y)
 		
 		case 'j':
 			//j uses the currently equipted weapon to attack or do something else.
+			Player::getInstance().attack();
 			break;
 			
 		case 'u':

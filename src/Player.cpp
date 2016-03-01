@@ -33,6 +33,41 @@ Player::Player()
   m_stepSize = 4;
   m_currTile = 3;
   m_lastStep = glutGet(GLUT_ELAPSED_TIME);
+  m_downTexture[0]= ImageLoader::LoadTexture("./imgs/CatDownA.png");
+  m_downTexture[1]= ImageLoader::LoadTexture("./imgs/CatDownB.png");
+  m_downTexture[2]= ImageLoader::LoadTexture("./imgs/CatDownC.png");
+  m_downTexture[3]= ImageLoader::LoadTexture("./imgs/CatDownB.png");
+  m_upTexture[0]= ImageLoader::LoadTexture("./imgs/CatUpA.png");
+  m_upTexture[1]= ImageLoader::LoadTexture("./imgs/CatUpB.png");
+  m_upTexture[2]= ImageLoader::LoadTexture("./imgs/CatUpC.png");
+  m_upTexture[3]= ImageLoader::LoadTexture("./imgs/CatUpB.png");
+  m_leftTexture[0]= ImageLoader::LoadTexture("./imgs/CatLeftA.png");
+  m_leftTexture[1]= ImageLoader::LoadTexture("./imgs/CatLeftB.png");
+  m_leftTexture[2]= ImageLoader::LoadTexture("./imgs/CatLeftC.png");
+  m_leftTexture[3]= ImageLoader::LoadTexture("./imgs/CatLeftB.png");
+  m_rightTexture[0]= ImageLoader::LoadTexture("./imgs/CatRightA.png");
+  m_rightTexture[1]= ImageLoader::LoadTexture("./imgs/CatRightB.png");
+  m_rightTexture[2]= ImageLoader::LoadTexture("./imgs/CatRightC.png");
+  m_rightTexture[3]= ImageLoader::LoadTexture("./imgs/CatRightB.png");
+  m_attackUp[0] = ImageLoader::LoadTexture("./imgs/CatAttackUpA.png");
+  m_attackUp[1] = ImageLoader::LoadTexture("./imgs/CatAttackUpB.png");
+  m_attackUp[2] = ImageLoader::LoadTexture("./imgs/CatAttackUpC.png");
+  m_attackUp[3] = ImageLoader::LoadTexture("./imgs/CatAttackUpD.png");
+  m_attackDown[0] = ImageLoader::LoadTexture("./imgs/CatAttackDownA.png");
+  m_attackDown[1] = ImageLoader::LoadTexture("./imgs/CatAttackDownB.png");
+  m_attackDown[2] = ImageLoader::LoadTexture("./imgs/CatAttackDownC.png");
+  m_attackDown[3] = ImageLoader::LoadTexture("./imgs/CatAttackDownD.png");
+  m_attackRight[0] = ImageLoader::LoadTexture("./imgs/CatAttackRightA.png");
+  m_attackRight[1] = ImageLoader::LoadTexture("./imgs/CatAttackRightB.png");
+  m_attackRight[2] = ImageLoader::LoadTexture("./imgs/CatAttackRightC.png");
+  m_attackRight[3] = ImageLoader::LoadTexture("./imgs/CatAttackRightD.png");
+  m_attackLeft[0] = ImageLoader::LoadTexture("./imgs/CatAttackLeftA.png");
+  m_attackLeft[1] = ImageLoader::LoadTexture("./imgs/CatAttackLeftB.png");
+  m_attackLeft[2] = ImageLoader::LoadTexture("./imgs/CatAttackLeftC.png");
+  m_attackLeft[3] = ImageLoader::LoadTexture("./imgs/CatAttackLeftD.png");
+  m_lastFrame = 0;
+  m_stepNum = 1;
+  m_attacking = 0;	
 }
 
 //player singleton
@@ -95,13 +130,18 @@ void Player::addHealth(int addHealth)
 }
 void Player::displayTexture()
 {
-   //draw the player
-   glEnable(GL_TEXTURE_2D);
-   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
-   glBindTexture (GL_TEXTURE_2D, m_PlayerTexture);
-   ImageLoader::rectangle(m_x,m_y, SPRITE_SIZE_X, SPRITE_SIZE_Y);
-   glDisable(GL_TEXTURE_2D);
-   glFlush();
+	if(m_attacking == 0){
+		//draw the player
+		glEnable(GL_TEXTURE_2D);
+		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
+		glBindTexture (GL_TEXTURE_2D, m_PlayerTexture);
+		ImageLoader::rectangle(m_x,m_y, SPRITE_SIZE_X, SPRITE_SIZE_Y);
+		glDisable(GL_TEXTURE_2D);
+		glFlush();
+		m_frame = 0;
+	}else{
+		displayAttack();	
+	}
 }
 
 void Player::collision(int xpos, int ypos, int width, int height, int cond)
@@ -185,12 +225,91 @@ void Player::attacked(int damage)
 
 }
 
+void Player::displayAttack()
+{
+	int attackX, attackY, attackW, attackH;
+
+	switch(m_direction)
+	{
+		case 0: 
+			attackX = m_x; 
+			attackY = m_y;
+			attackW = 45;
+			attackH = 60;
+			break;
+ 		case 1: 
+			attackX = m_x; 
+			attackY = m_y;
+			attackW = 60;
+			attackH = 60;
+			break;
+		case 2:
+			attackX = m_x - 15;
+			attackY = m_y - 30;
+			attackW = 45;
+			attackH = 60;
+			break;
+		case 3:
+			attackX = m_x - 30; 
+			attackY = m_y;
+			attackW = 60;
+			attackH = 60;
+			break;	
+	}
+	
+	int now;
+	int seconds;
+	now = glutGet(GLUT_ELAPSED_TIME);
+  
+	seconds =  now - m_lastFrame;
+	if (seconds > 50){
+		m_lastFrame = glutGet(GLUT_ELAPSED_TIME);
+		if(m_frame == 4){
+			m_attacking = 0;
+			return;
+		}
+		switch(m_direction)
+		{
+			case 0: 
+				displayAttackUp(m_frame);
+				m_frame++;
+				break;
+			case 1: 
+				displayAttackRight(m_frame);
+				m_frame++;
+				break;
+			case 2: 
+				displayAttackDown(m_frame);
+				m_frame++;
+				break;
+			case 3: 
+				displayAttackLeft(m_frame);
+				m_frame++;
+				break;
+		}
+	}
+	
+	glEnable(GL_TEXTURE_2D);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
+	glBindTexture (GL_TEXTURE_2D, m_AttackTexture);
+	ImageLoader::rectangle(attackX,attackY,attackW, attackH);
+	glDisable(GL_TEXTURE_2D);
+	glFlush();
+}
+
 void Player::attack()
 {
+	if(m_attacking == 0){
+		m_attacking = 1;
+	}
+		
+
+	
    //what to do here??
    //0 = melee attacks
    //1 = gun
    //2 = spell
+   /*
    int weaponId = ItemHandler::getInstance().getWeapon()->getType(); // stores the weapon id
    int weaponDamage = ItemHandler::getInstance().getWeapon()->getDamage(); // gets the damage for the weapon
    int weaponRange = ItemHandler::getInstance().getWeapon()->getRange();  
@@ -230,20 +349,11 @@ void Player::attack()
         break;
 
    }
-   
+  */ 
 }
 
 void Player::down ()
-{
-  int now;
-  int seconds;
-  now = glutGet(GLUT_ELAPSED_TIME);
-  
-  seconds =  now - m_lastStep;
-  if (seconds > 400){
-   Jukebox::PlaySound("./sounds/Step.wav");
-     m_lastStep = glutGet(GLUT_ELAPSED_TIME);
-  }  
+{ 
     if(!stopdown){
 
        if(m_y-5 <= 0)
@@ -259,20 +369,33 @@ void Player::down ()
      }
      //m_x = m_x - m_speed; //updates the position of the player
      m_direction = 2;
-     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/CatDownB.png" );
-}
-
-void Player::up ()
-{
-   int now;
+        int now;
   int seconds;
   now = glutGet(GLUT_ELAPSED_TIME);
   
   seconds =  now - m_lastStep;
-  if (seconds > 400){
+  if (seconds > 200){
    Jukebox::PlaySound("./sounds/Step.wav");
      m_lastStep = glutGet(GLUT_ELAPSED_TIME);
-  }  
+  
+      switch (m_stepNum){
+		case 0: m_stepNum = 1;
+			break;
+ 		case 1: m_stepNum = 2;
+			break;
+		case 2: m_stepNum = 3;
+			break;
+		case 3: m_stepNum = 0;
+			break;
+		}
+	}     
+     
+     m_PlayerTexture = m_downTexture[m_stepNum];
+}
+
+void Player::up ()
+{
+  
            if(!stopup)
            {
 
@@ -290,20 +413,31 @@ void Player::up ()
            }
     //m_x = m_x + m_speed;
     m_direction = 0;
-    m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/CatUpB.png" );
-}
-
-void Player::right ()
-{ 
-  int now;
+       int now;
   int seconds;
   now = glutGet(GLUT_ELAPSED_TIME);
   
   seconds =  now - m_lastStep;
-  if (seconds > 400){
+  if (seconds > 200){
    Jukebox::PlaySound("./sounds/Step.wav");
      m_lastStep = glutGet(GLUT_ELAPSED_TIME);
-  }  
+  
+      switch (m_stepNum){
+		case 0: m_stepNum = 1;
+			break;
+ 		case 1: m_stepNum = 2;
+			break;
+		case 2: m_stepNum = 3;
+			break;
+		case 3: m_stepNum = 0;
+			break;
+	}
+}
+    m_PlayerTexture= m_upTexture[m_stepNum];
+}
+
+void Player::right ()
+{  
            if(!stopright)
            {
  
@@ -321,20 +455,31 @@ void Player::right ()
           }
     //m_y = m_y + m_speed;
     m_direction = 1;
-    m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/CatRightB.png" );
-}
-
-void Player::left ()
-{
-  int now;
+       int now;
   int seconds;
   now = glutGet(GLUT_ELAPSED_TIME);
   
   seconds =  now - m_lastStep;
-  if (seconds > 400){
+  if (seconds > 200){
    Jukebox::PlaySound("./sounds/Step.wav");
-   m_lastStep = glutGet(GLUT_ELAPSED_TIME);
-  }  
+     m_lastStep = glutGet(GLUT_ELAPSED_TIME);
+  
+      switch (m_stepNum){
+		case 0: m_stepNum = 1;
+			break;
+ 		case 1: m_stepNum = 2;
+			break;
+		case 2: m_stepNum = 3;
+			break;
+		case 3: m_stepNum = 0;
+			break;
+		}
+	}
+    m_PlayerTexture= m_rightTexture[m_stepNum];
+}
+
+void Player::left ()
+{  
        if(!stopleft)
        {
           
@@ -352,7 +497,43 @@ void Player::left ()
        }
     //m_y = m_y - m_speed;
     m_direction = 3;
-    m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/CatLeftB.png" );
+       int now;
+  int seconds;
+  now = glutGet(GLUT_ELAPSED_TIME);
+  
+  seconds =  now - m_lastStep;
+  if (seconds > 200){
+   Jukebox::PlaySound("./sounds/Step.wav");
+     m_lastStep = glutGet(GLUT_ELAPSED_TIME);
+  
+      switch (m_stepNum){
+		case 0: m_stepNum = 1;
+			break;
+ 		case 1: m_stepNum = 2;
+			break;
+		case 2: m_stepNum = 3;
+			break;
+		case 3: m_stepNum = 0;
+			break;
+		}
+	}
+    
+    m_PlayerTexture= m_leftTexture[m_stepNum];
 }
-
+void Player::displayAttackUp(int frame)
+{
+	m_AttackTexture = m_attackUp[frame];
+}
+void Player::displayAttackRight(int frame)
+{
+	m_AttackTexture = m_attackRight[frame];
+}
+void Player::displayAttackDown(int frame)
+{
+	m_AttackTexture = m_attackDown[frame];
+}
+void Player::displayAttackLeft(int frame)
+{
+	m_AttackTexture = m_attackLeft[frame];
+}
 
