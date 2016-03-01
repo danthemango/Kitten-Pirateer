@@ -30,7 +30,7 @@ Player::Player()
   m_arraypos = 0;
   m_speed = PLAYER_SPEED;
   c_up=c_down=c_left=c_right=false;
-
+  m_stepSize = 4;
 }
 
 //player singleton

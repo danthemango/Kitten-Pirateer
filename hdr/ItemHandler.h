@@ -68,7 +68,7 @@ class ItemHandler {
          //of the lemons.
          
          
-         //*********       List of all Items     *********/
+         //*********TEST ITEMS FOR USE WITH COLLISIONSLAB*********/
          m_itemList[0] = new Items(0,-1, 10, "Lemon", false, 246, 596, 0);
          m_itemList[1] = new Items(0,-1, 11, "heart", false, 507, 297, 0);
          m_itemList[2] = new Items(0,-1, 11, "Heart", false, 729, 603, 0);
@@ -99,7 +99,7 @@ class ItemHandler {
    private:
          Items *m_itemList[MAXITEMS];  //list of all items on map
          Items *m_itemInv[MAXINV];     //items inventory
-         Items *m_weaponInv[MAXINV];   //weapon inventory
+         Weapon *m_weaponInv[MAXINV];   //weapon inventory
          int m_invStack[MAXINV]; //amount of that item you are holding. ie character has
                                  //3 lemons, lemons are in slot 10, so m_invStack[10] = 3; 
          int m_currWeapon;       //current weapon in item array
@@ -112,28 +112,22 @@ class ItemHandler {
       //may be implemented if we implement inventory screen
       Items* getWeaponInv() {return *m_weaponInv;} 
       Items* getItemInv() {return *m_itemInv;}
-
       //may be implemented if we implement inventory screen
       int getWeaponSlot() {return m_currWeapon;}
       int getItemSlot() {return m_currItem;}
-
       //returns pointer to current Item to use for HUD&Player
       //then use that to access that items methods like so:
       // Items* item = getItem();
       //item->getName();
-      Items* getWeapon() {return m_weaponInv[m_currWeapon];}
+      Weapon* getWeapon() {return m_weaponInv[m_currWeapon];}
       Items* getItem() {return m_itemInv[m_currItem];}
-
       //add new item to inventory Used by Items.cpp
       void addItemToInv(Items* item);
-
       //calls Items::display(), and Items::pickUp()
       void update();
-
       //switch current Item to next one, loops around when at last item 
       void iSwitch();
       void wSwitch();
-
       //use Current Item (to be implemented later)
       void iUse();      
 
