@@ -30,8 +30,8 @@
 #define SCREEN_SIZE_Y 1054//Height
 
 //default player start position
-#define PLAYER_START_X 500
-#define PLAYER_START_Y 500
+#define PLAYER_START_X 186
+#define PLAYER_START_Y 454
 
 //default sprite size
 #define SPRITE_SIZE_X 30 //width
