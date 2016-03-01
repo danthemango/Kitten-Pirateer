@@ -37,6 +37,9 @@
 #define SPRITE_SIZE_X 30 //width
 #define SPRITE SIZE_Y 30 //height
 
+//default Player Health
+#define MAX_PLAYER_HEALTH 100
+
 // maximum number of zombies on a single screen-tile
 #define MAXZOMBIES 20
 // path to the zombie configuration file
