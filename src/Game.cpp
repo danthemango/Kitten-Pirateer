@@ -21,6 +21,7 @@
 #include "../hdr/Player.h"//Dependancy for the Player.
 #include "../hdr/ItemHandler.h"//Dependancy for the item handler.
 #include "../hdr/HUDHandler.h" // HUD Deppendency
+#include "../hdr/ZombieHandler.h"
 
 //Main Variables:
 bool Game::c_run = false;//Set the game to display the main menu. Once changed this
@@ -43,7 +44,7 @@ void Game::init()
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);//Use double buffering for smoother images
     glutInitWindowSize(m_width, m_height);
     glutInitWindowPosition(0, 0);
-    glutCreateWindow("Kitty Piratier - Adventure of Zombie Island");
+    glutCreateWindow("Kitten Pirateer - Adventure of Zombie Island");
 
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glShadeModel(GL_SMOOTH);
@@ -74,13 +75,13 @@ void Game::init()
 	
 	//Place init here for the main GameObject (probably the PC character).
 	Player::getInstance().init();
+   ZombieHandler::getInstance();
 	
 	//Run the main glut loop for processing the game. 
     glutMainLoop(); //glutMainLoop enters the GLUT event processing loop. 
                     //This routine should be called at most once in a GLUT program. 
                     //Once called, this routine will never return. 
                     //It will call as necessary any callbacks that have been registered.
-
 }
 
 void Game::update()
@@ -137,21 +138,17 @@ void Game::update()
 	 
 	}
 
-	//OBJECT UPDATE CALLS HERE:
-	//MapHandler::
-	
-   Player::getInstance().display();
+   // display and update the zombies
+   ZombieHandler::getInstance().display();
+   ZombieHandler::getInstance().update();
 	//Update the items:
 	ItemHandler::getInstance().update();
 	
 	//Update the HUD:
-    HUDHandler::getInstance().displayHUD(); 
+   HUDHandler::getInstance().displayHUD(); 
 
 	//Player display should be one of the very last, if not last.
-	//Update the player:
-	//Player::getInstance().display();
-	//Player::getInstance().update();
-	
+   Player::getInstance().display();
 }
 
 void Game::run() 
@@ -204,9 +201,8 @@ void Game::reshape(GLsizei newwidth, GLsizei newheight)
 void Game::updateTile(GLuint x)
 //Function which allows the background texture variable to be altered when required.
 {
-	
 	m_backgroundTexture = x;
-	
+   ZombieHandler::getInstance().updateTile(x);
 }
 /****End of Main Work Functions*********************************************************/
 

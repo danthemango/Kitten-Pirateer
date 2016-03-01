@@ -11,6 +11,7 @@
 
 #include "../hdr/ZombieHandler.h"
 #include "../hdr/config.h"
+#include "../hdr/Player.h"
 
 // load the positions of the zombies 
 void ZombieHandler::loadZombies()
@@ -44,9 +45,6 @@ void ZombieHandler::loadZombies()
    m_map[8].add(3,3);
    m_map[8].add(300,300);
    m_map[8].add(500,300);
-   m_map[9].add(3,3);
-   m_map[9].add(300,300);
-   m_map[9].add(500,300);
 }
 
 // returns the current instance
@@ -74,10 +72,11 @@ ZombieHandler::~ZombieHandler()
 }
 
 // updates all contained zombies
-void ZombieHandler::update(int x, int y)
+void ZombieHandler::update()
 {
+   
    for(int i = 0; i < m_num_zombies; i++){
-      m_ZombieList[i]->update(x,y);
+      m_ZombieList[i]->update(Player::getInstance().getX(),Player::getInstance().getY());
    }
 }
 
@@ -119,6 +118,9 @@ void ZombieHandler::removeAllZombies()
 // switch to a new tile
 void ZombieHandler::updateTile(int x)
 {
+   if(x >= NUM_TILES || x < 0){
+      return;
+   }
    m_tile = x;
    // get the current zombie map
    PositionMap &curmap = m_map[m_tile];

@@ -18,11 +18,6 @@
 #include "Shapes.h"
 #include "ImageLoader.h"
 
-#define UP 0
-#define DOWN 1
-#define LEFT 2 
-#define RIGHT 3
-
 class Zombie: public HostileNPC{
    public:
       Zombie();
@@ -30,10 +25,7 @@ class Zombie: public HostileNPC{
       // this function will act as the NPC's 'AI' 
       void update(int x, int y);
       void update(Point &playerpos);
-      void update()
-      {
-         //
-      };
+      void update(){}
       // display is used to draw this object
       virtual void display();
       // causes damage to the zombie (reduces health by amount)
@@ -56,12 +48,19 @@ class Zombie: public HostileNPC{
       bool m_dead;
       // if zombie is not visible, it won't be shown on screen
       bool m_visible;
-      int m_speed; // speed
       int m_direction; // direction
       // position of the zombie
-      int m_x, m_y;
+      float m_x, m_y;
+      float m_speed; // speed
       // attack strength of the zombie
       int m_damage;
+      // current displaying texture
       GLuint m_texture;
+      // if the player is further away than this, attack the player
+      int m_attackRange;
+      // if the last attack was this many milliseconds ago, attack again
+      long int m_attackDelay;
+      // animation rate
+      long int m_animDelay;
 };
 #endif

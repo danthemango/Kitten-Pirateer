@@ -26,9 +26,8 @@ class ZombieHandler: public GameObject
    public:
       // returns the currently existing instance
       static ZombieHandler &getInstance();
-      // updates all contained zombies
-      void update(int x, int y);
-      void update() {}
+      // update all of the zombies
+      void update();
       // draws all zombies
       void display();
       // damages every Zombie in the range
