@@ -10,7 +10,7 @@ Purpose:
 #ifndef ITEMHUD_H
 #define ITEMHUD_H
 
-#include <cstring>
+#include <string>
 
 #include "../hdr/HUD.h"
 #include "../hdr/Items.h"

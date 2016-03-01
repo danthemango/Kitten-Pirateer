@@ -14,6 +14,7 @@
 
 #include "config.h"
 #include "Shapes.h"
+#include <cstddef>
 
 // class which contains the position of elements on a single tile
 class PositionMap{

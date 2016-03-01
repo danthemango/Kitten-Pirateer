@@ -22,8 +22,10 @@ void ItemHUD::displayHUD() {
 	// Current item name
 	itemName = ItemHandler::getInstance().getItem()->getName().c_str();
 	// The amount of the item currently equipped.
-    itemAmount = ItemHandler::getInstance().getItem()->getAmmount();
-    amount = std::to_string(itemAmount).c_str();
+    itemAmount = ItemHandler::getInstance().getItem()->getAmount();
+    std::string stringAmount = std::to_string(itemAmount);
+    amount = stringAmount.c_str();
+   // amount = std::to_string(itemAmount).c_str();
 	// The current Weapon equipped by the player.
 	RenderString(m_width - 150, m_height - 200, GLUT_BITMAP_TIMES_ROMAN_24, "Weapon");
 	// Display the equipped weapon name to the HUD
