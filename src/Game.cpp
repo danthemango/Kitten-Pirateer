@@ -82,7 +82,7 @@ void Game::init()
 	//Can use a variable called m_StartTile to make it easier to load the start tile.
 	
 	//Place init here for the main GameObject (probably the PC character).
-	//Player::getInstance();
+	Player::getInstance();
 
 
     glutMainLoop(); //glutMainLoop enters the GLUT event processing loop. 
@@ -143,7 +143,7 @@ void Game::update()
     HUDHandler::getInstance().displayHUD(); 
 
 	//Player display should be one of the very last, if not last.
-	//
+	//Player::getInstance().
 	
 }
 
