@@ -31,6 +31,7 @@ bool Game::c_run = false;//Set the game to display the main menu. Once changed t
 bool Game::c_running = false;//Set the running state to false to start the game
 //with the splashscreen displayed.
 bool* Game::keystates = new bool[256];
+int Game::m_lastSong = 6000000;
 
 
 /****Main Work Functions***************************************************************/
@@ -97,7 +98,6 @@ void Game::update()
 	}
 	
 	Game::getInstance().keyOperations();
-	
 	//Clear color and depth buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
