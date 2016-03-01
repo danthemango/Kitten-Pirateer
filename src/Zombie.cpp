@@ -23,7 +23,7 @@
 Zombie::Zombie()
 {
    m_visible = false;
-   m_speed = PLAYER_SPEED /2;
+   m_speed = 1;
    m_dead = false;
    m_direction = UP;
    // this is the attack strength of the zombie
@@ -55,6 +55,7 @@ void Zombie::update(int x, int y)
       attack();
    }
 
+   /*
    // round down the difference between the player and zombie if zombie is close 
    if(difference(x,m_x) < m_speed){
       m_x = x;
@@ -62,12 +63,22 @@ void Zombie::update(int x, int y)
    if(difference(y,m_y) < m_speed){
       m_y = y;
    }
+   */
 
    // follow the player
    if(x < m_x){
       m_x -= m_speed;
+      m_direction = LEFT;
    }else if(x > m_x){
       m_x += m_speed;
+      m_direction = RIGHT;
+   }
+   if(y < m_x){
+      m_y -= m_speed;
+      m_direction = DOWN;
+   }else if(y > m_x){
+      m_y += m_speed;
+      m_direction = UP;
    }
 }
 
@@ -96,7 +107,7 @@ void Zombie::display()
       m_texture = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/DownA.png");
    }
 
-   /*TODO
+   /*TODO animation
    // ensure that the frame either needs to be updated or the zombie has changed direction
    static int lastDirection = 0;
    static Timer lastFrame;
@@ -124,7 +135,7 @@ void Zombie::display()
    glEnable(GL_TEXTURE_2D);
    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
    glBindTexture (GL_TEXTURE_2D, m_texture);
-   ImageLoader::rectangle(m_x,m_y, 50, 50);
+   ImageLoader::rectangle(m_x,m_y, SPRITE_SIZE_X, SPRITE_SIZE_Y);
    glDisable(GL_TEXTURE_2D);
    glFlush();
 }

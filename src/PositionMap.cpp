@@ -15,7 +15,8 @@ PositionMap::PositionMap()
 {
    // ensure we are aware that no elements have been created in the list
    node* temp = new node;
-   m_tail = m_head;
+   m_head = m_tail;
+   m_num = 0; // no elements yet
 }
 
 PositionMap::~PositionMap()
@@ -33,16 +34,25 @@ PositionMap::~PositionMap()
 void PositionMap::add(int x, int y)
 {
    m_num++;
+   // create a new head if needed
+   if(m_head == m_tail){
+      m_head = new node;
+      m_head->data = new Point(x,y);
+      m_head->next = m_tail;
+      m_tail = m_head->next;
+      return;
+   }
+
    // traverse list to find next empty spot
    node* temp = m_head;
-   while(temp->next != NULL){
+   while(temp->next != m_tail){
       temp = temp->next;
    }
    // insert the data in this position
    temp->next = new node;
    temp->next->data = new Point(x,y);
-   temp->next->next = NULL;
-   m_tail = temp->next;
+   temp->next->next = m_tail;
+   m_tail = temp->next->next;
 }
 
 // returns the number of elements in map

@@ -61,3 +61,7 @@ redo:
 debug: CFLAGS=-std=c++11 -g
 debug: clean
 debug: all
+
+#open gdb immediately
+sdebug: debug
+	gdb bin/game
