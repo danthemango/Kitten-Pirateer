@@ -61,7 +61,9 @@ class Player : public GameObject
       void addHealth(int x);
       int getDirection();
       bool c_up,c_down,c_left,c_right;
-
+      int getTile();
+      int getX();
+      int getY();
    private:
       Player();
       ~Player();
