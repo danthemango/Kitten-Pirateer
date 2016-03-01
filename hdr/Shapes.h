@@ -10,9 +10,6 @@
 //    Note: should be useful to determine collisions
 // ************************************************
 
-#include <cmath>
-using namespace std;
-
 #ifndef SHAPES_H
 #define SHAPES_H
 
@@ -29,6 +26,38 @@ class Point{
       int m_x,m_y;
 };
 
+// Triangle object
+// defined by three points
+class Triangle{
+   public:
+      Triangle(Point A, Point B, Point C);
+      // returns true if a point is within a triangle
+      bool isIn(Point P);
+      // returns true if triangle T collides with this triangle
+      bool collides(Triangle T);
+      // returns true if triangle T is entirely with this triangle
+      bool isIn(Triangle T);
+   private:
+      Point m_A, m_B, m_C;
+};
+
+// TODO
+class Circle{
+   public:
+      //
+   private:
+      //
+};
+
+// shape object is defined by a series of circles and triangles
+//TODO
+class Shape{
+   public:
+      //
+   private:
+      //
+};
+
 // Line object
 // Defined by two points
 class Line{
@@ -40,13 +69,18 @@ class Line{
       // ('below' on a cartesian plane)
       // NOTE: on a vertical line, 'left' is defined to be 'below'
       bool isBelow(Point P);
+      // slope of the line
+      float slope();
+      // y-intercept
+      float yIntercept();
+      // returns true if line is vertical
+      bool isVertical();
+      // returns true if the two points are on the same side of the line
+      bool sameSide(Point P1, Point P2);
    private:
-      // two lines on the line
+      // the two points which define the line
       Point m_A, m_B;
 };
-
-// Triangle object
-//TODO
 
 // Square object
 // Note: is actually a rectangle

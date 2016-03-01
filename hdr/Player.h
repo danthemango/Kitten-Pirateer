@@ -18,16 +18,20 @@
 #include "../hdr/GameObject.h"
 #include "../hdr/Obstacle.h"
 #include "../hdr/Weapon.h"
+#include "../hdr/Items.h"
+#include "../hdr/ItemHandler.h"
 #include "../hdr/ImageLoader.h"
 #include "../hdr/config.h"
 
 class Player : public GameObject
 {
    public:
-      Player();
-      ~Player();
+      
       // returns the currently existing instance
-      static Player &getInstance();
+      static Player &getInstance(){
+        static Player instance;
+        return instance;
+      }
       // updates all contained zombies
       void update();
       // draws all zombies
@@ -53,15 +57,19 @@ class Player : public GameObject
       void down();
       void displayTexture();
       void init();
-      void collisions();
+      void collision(int xpos, int ypos, int width, int height, int cond);
       void addHealth(int x);
       int getDirection();
       bool c_up,c_down,c_left,c_right;
-
+      int getTile();
+      int getX();
+      int getY();
    private:
+      Player();
+      ~Player();
       // for a singleton, we don't share the default methods
-      Player(const Player &old); // no copying
-      const Player &operator= (const Player &old); // no assignment
+      Player(Player const &); // no copying
+      void operator= (Player const &); // no assignment
       int m_health;
       int m_direction; //up(0),down(2),left(3),right(1)
       int m_x; //pos of player
@@ -69,6 +77,7 @@ class Player : public GameObject
       float m_speed; //player movement speed
       int m_arraypos;
       int m_stepSize;
+      int m_currTile;
       GLuint m_PlayerTexture;
 };
 #endif

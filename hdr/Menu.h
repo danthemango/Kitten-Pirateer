@@ -27,6 +27,12 @@ class Menu {
 	
 	private:
 
+		//Menu and splashScreen height and width variables.
+		int m_width;
+		int m_height;
+		GLuint m_splashTexture;
+
+	public:
 		//Contructor
 		Menu() {
 			
@@ -37,12 +43,6 @@ class Menu {
 			
 		};
 		
-		//Menu and splashScreen height and width variables.
-		int m_width;
-		int m_height;
-		GLuint m_splashTexture;
-
-	public:
 		
 		//Required Functions:
 		void init();//Prepares the various files.

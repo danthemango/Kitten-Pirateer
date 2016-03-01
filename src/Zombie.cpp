@@ -69,6 +69,7 @@ void Zombie::display()
    if(m_dead){
       // TODO draw dead zombie
    }
+   //m_texture = ImageLoader::LoadTexture("./imgs/Up.png");
 }
 
 // kill the zombie immediately

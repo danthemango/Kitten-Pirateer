@@ -1,222 +1,162 @@
-In file included from src/Game.cpp:15:0:
-src/../hdr/Game.h:98:15: error: ‘static void Game::key(unsigned char, int, int)’ cannot be overloaded
-   static void key(unsigned char key, int x, int y);//Key takes in the key commands 
-               ^
-src/../hdr/Game.h:91:15: error: with ‘static void Game::key(unsigned char, int, int)’
-   static void key(unsigned char key, int x, int y);
-               ^
-In file included from src/../hdr/Game.h:16:0,
-                 from src/Game.cpp:15:
-src/../hdr/../hdr/Player.h: In constructor ‘Game::Game()’:
-src/../hdr/../hdr/Player.h:36:7: error: ‘Player::Player()’ is private
-       Player();
-       ^
-In file included from src/Game.cpp:15:0:
-src/../hdr/Game.h:34:16: error: within this context
-         Game() {
-                ^
-In file included from src/../hdr/Game.h:16:0,
-                 from src/Game.cpp:15:
-src/../hdr/../hdr/Player.h:39:7: error: ‘Player::~Player()’ is private
-       ~Player();
-       ^
-In file included from src/Game.cpp:15:0:
-src/../hdr/Game.h:34:16: error: within this context
-         Game() {
-                ^
-In file included from src/../hdr/Game.h:16:0,
-                 from src/Game.cpp:15:
-src/../hdr/../hdr/Player.h: In destructor ‘Game::~Game()’:
-src/../hdr/../hdr/Player.h:39:7: error: ‘Player::~Player()’ is private
-       ~Player();
-       ^
-In file included from src/Game.cpp:15:0:
-src/../hdr/Game.h:28:7: error: within this context
- class Game {
-       ^
-src/../hdr/Game.h: In static member function ‘static Game& Game::getInstance()’:
-src/../hdr/Game.h:69:25: note: synthesized method ‘Game::~Game()’ first required here 
-             static Game instance;//Guaranteed to be destroyed.
-                         ^
-In file included from src/../hdr/Obstacle.h:24:0,
-                 from src/Game.cpp:17:
-src/../hdr/../hdr/PC.h: At global scope:
-src/../hdr/../hdr/PC.h:16:21: error: ‘check_boundary’ has not been declared
-       void movement(check_boundary); //function responsible for PC's movement and checking screen boundary
-                     ^
-src/../hdr/../hdr/PC.h:17:19: error: ‘weapons’ has not been declared
-       void attack(weapons,var_health);//function to attack the NPC using the weapons available 
-                   ^
-src/../hdr/../hdr/PC.h:17:27: error: ‘var_health’ has not been declared
-       void attack(weapons,var_health);//function to attack the NPC using the weapons available 
-                           ^
-src/../hdr/../hdr/PC.h:26:23: error: ‘var_health’ is not a type
-       void get_damage(var_health); //function to get damage from npc attacks
-                       ^
-src/../hdr/../hdr/PC.h:27:26: error: ‘weapons’ has not been declared
-       bool check_pc_ammo(weapons->ammo);// checks for ammo everytime the gun is fired
-                          ^
-src/../hdr/../hdr/PC.h:27:33: error: expected ‘,’ or ‘...’ before ‘->’ token
-       bool check_pc_ammo(weapons->ammo);// checks for ammo everytime the gun is fired
-                                 ^
-src/../hdr/../hdr/PC.h:28:28: error: ‘var_health’ is not a type
-       bool check_pc_health(var_health);// checks pc health for every refresh of the screen
-                            ^
-src/../hdr/../hdr/PC.h:29:19: error: ‘var_health’ is not a type
-       void update(var_health,weapons->ammo,Inventory);// updates the necessary variables to be displayed in HUD
-                   ^
-src/../hdr/../hdr/PC.h:29:30: error: ‘weapons’ has not been declared
-       void update(var_health,weapons->ammo,Inventory);// updates the necessary variables to be displayed in HUD
-                              ^
-src/../hdr/../hdr/PC.h:29:37: error: expected ‘,’ or ‘...’ before ‘->’ token
-       void update(var_health,weapons->ammo,Inventory);// updates the necessary variables to be displayed in HUD
-                                     ^
-In file included from src/Game.cpp:17:0:
-src/../hdr/Obstacle.h: In member function ‘int Obstacle::getC()’:
-src/../hdr/Obstacle.h:35:35: error: expected ‘;’ before ‘}’ token
-       int getC() {return CONDITION};
-                                   ^
-src/Game.cpp: In member function ‘GLfloat Game::frand()’:
-src/Game.cpp:29:5: error: named return values are no longer supported
-     return random()/(GLfloat)RAND_MAX;
-     ^
-src/Game.cpp:37:7: error: ‘id’ was not declared in this scope
-    if(id == 513) {
-       ^
-src/Game.cpp: In member function ‘void Game::update()’:
-src/Game.cpp:162:10: error: incomplete type ‘Menu’ used in nested name specifier
-   return Menu::mainMenu();
-          ^
-src/Game.cpp:162:25: error: return-statement with a value, in function returning 'void' [-fpermissive]
-   return Menu::mainMenu();
-                         ^
-src/Game.cpp:170:10: error: incomplete type ‘Menu’ used in nested name specifier
-   return Menu::splashScreen();
-          ^
-src/Game.cpp:170:29: error: return-statement with a value, in function returning 'void' [-fpermissive]
-   return Menu::splashScreen();
-                             ^
-src/Game.cpp:175:40: error: no matching function for call to ‘Player::update(Obstacle* [10], int, int)’
-  m_myPlayer.update(m_myGameObjects3,3,4);
-                                        ^
-In file included from src/../hdr/Game.h:16:0,
-                 from src/Game.cpp:15:
-src/../hdr/../hdr/Player.h:26:12: note: candidate: void Player::update()
-       void update();
-            ^
-src/../hdr/../hdr/Player.h:26:12: note:   candidate expects 0 arguments, 3 provided
-src/Game.cpp:176:40: error: no matching function for call to ‘Player::update(Obstacle* [10], int, int)’
-  m_myPlayer.update(m_myGameObjects4,1,3);
-                                        ^
-In file included from src/../hdr/Game.h:16:0,
-                 from src/Game.cpp:15:
-src/../hdr/../hdr/Player.h:26:12: note: candidate: void Player::update()
-       void update();
-            ^
-src/../hdr/../hdr/Player.h:26:12: note:   candidate expects 0 arguments, 3 provided
-src/Game.cpp: In member function ‘void Game::init()’:
-src/Game.cpp:217:74: error: no matching function for call to ‘Obstacle::Obstacle(int, int, int, int, int)’
-     m_myGameObjects3[m_gameObjects] = new Obstacle(170, 210, 154 , 150, 0); //square
-                                                                          ^
-In file included from src/Game.cpp:17:0:
-src/../hdr/Obstacle.h:41:7: note: candidate: Obstacle::Obstacle()
-       Obstacle(){};
-       ^
-src/../hdr/Obstacle.h:41:7: note:   candidate expects 0 arguments, 5 provided
-src/../hdr/Obstacle.h:40:7: note: candidate: Obstacle::Obstacle(int, int, int, int)
-       Obstacle(int x, int y, int w, int h);
-       ^
-src/../hdr/Obstacle.h:40:7: note:   candidate expects 4 arguments, 5 provided
-src/../hdr/Obstacle.h:26:7: note: candidate: Obstacle::Obstacle(const Obstacle&)
- class Obstacle: public GameObject {
-       ^
-src/../hdr/Obstacle.h:26:7: note:   candidate expects 1 argument, 5 provided
-src/Game.cpp:219:70: error: no matching function for call to ‘Obstacle::Obstacle(int, int, int, int, int)’
-     m_myGameObjects4[m_gameObjects] = new Obstacle(217, 245, 85, 0, 0);  
-                                                                      ^
-In file included from src/Game.cpp:17:0:
-src/../hdr/Obstacle.h:41:7: note: candidate: Obstacle::Obstacle()
-       Obstacle(){};
-       ^
-src/../hdr/Obstacle.h:41:7: note:   candidate expects 0 arguments, 5 provided
-src/../hdr/Obstacle.h:40:7: note: candidate: Obstacle::Obstacle(int, int, int, int)
-       Obstacle(int x, int y, int w, int h);
-       ^
-src/../hdr/Obstacle.h:40:7: note:   candidate expects 4 arguments, 5 provided
-src/../hdr/Obstacle.h:26:7: note: candidate: Obstacle::Obstacle(const Obstacle&)
- class Obstacle: public GameObject {
-       ^
-src/../hdr/Obstacle.h:26:7: note:   candidate expects 1 argument, 5 provided
-src/Game.cpp:222:72: error: no matching function for call to ‘Obstacle::Obstacle(int, int, int, int, int)’
-     m_myGameObjects3[m_gameObjects] = new Obstacle( 498, 369, 449,296,0);
-                                                                        ^
-In file included from src/Game.cpp:17:0:
-src/../hdr/Obstacle.h:41:7: note: candidate: Obstacle::Obstacle()
-       Obstacle(){};
-       ^
-src/../hdr/Obstacle.h:41:7: note:   candidate expects 0 arguments, 5 provided
-src/../hdr/Obstacle.h:40:7: note: candidate: Obstacle::Obstacle(int, int, int, int)
-       Obstacle(int x, int y, int w, int h);
-       ^
-src/../hdr/Obstacle.h:40:7: note:   candidate expects 4 arguments, 5 provided
-src/../hdr/Obstacle.h:26:7: note: candidate: Obstacle::Obstacle(const Obstacle&)
- class Obstacle: public GameObject {
-       ^
-src/../hdr/Obstacle.h:26:7: note:   candidate expects 1 argument, 5 provided
-src/Game.cpp:224:73: error: no matching function for call to ‘Obstacle::Obstacle(int, int, int, int, int)’
-     m_myGameObjects3[m_gameObjects] = new Obstacle( 650, 222, 151, 147,0);
-                                                                         ^
-In file included from src/Game.cpp:17:0:
-src/../hdr/Obstacle.h:41:7: note: candidate: Obstacle::Obstacle()
-       Obstacle(){};
-       ^
-src/../hdr/Obstacle.h:41:7: note:   candidate expects 0 arguments, 5 provided
-src/../hdr/Obstacle.h:40:7: note: candidate: Obstacle::Obstacle(int, int, int, int)
-       Obstacle(int x, int y, int w, int h);
-       ^
-src/../hdr/Obstacle.h:40:7: note:   candidate expects 4 arguments, 5 provided
-src/../hdr/Obstacle.h:26:7: note: candidate: Obstacle::Obstacle(const Obstacle&)
- class Obstacle: public GameObject {
-       ^
-src/../hdr/Obstacle.h:26:7: note:   candidate expects 1 argument, 5 provided
-src/Game.cpp:249:13: error: ‘class Player’ has no member named ‘init’
-  m_myPlayer.init();
-             ^
-src/Game.cpp: In member function ‘void Game::keyOperations()’:
-src/Game.cpp:266:38: error: ‘class Player’ has no member named ‘left’
-       Game::getInstance().m_myPlayer.left();
-                                      ^
-src/Game.cpp:267:38: error: ‘class Player’ has no member named ‘c_left’
-       Game::getInstance().m_myPlayer.c_left = true;
-                                      ^
-src/Game.cpp:271:36: error: ‘class Player’ has no member named ‘c_left’
-     Game::getInstance().m_myPlayer.c_left = false;
-                                    ^
-src/Game.cpp:276:38: error: ‘class Player’ has no member named ‘up’
-       Game::getInstance().m_myPlayer.up();
-                                      ^
-src/Game.cpp:277:38: error: ‘class Player’ has no member named ‘c_up’
-       Game::getInstance().m_myPlayer.c_up = true;
-                                      ^
-src/Game.cpp:281:36: error: ‘class Player’ has no member named ‘c_up’
-     Game::getInstance().m_myPlayer.c_up = false;
-                                    ^
-src/Game.cpp:286:38: error: ‘class Player’ has no member named ‘right’
-       Game::getInstance().m_myPlayer.right();
-                                      ^
-src/Game.cpp:287:38: error: ‘class Player’ has no member named ‘c_right’
-       Game::getInstance().m_myPlayer.c_right = true;
-                                      ^
-src/Game.cpp:291:36: error: ‘class Player’ has no member named ‘c_right’
-     Game::getInstance().m_myPlayer.c_right = false;
-                                    ^
-src/Game.cpp:296:38: error: ‘class Player’ has no member named ‘down’
-       Game::getInstance().m_myPlayer.down();
-                                      ^
-src/Game.cpp:297:38: error: ‘class Player’ has no member named ‘c_down’
-       Game::getInstance().m_myPlayer.c_down = true;
-                                      ^
-src/Game.cpp:301:36: error: ‘class Player’ has no member named ‘c_down’
-     Game::getInstance().m_myPlayer.c_down = false;
-                                    ^
-make[1]: *** [obj/Game.o] Error 1
+obj/Zombie.o: In function `Zombie::Zombie()':
+Zombie.cpp:(.text+0x14): undefined reference to `HostileNPC::HostileNPC()'
+obj/Zombie.o:(.rodata._ZTV6Zombie[_ZTV6Zombie]+0x10): undefined reference to `NPC::update()'
+obj/Zombie.o:(.rodata._ZTI10HostileNPC[_ZTI10HostileNPC]+0x18): undefined reference to `typeinfo for NPC'
+obj/ImageLoader.o: In function `ImageLoader::LoadTexture(char const*)':
+ImageLoader.cpp:(.text+0x23): undefined reference to `SOIL_load_OGL_texture'
+obj/ImageLoader.o: In function `ImageLoader::drawBox(float, unsigned int, int, int, int, int)':
+ImageLoader.cpp:(.text+0x18a): undefined reference to `glTranslated'
+ImageLoader.cpp:(.text+0x1ab): undefined reference to `glRotated'
+ImageLoader.cpp:(.text+0x1cc): undefined reference to `glRotated'
+ImageLoader.cpp:(.text+0x1e2): undefined reference to `glBegin'
+ImageLoader.cpp:(.text+0x203): undefined reference to `glNormal3fv'
+ImageLoader.cpp:(.text+0x212): undefined reference to `glTexCoord2i'
+ImageLoader.cpp:(.text+0x242): undefined reference to `glVertex3fv'
+ImageLoader.cpp:(.text+0x251): undefined reference to `glTexCoord2i'
+ImageLoader.cpp:(.text+0x285): undefined reference to `glVertex3fv'
+ImageLoader.cpp:(.text+0x294): undefined reference to `glTexCoord2i'
+ImageLoader.cpp:(.text+0x2c8): undefined reference to `glVertex3fv'
+ImageLoader.cpp:(.text+0x2d7): undefined reference to `glTexCoord2i'
+ImageLoader.cpp:(.text+0x30b): undefined reference to `glVertex3fv'
+ImageLoader.cpp:(.text+0x310): undefined reference to `glEnd'
+obj/ImageLoader.o: In function `ImageLoader::RenderString(float, float, void*, char const*)':
+ImageLoader.cpp:(.text+0x35d): undefined reference to `glRasterPos2f'
+ImageLoader.cpp:(.text+0x370): undefined reference to `glutBitmapString'
+obj/ImageLoader.o: In function `ImageLoader::arc(float, float, float, int, int, int)':
+ImageLoader.cpp:(.text+0x3b4): undefined reference to `glBegin'
+ImageLoader.cpp:(.text+0x477): undefined reference to `glVertex2f'
+ImageLoader.cpp:(.text+0x48c): undefined reference to `glEnd'
+obj/ImageLoader.o: In function `ImageLoader::rectangle(float, float, float, float)':
+ImageLoader.cpp:(.text+0x511): undefined reference to `glTranslated'
+ImageLoader.cpp:(.text+0x51b): undefined reference to `glBegin'
+ImageLoader.cpp:(.text+0x52a): undefined reference to `glTexCoord2i'
+ImageLoader.cpp:(.text+0x539): undefined reference to `glVertex2i'
+ImageLoader.cpp:(.text+0x548): undefined reference to `glTexCoord2i'
+ImageLoader.cpp:(.text+0x55f): undefined reference to `glVertex2i'
+ImageLoader.cpp:(.text+0x56e): undefined reference to `glTexCoord2i'
+ImageLoader.cpp:(.text+0x58d): undefined reference to `glVertex2i'
+ImageLoader.cpp:(.text+0x59c): undefined reference to `glTexCoord2i'
+ImageLoader.cpp:(.text+0x5b3): undefined reference to `glVertex2i'
+ImageLoader.cpp:(.text+0x5b8): undefined reference to `glEnd'
+obj/ImageLoader.o: In function `ImageLoader::line(float, float, float, float, float)':
+ImageLoader.cpp:(.text+0x5eb): undefined reference to `glLineWidth'
+ImageLoader.cpp:(.text+0x5f5): undefined reference to `glBegin'
+ImageLoader.cpp:(.text+0x610): undefined reference to `glVertex2f'
+ImageLoader.cpp:(.text+0x62b): undefined reference to `glVertex2f'
+ImageLoader.cpp:(.text+0x630): undefined reference to `glEnd'
+ImageLoader.cpp:(.text+0x63d): undefined reference to `glLineWidth'
+obj/Jukebox.o: In function `Jukebox::MixAudio(void*, unsigned char*, int)':
+Jukebox.cpp:(.text+0x94): undefined reference to `SDL_MixAudio'
+obj/Jukebox.o: In function `Jukebox::PlaySound(char const*)':
+Jukebox.cpp:(.text+0x13c): undefined reference to `SDL_RWFromFile'
+Jukebox.cpp:(.text+0x161): undefined reference to `SDL_LoadWAV_RW'
+Jukebox.cpp:(.text+0x170): undefined reference to `SDL_GetError'
+Jukebox.cpp:(.text+0x1d6): undefined reference to `SDL_BuildAudioCVT'
+Jukebox.cpp:(.text+0x229): undefined reference to `SDL_ConvertAudio'
+Jukebox.cpp:(.text+0x235): undefined reference to `SDL_FreeWAV'
+Jukebox.cpp:(.text+0x26b): undefined reference to `SDL_LockAudio'
+Jukebox.cpp:(.text+0x2bb): undefined reference to `SDL_UnlockAudio'
+obj/Jukebox.o: In function `Jukebox::init()':
+Jukebox.cpp:(.text+0x2fe): undefined reference to `SDL_OpenAudio'
+Jukebox.cpp:(.text+0x30a): undefined reference to `SDL_GetError'
+Jukebox.cpp:(.text+0x32d): undefined reference to `SDL_PauseAudio'
+obj/Game.o: In function `Game::init()':
+Game.cpp:(.text+0x12): undefined reference to `glutInitDisplayMode'
+Game.cpp:(.text+0x28): undefined reference to `glutInitWindowSize'
+Game.cpp:(.text+0x37): undefined reference to `glutInitWindowPosition'
+Game.cpp:(.text+0x41): undefined reference to `glutCreateWindow'
+Game.cpp:(.text+0x56): undefined reference to `glClearColor'
+Game.cpp:(.text+0x60): undefined reference to `glShadeModel'
+Game.cpp:(.text+0x6a): undefined reference to `glEnable'
+Game.cpp:(.text+0x74): undefined reference to `glEnable'
+Game.cpp:(.text+0x7e): undefined reference to `glEnable'
+Game.cpp:(.text+0x88): undefined reference to `glDepthFunc'
+Game.cpp:(.text+0x92): undefined reference to `glMatrixMode'
+Game.cpp:(.text+0x97): undefined reference to `glLoadIdentity'
+Game.cpp:(.text+0xa1): undefined reference to `glEnable'
+Game.cpp:(.text+0xab): undefined reference to `glEnable'
+Game.cpp:(.text+0xba): undefined reference to `glBlendFunc'
+Game.cpp:(.text+0x115): undefined reference to `glOrtho'
+Game.cpp:(.text+0x11f): undefined reference to `glutKeyboardFunc'
+Game.cpp:(.text+0x129): undefined reference to `glutDisplayFunc'
+Game.cpp:(.text+0x133): undefined reference to `glutKeyboardUpFunc'
+Game.cpp:(.text+0x158): undefined reference to `glutMainLoop'
+obj/Game.o: In function `Game::update()':
+Game.cpp:(.text+0x17d): undefined reference to `glClear'
+Game.cpp:(.text+0x19e): undefined reference to `glClearColor'
+Game.cpp:(.text+0x1a8): undefined reference to `glClear'
+Game.cpp:(.text+0x1b2): undefined reference to `glMatrixMode'
+Game.cpp:(.text+0x1b7): undefined reference to `glLoadIdentity'
+Game.cpp:(.text+0x1c1): undefined reference to `glEnable'
+Game.cpp:(.text+0x1d8): undefined reference to `glTexEnvf'
+Game.cpp:(.text+0x1eb): undefined reference to `glBindTexture'
+Game.cpp:(.text+0x225): undefined reference to `glDisable'
+Game.cpp:(.text+0x22a): undefined reference to `glFlush'
+obj/Game.o: In function `Game::run()':
+Game.cpp:(.text+0x2ac): undefined reference to `glutSwapBuffers'
+obj/Game.o: In function `Game::timer(int)':
+Game.cpp:(.text+0x2cd): undefined reference to `glutPostRedisplay'
+obj/Game.o: In function `Game::idle()':
+Game.cpp:(.text+0x2e8): undefined reference to `glutTimerFunc'
+obj/Game.o: In function `Game::reshape(int, int)':
+Game.cpp:(.text+0x32f): undefined reference to `glViewport'
+Game.cpp:(.text+0x339): undefined reference to `glMatrixMode'
+Game.cpp:(.text+0x33e): undefined reference to `glLoadIdentity'
+Game.cpp:(.text+0x387): undefined reference to `glOrtho'
+Game.cpp:(.text+0x391): undefined reference to `glMatrixMode'
+Game.cpp:(.text+0x396): undefined reference to `glutPostRedisplay'
+obj/Game.o: In function `Game::keyOperations()':
+Game.cpp:(.text+0x463): undefined reference to `Game::keystates'
+Game.cpp:(.text+0x496): undefined reference to `Game::keystates'
+Game.cpp:(.text+0x4c9): undefined reference to `Game::keystates'
+Game.cpp:(.text+0x4fc): undefined reference to `Game::keystates'
+obj/Game.o: In function `Game::keyUp(unsigned char, int, int)':
+Game.cpp:(.text+0x540): undefined reference to `Game::keystates'
+obj/Game.o: In function `main':
+Game.cpp:(.text+0x573): undefined reference to `glutInit'
+Game.cpp:(.text+0x585): undefined reference to `SDL_CloseAudio'
+obj/Game.o: In function `Player::getInstance()':
+Game.cpp:(.text._ZN6Player11getInstanceEv[_ZN6Player11getInstanceEv]+0x4b): undefined reference to `Player::~Player()'
+obj/Game.o: In function `HUDHandler::HUDHandler()':
+Game.cpp:(.text._ZN10HUDHandlerC2Ev[_ZN10HUDHandlerC5Ev]+0x2a): undefined reference to `glutLayerGet'
+obj/Player.o: In function `Player::displayTexture()':
+Player.cpp:(.text+0x1ea): undefined reference to `glEnable'
+Player.cpp:(.text+0x201): undefined reference to `glTexEnvf'
+Player.cpp:(.text+0x214): undefined reference to `glBindTexture'
+Player.cpp:(.text+0x251): undefined reference to `glDisable'
+Player.cpp:(.text+0x256): undefined reference to `glFlush'
+obj/ItemHUD.o: In function `ItemHUD::displayHUD()':
+ItemHUD.cpp:(.text+0x10d): undefined reference to `glutBitmapTimesRoman24'
+ItemHUD.cpp:(.text+0x14e): undefined reference to `glutBitmapTimesRoman24'
+ItemHUD.cpp:(.text+0x18c): undefined reference to `glutBitmapTimesRoman24'
+ItemHUD.cpp:(.text+0x1cd): undefined reference to `glutBitmapTimesRoman24'
+ItemHUD.cpp:(.text+0x20c): undefined reference to `glutBitmapTimesRoman24'
+obj/Items.o: In function `Items::display()':
+Items.cpp:(.text+0x1c6): undefined reference to `glEnable'
+Items.cpp:(.text+0x1dd): undefined reference to `glTexEnvf'
+Items.cpp:(.text+0x1f0): undefined reference to `glBindTexture'
+Items.cpp:(.text+0x23b): undefined reference to `glDisable'
+Items.cpp:(.text+0x240): undefined reference to `glFlush'
+obj/Menu.o: In function `Menu::splashScreen()':
+Menu.cpp:(.text+0x39): undefined reference to `glEnable'
+Menu.cpp:(.text+0x75): undefined reference to `glTexEnvf'
+Menu.cpp:(.text+0x88): undefined reference to `glBindTexture'
+Menu.cpp:(.text+0x92): undefined reference to `glDisable'
+Menu.cpp:(.text+0x97): undefined reference to `glFlush'
+obj/Menu.o: In function `Menu::mainMenu()':
+Menu.cpp:(.text+0xc3): undefined reference to `glEnable'
+Menu.cpp:(.text+0xff): undefined reference to `glTexEnvf'
+Menu.cpp:(.text+0x112): undefined reference to `glBindTexture'
+Menu.cpp:(.text+0x11c): undefined reference to `glDisable'
+Menu.cpp:(.text+0x121): undefined reference to `glFlush'
+obj/HealthHUD.o: In function `HealthHUD::displayHUD()':
+HealthHUD.cpp:(.text+0xa6): undefined reference to `glutBitmapTimesRoman24'
+HealthHUD.cpp:(.text+0xe5): undefined reference to `glutBitmapTimesRoman24'
+obj/HUD.o: In function `HUD::HUD()':
+HUD.cpp:(.text+0x33): undefined reference to `glutLayerGet'
+obj/HUD.o: In function `HUD::RenderString(float, float, void*, char const*)':
+HUD.cpp:(.text+0x6f): undefined reference to `glColor3f'
+HUD.cpp:(.text+0x8a): undefined reference to `glRasterPos2f'
+HUD.cpp:(.text+0x9d): undefined reference to `glutBitmapString'
+collect2: error: ld returned 1 exit status
+make[1]: *** [bin/game] Error 1

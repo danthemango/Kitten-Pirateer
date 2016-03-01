@@ -16,6 +16,7 @@
 #define ZOMBIE_H
 #include "HostileNPC.h"
 #include "Shapes.h"
+#include "ImageLoader.h"
 
 #define UP 0
 #define DOWN 1
@@ -57,5 +58,6 @@ class Zombie: public HostileNPC{
       int m_x, m_y;
       // attack strength of the zombie
       int m_damage;
+      GLuint m_texture;
 };
 #endif

@@ -1,11 +1,8 @@
 #include <cstdio>
 
 #include <stdlib.h>
-#include <GL/glut.h>    /* glut.h includes gl.h and glu.h */
 #include <math.h>
 #include <time.h>
-#include <GL/freeglut.h>
-#include <SOIL/SOIL.h>
 #include "../hdr/ImageLoader.h"
 
 

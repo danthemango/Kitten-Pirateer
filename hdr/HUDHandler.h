@@ -23,8 +23,8 @@ int m_width, m_height;
 // Singleton for HUD
 HUDHandler() {
             // Define the game width and height from initial generation.
-			m_width = Game::getInstance().getWidth();
-			m_height = Game::getInstance().getHeight();
+			m_width = SCREEN_SIZE_X;
+			m_height = SCREEN_SIZE_Y;
 			// Create an overlay view over the main game as not to disrupt the primary functions of the game
 			// Can be later implepented to be turned off through settings
 			if (glutLayerGet(GLUT_OVERLAY_POSSIBLE)) {

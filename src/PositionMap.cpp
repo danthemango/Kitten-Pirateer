@@ -14,7 +14,7 @@
 PositionMap::PositionMap()
 {
    // ensure we are aware that no elements have been created in the list
-   Point = new Point(0,0);
+   node* temp = new node;
    m_tail = m_head;
 }
 
@@ -22,7 +22,7 @@ PositionMap::~PositionMap()
 {
    // delete all elements in the list
    while(m_head != NULL){
-      pos* temp = m_head;
+      node* temp = m_head;
       delete m_head->data;
       delete m_head;
       temp = temp->next;
@@ -30,16 +30,18 @@ PositionMap::~PositionMap()
 }
 
 // inserts an element to the map at position x,y
-void PositionMap::addElement(int x, y)
+void PositionMap::add(int x, int y)
 {
    m_num++;
    // traverse list to find next empty spot
-   node* temp = head;
+   node* temp = m_head;
    while(temp->next != NULL){
       temp = temp->next;
    }
    // insert the data in this position
-   temp->next = new Point(x,y);
+   temp->next = new node;
+   temp->next->data = new Point(x,y);
+   temp->next->next = NULL;
    m_tail = temp->next;
 }
 

@@ -28,6 +28,7 @@ class ZombieHandler: public GameObject
       static ZombieHandler &getInstance();
       // updates all contained zombies
       void update(int x, int y);
+      void update() {}
       // draws all zombies
       void display();
       // damages every Zombie in the range
@@ -55,5 +56,6 @@ class ZombieHandler: public GameObject
       ZombieHandler(const ZombieHandler &old); // no copying
       const ZombieHandler &operator= (const ZombieHandler &old); // no assignment
       ~ZombieHandler();
+      void loadZombies();
 };
 #endif

@@ -31,14 +31,10 @@ Player::Player()
   m_speed = PLAYER_SPEED;
   c_up=c_down=c_left=c_right=false;
   m_stepSize = 4;
+  m_currTile = 3;
 }
 
 //player singleton
-static Player Player:: &getInstance()
-{
-   static Player *instance = new Player;
-   return *instance;
-}
 
 int Player::getHealth()
 {
@@ -60,12 +56,27 @@ int Player::getDirection()
 {
    return m_direction;
 }
+
+int Player::getX()
+{
+    return m_x;
+}
+
+int Player::getY()
+{
+   return m_y;
+}
+
+int Player::getTile()
+{
+   return m_currTile;
+}
 void Player::init()
 {
    m_PlayerTexture = ImageLoader::LoadTexture("./imgs/Up.png");   
 }
 
-void Player::update()
+void Player::display()
 {
    displayTexture();
 }
@@ -98,7 +109,7 @@ void Player::collision(int xpos, int ypos, int width, int height, int cond)
    //the check
 
    //bool check = ItemHandler::getInstance().
-   if(m_x+m_width > xpos && m_x < xpos + width && m_y+m_height > ypos && m_y < ypos+height){
+   if(m_x+SPRITE_SIZE_X > xpos && m_x < xpos + width && m_y+SPRITE_SIZE_Y > ypos && m_y < ypos+height){
 	   if(cond == 0){   
 	      if(c_up){
       	   m_y -=m_stepSize;
@@ -119,20 +130,20 @@ void Player::collision(int xpos, int ypos, int width, int height, int cond)
 	   m_speed = 1;
 	}
 	
-   if(m_x+m_stepSize+m_size > xpos && m_x < xpos + width
-      && m_y+m_size > ypos && m_y < ypos+height){
+   if(m_x+m_stepSize+SPRITE_SIZE_X > xpos && m_x < xpos + width
+      && m_y+SPRITE_SIZE_Y > ypos && m_y < ypos+height){
       stopright = true;
       m_x -=m_stepSize;
-   }else if(m_x+m_size > xpos && m_x-m_stepSize < xpos + width
-      && m_y+m_size > ypos && m_y < ypos+height){
+   }else if(m_x+SPRITE_SIZE_X > xpos && m_x-m_stepSize < xpos + width
+      && m_y+SPRITE_SIZE_Y > ypos && m_y < ypos+height){
       stopleft = true;
       m_x+=m_stepSize;
    }else if(m_y-m_stepSize < ypos+height  && m_y > ypos
-      && m_x +m_size > xpos && m_x < xpos+width){
+      && m_x +SPRITE_SIZE_X > xpos && m_x < xpos+width){
       stopdown = true;
       m_y+=m_stepSize;
-   }else if(m_y+m_size+m_stepSize> ypos && m_y < ypos+height
-      && m_x+m_size > xpos && m_x < xpos+width){
+   }else if(m_y+SPRITE_SIZE_Y+m_stepSize> ypos && m_y < ypos+height
+      && m_x+SPRITE_SIZE_X > xpos && m_x < xpos+width){
       stopup = true;
       m_y-=m_stepSize;
    }else{
@@ -160,7 +171,7 @@ void Player::update()
       int height = ob[i].getH();
       int cond = ob[i].getC();
 
-      collisions(xpos, ypos, width, height, cond);
+      collision(xpos, ypos, width, height, cond);
       if(stopright == true || stopleft == true||stopup==true||stopdown==true)
       	break;   
    }
@@ -169,7 +180,7 @@ void Player::update()
 
 void Player::attacked(int x1, int y1, int x2, int y2, int damage)
 {
-    m_health -= 10;   
+    m_health -= damage;   
 
 }
 
@@ -179,40 +190,41 @@ void Player::attack()
    //0 = melee attacks
    //1 = gun
    //2 = spell
-   weaponId = ItemHandler::getinstance().getType(); // stores the weapon id
-   int weaponDamage = ItemHandler::getinstance().getDamage() // gets the damage for the weapon
-   int weaponRange = ItemHandler::getinstance().getRange();  
+   int weaponId = ItemHandler::getInstance().getWeapon()->getType(); // stores the weapon id
+   int weaponDamage = ItemHandler::getInstance().getWeapon()->getDamage(); // gets the damage for the weapon
+   int weaponRange = ItemHandler::getInstance().getWeapon()->getRange();  
    int midpointx = SPRITE_SIZE_X / 2 + m_x;
-   int midpointy = SPRITE_SIZE_y / 2 + m_y;
+   int midpointy = SPRITE_SIZE_Y / 2 + m_y;
    
+   float x1,x2,y1,y2 = 0.0;
    switch (m_direction)
    {
       case 0://u
-        float x1 = midpointx - weaponRange;
-        float x2 = midpointx + weaponRange;
-        float y1 = m_y + SPRITE_SIZE_Y;
-        float y2 = m_y + SPRITE_SIZE_Y + 2*weaponRange;
+        x1 = midpointx - weaponRange;
+        x2 = midpointx + weaponRange;
+        y1 = m_y + SPRITE_SIZE_Y;
+        y2 = m_y + SPRITE_SIZE_Y + 2*weaponRange;
         ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
         break;
       case 2://d
-        float x1 = midpointx - weaponRange;
-        float y1 = m_y - 2*weaponRange;
-        float x2 = midpointx + weaponRange;
-        float y2 = m_y;
+        x1 = midpointx - weaponRange;
+        y1 = m_y - 2*weaponRange;
+        x2 = midpointx + weaponRange;
+        y2 = m_y;
         ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
         break;
       case 3://l
-        float x1 = m_x - 2*weaponRange; 
-        float y1 = midpointy - weponRange;
-        float x2 = m_x; 
-        float y2 = midpointy + weaponRange;
+        x1 = m_x - 2*weaponRange; 
+        y1 = midpointy - weaponRange;
+        x2 = m_x; 
+        y2 = midpointy + weaponRange;
         ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
         break;
-      case 1;//r
-        float x1 = m_x; 
-        float y1 = midpointy - weaponRange;
-        float x2 = m_x + SPRITE_SIZE_X + 2*weaponRange;
-        float y2 = midpointy + weaponRange;
+      case 1://r
+        x1 = m_x; 
+        y1 = midpointy - weaponRange;
+        x2 = m_x + SPRITE_SIZE_X + 2*weaponRange;
+        y2 = midpointy + weaponRange;
         ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
         break;
 
@@ -223,14 +235,12 @@ void Player::attack()
 void Player::down ()
 {
     if(!stopdown){
-       m_arraypos = Game::getInstance().getArrayPos();
 
        if(m_y-5 <= 0)
        {
-         if(Game::getInstance().getArrayPos() != 3 && Game::getInstance().getArrayPos() != 4){
-                                                                                 m_arraypos +=2;
-              Game::getInstance().changeScreen(m_arraypos);
-              Game::getInstance().setArrayPos(m_arraypos);
+         if(m_currTile != 3 && m_currTile!= 4){
+              m_arraypos +=2;
+              MapHandler::getInstance().updateTile(m_currTile);
               m_y = 676;
          }
         }else{
@@ -239,22 +249,20 @@ void Player::down ()
      }
      m_x = m_x - m_speed; //updates the position of the player
      m_direction = 2;
-     PlayerTexture= ImageLoader::LoadTexture( "./imgs/Down.bmp" );
+     m_PlayerTexture= ImageLoader::LoadTexture( "./imgs/Down.bmp" );
 }
 
 void Player::up ()
 {
            if(!stopup)
            {
-              m_arraypos = Game::getInstance().getArrayPos();
 
               if(m_y+60 >= 731)
               {
-                 if(Game::getInstance().getArrayPos() != 1 && Game::getInstance().getArrayPos() != 2)
+                 if(m_currTile != 1 && m_currTile != 2)
                  {
                     m_arraypos-=2;
-                    Game::getInstance().changeScreen(m_arraypos);
-                    Game::getInstance().setArrayPos(m_arraypos);
+                    MapHandler::getInstance().updateTile(m_currTile);
                     m_y = 5;
                  }
               }else{
@@ -270,14 +278,13 @@ void Player::right ()
 {
            if(!stopright)
            {
-              m_arraypos = Game::getInstance().getArrayPos();
+ 
               if(m_x+55 >= 1023)
               {
-                 if(Game::getInstance().getArrayPos() != 2 && Game::getInstance().getArrayPos() != 4)
+                 if(m_currTile != 2 && m_currTile != 4)
                  {
                     m_arraypos +=1;
-                    Game::getInstance().changeScreen(m_arraypos);
-                    Game::getInstance().setArrayPos(m_arraypos);
+                    MapHandler::getInstance().updateTile(m_currTile);
                     m_x = 5;
                  }
               }else{
@@ -293,14 +300,13 @@ void Player::left ()
 {
        if(!stopleft)
        {
-          m_arraypos = Game::getInstance().getArrayPos();
+          
           if(m_x-5 <= 0)
           {
-             if(Game::getInstance().getArrayPos() != 3 && Game::getInstance().getArrayPos() != 1)
+             if(m_currTile != 3 && m_currTile != 1)
              {
-                m_arraypos -= 1;
-                Game::getInstance().changeScreen(m_arraypos);
-                Game::getInstance().setArrayPos(m_arraypos);
+                m_currTile -= 1;
+                MapHandler::getInstance().updateTile(m_currTile);
                 m_x = 968 ;
              }
           }else{

@@ -14,6 +14,7 @@
 
 #include "config.h"
 #include "Shapes.h"
+#include <cstddef>
 
 // class which contains the position of elements on a single tile
 class PositionMap{
@@ -63,6 +64,9 @@ class PositionMap{
                }else{
                   return NULL;
                }
+            }
+            bool operator!=(Iterator const &other){
+               return other.m_cur_node != m_cur_node;
             }
             Iterator &operator=(Iterator& other){
                m_cur_node = other.m_cur_node;

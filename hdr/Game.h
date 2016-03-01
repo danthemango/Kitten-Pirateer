@@ -19,6 +19,7 @@
 #include "../hdr/Obstacle.h"//Include the Obstacle class.
 #include "../hdr/MapHandler.h"//Include the MapHandler class.
 #include "../hdr/ZombieHandler.h"//Include the ZombieHandler.h
+#include "../hdr/Menu.h"
 
 //Various required classes:
 class Player;//Gives access to the Player.
@@ -52,15 +53,10 @@ class Game {
 		int m_width;
 		int m_height;
 		int m_margine;
+		Menu m_menu;
 		
 		//Background texture:
 		GLuint m_backgroundTexture;	
-		
-		//MapHandler object:
-		//Place holder to help remind me to add the creation of the MapHandler.
-		//Most likly this will be done with new inside of the Game.cpp init itself 
-		//instead of being done here.
-		//MapHandler m_MapHandler;
 		
 	public:
 	
