@@ -104,7 +104,7 @@ void Zombie::display()
    }
    if(m_dead){
       m_texture = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/Dead.png");
-      return;
+      
    }else{
       m_texture = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/DownA.png");
    }
