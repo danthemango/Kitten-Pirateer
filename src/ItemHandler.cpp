@@ -38,9 +38,6 @@ void ItemHandler::update()
    for(int i = 0; i < m_numOfItems; i++){
       m_itemList[i]->display();
       m_itemList[i]->pickUp(m_itemList[i]);
-      std::cout << ItemHandler::getInstance().getItem()->getName() << std::endl;
-      std::cout << ItemHandler::getInstance().getItem()->getAmount() << std::endl;
-      std::cout << ItemHandler::getInstance().getWeapon()->getName() << std::endl;
    }
    
 }
