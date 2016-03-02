@@ -30,7 +30,6 @@ void ItemHandler::addItemToInv(Items* item)
       m_lastItem++;
       m_itemInv[m_lastItem] = item;
    }
-   
 }
 
 

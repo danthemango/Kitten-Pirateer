@@ -15,11 +15,12 @@
 #include <iostream>
 
 //to be completed for final project
+/*
 void Weapon::display()
 {
 
 }
-
+*/
 void Weapon::update()
 {
 
@@ -99,8 +100,10 @@ Weapon::Weapon(int d, int r, int invs, int id, std::string name, int type, bool 
    m_type = type;
    m_amount = 1;
    m_pickedUp = pickup;
+   m_itemWidth = 20;
    m_x = x;
    m_y = y;
    m_tilePos = tile;
+   m_itemTexture = ImageLoader::LoadTexture("./imgs/lemon.png");
 
 }
