@@ -25,7 +25,7 @@ class Weapon: public Items{
       //returns type of weapon as defined above
       int getType(){return m_type;}
       //displays weapons on map
-      void display();
+      //void display();
       //attack function for weapon
       void attack();
     

@@ -47,6 +47,7 @@ void Items::pickUp(Items* item)
       //Game::getInstance().getArrayPos() == m_tilePos){
       Player::getInstance().getTile() == m_tilePos){
       if(m_pickedUp == false){//if Item hasn't been picked up yet
+	if(m_itemID > 9){
          switch (m_itemID){
             case 10://add item to inventory
                ItemHandler::getInstance().addItemToInv(item);
@@ -71,7 +72,13 @@ void Items::pickUp(Items* item)
                break;            
       
          }
-      }     
+      }
+	}else{  
+		ItemHandler::getInstance().addItemToInv(item);
+		m_pickedUp = true;     
+
+		
+	}   
    }
 }
 
