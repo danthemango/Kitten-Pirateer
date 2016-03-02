@@ -15,7 +15,8 @@ To be completed for final: display all items and sprites of items within the inv
 
 void ItemHUD::displayHUD() {
     // Get the weapon name to be printed to the HUD.
-	weaponName = ItemHandler::getInstance().getWeapon()->getName().c_str();
+	std::string name = ItemHandler::getInstance().getWeapon()->getName();
+	weaponName = name.c_str();
     
     // Current item being equipped to the player
     //Items currItem;
