@@ -62,6 +62,13 @@ debug: CFLAGS=-std=c++11 -g
 debug: clean
 debug: all
 
+#gprof 
+gprof: CFLAGS+=-pg
+gprof: all
+	./bin/game
+	gprof ./bin/game > memlog.txt
+	cat memlog.txt
+
 #open gdb immediately
 sdebug: debug
 	gdb bin/game
