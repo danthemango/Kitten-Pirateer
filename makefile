@@ -58,13 +58,13 @@ redo:
 	make all
 
 #use debug functions
-debug: CFLAGS=-std=c++11 -g
-debug: clean
-debug: all
+debug: CFLAGS+=-g 
+debug: clean all 
 
-#gprof 
+##gprof 
 gprof: CFLAGS+=-pg
-gprof: all
+gprof: clean all
+gprof: 
 	./bin/game
 	gprof ./bin/game > memlog.txt
 	cat memlog.txt

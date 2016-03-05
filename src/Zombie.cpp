@@ -103,7 +103,7 @@ void Zombie::display()
       return;
    }
    if(m_dead){
-      // TODO fix this
+      // have the zombie appear to be dead for a short period
       if(!m_killedTime.isSet()){
          m_killedTime.set();
       }
