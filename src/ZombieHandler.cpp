@@ -50,8 +50,8 @@ void ZombieHandler::loadZombies()
 // returns the current instance
 ZombieHandler &ZombieHandler::getInstance()
 {
-   static ZombieHandler *instance = new ZombieHandler;
-   return *instance; // alway return same instance
+   static ZombieHandler *c_instance = new ZombieHandler;
+   return *c_instance; // alway return same instance
 }
 
 ZombieHandler::ZombieHandler()

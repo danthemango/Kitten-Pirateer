@@ -26,7 +26,6 @@ class Zombie: public HostileNPC{
       // this function will act as the NPC's 'AI' 
       void update(int x, int y);
       void update(Point &playerpos);
-      void update(){}
       // display is used to draw this object
       virtual void display();
       // causes damage to the zombie (reduces health by amount)
@@ -39,6 +38,7 @@ class Zombie: public HostileNPC{
       void spawn(int x, int y);
       void spawn(Point &pos);
       // receives damage if zombie is in the area of the rectangle specified
+      // (x1,y1) - bottom left corner of the area 
       void attacked(int x1, int y1, int x2, int y2, int damage);
    private:
       // attack the player
@@ -49,6 +49,15 @@ class Zombie: public HostileNPC{
       bool m_dead;
       // if zombie is not visible, it won't be shown on screen
       bool m_visible;
+      // TODO replace direction with states
+      // the different states of the zombie
+      enum class state {
+         left,
+         right,
+         up,
+         down,
+         eating,
+      };
       int m_direction; // direction
       // position of the zombie
       float m_x, m_y;
@@ -67,5 +76,6 @@ class Zombie: public HostileNPC{
       // let the zombies disappear after a few moments
       Timer m_killedTime;
       int m_disappearTime;
+      void update(){} // empty declaration
 };
 #endif
