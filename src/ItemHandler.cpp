@@ -7,6 +7,7 @@
 
 #include "../hdr/ItemHandler.h"
 #include "../hdr/Items.h"
+#include "../hdr/Weapon.h"
 #include "../hdr/Jukebox.h"
 #include "../hdr/Game.h"
 
@@ -24,12 +25,32 @@ void ItemHandler::addItemToInv(Items* item)
       if(item->getItemID() == m_itemInv[i]->getItemID()){
          m_itemInv[i]->setAmount(item->getAmount() + m_itemInv[i]->getAmount());
          placed = true;
+         std::cout << "item++" << std::endl;
       }
    }
    if(placed == false){
+		std::cout << "add item" << std::endl;
       m_lastItem++;
       m_itemInv[m_lastItem] = item;
    }
+}
+
+void ItemHandler::addWeaponToInv(Weapon* weapon)
+{
+   bool placed;
+   for(int i=0;i<=m_lastWeapon;i++){
+      if(weapon->getItemID() == m_weaponInv[i]->getItemID()){
+         m_weaponInv[i]->setAmount(weapon->getAmount() + m_weaponInv[i]->getAmount());
+         placed = true;
+         std::cout << "test1" << std::endl;
+      }
+   }
+   if(placed == false){
+	   std::cout << "test2" << std::endl;
+      m_lastWeapon++;
+      m_weaponInv[m_lastWeapon] = weapon;
+   }	
+	
 }
 
 
@@ -37,13 +58,14 @@ void ItemHandler::update()
 {
    for(int i = 0; i < m_numOfItems; i++){
       m_itemList[i]->display();
-      m_itemList[i]->pickUp(m_itemList[i]);
+      m_itemList[i]->pickUp();
    }
    
 }
 
 void ItemHandler::iSwitch()
 {
+	std::cout << "switch item" << m_currItem << std::endl;
    if(m_currItem == m_lastItem){
       m_currItem = 0;
    }else{
@@ -59,8 +81,9 @@ void ItemHandler::iSwitch()
 
 void ItemHandler::wSwitch()
 {
+	std::cout << "switch weapon" << m_currWeapon << std::endl;
    if(m_currWeapon == m_lastWeapon){
-      m_currWeapon == 0;
+      m_currWeapon = 0;
    }else{
       m_currWeapon++;
    }

@@ -12,8 +12,9 @@
 #include <GL/freeglut.h>
 //#include "../hdr/GameObject.h"
 #include "GameObject.h"
+#include "ItemObject.h"
 
-class Items: public GameObject{
+class Items: public ItemObject{
    protected:
       int m_range;//range of item 0 if N/A
       std::string m_name;
@@ -47,13 +48,14 @@ class Items: public GameObject{
       //Sets amount the Item has. Ex: picked up another lemon, set amount to 2
       void setAmount(int x);
       //deals with picking up the Item
-      void pickUp(Items* item);  //when picked up
+      virtual void pickUp();  //when picked up
       //displays Item
-      virtual void display();
+      void display();
       
-      virtual void update();
+      void update();
       
       Items(int r, int inv, int id, std::string name,bool pickup, int x, int y, int tile);
       Items (){};
+      ~Items(){};
 };
 #endif

@@ -24,7 +24,8 @@ void Items::setAmount(int x)
    m_amount = x; 
 }
 
-void Items::pickUp(Items* item)
+//void Items::pickUp(Items* item)
+void Items::pickUp()
 {  
    //temp x, y and size for Player to keep code cleaner
    
@@ -49,7 +50,7 @@ void Items::pickUp(Items* item)
       if(m_pickedUp == false){//if Item hasn't been picked up yet
          switch (m_itemID){
             case 10://add item to inventory
-               ItemHandler::getInstance().addItemToInv(item);
+               ItemHandler::getInstance().addItemToInv(this);
                Jukebox::PlaySound("./sounds/ItemPickUp.wav");
                m_pickedUp = true;
                break;
@@ -66,7 +67,7 @@ void Items::pickUp(Items* item)
                break;
             case 12:
                Jukebox::PlaySound("./sounds/ItemPickUp.wav");
-               ItemHandler::getInstance().addItemToInv(item); 
+               ItemHandler::getInstance().addItemToInv(this); 
                m_pickedUp = true;     
                break;            
       

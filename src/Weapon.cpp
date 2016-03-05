@@ -9,6 +9,8 @@
 #include "../hdr/Items.h"
 #include "../hdr/Game.h"
 #include "../hdr/ImageLoader.h"
+#include "../hdr/Player.h"
+#include "../hdr/ItemHandler.h"
 //#include "../hdr/ZombieHandler.h"
 #include <GL/glut.h>
 #include <GL/freeglut.h>
@@ -24,6 +26,23 @@ void Weapon::display()
 void Weapon::update()
 {
 
+}
+	
+void Weapon::pickUp()
+{
+	int PlayerX = Player::getInstance().getX();
+   int PlayerY = Player::getInstance().getY();
+   int PlayerWidth = Player::getInstance().getWidth();
+   int PlayerHeight = Player::getInstance().getHeight();
+   
+   if(PlayerX + PlayerWidth > m_x && PlayerX < m_x + m_itemWidth && 
+      PlayerY + PlayerHeight > m_y && PlayerY < m_y + m_itemWidth &&
+      Player::getInstance().getTile() == m_tilePos){
+      if(m_pickedUp == false){//if Item hasn't been picked up yet
+         ItemHandler::getInstance().addWeaponToInv(this);
+			m_pickedUp = true;
+		}
+	}
 }
 
 void Weapon::attack()

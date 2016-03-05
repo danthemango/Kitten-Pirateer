@@ -90,12 +90,12 @@ class ItemHandler {
          m_itemList[18] = new Items(0,-1, 10, "Lemon", false, 474, 13, 8);
          m_itemList[19] = new Items(0,-1, 11, "Heart", false, 336, 824, 8);
          //*test*//
-         m_itemList[20] = new Weapon(20,50,1,1,"AOESpell", 0,false,500,500,3);
+         m_itemList[20] = new Weapon(20,100,1,1,"AOESpell", 0,false,500,500,3);
          
 
                    
       }
-      
+      //~ItemHandler(){}
       ItemHandler(ItemHandler const&);
       void operator=(ItemHandler const&);
    
@@ -113,7 +113,7 @@ class ItemHandler {
       
    public:
       //may be implemented if we implement inventory screen
-      Items* getWeaponInv() {return *m_weaponInv;} 
+      Weapon* getWeaponInv() {return *m_weaponInv;} 
       Items* getItemInv() {return *m_itemInv;}
       //may be implemented if we implement inventory screen
       int getWeaponSlot() {return m_currWeapon;}
@@ -126,6 +126,8 @@ class ItemHandler {
       Items* getItem() {return m_itemInv[m_currItem];}
       //add new item to inventory Used by Items.cpp
       void addItemToInv(Items* item);
+      //add new weapon to inventory used by Weapon.cpp
+      void addWeaponToInv(Weapon* weapon);
       //calls Items::display(), and Items::pickUp()
       void update();
       //switch current Item to next one, loops around when at last item 
