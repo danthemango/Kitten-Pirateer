@@ -25,11 +25,11 @@ void ItemHandler::addItemToInv(Items* item)
       if(item->getItemID() == m_itemInv[i]->getItemID()){
          m_itemInv[i]->setAmount(item->getAmount() + m_itemInv[i]->getAmount());
          placed = true;
-         std::cout << "item++" << std::endl;
+         //std::cout << "item++" << std::endl;
       }
    }
    if(placed == false){
-		std::cout << "add item" << std::endl;
+		//std::cout << "add item" << std::endl;
       m_lastItem++;
       m_itemInv[m_lastItem] = item;
    }
@@ -42,11 +42,11 @@ void ItemHandler::addWeaponToInv(Weapon* weapon)
       if(weapon->getItemID() == m_weaponInv[i]->getItemID()){
          m_weaponInv[i]->setAmount(weapon->getAmount() + m_weaponInv[i]->getAmount());
          placed = true;
-         std::cout << "test1" << std::endl;
+         //std::cout << "test1" << std::endl;
       }
    }
    if(placed == false){
-	   std::cout << "test2" << std::endl;
+	   //std::cout << "test2" << std::endl;
       m_lastWeapon++;
       m_weaponInv[m_lastWeapon] = weapon;
    }	
@@ -65,7 +65,7 @@ void ItemHandler::update()
 
 void ItemHandler::iSwitch()
 {
-	std::cout << "switch item" << m_currItem << std::endl;
+	//std::cout << "switch item" << m_currItem << std::endl;
    if(m_currItem == m_lastItem){
       m_currItem = 0;
    }else{
@@ -81,7 +81,7 @@ void ItemHandler::iSwitch()
 
 void ItemHandler::wSwitch()
 {
-	std::cout << "switch weapon" << m_currWeapon << std::endl;
+	//sstd::cout << "switch weapon" << m_currWeapon << std::endl;
    if(m_currWeapon == m_lastWeapon){
       m_currWeapon = 0;
    }else{
