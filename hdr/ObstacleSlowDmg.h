@@ -1,5 +1,5 @@
 // **********************************************
-// Filename: ObstacleSlow.h
+// Filename: ObstacleSlowDmg.h
 // Author: Nathan Hogman
 // Date: 2016-02-01
 // Class: CSCI 331
@@ -13,26 +13,27 @@
 
 
 
-#ifndef OBSTACLESLOW_H_
-#define OBSTACLESLOW_H_
-#define SLOWCONDITION 1
+#ifndef OBSTACLESLOWDMG_H_
+#define OBSTACLESLOWDMG_H_
+#define SLOWDMGCOND 3
 
-#include "Obstacle.h"
+#include "ObstacleSlow.h"
+#include "ObstacleDmg.h"
 
-class ObstacleSlow: public Obstacle {
+class ObstacleSlowDmg: public ObstacleSlow , public ObstacleDmg 
+{
 
 private:
 	int m_x, m_y, m_width, m_height;
-	int m_slow;
+	int m_slow, m_dmg;
 	int m_cond;
 
 public:
 	void update (){};
 	void display (){};
 	bool collide (Player *C){};
-	ObstacleSlow(int x, int y, int w, int h, int slow);
-	ObstacleSlow(){};
-	~ObstacleSlow(){};
+	ObstacleSlowDmg(int x, int y, int w, int h, int slow, int dmg);
+	~ObstacleSlowDmg(){};
 
 };
 

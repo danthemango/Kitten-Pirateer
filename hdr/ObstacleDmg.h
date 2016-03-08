@@ -20,12 +20,15 @@ class ObstacleDmg: public Obstacle {
 private:
 	int m_x, m_y, m_width, m_height;
 	int m_dmg;
+	int m_cond;
 
 public:
 	void update (){};
 	void display (){};
 	bool collide (Player *C){};
 	ObstacleDmg(int x, int y, int w, int h, int dmg);
+	ObstacleDmg(){};
+	~ObstacleDmg(){};
 
 };
 

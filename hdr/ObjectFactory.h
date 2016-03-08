@@ -20,10 +20,8 @@
 #include "GameObject.h"
 #include "Obstacle.h"
 
-
-
-class ObjectFactory: public GameObject {
-
+class ObjectFactory 
+{
 private:
 	
 	
@@ -33,9 +31,6 @@ public:
 
 	
 	ObjectFactory(){};
-	void update (){};
-	void display (){};
-	bool collide (Player *C){};
 	~ObjectFactory(){};
 	
 };
