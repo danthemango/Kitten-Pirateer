@@ -31,7 +31,6 @@ class ObsArr
 private:
 	int m_numTiles, m_numAttributes;
 	int *m_numObs;
-	//int ***m_array;
     
 public:
 	
