@@ -11,15 +11,15 @@ import os;
 os.system('rm output.csv');
 
 tile = []
-tile.append('TMX/tile0.tmx')
-tile.append('TMX/tile1.tmx')
-tile.append('TMX/tile2.tmx')
-tile.append('TMX/tile3.tmx')
-tile.append('TMX/tile4.tmx')
-tile.append('TMX/tile5.tmx')
-tile.append('TMX/tile6.tmx')
-tile.append('TMX/tile7.tmx')
-tile.append('TMX/tile8.tmx')
+tile.append('TMX/level1/tile0.tmx')
+tile.append('TMX/level1/tile1.tmx')
+tile.append('TMX/level1/tile2.tmx')
+tile.append('TMX/level1/tile3.tmx')
+tile.append('TMX/level1/tile4.tmx')
+tile.append('TMX/level1/tile5.tmx')
+tile.append('TMX/level1/tile6.tmx')
+tile.append('TMX/level1/tile7.tmx')
+tile.append('TMX/level1/tile8.tmx')
 
 array = []
 
@@ -51,7 +51,7 @@ for i in range(numTiles):
 				elif(char=='\"'):
 					read = 1
 				
-		if(line==' <objectgroup name="Object Layer 1">'):
+		if(line==' <objectgroup name="Obstacles">'):
 			readLine = 1
 		if(line==' </objectgroup>'):
 			readLine = 0
