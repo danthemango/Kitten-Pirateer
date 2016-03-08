@@ -20,14 +20,7 @@
 
 void MapHandler::updateTile(int x)
 {
-   //deletes obstacles from previous tile
-   /*
-   for(int i=0;i<m_numObs[m_currTile];i++)
-   {
-      delete m_obs[i];
-   }
-	*/
-
+   
    //sets current tile number to the new tile number
    m_currTile = x;
 
@@ -37,17 +30,31 @@ void MapHandler::updateTile(int x)
    {
       m_obs[i] = ObjectFactory::createObstacle
          (
-          m_obs3DArray[m_currTile][i][0],
-          m_obs3DArray[m_currTile][i][1],
-          m_obs3DArray[m_currTile][i][2],
-          m_obs3DArray[m_currTile][i][3],
-          m_obs3DArray[m_currTile][i][4]
+          m_ObstacleArr->m_array[m_currTile][i][0],
+          m_ObstacleArr->m_array[m_currTile][i][1],
+          m_ObstacleArr->m_array[m_currTile][i][2],
+          m_ObstacleArr->m_array[m_currTile][i][3],
+          m_ObstacleArr->m_array[m_currTile][i][4]
          );
    }
 	
 	Game::getInstance().updateTile(m_tileTextureArray[x]);
-	//ZombieHandler::getInstance().updateTile(x);
-	//ItemHandler::getInstance().updateTile(x);
 
+}
+
+//Zombie Spawn area will always be the First obstacle on any tile 
+//***This has to be taken into account when making new Maps****
+
+Square* MapHandler::zombieSpawnArea()
+{
+	int x1 = m_ObstacleArr->m_array[m_currTile][0][0];
+	int y1 = m_ObstacleArr->m_array[m_currTile][0][1];
+	int x2 = m_ObstacleArr->m_array[m_currTile][0][0] + m_ObstacleArr->m_array[m_currTile][0][2];
+	int y2 = m_ObstacleArr->m_array[m_currTile][0][1] + m_ObstacleArr->m_array[m_currTile][0][3];
+	
+	Square *Area = new Square(x1,y1,x2,y2);
+	
+	return Area;
+	
 }
 
