@@ -31,7 +31,8 @@ class Weapon: public Items{
 		void pickUp();
       void update();
       //void display();
-      Weapon(int d, int r, int invs, int id, std::string name, int type, bool pickup,int x, int y, int tile);
+      //Weapon(int d, int r, int invs, int id, std::string name, int type, bool display,int x, int y, int tile);
+      Weapon(int id, int x, int y, std::string name, bool display, int r, int tile, int type, int d);
       Weapon(){};
       ~Weapon(){};
 };

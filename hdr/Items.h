@@ -23,7 +23,7 @@ class Items: public ItemObject{
                      //item is currently in
       int m_itemID;  //item id states which
                      //type of item it is    
-      bool m_pickedUp; //bool to see if item has been picked up
+      bool m_displayed; //bool to see if item has been picked up
       int m_tilePos; //which tile item is in
       int m_x;//Xposition of item, -1 if N/A
       int m_y;//YPosition of item, -1 if N/A
@@ -54,7 +54,8 @@ class Items: public ItemObject{
       
       void update();
       
-      Items(int r, int inv, int id, std::string name,bool pickup, int x, int y, int tile);
+      //Items(int r, int inv, int id, std::string name, bool pickup, int x, int y, int tile);
+      Items(int id, int x, int y, std::string name, bool display, int r, int tile);
       Items (){};
       ~Items(){};
 };

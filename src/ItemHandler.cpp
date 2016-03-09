@@ -10,6 +10,8 @@
 #include "../hdr/Weapon.h"
 #include "../hdr/Jukebox.h"
 #include "../hdr/Game.h"
+#include "../hdr/ItemsFactory.h"
+#include "../hdr/ObsArr.h"
 
 /*
 #include "../hdr/ItemHandler.h"
@@ -63,9 +65,78 @@ void ItemHandler::update()
    
 }
 
+void ItemHandler::init()
+{
+	m_level1Items = new ObsArr("./config/INPUT_ITEMS");
+	m_numTiles = m_level1Items->numTiles();
+	m_tileItems = m_level1Items->numObsArr();
+	
+	
+	std:string name;
+	int damage;
+	int range;
+	int type;
+	int id;
+	int itempos = 0;
+	
+	
+	for(int i = 0; i < m_numTiles; i++){
+		for(int k = 0; k < m_tileItems[i]; k++){
+			id = m_level1Items->m_array[i][k][0];
+			switch (id) {
+				case 0:
+					name = "Sword";
+					range = 25;
+					damage = 10;
+					type = 0;
+					break;
+				case 1:
+					name = "AOE Spell";
+					range = 100;
+					damage = 50;
+					type = 0; //change this later.
+					break;
+				case 10:
+					name = "Lemon";
+					range = 0;
+					type = -1; //n/a
+					damage = -1;
+					break;
+				case 11:
+					name = "Heart";
+					range = 0;
+					type = -1;
+					damage = -1;
+					break;
+				case 12:
+					name = "Health Potion";
+					range = 0;
+					type = -1;
+					damage = -1;
+					break;	
+			}
+			//int id, int x, int y, std::string name, int r, int tile pos, int type, int d
+			m_itemList[itempos] = ItemsFactory::createItem
+			(
+				m_level1Items->m_array[i][k][0],
+				m_level1Items->m_array[i][k][1],
+				m_level1Items->m_array[i][k][2],
+				name, range, i, type, damage
+				
+			);
+			itempos++;
+			
+		}
+	}
+
+	m_numOfItems = itempos;
+	
+}
+
 void ItemHandler::iSwitch()
 {
 	//std::cout << "switch item" << m_currItem << std::endl;
+	
    if(m_currItem == m_lastItem){
       m_currItem = 0;
    }else{

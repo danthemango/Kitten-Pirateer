@@ -30,7 +30,6 @@ void Items::pickUp()
    //temp x, y and size for Player to keep code cleaner
    
    //REMOVE Comments
-   
    int PlayerX = Player::getInstance().getX();
    int PlayerY = Player::getInstance().getY();
    int PlayerWidth = Player::getInstance().getWidth();
@@ -47,12 +46,12 @@ void Items::pickUp()
       PlayerY + PlayerHeight > m_y && PlayerY < m_y + m_itemWidth &&
       //Game::getInstance().getArrayPos() == m_tilePos){
       Player::getInstance().getTile() == m_tilePos){
-      if(m_pickedUp == false){//if Item hasn't been picked up yet
+      if(m_displayed == true){//if Item hasn't been picked up yet
          switch (m_itemID){
             case 10://add item to inventory
                ItemHandler::getInstance().addItemToInv(this);
                Jukebox::PlaySound("./sounds/ItemPickUp.wav");
-               m_pickedUp = true;
+               m_displayed = false;
                break;
             case 11://heal Player
                //need a healPlayer(int x) which will add x to Player health
@@ -62,13 +61,13 @@ void Items::pickUp()
                if(Player::getInstance().getHealth() < MAX_PLAYER_HEALTH){             
 					Player::getInstance().addHealth(10);
 					Jukebox::PlaySound("./sounds/HeartPickUp.wav");
-					m_pickedUp = true;               
+					m_displayed = false;               
 					}
                break;
             case 12:
                Jukebox::PlaySound("./sounds/ItemPickUp.wav");
                ItemHandler::getInstance().addItemToInv(this); 
-               m_pickedUp = true;     
+               m_displayed = false;     
                break;            
       
          }
@@ -83,9 +82,10 @@ void Items::display()
    //if(Game::getInstance().getArrayPos() == m_tilePos){
    
    //REMOVE
+   
    if(Player::getInstance().getTile() == m_tilePos){
    
-      if(m_pickedUp == false){
+      if(m_displayed == true){
          //draw image
          glEnable(GL_TEXTURE_2D);
    
@@ -105,14 +105,13 @@ void Items::update()
 
 }
 
-Items::Items(int r, int inv, int id, std::string name,bool pickup,int x, int y, int tile)
+Items::Items(int id, int x, int y, std::string name, bool display, int r, int tile)
 {
    m_range = r;
-   m_invslot = inv;
    m_itemID = id;
    m_name = name;
    m_amount = 1;
-   m_pickedUp = pickup;
+   m_displayed = display;
    m_x = x;
    m_y = y;
    m_tilePos = tile;

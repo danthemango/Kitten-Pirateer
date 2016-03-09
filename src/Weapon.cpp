@@ -29,7 +29,7 @@ void Weapon::update()
 }
 	
 void Weapon::pickUp()
-{
+{	
 	int PlayerX = Player::getInstance().getX();
    int PlayerY = Player::getInstance().getY();
    int PlayerWidth = Player::getInstance().getWidth();
@@ -38,9 +38,9 @@ void Weapon::pickUp()
    if(PlayerX + PlayerWidth > m_x && PlayerX < m_x + m_itemWidth && 
       PlayerY + PlayerHeight > m_y && PlayerY < m_y + m_itemWidth &&
       Player::getInstance().getTile() == m_tilePos){
-      if(m_pickedUp == false){//if Item hasn't been picked up yet
+      if(m_displayed == true){//if Item hasn't been picked up yet
          ItemHandler::getInstance().addWeaponToInv(this);
-			m_pickedUp = true;
+			m_displayed = false;
 		}
 	}
 }
@@ -108,17 +108,16 @@ void Weapon::attack()
    
 
 }
-
-Weapon::Weapon(int d, int r, int invs, int id, std::string name, int type, bool pickup,int x, int y, int tile)
+      //Weapon(int id, int x, int y, std::string name, bool pickup, int r, int type, int d);
+Weapon::Weapon(int id, int x, int y, std::string name, bool display, int r, int tile, int type, int d)
 {  
    m_damage = d;
    m_range = r;
-   m_invslot = invs;
    m_itemID = id;
    m_name = name, 
    m_type = type;
    m_amount = 1;
-   m_pickedUp = pickup;
+   m_displayed = display;
    m_itemWidth = 20;
    m_x = x;
    m_y = y;

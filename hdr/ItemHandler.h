@@ -3,6 +3,9 @@
 //********** Author: Robert Dunn  **********//
 //********** Purpose:             **********//
 //**********List of Items and ID's**********//
+//********** INPUT_ITEMS          **********//
+//**********                      **********//
+//**********                      **********//
 //**********                      **********//
 //**********Item ID:              **********//
 //**********   0: sword           **********//
@@ -36,6 +39,7 @@
 #include "Items.h"
 #include "GameObject.h"
 #include "Weapon.h"
+#include "ObsArr.h"
 
 /*
 #include "../hdr/Items.h"
@@ -56,11 +60,10 @@ class ItemHandler {
          m_currItem = 0;
          m_lastWeapon = 0;
          m_lastItem = 0;
-         m_numOfItems = 21;
+         //m_numOfItems = 21;
          //start with a sword and 1 lemon
-         m_weaponInv[0] = new Weapon(10,25,0,0,"Sword", 0,true,-1,-1,-1);
-         m_itemInv[0] = new Items(0,0,10, "Lemon",true,-1,-1,-1);
-         
+         m_weaponInv[0] = new Weapon(0,-1,-1,"Sword", false, 25,-1,0,10);
+         m_itemInv[0] = new Items(10,-1,-1,"Lemon",false,0,-1);         
          
          //for now, I will create 10 Item objects into the m_itemList[]. 
          //final product will have a 2D array, which creates items and
@@ -69,6 +72,7 @@ class ItemHandler {
          
          
          //*********TEST ITEMS FOR USE WITH COLLISIONSLAB*********/
+         /*
          m_itemList[0] = new Items(0,-1, 10, "Lemon", false, 246, 596, 0);
          m_itemList[1] = new Items(0,-1, 11, "heart", false, 507, 297, 0);
          m_itemList[2] = new Items(0,-1, 11, "Heart", false, 729, 603, 0);
@@ -89,10 +93,11 @@ class ItemHandler {
          m_itemList[17] = new Items(0,-1, 12, "Potion", false, 445, 764, 7);
          m_itemList[18] = new Items(0,-1, 10, "Lemon", false, 474, 13, 8);
          m_itemList[19] = new Items(0,-1, 11, "Heart", false, 336, 824, 8);
+         */
          //*test*//
-         m_itemList[20] = new Weapon(20,100,1,1,"AOESpell", 0,false,500,500,3);
+         //m_itemList[20] = new Weapon(20,100,1,1,"AOESpell", 0,false,500,500,3);
          
-
+		init();
                    
       }
       //~ItemHandler(){}
@@ -109,7 +114,10 @@ class ItemHandler {
          int m_currItem;         //current item in item array
          int m_lastWeapon;       //last weapon slot in your inventory
          int m_lastItem;         //last item slot in your inventory
-         int m_numOfItems;       //number of Items on map
+         int m_numOfItems;       //total number of Items on map
+         int *m_tileItems;        //num of items in a given tile.
+         ObsArr *m_level1Items;
+         int m_numTiles;
       
    public:
       //may be implemented if we implement inventory screen
@@ -130,6 +138,8 @@ class ItemHandler {
       void addWeaponToInv(Weapon* weapon);
       //calls Items::display(), and Items::pickUp()
       void update();
+      //initialized first map, called on load.
+      void init();
       //switch current Item to next one, loops around when at last item 
       void iSwitch();
       void wSwitch();
