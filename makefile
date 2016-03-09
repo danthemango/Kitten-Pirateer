@@ -30,6 +30,7 @@ EXE=bin/game
 
 #make the target
 all: bin $(OBJDIR) $(SRC) $(EXE) 
+	echo $(EXE) created!
 log: 
 	make all 2> compilelog
 
