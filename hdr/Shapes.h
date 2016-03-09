@@ -26,17 +26,25 @@ class Point{
       int m_x,m_y;
 };
 
+// abstract shape class
+class Shape{
+   public:
+      virtual bool isIn(Point& P) = 0;
+      virtual bool collides(Shape& S) = 0;
+};
+
 // Triangle object
 // defined by three points
-class Triangle{
+class Triangle: public Shape{
    public:
-      Triangle(Point A, Point B, Point C);
+      Triangle(Point& A, Point& B, Point& C);
       // returns true if a point is within a triangle
-      bool isIn(Point P);
-      // returns true if triangle T collides with this triangle
-      bool collides(Triangle T);
+      bool isIn(Point& P);
       // returns true if triangle T is entirely with this triangle
-      bool isIn(Triangle T);
+      bool isIn(Triangle& T);
+      // returns true if parameter collides with this triangle
+      bool collides(Triangle& T);
+      bool collides(Shape& S);
    private:
       Point m_A, m_B, m_C;
 };
@@ -49,9 +57,9 @@ class Circle{
       //
 };
 
-// shape object is defined by a series of circles and triangles
+// complex shape object is defined by a series of circles and triangles
 //TODO
-class Shape{
+class complexShape{
    public:
       //
    private:
@@ -64,11 +72,11 @@ class Line{
    public:
       // requires two points.
       // Ex: Line(Point(0,0),Point(0,1));
-      Line(Point A, Point B);
+      Line(Point& A, Point& B);
       // returns true if point P is below the line 
       // ('below' on a cartesian plane)
       // NOTE: on a vertical line, 'left' is defined to be 'below'
-      bool isBelow(Point P);
+      bool isBelow(Point& P);
       // slope of the line
       float slope();
       // y-intercept
@@ -76,7 +84,7 @@ class Line{
       // returns true if line is vertical
       bool isVertical();
       // returns true if the two points are on the same side of the line
-      bool sameSide(Point P1, Point P2);
+      bool sameSide(Point& P1, Point& P2);
    private:
       // the two points which define the line
       Point m_A, m_B;
@@ -98,5 +106,9 @@ class Square{
       // m_x1, m_y1 - coordinates of the bottom left corner
       // m_x2, m_y2 - coordinates of the top right corner
       int m_x1, m_y1, m_x2, m_y2;
+};
+
+// 
+class ComplexShape: public Square{
 };
 #endif // SHAPES_H

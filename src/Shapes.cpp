@@ -57,7 +57,7 @@ bool Square::collides(Square& other)
 }
 
 // **************** LINE ****************
-Line::Line(Point A, Point B): m_A(A), m_B(B)
+Line::Line(Point& A, Point& B): m_A(A), m_B(B)
 {
    // ensure m_A is 'left' of m_B on the cartesian plane
    if(m_A.getX() > m_B.getX()){
@@ -98,7 +98,7 @@ float Line::yIntercept()
 // returns true if point P is below the line 
 // ('below' on a cartesian plane)
 // NOTE: on a vertical line, 'left' is defined to be 'below'
-bool Line::isBelow(Point P)
+bool Line::isBelow(Point& P)
 {
    // on a vertical line, check if point is 'left' of the line
    if(isVertical()){
@@ -111,18 +111,18 @@ bool Line::isBelow(Point P)
    return P.getY() < y;
 }
 
-bool Line::sameSide(Point P1, Point P2)
+bool Line::sameSide(Point& P1, Point& P2)
 {
    // either they're both below the line or neither is below
    return (isBelow(P1) && isBelow(P2)) || !(isBelow(P1) || isBelow(P2));
 }
 
-// **************** TRIANGLE ****************
-Triangle::Triangle(Point A, Point B, Point C): m_A(A), m_B(B), m_C(C)
+// ******************************** TRIANGLE ********************************
+Triangle::Triangle(Point& A, Point& B, Point& C): m_A(A), m_B(B), m_C(C)
 {
 }
 
-bool Triangle::isIn(Point P)
+bool Triangle::isIn(Point& P)
 {
    // create the three lines of the triangle
    Line AB(m_A,m_B);
@@ -136,14 +136,19 @@ bool Triangle::isIn(Point P)
 }
 
 // returns true if triangle T collides with this triangle
-bool Triangle::collides(Triangle T)
+bool Triangle::collides(Triangle& T)
 {
    // triangle T if any point in T is in this triangle
    return isIn(T.m_A) || isIn(T.m_B) || isIn(T.m_C);
 }
 
+bool Triangle::collides(Shape& S)
+{
+   return S.collides(*this);
+}
+
 // returns true if triangle T is entirely with this triangle
-bool Triangle::isIn(Triangle T)
+bool Triangle::isIn(Triangle& T)
 {
    // all points are going to be within this triangle
    return isIn(T.m_A) && isIn(T.m_B) && isIn(T.m_C);
