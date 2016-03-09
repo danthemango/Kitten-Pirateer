@@ -46,7 +46,7 @@ private:
 		m_currTile = 3;
 		
 		//Creates a new 3D Obstacle Array that contains the obstacle Data
-		m_ObstacleArr = new ObsArr("./config/INPUTFILE");
+		m_ObstacleArr = new ObsArr("./config/INPUT_OBS");
 		m_numTiles = m_ObstacleArr->numTiles();
 		m_numObs = m_ObstacleArr->numObsArr();
 		
@@ -110,10 +110,6 @@ public:
 	// Returns a Rectangle(square) that the zombies can spawn in on the current tile
 	
 	Square* zombieSpawnArea(); 
-	
-	
-	
-	
 	
 };
 

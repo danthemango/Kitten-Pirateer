@@ -17,9 +17,10 @@
 
 ObstacleDmg::ObstacleDmg(int x, int y, int w, int h, int dmg)
 {
-   m_x = x;
-   m_y = y;
-   m_width = w;
-   m_height = h;
-   m_dmg = dmg;
+   	m_x = x;
+   	m_y = y;
+   	m_width = w;
+   	m_height = h;
+	m_cond = DMGCONDITION;
+  	m_dmg = dmg;
 }

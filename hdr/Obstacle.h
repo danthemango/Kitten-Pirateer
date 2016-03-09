@@ -32,16 +32,17 @@ private:
     
 public:
 	int getX() {return m_x;};
-    int getY() {return m_y;};
-    int getW() {return m_width;};
-    int getH() {return m_height;};
-    int getC() {return m_cond;};
+   	int getY() {return m_y;};
+    	int getW() {return m_width;};
+    	int getH() {return m_height;};
+    	int getC() {return m_cond;};
 	
 	void update (){};
 	void display (){};
 	bool collide (Player *C){};
 	Obstacle(int x, int y, int w, int h);
-   Obstacle(){};
+   	Obstacle(){};
+   	~Obstacle(){};
 	
 };
 
