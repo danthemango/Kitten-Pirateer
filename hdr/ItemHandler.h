@@ -37,12 +37,15 @@
 #define MAXINV 10
 
 #include "Items.h"
+#include "ItemObject.h"
 #include "GameObject.h"
 #include "Weapon.h"
 #include "ObsArr.h"
+#include <string>
 
 /*
 #include "../hdr/Items.h"
+
 #include "../hdr/GameObject.h"
 #include "../hdr/Weapon.h"
 */
@@ -105,9 +108,9 @@ class ItemHandler {
       void operator=(ItemHandler const&);
    
    private:
-         Items *m_itemList[MAXITEMS];  //list of all items on map
-         Items *m_itemInv[MAXINV];     //items inventory
-         Weapon *m_weaponInv[MAXINV];   //weapon inventory
+         ItemObject *m_itemList[MAXITEMS];  //list of all items on map
+         ItemObject *m_itemInv[MAXINV];     //items inventory
+         ItemObject *m_weaponInv[MAXINV];   //weapon inventory
          int m_invStack[MAXINV]; //amount of that item you are holding. ie character has
                                  //3 lemons, lemons are in slot 10, so m_invStack[10] = 3; 
          int m_currWeapon;       //current weapon in item array
@@ -116,13 +119,13 @@ class ItemHandler {
          int m_lastItem;         //last item slot in your inventory
          int m_numOfItems;       //total number of Items on map
          int *m_tileItems;        //num of items in a given tile.
-         ObsArr *m_level1Items;
+         ObsArr *m_3DItems;
          int m_numTiles;
       
    public:
       //may be implemented if we implement inventory screen
-      Weapon* getWeaponInv() {return *m_weaponInv;} 
-      Items* getItemInv() {return *m_itemInv;}
+      ItemObject* getWeaponInv() {return *m_weaponInv;} 
+      ItemObject* getItemInv() {return *m_itemInv;}
       //may be implemented if we implement inventory screen
       int getWeaponSlot() {return m_currWeapon;}
       int getItemSlot() {return m_currItem;}
@@ -130,12 +133,12 @@ class ItemHandler {
       //then use that to access that items methods like so:
       // Items* item = getItem();
       //item->getName();
-      Weapon* getWeapon() {return m_weaponInv[m_currWeapon];}
-      Items* getItem() {return m_itemInv[m_currItem];}
+      ItemObject* getWeapon() {return m_weaponInv[m_currWeapon];}
+      ItemObject* getItem() {return m_itemInv[m_currItem];}
       //add new item to inventory Used by Items.cpp
-      void addItemToInv(Items* item);
+      void addItemToInv(ItemObject* item);
       //add new weapon to inventory used by Weapon.cpp
-      void addWeaponToInv(Weapon* weapon);
+      void addWeaponToInv(ItemObject* weapon);
       //calls Items::display(), and Items::pickUp()
       void update();
       //initialized first map, called on load.
@@ -144,7 +147,8 @@ class ItemHandler {
       void iSwitch();
       void wSwitch();
       //use Current Item (to be implemented later)
-      void iUse();      
+      void iUse();
+      void buildItemArray(std::string file);
 
 };
 #endif

@@ -20,7 +20,7 @@
 #include <iostream>
 #include <string>
 
-void ItemHandler::addItemToInv(Items* item)
+void ItemHandler::addItemToInv(ItemObject* item)
 {
    bool placed;
    for(int i=0;i<=m_lastItem;i++){
@@ -37,7 +37,7 @@ void ItemHandler::addItemToInv(Items* item)
    }
 }
 
-void ItemHandler::addWeaponToInv(Weapon* weapon)
+void ItemHandler::addWeaponToInv(ItemObject* weapon)
 {
    bool placed;
    for(int i=0;i<=m_lastWeapon;i++){
@@ -67,9 +67,15 @@ void ItemHandler::update()
 
 void ItemHandler::init()
 {
-	m_level1Items = new ObsArr("./config/INPUT_ITEMS");
-	m_numTiles = m_level1Items->numTiles();
-	m_tileItems = m_level1Items->numObsArr();
+	//m_3DItems = new ObsArr("./config/INPUT_ITEMS");
+	buildItemArray("./config/INPUT_ITEMS");
+}
+
+void ItemHandler::buildItemArray(std::string file)
+{
+	m_3DItems = new ObsArr(file);
+	m_numTiles = m_3DItems->numTiles();
+	m_tileItems = m_3DItems->numObsArr();
 	
 	
 	std:string name;
@@ -82,7 +88,7 @@ void ItemHandler::init()
 	
 	for(int i = 0; i < m_numTiles; i++){
 		for(int k = 0; k < m_tileItems[i]; k++){
-			id = m_level1Items->m_array[i][k][0];
+			id = m_3DItems->m_array[i][k][0];
 			switch (id) {
 				case 0:
 					name = "Sword";
@@ -118,9 +124,9 @@ void ItemHandler::init()
 			//int id, int x, int y, std::string name, int r, int tile pos, int type, int d
 			m_itemList[itempos] = ItemsFactory::createItem
 			(
-				m_level1Items->m_array[i][k][0],
-				m_level1Items->m_array[i][k][1],
-				m_level1Items->m_array[i][k][2],
+				m_3DItems->m_array[i][k][0],
+				m_3DItems->m_array[i][k][1],
+				m_3DItems->m_array[i][k][2],
 				name, range, i, type, damage
 				
 			);
@@ -161,21 +167,8 @@ void ItemHandler::wSwitch()
 }
 
 void ItemHandler::iUse()
-{  int id = getItem()->getItemID();
-
-   switch (id){
-      case 12:
-         if(getItem()->getAmount() > 0){
-			if(Player::getInstance().getHealth() < MAX_PLAYER_HEALTH){
-				Jukebox::PlaySound("./sounds/HealthPotionUse.wav");
-				Player::getInstance().addHealth(20);
-				getItem()->decreaseAmount();
-			}
-         }
-         break;
-   }
-   
-   
+{  
+   getItem()->use();
 }
 
 

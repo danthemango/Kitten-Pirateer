@@ -5,36 +5,21 @@
 //******************************************//
 
 
-#ifndef WEAPONS_H_
-#define WEAPONS_H_
-#include <string>
-#include "../hdr/Items.h"
-class Weapon: public Items{
-   private:
-      int m_damage;  //weapon damage
-      int m_type; //weapon type
-                  //0:melee
-                  //1:gun
-                  //2:spell
+#ifndef WEAPON_H_
+#define WEAPON_H_
 
-   public:
-      int getDamage(){return m_damage;}//returns current weapon damage
-      //set's damage of weapon
-      //if certain items are used
-      int setDamage(int d);
-      //returns type of weapon as defined above
-      int getType(){return m_type;}
-      //displays weapons on map
-      //void display();
-      //attack function for weapon
-      void attack();
+#include "ItemObject.h"
+#include <string>
+
+class Weapon: public ItemObject{
+	public:	
+		virtual void use();
+		
 		void pickUp();
-      void update();
-      //void display();
-      //Weapon(int d, int r, int invs, int id, std::string name, int type, bool display,int x, int y, int tile);
-      Weapon(int id, int x, int y, std::string name, bool display, int r, int tile, int type, int d);
-      Weapon(){};
-      ~Weapon(){};
+		
+		Weapon(int id, int x, int y, std::string name, bool display, int r, int tile, int type, int d);
+		Weapon(){};
+		~Weapon(){};
 };
 
 #endif

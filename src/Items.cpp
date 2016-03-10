@@ -19,11 +19,6 @@
 
 class ImageLoader;
 
-void Items::setAmount(int x)
-{
-   m_amount = x; 
-}
-
 //void Items::pickUp(Items* item)
 void Items::pickUp()
 {  
@@ -76,33 +71,19 @@ void Items::pickUp()
    }
 }
 
-void Items::display()
+void Items::use()
 {
-   //display if character is in correct tile
-   //if(Game::getInstance().getArrayPos() == m_tilePos){
-   
-   //REMOVE
-   
-   if(Player::getInstance().getTile() == m_tilePos){
-   
-      if(m_displayed == true){
-         //draw image
-         glEnable(GL_TEXTURE_2D);
-   
-         glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
-         glBindTexture (GL_TEXTURE_2D, m_itemTexture);
-         ImageLoader::rectangle(m_x, m_y, m_itemWidth, m_itemWidth);
-   
-         glDisable(GL_TEXTURE_2D);
-         glFlush();
-         
-      }
+	switch (m_itemID){
+      case 12:
+         if(m_amount > 0){
+			if(Player::getInstance().getHealth() < MAX_PLAYER_HEALTH){
+				Jukebox::PlaySound("./sounds/HealthPotionUse.wav");
+				Player::getInstance().addHealth(20);
+				decreaseAmount();
+			}
+         }
+         break;
    }
-}
-
-void Items::update()
-{
-
 }
 
 Items::Items(int id, int x, int y, std::string name, bool display, int r, int tile)
