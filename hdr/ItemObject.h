@@ -56,9 +56,8 @@ class ItemObject {
 		//displays Item
 		void display();
 		
-		//set's damage of weapon
-		//if certain items are used
-		int setDamage(int d){}
+		//set's damage of weapon if certain items are used
+		int setDamage(int d){ m_damage = d;}
 		
 		//returns type of weapon as defined above
 		int getType(){return m_type;}

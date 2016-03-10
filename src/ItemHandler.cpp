@@ -100,8 +100,13 @@ void ItemHandler::buildItemArray(std::string file)
 					name = "AOE Spell";
 					range = 100;
 					damage = 50;
-					type = 0; //change this later.
+					type = 1; //change this later.
 					break;
+				case 2:
+					name = "Fire Ball";
+					range = 900;
+					damage  = 20;
+					type = 1;
 				case 10:
 					name = "Lemon";
 					range = 0;

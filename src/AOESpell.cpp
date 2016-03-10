@@ -17,7 +17,6 @@ void AOESpell::use()
 		playerX + playerWidth + m_range, playerY + playerHeight + m_range, m_damage);                      
 		
 		decreaseAmount();
- 
 	}
 }
 
