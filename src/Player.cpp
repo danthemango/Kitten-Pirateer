@@ -303,55 +303,10 @@ void Player::attack()
 {
 	if(m_attacking == 0){
 		m_attacking = 1;
-	Jukebox::PlaySound("./sounds/Sword2.wav");
 		
-
-	
-   //what to do here??
-   //0 = melee attacks
-   //1 = gun
-   //2 = spell
-   
-   int weaponId = ItemHandler::getInstance().getWeapon()->getType(); // stores the weapon id
-   int weaponDamage = ItemHandler::getInstance().getWeapon()->getDamage(); // gets the damage for the weapon
-   int weaponRange = ItemHandler::getInstance().getWeapon()->getRange();  
-   int midpointx = SPRITE_SIZE_X / 2 + m_x;
-   int midpointy = SPRITE_SIZE_Y / 2 + m_y;
-   
-   float x1,x2,y1,y2 = 0.0;
-   switch (m_direction)
-   {
-      case 0://u
-        x1 = m_x;
-        x2 = m_x + SPRITE_SIZE_X;
-        y1 = m_y + SPRITE_SIZE_Y;
-        y2 = m_y + SPRITE_SIZE_Y + weaponRange;
-        ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
-        break;
-      case 2://d
-        x1 = m_x;
-        y1 = m_y - weaponRange;
-        x2 = m_x + SPRITE_SIZE_X;
-        y2 = m_y;
-        ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
-        break;
-      case 3://l
-        x1 = m_x - weaponRange; 
-        y1 = m_y;
-        x2 = m_x; 
-        y2 = m_y + SPRITE_SIZE_Y;
-        ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
-        break;
-      case 1://r
-        x1 = m_x + SPRITE_SIZE_X; 
-        y1 = m_y;
-        x2 = m_x + SPRITE_SIZE_X + weaponRange;
-        y2 = m_y + SPRITE_SIZE_Y;
-        ZombieHandler::getInstance().attacked(x1,y1,x2,y2,weaponDamage);
-        break;
-
-   }
-}
+		Jukebox::PlaySound("./sounds/Sword2.wav");
+		ItemHandler::getInstance().getWeapon()->use();
+	}
 }
 
 void Player::down ()
