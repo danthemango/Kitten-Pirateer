@@ -1,7 +1,6 @@
 //********************************************//
 //********** Title: ItemHandler.cpp **********//
 //********** Author: Robert Dunn    **********//
-//********** Purpose:               **********//
 //********************************************//
 
 
@@ -20,6 +19,7 @@
 */
 #include <iostream>
 #include <string>
+#include <time.h>
 
 void ItemHandler::addItemToInv(ItemObject* item)
 {
@@ -68,12 +68,12 @@ void ItemHandler::update()
 
 void ItemHandler::init()
 {
-	//m_3DItems = new ObsArr("./config/INPUT_ITEMS");
 	buildItemArray("./config/INPUT_ITEMS");
 }
 
 void ItemHandler::buildItemArray(std::string file)
 {
+	srand (time(NULL));
 	m_3DItems = new ObsArr(file);
 	m_numTiles = m_3DItems->numTiles();
 	m_tileItems = m_3DItems->numObsArr();
@@ -90,61 +90,62 @@ void ItemHandler::buildItemArray(std::string file)
 	for(int i = 0; i < m_numTiles; i++){
 		for(int k = 0; k < m_tileItems[i]; k++){
 			id = m_3DItems->m_array[i][k][0];
-			switch (id) {
-				case 0:
-					name = "Sword";
-					range = 25;
-					damage = 10;
-					type = 0;
-					break;
-				case 1:
-					name = "AOE Spell";
-					range = 100;
-					damage = 50;
-					type = 1; //change this later.
-					break;
-				case 2:
-					name = "Fire Ball";
-					range = 900;
-					damage  = 5;
-					type = 1;
-					break;
-				case 3:
-					name = "Boomerang";
-					range = 300;
-					damage = 0;
-					type = 2;
-					break;
-				case 10:
-					name = "Lemon";
-					range = 0;
-					type = -1; //n/a
-					damage = -1;
-					break;
-				case 11:
-					name = "Heart";
-					range = 0;
-					type = -1;
-					damage = -1;
-					break;
-				case 12:
-					name = "Health Potion";
-					range = 0;
-					type = -1;
-					damage = -1;
-					break;	
-			}
-			//int id, int x, int y, std::string name, int r, int tile pos, int type, int d
-			m_itemList[itempos] = ItemsFactory::createItem
-			(
-				m_3DItems->m_array[i][k][0],
-				m_3DItems->m_array[i][k][1],
-				m_3DItems->m_array[i][k][2],
-				name, range, i, type, damage
-				
-			);
-			itempos++;
+			if(randomize(id)){
 			
+				switch (id) {
+					case 0:
+						name = "Sword";
+						range = 25;
+						damage = 10;
+						type = 0;
+						break;
+					case 1:
+						name = "AOE Spell";
+						range = 100;
+						damage = 50;
+						type = 2; //change this later.
+						break;
+					case 2:
+						name = "Fire Ball";
+						range = 900;
+						damage  = 5;
+						type = 2;
+						break;
+					case 3:
+						name = "Boomerang";
+						range = 300;
+						damage = 0;
+						type = 3;
+						break;
+					case 10:
+						name = "Lemon";
+						range = 0;
+						type = -1; //n/a
+						damage = -1;
+						break;
+					case 11:
+						name = "Heart";
+						range = 0;
+						type = -1;
+						damage = -1;
+						break;
+					case 12:
+						name = "Health Potion";
+						range = 0;
+						type = -1;
+						damage = -1;
+						break;	
+				}
+				m_itemList[itempos] = ItemsFactory::createItem
+				(
+					m_3DItems->m_array[i][k][0],
+					m_3DItems->m_array[i][k][1],
+					m_3DItems->m_array[i][k][2],
+					name, range, i, type, damage
+				
+				);
+				itempos++;
+			}
 		}
 	}
 
@@ -152,31 +153,52 @@ void ItemHandler::buildItemArray(std::string file)
 	
 }
 
-void ItemHandler::iSwitch()
+bool ItemHandler::randomize(int id)
 {
-	//std::cout << "switch item" << m_currItem << std::endl;
-	
+	int iRand;
+	/* initialize random seed: */
+	if(id == 10){
+		iRand = rand() % 100;
+		std::cout<< iRand << std::endl;
+		if(iRand < 60){
+			return true;
+		}else{
+		return false;
+		}
+	}else{
+		iRand = rand() % 100;
+		std::cout<< iRand << std::endl;
+		if(iRand < 60){
+			return true;
+		}else{
+			return false;
+		}	
+	}
+}
+
+void ItemHandler::iSwitch()
+{	
    if(m_currItem == m_lastItem){
       m_currItem = 0;
    }else{
       m_currItem = m_currItem +1;   
    }
- 
- //  FOR TESTING
-   //std::string name = m_itemInv[m_currItem]->getName();
-   //int amount = m_itemInv[m_currItem]->getAmount();
-   //std::cout << name << ": " << amount << std::endl;
-
+   if(getItem()->getAmount() == 0){
+		iSwitch();
+	}
 }
 
 void ItemHandler::wSwitch()
 {
-	//sstd::cout << "switch weapon" << m_currWeapon << std::endl;
-   if(m_currWeapon == m_lastWeapon){
-      m_currWeapon = 0;
-   }else{
-      m_currWeapon++;
-   }
+	if(m_currWeapon == m_lastWeapon){
+		m_currWeapon = 0;
+	}else{
+		m_currWeapon++;
+	}
+	
+	if(getWeapon()->getAmount() == 0){
+		wSwitch();
+	}
 }
 
 void ItemHandler::iUse()

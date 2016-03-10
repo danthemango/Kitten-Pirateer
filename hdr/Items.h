@@ -2,6 +2,9 @@
 //********** Title: Items.h       **********//
 //********** Author: Robert Dunn  **********//
 //********** Purpose:             **********//
+//**********   All Items, heart,  **********//
+//**********   Health Potion,     **********//
+//**********   Lemon.             **********//
 //******************************************//
 
 
@@ -21,7 +24,6 @@ class Items: public ItemObject
       void pickUp(int x, int y);  //when picked up
       void use();
       
-      //Items(int r, int inv, int id, std::string name, bool pickup, int x, int y, int tile);
       Items(int id, int x, int y, std::string name, bool display, int r, int tile);
       Items (){};
       ~Items(){};

@@ -1,3 +1,8 @@
+//******************************************//
+//********** Title: FireBall.h    **********//
+//********** Author: Robert Dunn  **********//
+//******************************************//
+
 #include "../hdr/FireBall.h"
 #include "../hdr/ImageLoader.h"
 #include "../hdr/Player.h"

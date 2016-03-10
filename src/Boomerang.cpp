@@ -1,3 +1,8 @@
+//******************************************//
+//********** Title: Boomerang.h   **********//
+//********** Author: Robert Dunn  **********//
+//******************************************//
+
 #include "../hdr/Boomerang.h"
 #include "../hdr/ImageLoader.h"
 #include "../hdr/Player.h"
@@ -68,7 +73,6 @@ void Boomerang::displayProjectileMove()
 
 void Boomerang::use()
 {
-	ItemHandler::getInstance().getItemList();
 	if(!m_used){
 		m_used = true;
 		m_atRange = false;

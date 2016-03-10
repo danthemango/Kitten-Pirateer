@@ -1,3 +1,13 @@
+//******************************************//
+//********** Title: ItemObject.h  **********//
+//********** Author: Robert Dunn  **********//
+//********** Purpose:             **********//
+//**********   Template class for **********//
+//**********   Weapons & Items    **********//
+//******************************************//
+
+
+
 #ifndef ITEM_OBJECT_H_
 #define ITEM_OBJECT_H_
 
@@ -6,13 +16,12 @@
 #include <string>
 #include <iostream>
 
+
 class ItemObject {
 	protected:
 		int m_range;//range of item 0 if N/A
 		std::string m_name;
 		int m_amount;
-		int m_invslot; //which inventory slot
-                     //item is currently in
 		int m_itemID;  //item id states which
                      //type of item it is    
 		bool m_displayed; //bool to see if item has been picked up
@@ -25,12 +34,12 @@ class ItemObject {
                   //0:melee
                   //1:gun
                   //2:spell
+                  //3:boomerang
       
 		GLuint m_itemTexture;
 	
 	public: 
 		//find out if anyone is using this
-		//int getInvSlot(){return m_invslot;}//get current inv slot
 		
 		//get's Item ID, 
 		int getItemID(){return m_itemID;}

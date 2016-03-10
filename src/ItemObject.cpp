@@ -1,3 +1,9 @@
+//******************************************//
+//********** Title: ItemObject.h  **********//
+//********** Author: Robert Dunn  **********//
+//******************************************//
+
+
 #include "../hdr/ItemObject.h"
 #include "../hdr/Player.h"
 #include "../hdr/ImageLoader.h"

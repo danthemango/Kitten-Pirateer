@@ -1,7 +1,6 @@
 //******************************************//
 //********** Title: Weapon.cpp    **********//
 //********** Author: Robert Dunn  **********//
-//********** Purpose:             **********//
 //******************************************//
 
 
@@ -28,8 +27,6 @@ void Weapon::pickUp(int x, int y)
 {	
 	int PlayerX = x;
 	int PlayerY = y;
-	//int PlayerX = Player::getInstance().getX();
-	//int PlayerY = Player::getInstance().getY();
 	int PlayerWidth = Player::getInstance().getWidth();
 	int PlayerHeight = Player::getInstance().getHeight();
    

@@ -1,3 +1,8 @@
+//******************************************//
+//********** Title: ItemsFactory.h**********//
+//********** Author: Robert Dunn  **********//
+//******************************************//
+
 #include "../hdr/ItemsFactory.h"
 #include "../hdr/Items.h"
 #include "../hdr/Weapon.h"

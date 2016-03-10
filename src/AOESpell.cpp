@@ -1,3 +1,8 @@
+//******************************************//
+//********** Title: AOESpell.h    **********//
+//********** Author: Robert Dunn  **********//
+//******************************************//
+
 #include "../hdr/AOESpell.h"
 #include "../hdr/ImageLoader.h"
 #include "../hdr/Player.h"

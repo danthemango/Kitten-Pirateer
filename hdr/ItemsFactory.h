@@ -1,3 +1,13 @@
+//******************************************//
+//********** Title: ItemsFactory.h**********//
+//********** Author: Robert Dunn  **********//
+//********** Purpose:             **********//
+//**********   Factory Pattern    **********//
+//**********   for all item       **********//
+//**********   related creation   **********//
+//******************************************//
+
+
 #ifndef ITEMS_FACTORY_H_
 #define ITEMS_FACTORY_H_
 

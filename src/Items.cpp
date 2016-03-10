@@ -1,7 +1,6 @@
 //******************************************//
 //********** Title: Items.cpp     **********//
 //********** Author: Robert Dunn  **********//
-//********** Purpose:             **********//
 //******************************************//
 
 #include "../hdr/Player.h"
@@ -27,21 +26,13 @@ void Items::pickUp(int x, int y)
    //REMOVE Comments
    int PlayerX = x;
    int PlayerY = y;
-   //int PlayerX = Player::getInstance().getX();
-   //int PlayerY = Player::getInstance().getY();
+
    int PlayerWidth = Player::getInstance().getWidth();
    int PlayerHeight = Player::getInstance().getHeight();
-   /*
-         //following was used for testing
-   int PlayerX = Game::getInstance().m_myPlayer.getX();
-   int PlayerY = Game::getInstance().m_myPlayer.getY();
-   int PlayerWidth = Game::getInstance().m_myPlayer.getWidth();
-   int PlayerHeight = Game::getInstance().m_myPlayer.getHeight();
-  */
+  
    //checks if item is colliding with Player
    if(PlayerX + PlayerWidth > m_x && PlayerX < m_x + m_itemWidth && 
       PlayerY + PlayerHeight > m_y && PlayerY < m_y + m_itemWidth &&
-      //Game::getInstance().getArrayPos() == m_tilePos){
       Player::getInstance().getTile() == m_tilePos){
       if(m_displayed == true){//if Item hasn't been picked up yet
          switch (m_itemID){
@@ -51,10 +42,6 @@ void Items::pickUp(int x, int y)
                m_displayed = false;
                break;
             case 11://heal Player
-               //need a healPlayer(int x) which will add x to Player health
-               
-               //REMOVEComments
-               //Game::getInstance().m_myPlayer.addHealth(10); 
                if(Player::getInstance().getHealth() < MAX_PLAYER_HEALTH){             
 					Player::getInstance().addHealth(10);
 					Jukebox::PlaySound("./sounds/HeartPickUp.wav");
