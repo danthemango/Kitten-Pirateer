@@ -20,13 +20,15 @@
 class ImageLoader;
 
 //void Items::pickUp(Items* item)
-void Items::pickUp()
+void Items::pickUp(int x, int y)
 {  
    //temp x, y and size for Player to keep code cleaner
    
    //REMOVE Comments
-   int PlayerX = Player::getInstance().getX();
-   int PlayerY = Player::getInstance().getY();
+   int PlayerX = x;
+   int PlayerY = y;
+   //int PlayerX = Player::getInstance().getX();
+   //int PlayerY = Player::getInstance().getY();
    int PlayerWidth = Player::getInstance().getWidth();
    int PlayerHeight = Player::getInstance().getHeight();
    /*

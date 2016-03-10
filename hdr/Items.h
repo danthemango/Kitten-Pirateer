@@ -18,7 +18,7 @@ class Items: public ItemObject
 {
    public:
    
-      void pickUp();  //when picked up
+      void pickUp(int x, int y);  //when picked up
       void use();
       
       //Items(int r, int inv, int id, std::string name, bool pickup, int x, int y, int tile);

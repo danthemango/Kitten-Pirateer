@@ -54,7 +54,7 @@ class ItemObject {
 		int getDamage(){return m_damage;}
 		
 		//displays Item
-		void display();
+		virtual void display();
 		
 		//set's damage of weapon if certain items are used
 		int setDamage(int d){ m_damage = d;}
@@ -69,7 +69,7 @@ class ItemObject {
 		virtual void use()=0;
 		
 		//deals with picking up the Item
-		virtual void pickUp()=0;  //when picked up	
+		virtual void pickUp(int x, int y)=0;  //when picked up	
 		
 		virtual ~ItemObject(){};
 };

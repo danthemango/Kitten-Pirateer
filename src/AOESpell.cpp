@@ -34,5 +34,5 @@ AOESpell::AOESpell(int id, int x, int y, std::string name, bool display, int r, 
    m_x = x;
    m_y = y;
    m_tilePos = tile;
-   m_itemTexture = ImageLoader::LoadTexture("./imgs/AOESpell.png");
+   m_itemTexture = ImageLoader::LoadTexture("./imgs/AOEScroll.png");
 }

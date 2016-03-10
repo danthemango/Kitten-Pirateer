@@ -4,6 +4,7 @@
 #include "../hdr/ItemObject.h"
 #include "../hdr/AOESpell.h"
 #include "../hdr/FireBall.h"
+#include "../hdr/Boomerang.h"
 #include <string>
 #include <iostream>
 
@@ -20,6 +21,9 @@ ItemObject *ItemsFactory::createItem(int id, int x, int y, std::string name, int
 				break;
 			case 2:
 				return new FireBall(id, x, y, name, true, r, tilepos, type, d);
+				break;
+			case 3:
+				return new Boomerang(id, x, y, name, true, r, tilepos, type, d);
 				break;
 		}
 		

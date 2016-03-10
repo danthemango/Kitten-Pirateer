@@ -103,12 +103,12 @@ class ItemHandler {
 		init();
                    
       }
-      //~ItemHandler(){}
+      ~ItemHandler(){}
       ItemHandler(ItemHandler const&);
       void operator=(ItemHandler const&);
    
    private:
-         ItemObject *m_itemList[MAXITEMS];  //list of all items on map
+        // ItemObject *m_itemList[MAXITEMS];  //list of all items on map
          ItemObject *m_itemInv[MAXINV];     //items inventory
          ItemObject *m_weaponInv[MAXINV];   //weapon inventory
          int m_invStack[MAXINV]; //amount of that item you are holding. ie character has
@@ -121,8 +121,13 @@ class ItemHandler {
          int *m_tileItems;        //num of items in a given tile.
          ObsArr *m_3DItems;
          int m_numTiles;
+         int m_currTile;
       
    public:
+		ItemObject* getItemList(){return *m_itemList;}
+		int getNumOfItems(){return m_numOfItems;}
+		ItemObject *m_itemList[MAXITEMS];	
+			
       //may be implemented if we implement inventory screen
       ItemObject* getWeaponInv() {return *m_weaponInv;} 
       ItemObject* getItemInv() {return *m_itemInv;}

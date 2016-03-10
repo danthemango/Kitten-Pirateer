@@ -12,6 +12,7 @@
 #include "../hdr/Game.h"
 #include "../hdr/ItemsFactory.h"
 #include "../hdr/ObsArr.h"
+#include "../hdr/Player.h"
 
 /*
 #include "../hdr/ItemHandler.h"
@@ -60,7 +61,7 @@ void ItemHandler::update()
 {
    for(int i = 0; i < m_numOfItems; i++){
       m_itemList[i]->display();
-      m_itemList[i]->pickUp();
+      m_itemList[i]->pickUp(Player::getInstance().getX(),Player::getInstance().getY());
    }
    
 }
@@ -105,8 +106,15 @@ void ItemHandler::buildItemArray(std::string file)
 				case 2:
 					name = "Fire Ball";
 					range = 900;
-					damage  = 20;
+					damage  = 5;
 					type = 1;
+					break;
+				case 3:
+					name = "Boomerang";
+					range = 300;
+					damage = 0;
+					type = 2;
+					break;
 				case 10:
 					name = "Lemon";
 					range = 0;

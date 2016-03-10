@@ -3,9 +3,13 @@
 
 #include "Weapon.h"
 
-class Spell: public Weapon {
+class Spell: virtual public Weapon {
+	protected:
+		int m_element; //0=fire,1=water
+	
 	public:
 		virtual void use()=0;
+		int getElement(){return m_element;}
 		
 		Spell(){};
 		~Spell(){};

@@ -15,7 +15,7 @@ class Weapon: public ItemObject{
 	public:	
 		virtual void use();
 		
-		void pickUp();
+		void pickUp(int x, int y);
 		
 		Weapon(int id, int x, int y, std::string name, bool display, int r, int tile, int type, int d);
 		Weapon(){};
