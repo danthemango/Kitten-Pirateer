@@ -24,7 +24,7 @@
 //**********   10:lemon           **********//
 //**********   11:heart           **********//
 //**********   12:health Potion   **********//
-//**********   13:                **********//
+//**********   13:bomb            **********//
 //**********   14:                **********//
 //**********   15:                **********//
 //**********   16:                **********//
@@ -36,7 +36,7 @@
 
 #ifndef ITEMHANDLER_H_
 #define ITEMHANDLER_H_
-#define MAXITEMS 50
+#define MAXITEMS 200
 #define MAXINV 10
 
 #include "Items.h"
@@ -45,6 +45,14 @@
 #include "Weapon.h"
 #include "ObsArr.h"
 #include <string>
+
+#define PERCENT_LEMON 30
+#define PERCENT_AOE 20
+#define PERCENT_FIREBALL 30
+#define PERCENT_HEART 50
+#define PERCENT_HEALTHPOTION 35
+
+
 
 class ItemHandler {
    public:
@@ -60,16 +68,13 @@ class ItemHandler {
         m_currItem = 0;
         m_lastWeapon = 0;
         m_lastItem = 0;
-        m_lemons = 0;
+        m_lemons = 1;
         //m_numOfItems = 21;
         //start with a sword and 1 lemon
         m_weaponInv[0] = new Weapon(0,-1,-1,"Sword", false, 25,-1,0,10);
         m_itemInv[0] = new Items(10,-1,-1,"Lemon",false,0,-1);         
         
 		init();
-        for(int i=0;i<m_numOfItems;i++){
-			std::cout << m_itemList[i]->getName() << std::endl;
-		}
       }
       ~ItemHandler(){}
       ItemHandler(ItemHandler const&);

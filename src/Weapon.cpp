@@ -84,7 +84,7 @@ Weapon::Weapon(int id, int x, int y, std::string name, bool display, int r, int 
    m_displayed = display;
    m_itemWidth = 20;
    m_x = x;
-   m_y = y;
+	m_y = y;
    m_tilePos = tile;
    m_itemTexture = ImageLoader::LoadTexture("./imgs/lemon.png");
 

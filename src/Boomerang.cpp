@@ -7,26 +7,29 @@
 #include "../hdr/ImageLoader.h"
 #include "../hdr/Player.h"
 #include "../hdr/ItemHandler.h"
+#include "../hdr/config.h"
 #include <stdlib.h>
 
 void Boomerang::displayProjectileMove()
 {
 	if(m_used && Player::getInstance().getTile() == m_startTile){
-
-		glEnable(GL_TEXTURE_2D);
-		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
-		glBindTexture (GL_TEXTURE_2D, m_itemTexture);
-		ImageLoader::rectangle(m_x, m_y, m_itemWidth, m_itemWidth);
-		glDisable(GL_TEXTURE_2D);
-		glFlush();
 		
-		int size = ItemHandler::getInstance().getNumOfItems();
+			if(m_x + m_itemWidth < SCREEN_SIZE_X && m_x > 0 && m_y + m_itemWidth < SCREEN_SIZE_Y && m_y > 0){ 
+		
+			glEnable(GL_TEXTURE_2D);
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
+			glBindTexture (GL_TEXTURE_2D, m_itemTexture);
+			ImageLoader::rectangle(m_x, m_y, m_itemWidth, m_itemWidth);
+			glDisable(GL_TEXTURE_2D);
+			glFlush();
+		
+			int size = ItemHandler::getInstance().getNumOfItems();
 
-		for(int i=0;i<size;i++){
-			ItemHandler::getInstance().m_itemList[i]->pickUp(m_x, m_y);		
+			for(int i=0;i<size;i++){
+				ItemHandler::getInstance().m_itemList[i]->pickUp(m_x, m_y);		
+			}
+
 		}
-
-
 		if(!m_atRange){
 			switch (m_direction){
 				case 0:
@@ -101,7 +104,7 @@ void Boomerang::use()
 				//m_itemTexture = ImageLoader::LoadTexture("./imgs/FireBallSpellLeft.png");	
 				break;
 		}
-		decreaseAmount();	
+		//decreaseAmount();	
 	}
 }
 
@@ -113,7 +116,7 @@ Boomerang::Boomerang(int id, int x, int y, std::string name, bool display, int r
 	m_itemID = id;
 	m_name = name;
 	m_type = type;
-	m_amount = 3;
+	m_amount = 1;
 	m_displayed = display;
 	m_itemWidth = 30;
 	m_x = x;

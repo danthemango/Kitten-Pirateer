@@ -2,6 +2,7 @@
 #include "../hdr/Player.h"
 #include "../hdr/ImageLoader.h"
 #include "../hdr/ZombieHandler.h"
+#include "../hdr/config.h"
 #include <iostream>
 #include <stdlib.h>
 
@@ -25,15 +26,16 @@ void Projectile::display()
 void Projectile::displayProjectileMove()
 {
 	if(m_used && Player::getInstance().getTile() == m_startTile){
-
-		glEnable(GL_TEXTURE_2D);
-		glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
-		glBindTexture (GL_TEXTURE_2D, m_itemTexture);
-		ImageLoader::rectangle(m_x, m_y, m_itemWidth, m_itemWidth);
-		glDisable(GL_TEXTURE_2D);
-		glFlush();
+		if(m_x + m_itemWidth < SCREEN_SIZE_X && m_x > 0 && m_y + m_itemWidth < SCREEN_SIZE_Y && m_y > 0){ 
+			glEnable(GL_TEXTURE_2D);
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
+			glBindTexture (GL_TEXTURE_2D, m_itemTexture);
+			ImageLoader::rectangle(m_x, m_y, m_itemWidth, m_itemWidth);
+			glDisable(GL_TEXTURE_2D);
+			glFlush();
 		
-		attack();
+			attack();
+		}
 		switch (m_direction){
 			case 0:
 				m_y+=5;

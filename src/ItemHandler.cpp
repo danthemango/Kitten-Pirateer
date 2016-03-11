@@ -63,6 +63,15 @@ void ItemHandler::update()
       m_itemList[i]->display();
       m_itemList[i]->pickUp(Player::getInstance().getX(),Player::getInstance().getY());
    }
+   if(m_itemInv[0]->getAmount() == m_lemons){
+		//std:cout<< "found all lemons" << std::endl;
+		m_itemInv[0]->setAmount(0);
+		for(int i = 0; i < m_numOfItems; i++){
+			if(m_itemList[i]->getItemID() == 13){
+				m_itemList[i]->setDisplayed(true);
+			}
+		}
+	}
    
 }
 
@@ -113,7 +122,7 @@ void ItemHandler::buildItemArray(std::string file)
 						break;
 					case 3:
 						name = "Boomerang";
-						range = 300;
+						range = 350;
 						damage = 0;
 						type = 3;
 						break;
@@ -134,7 +143,13 @@ void ItemHandler::buildItemArray(std::string file)
 						range = 0;
 						type = -1;
 						damage = -1;
-						break;	
+						break;
+					case 13:
+						name = "Bomb";
+						range = 0;
+						type = -1;
+						damage = 0;
+						break;
 				}
 				m_itemList[itempos] = ItemsFactory::createItem
 				(
@@ -148,7 +163,9 @@ void ItemHandler::buildItemArray(std::string file)
 			}
 		}
 	}
-
+	m_itemList[itempos] = ItemsFactory::createItem(10, 420, 785, "Lemon", 0, 5, -1, -1);
+	m_lemons++;
+	itempos++; 
 	m_numOfItems = itempos;
 	
 }
@@ -156,23 +173,40 @@ void ItemHandler::buildItemArray(std::string file)
 bool ItemHandler::randomize(int id)
 {
 	int iRand;
-	/* initialize random seed: */
+	iRand = rand() % 100;
 	if(id == 10){
-		iRand = rand() % 100;
-		std::cout<< iRand << std::endl;
-		if(iRand < 60){
+		if(iRand < PERCENT_LEMON){
+			m_lemons++;
 			return true;
 		}else{
 		return false;
 		}
-	}else{
-		iRand = rand() % 100;
-		std::cout<< iRand << std::endl;
-		if(iRand < 60){
+	}else if(id == 1){
+		if(iRand < PERCENT_AOE){
 			return true;
 		}else{
 			return false;
 		}	
+	}else if(id == 2){
+		if(iRand < PERCENT_FIREBALL){
+			return true;
+		}else{
+			return false;
+		}
+	}else if(id == 11){
+		if(iRand < PERCENT_HEART){
+			return true;
+		}else {
+			return false;
+		}
+	}else if(id == 12){
+		if(iRand < PERCENT_HEALTHPOTION){
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+		return true;
 	}
 }
 
@@ -183,9 +217,6 @@ void ItemHandler::iSwitch()
    }else{
       m_currItem = m_currItem +1;   
    }
-   if(getItem()->getAmount() == 0){
-		iSwitch();
-	}
 }
 
 void ItemHandler::wSwitch()

@@ -22,7 +22,7 @@ class Items: public ItemObject
    public:
    
       void pickUp(int x, int y);  //when picked up
-      void use();
+      virtual void use();
       
       Items(int id, int x, int y, std::string name, bool display, int r, int tile);
       Items (){};

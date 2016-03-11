@@ -70,6 +70,8 @@ class ItemObject {
 		
 		//returns type of weapon as defined above
 		int getType(){return m_type;}
+		
+		void setDisplayed(bool display){m_displayed = display;}
       
 		void update(){}
 		//ItemObject(){};

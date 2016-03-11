@@ -52,7 +52,11 @@ void Items::pickUp(int x, int y)
                Jukebox::PlaySound("./sounds/ItemPickUp.wav");
                ItemHandler::getInstance().addItemToInv(this); 
                m_displayed = false;     
-               break;            
+               break;
+            case 13:
+			   Jukebox::PlaySound("./sounds/ItemPickUp.wav");
+               ItemHandler::getInstance().addItemToInv(this); 
+               m_displayed = false;
       
          }
        
@@ -83,9 +87,9 @@ Items::Items(int id, int x, int y, std::string name, bool display, int r, int ti
    m_amount = 1;
    m_displayed = display;
    m_x = x;
-   m_y = y;
    m_tilePos = tile;
    m_itemWidth = 20;
+   m_y = y;
 
    //switchcase
    switch (m_itemID){

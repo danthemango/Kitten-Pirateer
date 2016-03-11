@@ -10,6 +10,7 @@
 #include "../hdr/AOESpell.h"
 #include "../hdr/FireBall.h"
 #include "../hdr/Boomerang.h"
+#include "../hdr/Bomb.h"
 #include <string>
 #include <iostream>
 
@@ -33,7 +34,11 @@ ItemObject *ItemsFactory::createItem(int id, int x, int y, std::string name, int
 		}
 		
 	}else if(id >=10 && id <=19){
+		if(id == 13){
+		return new Bomb(id, x, y, name, false, r, tilepos);
+	}else{
 		return new Items(id, x, y, name, true, r, tilepos);
+	}
 	}
 	
 	

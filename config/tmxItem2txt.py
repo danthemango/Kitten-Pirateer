@@ -8,7 +8,7 @@
 
 import os;
 
-os.system('rm output.csv');
+os.system('rm Itemoutput.csv');
 
 tile = []
 tile.append('TMX/level1/tile0.tmx')
@@ -23,7 +23,7 @@ tile.append('TMX/level1/tile8.tmx')
 
 array = []
 
-O = open('output.csv' ,  'w'); 
+O = open('Itemoutput.csv' ,  'w'); 
 
 
 numTiles = 9
@@ -67,27 +67,31 @@ O.write('%d\n' % numTiles);
 
 for k in range(len(tile)):
 	numObs.append(len(array[k]))
-	x = numObs[k]/5
+	x = numObs[k]/4
 	O.write('%d ' % x);
 	
 O.write('\n')
-O.write('5\n')
+O.write('3\n')
 
 
 for k in range(len(tile)):
 	for n in range(numObs[k]):
-		if(n%5==0):
+		if(n%4==0):
 			n+=1
-		elif(n%5==2):
-			O.write(str(1054-int(array[k][n])-int(array[k][n+2])));
-			O.write(' ');
-			n +=1
-		else:
+		elif(n%4==1):
 			O.write(array[k][n]);
 			O.write(' ');
 			n +=1
-		if(n%5==0 and n!=0):
-			O.write('0\n');
+		elif(n%4==2):
+			O.write(array[k][n]);
+			O.write(' ');
+			n +=1
+		elif(n%4==3):
+			O.write(str(1054-int(array[k][n])));
+			O.write(' ');
+			n +=1
+		if(n%4==0 and n!=0):
+			O.write('\n');
 	
 	
 O.close();

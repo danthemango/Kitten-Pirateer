@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="33" height="33" tilewidth="32" tileheight="32" nextobjectid="220">
- <tileset firstgid="1" name="PathAndObjects" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="33" height="33" tilewidth="32" tileheight="32" nextobjectid="239">
+ <tileset firstgid="1" name="PathAndObjects" tilewidth="32" tileheight="32">
   <image source="../../../TILED/KP_Map/PathAndObjects.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="257" name="9ywlq" tilewidth="32" tileheight="32" tilecount="192" columns="16">
+ <tileset firstgid="257" name="9ywlq" tilewidth="32" tileheight="32">
   <image source="../../../TILED/KP_Map/9ywlq.png" width="512" height="384"/>
  </tileset>
- <tileset firstgid="449" name="pirate-themed-tilee" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+ <tileset firstgid="449" name="pirate-themed-tilee" tilewidth="32" tileheight="32">
   <image source="../../../TILED/KP_Map/pirate-themed-tilee.png" width="512" height="512"/>
   <tile id="51">
    <objectgroup draworder="index">
@@ -22,10 +22,10 @@
    </objectgroup>
   </tile>
  </tileset>
- <tileset firstgid="705" name="tiled" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+ <tileset firstgid="705" name="tiled" tilewidth="32" tileheight="32">
   <image source="../../../TILED/KP_Map/tiled.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="961" name="QuxSo" tilewidth="32" tileheight="32" tilecount="550" columns="22">
+ <tileset firstgid="961" name="QuxSo" tilewidth="32" tileheight="32">
   <image source="../../../TILED/QuxSo.png" width="704" height="800"/>
  </tileset>
  <layer name="Ocean+Ground" width="33" height="33" opacity="0.9">
@@ -355,5 +355,22 @@
  </objectgroup>
  <objectgroup name="Zombie Spawn">
   <object id="190" x="22" y="8" width="702" height="776"/>
+ </objectgroup>
+ <objectgroup name="Items">
+  <object id="221" name="10" x="115" y="864"/>
+  <object id="224" name="10" x="788" y="864"/>
+  <object id="225" name="10" x="877" y="162"/>
+  <object id="226" name="11" x="836" y="72"/>
+  <object id="227" name="11" x="821" y="228"/>
+  <object id="228" name="11" x="440" y="99"/>
+  <object id="229" name="11" x="769" y="953"/>
+  <object id="230" name="11" x="610" y="1031"/>
+  <object id="231" name="11" x="423" y="307"/>
+  <object id="232" name="11" x="678" y="379"/>
+  <object id="233" name="12" x="757" y="1028"/>
+  <object id="234" name="1" x="711" y="777"/>
+  <object id="235" name="2" x="34" y="937"/>
+  <object id="237" name="2" x="130" y="351"/>
+  <object id="238" name="10" x="634" y="965"/>
  </objectgroup>
 </map>
