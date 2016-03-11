@@ -6,9 +6,16 @@
 // Project: Kitty Pirateer
 // 
 // Purpose: 
+//	This Singleton Class is responsible for the core of the interactions with the Map
+//	It is a key component for handling the switches between tiles and giving the Enemy spawn location
+// 	and item locations to their respective handlers as per each tile. This Class will also be able to handle the switching
+// 	between levels. Being able to call a proxy class ObsArr To construct a data array from input files generated from
+// 	a map creating open source program called Tiled (tm). Then using a Python script to convert it into a space delimitated
+// 	file to be read in from the parameter in calling ObsArr.
 //
-// 
-//    
+//	I make it very easy to interact as i give data to various other classes and also there are not to many calls needed 
+//	actually be made, as this class is very self sufficient.
+//   
 // ************************************************
 
 #ifndef MAPHANDLER_H_
@@ -28,14 +35,24 @@ class MapHandler {
 
 private:
 	
+	//Array of Obstacles set to the Max amount
 	Obstacle m_obs[MAXOBS];
+    
+    //array of textures for each of the tiles
     GLuint m_tileTextureArray[NUMTILES];
+    
+    //int to keep track of the current tile   
     int m_currTile; 
+    
+    //pointer to an array of the number of obstacles in each corresponding tile
     int *m_numObs;
+    
+    //number of tiles used when the game is expanded to varrying tile sized levels
     int m_numTiles;
+    
+    //Creates a pointer to the ObsArr class that will be used as a proxy for the obstacle data
     ObsArr *m_ObstacleArr;
     
-    double ***m_obs3DArray;
     
     MapHandler(MapHandler const&);
     void operator=(MapHandler const&);
@@ -60,7 +77,7 @@ private:
 		m_tileTextureArray[6] = ImageLoader::LoadTexture("./imgs/tile6.png");
 		m_tileTextureArray[7] = ImageLoader::LoadTexture("./imgs/tile7.png");
 		m_tileTextureArray[8] = ImageLoader::LoadTexture("./imgs/tile8.png");
-				
+		 
 		//creates the first array of Obstacles for the initial Tile
 		
 		for(int i=0;i<m_numObs[m_currTile];i++)
@@ -76,11 +93,14 @@ private:
 		}
 	}
     
-    ~MapHandler(){};
+    ~MapHandler()
+    {
+		delete m_ObstacleArr;
+	};
     
 public:
 	
-	//Allows for others to get this instance of the singleton map handler
+	// Allows for others to get this instance of the singleton map handler
 	
 	static MapHandler &getInstance()
 	{
@@ -88,27 +108,26 @@ public:
 		return instance;
 		};
 	
-	//Returns the number of obstacles in the current tile
+	// Returns the number of obstacles in the current tile
 	
 	int getNumObstacles() {return m_numObs[m_currTile];};
 	
-	//Returns a pointer to the array of Obstacles in the game
-	
+	// Returns a pointer to the array of Obstacles in the current tile
 	Obstacle* getObstacles() {
 	   Obstacle * pointer;
 	   pointer = m_obs;
 	   return pointer;};
 	
-	//returns the texture of the current tile
+	// Returns the texture of the current tile
 	
 	GLuint getTile(int n){return m_tileTextureArray[n];};
 	
-	//Switches the tile to a new tile, new obstacles are built
+	// Switches the tile to a new tile, Updates the information in maphandler, including constructing new obstacles 
+	// in the new tile
 	
 	void updateTile(int x);
 	
 	// Returns a Rectangle(square) that the zombies can spawn in on the current tile
-	
 	Square* zombieSpawnArea(); 
 	
 };

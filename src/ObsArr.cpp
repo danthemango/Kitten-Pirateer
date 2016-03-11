@@ -1,5 +1,14 @@
-#include "../hdr/ObsArr.h"
+// **********************************************
+// Filename: ObsArr.cpp
+// Author: Nathan Hogman
+// Date: 2016-02-01
+// Class: CSCI 331
+// Project: Kitty Pirateer
+//
+// ************************************************
 
+#include "../hdr/ObsArr.h"
+ 
 ObsArr::ObsArr(string file)
 {
 	ifstream f;

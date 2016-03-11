@@ -5,10 +5,8 @@
 // Class: CSCI 331
 // Project: Kitty Pirateer
 // 
-// Purpose: child class of obstacle that will also cause the Character that is in 
-// contact with it to be slowed when moving through it. So this obstacle will not 
-// stop a character from passing through, but will hinder its movement
-//    
+// Purpose: 
+//	A type of obstacle that hinders the players movement
 // ************************************************
 
 
@@ -19,17 +17,14 @@
 
 #include "Obstacle.h"
 
-class ObstacleSlow: public Obstacle {
+class ObstacleSlow: virtual public Obstacle {
 
 private:
-	int m_x, m_y, m_width, m_height;
 	int m_slow;
-	int m_cond;
-
 public:
-	void update (){};
-	void display (){};
-	bool collide (Player *C){};
+	//returns the amount of slow caused by the obstacle
+	int getSLOW() {return m_slow;};
+	
 	ObstacleSlow(int x, int y, int w, int h, int slow);
 	ObstacleSlow(){};
 	~ObstacleSlow(){};
