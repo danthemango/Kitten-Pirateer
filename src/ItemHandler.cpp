@@ -95,7 +95,6 @@ void ItemHandler::buildItemArray(std::string file)
 	int id;
 	int itempos = 0;
 	
-	
 	for(int i = 0; i < m_numTiles; i++){
 		for(int k = 0; k < m_tileItems[i]; k++){
 			id = m_3DItems->m_array[i][k][0];
@@ -166,8 +165,41 @@ void ItemHandler::buildItemArray(std::string file)
 	m_itemList[itempos] = ItemsFactory::createItem(10, 420, 785, "Lemon", 0, 5, -1, -1);
 	m_lemons++;
 	itempos++; 
-	m_numOfItems = itempos;
 	
+	int iRand = rand() % 5;
+	int x, y, tile; 
+	
+	switch(iRand){
+		case 0:
+			x = 363;
+			y = 642;
+			tile = 1;
+			break;
+		case 1:
+			x = 704;
+			y = 382;
+			tile = 2;
+			break;
+		case 2:
+			x = 156;
+			y = 578;
+			tile = 4;
+			break;
+		case 3:
+			x = 736;
+			y = 350;
+			tile = 6;
+			break;
+		case 4:
+			x = 800;
+			y = 190;
+			tile = 8;
+			break;
+	}
+	
+	m_itemList[itempos] = ItemsFactory::createItem(3, x, y, "Boomerang", 350 , tile, 3, 0);
+	itempos++;
+	m_numOfItems = itempos;
 }
 
 bool ItemHandler::randomize(int id)
