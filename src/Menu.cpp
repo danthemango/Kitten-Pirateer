@@ -4,6 +4,7 @@
 //which will provide the menus of the game.
 //Version: 0.8
 //TODO create the win/lose screens aswell as a finalized menu and pause menu.
+//TODO work out the x/y coordinates for the win/lose menu. 
 
 //Libraries required:
 #include <stdlib.h>
@@ -38,7 +39,7 @@ void Menu::splashScreen()
 	//m_splashTexture= ImageLoader::LoadTexture( "./imgs/menus/pausemenu.bmp" );
  
 	glEnable(GL_TEXTURE_2D);
-	ImageLoader::rectangle(200, 250, 600, 215);
+	ImageLoader::rectangle(420, 127, 600, 215);//x, y, width, height.
    
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_splashTexture);
@@ -62,7 +63,7 @@ void Menu::mainMenu()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_menuTexture);
-   	ImageLoader::rectangle(200, 250, 800, 600);
+   	ImageLoader::rectangle(227, 27, 800, 600);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
@@ -83,7 +84,7 @@ void Menu::winScreen()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_menuTexture);
-   	ImageLoader::rectangle(200, 250, 800, 600);
+   	ImageLoader::rectangle(200, 250, 800, 600);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
@@ -102,7 +103,7 @@ void Menu::loseScreen()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_menuTexture);
-   	ImageLoader::rectangle(200, 250, 800, 600);
+   	ImageLoader::rectangle(200, 250, 800, 600);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
 	glFlush();

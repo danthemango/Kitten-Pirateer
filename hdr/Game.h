@@ -19,7 +19,7 @@
 #include "../hdr/Obstacle.h"//Include the Obstacle class.
 #include "../hdr/MapHandler.h"//Include the MapHandler class.
 #include "../hdr/ZombieHandler.h"//Include the ZombieHandler.h
-#include "../hdr/Menu.h"
+#include "../hdr/Menu.h"//Include the menu class.
 
 //Various required classes:
 class Player;//Gives access to the Player.
@@ -47,6 +47,11 @@ class Game {
 		Game(Game const&);           //Don't Implement
         void operator=(Game const&); //Don't implement
 		
+		//Deconstructor:
+		//~Game() {
+			
+		//};
+		
 		const static int c_interval = 1000 / 60;//60 frames per second, c_interval sets 
 		//up the screens refresh rate and fps.
 
@@ -54,7 +59,6 @@ class Game {
 		int m_width;
 		int m_height;
 		int m_margine;
-
 		Menu m_menu;
 		
 		//Background texture:
@@ -72,7 +76,7 @@ class Game {
         };
 		
 		//Public Variables:
-		static int m_lastSong;
+		static int m_lastSong;//Stores the last song time stamp.
 		static bool c_run;//Variable to handle the start up of the game. When this is set
 		//to false, the game waits on the main menu. Once this is changed to true, the game
 		//runs until the c_running variable is changed. This variable allows us to possibly
@@ -80,11 +84,6 @@ class Game {
 		static bool c_running;//Variable to tell update if the game is to be paused or not.
 		//The c_running variable is public, to allow other objects to alter this, in essence
 		//allowing events to pause the game if necessary.
-		
-		//Possible functions: These are pulled from the collision lab 
-		//to be prepared incase anything is transfered over. 
-		//Anything unused will be removed before the final due date.
-		//GLfloat frand();//Random number function. Here incase we need it.
 
 		//Required functions:
 		static bool* keystates;
@@ -104,7 +103,10 @@ class Game {
 		//to change the background tile variable.
 		void restartGame();//Function to restart the game when called.
 		
-
+		//Possible functions: These are pulled from the collision lab 
+		//to be prepared incase anything is transfered over. 
+		//Anything unused will be removed before the final due date.
+		//GLfloat frand();//Random number function. Here incase we need it.
 
 };
 
