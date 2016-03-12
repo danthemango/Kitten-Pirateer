@@ -1,10 +1,13 @@
 //Edited by: Keenan Longair.
-//Last update: 2:00PM February 28th, 2016.
+//Last update: 12:00PM March 12th, 2016.
 //Purpose: Contains the body of the game file prototyped in the Game.h file.
-//Version: 1.2
+//Version: 1.4
 //**************************************************************************************
 //TODO: Add a restart function ability to the code so we can restart the game from within.
-
+//Not sure how to add this ability yet but I believe it would have to be part of the \
+//win/lose code. So far only a win/lose screen from menu has been coded. 
+//TODO: Test the key input during paused to ensure that the player cannot move, or do 
+//anything except unpause the game. 
 
 //Required Libraries:
 #include <cstdio>
@@ -22,8 +25,8 @@
 #include "../hdr/MapHandler.h"//Dependancy for the Map.
 #include "../hdr/Player.h"//Dependancy for the Player.
 #include "../hdr/ItemHandler.h"//Dependancy for the item handler.
-#include "../hdr/HUDHandler.h" // HUD Deppendency
-#include "../hdr/ZombieHandler.h"
+#include "../hdr/HUDHandler.h" //HUD Dependency
+#include "../hdr/ZombieHandler.h"//Zombie Handler dependancy.
 
 //Main Variables:
 bool Game::c_run = false;//Set the game to display the main menu. Once changed this
@@ -39,6 +42,7 @@ void Game::init()
 //Initialization function.
 {
 	
+	//TODO remove the next 2 lines if the random number function is not needed.
     //Set the seed for the random variable generator just in case we need it.
     //srandom(time(NULL));
 
@@ -83,33 +87,38 @@ void Game::init()
                     //This routine should be called at most once in a GLUT program. 
                     //Once called, this routine will never return. 
                     //It will call as necessary any callbacks that have been registered.
+
 }
 
 void Game::update()
 //Function handling the update of the game.
 {
+	
 	int now;
 	int miliseconds;
 	now = glutGet(GLUT_ELAPSED_TIME);
 	miliseconds =  now - m_lastSong;
-	if (miliseconds > 32600){
-		Jukebox::PlaySound("./sounds/Song.wav");
+	
+	if (miliseconds > 32600) {
+		
+		Jukebox::PlayBackground();
 		m_lastSong = glutGet(GLUT_ELAPSED_TIME);
+		
 	}
 	
 	Game::getInstance().keyOperations();
-	//Clear color and depth buffers
+	
+	//Clear color and depth buffers:
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
-	//Clear the screen
+	//Clear the screen:
 	glClearColor(1.0, 1.0, 1.0, 1.0); // Set the clear color to white
 	glClear(GL_COLOR_BUFFER_BIT);     // clear the screen
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	//Draw the background
-	
+	//Draw the background:
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_backgroundTexture);
@@ -139,14 +148,14 @@ void Game::update()
 	 
 	}
 
-	// display and update the zombies
+	//Display and update the zombies:
 	ZombieHandler::getInstance().display();
 	ZombieHandler::getInstance().update();
 	//Update the items:
 	ItemHandler::getInstance().update();
-	
 	//Player display should be one of the very last, if not last.
 	Player::getInstance().display();
+	
 }
 
 void Game::run() 
@@ -161,13 +170,15 @@ void Game::run()
 	
 }
 
-// Called by Game::idle this function sends a signal to update the screen
+//Called by Game::idle this function sends a signal to update the screen
 void Game::timer(int id)
 {
 	
 	if(id == 513) {
+		
 		//Redisplay frame
 		glutPostRedisplay();
+		
 	}
    
 }
@@ -187,29 +198,34 @@ void Game::idle()
    whenever the window is re-sized with its new width and height */
 void Game::reshape(GLsizei newwidth, GLsizei newheight) 
 {  
-	// Set the viewport to cover the new window
+
+	//Set the viewport to cover the new window
     glViewport(0, 0, m_width=newwidth, m_height=newheight);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(0.0, m_width, m_height, 0.0, 0.0, 100.0);
     glMatrixMode(GL_MODELVIEW); 
     glutPostRedisplay();
+	
 }
 
 void Game::updateTile(GLuint x)
 //Function which allows the background texture variable to be altered when required.
 {
+	
 	m_backgroundTexture = x;
-   ZombieHandler::getInstance().updateTile(x);
+	ZombieHandler::getInstance().updateTile(x);
+	
 }
 /****End of Main Work Functions*********************************************************/
-
 
 /****Key Functions**********************************************************************/
 void Game::key(unsigned char key, int x, int y)
 //This function handles key input from the user for non-movement controls.
 {
+	
 	keystates[key] = true;
+	
     switch (key){
 		
         case ' ' :
@@ -238,26 +254,91 @@ void Game::key(unsigned char key, int x, int y)
 		//The following controls are not finite. They may be changed later on however 
 		//this will allow us to test them ass we need them.
         case 'k':
-         ItemHandler::getInstance().iUse();
-			//k will handle item use.
-			break;
+			
+			if (c_running) {
+				
+				//If the game is running, allow item use.
+				ItemHandler::getInstance().iUse();
+				//k will handle item use.
+				break;
+			
+			} else {
+				
+				//Otherwise do nothing.
+				break;
+				
+			}
 			
 		case 'i':
-			//i will handle item swap.
-			ItemHandler::getInstance().iSwitch();
-			break;
 		
+			if (c_running) {
+				
+				//If the game is running, allow item swapping.
+				//i will handle item swap.
+				ItemHandler::getInstance().iSwitch();
+				break;
+			
+			} else {
+
+				//Otherwise do nothing.
+				break;
+				
+			}
+				
 		case 'j':
-			//j uses the currently equipted weapon to attack or do something else.
-			Player::getInstance().attack();
-			break;
+			if (c_running) {	
+
+				//If the game is running allow attacks.
+				//j uses the currently equipted weapon to attack or do something else.
+				Player::getInstance().attack();
+				break;
+			
+			} else {
+
+				//Otherwise do nothing.
+				break;
+				
+			}
 			
 		case 'u':
-			//u handles weapon swap.
-			ItemHandler::getInstance().wSwitch();
-			break;
+		
+			if (c_running) {	
+
+				//If the game is running allow weapon swapping.
+				//u handles weapon swap.
+				ItemHandler::getInstance().wSwitch();
+				break;
 			
+			} else {
+
+				//Otherwise do nothing.
+				break;
+				
+			}
+			
+		//TODO fill in the restart command code.
+		/*	
+		case '':
+			
+			//This case is a prototype for the restart function during a menu. 
+			if (!c_running) {
+				
+				//If the game is paused allow the user to indicate if they wish 
+				//to restart the game. This will also be used for restarting from
+				//a win or lose.
+				//Code to confirm a restart and cause the restart either through
+				//a function call or code to do so.
+				break;
+			
+			} else {
+				
+				//Otherwise do nothing.
+				break;
+			
+			}
+		*/	
     }
+	
     //glutPostRedisplay();
 	
 }
@@ -266,54 +347,61 @@ void Game::keyOperations()
 //keyOpertations handles smooth movement from the control input.
 {
 	
-	if (keystates['a']) {
+	if (c_running) {
+		
+		//If the game is running, allow movement keys to be used. '
+		if (keystates['a']) {
 	   
-		Player::getInstance().left();
-	   Player::getInstance().update();
-		Player::getInstance().c_left = true;
+			Player::getInstance().left();
+			Player::getInstance().update();
+			Player::getInstance().c_left = true;
 	  
-	} else {
+		} else {
 	   
-		Player::getInstance().c_left = false;
+			Player::getInstance().c_left = false;
 	
-	}
+		}
    
-	if (keystates['w']) {
+		if (keystates['w']) {
 	   
-		Player::getInstance().up();
-		Player::getInstance().update();
-		Player::getInstance().c_up = true;
+			Player::getInstance().up();
+			Player::getInstance().update();
+			Player::getInstance().c_up = true;
 	  
-	} else {
+		} else {
 	   
-		Player::getInstance().c_up = false;
+			Player::getInstance().c_up = false;
 	
-	}
+		}
    
-	if (keystates['d']) {
+		if (keystates['d']) {
 	   
-		Player::getInstance().right();
-		Player::getInstance().update();
-		Player::getInstance().c_right = true;
+			Player::getInstance().right();
+			Player::getInstance().update();
+			Player::getInstance().c_right = true;
 	  
-	} else {
+		} else {
 	   
-		Player::getInstance().c_right = false;
+			Player::getInstance().c_right = false;
 	
-	}
+		}
    
-	if (keystates['s']) {
+		if (keystates['s']) {
 	   
-		Player::getInstance().down();
-		Player::getInstance().update();
-		Player::getInstance().c_down = true;
+			Player::getInstance().down();
+			Player::getInstance().update();
+			Player::getInstance().c_down = true;
 	  
-	} else {
+		} else {
 	   
-		Player::getInstance().c_down = false;
+			Player::getInstance().c_down = false;
 	
-	}
+		}
 
+	}
+	
+	//Otherwise do nothing.
+		
 }
 
 void Game::keyUp(unsigned char key, int x, int y)
@@ -330,23 +418,9 @@ void Game::keyUp(unsigned char key, int x, int y)
 //Possibly helpful functions.
 //These functions are here to provide their possible use for the project.
 //Anything not used by the end will be removed.
+//TODO remove any functions in this location that are not used.
 
-/*Get Width and Get Height are not required now that the size of the screen will be
-located within the config.h
-int Game::getWidth() 
-{
-	
-	return m_width;
-	
-}
-
-int Game::getHeight() 
-{
-	
-	return m_height;
-	
-}
-
+/*
 //Function to return a random number if needed. May be removed if 
 //not used before final presentation.
 GLfloat Game::frand()
@@ -364,10 +438,13 @@ GLfloat Game::frand()
 int main(int argc, char **argv) 
 {
 	
+	//Start by trying to initialize Jukebox and then init glut and getInstance to that
+	//the game will start (within getInstance).
     if(!Jukebox::init())
 		exit;
     glutInit(&argc, argv);
     Game::getInstance().init();
+	//Once the game is ended, close the audio.
     SDL_CloseAudio();
 	
 }

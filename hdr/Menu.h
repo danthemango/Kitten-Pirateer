@@ -1,5 +1,5 @@
 //Edited by: Keenan Longair.
-//Last update: 3:30PM February 26th, 2016.
+//Last update: 12:00PM March 12th, 2016.
 //Purpose: To prototype the interface needed to create a spash screen
 //and main menu.
 //Version: 0.7
@@ -32,8 +32,11 @@ class Menu {
 		int m_height;
 		GLuint m_splashTexture;
 		GLuint m_menuTexture;
+		GLuint m_winTexture;
+		GLuint m_loseTexture;
 
 	public:
+	
 		//Contructor
 		Menu() {
 			
@@ -41,8 +44,12 @@ class Menu {
 			//all menu does is loads and displays a bmp.
 			m_width = SCREEN_SIZE_X - 100;//Need a set width.			
 			m_height = SCREEN_SIZE_Y - 100;//Need a set height.
-			//m_splashTexture = ImageLoader::LoadTexture( "./imgs/menus/pausemenu.bmp" );
-			//m_menuTexture = ImageLoader::LoadTexture( "./imgs/menus/mainmenu.png" );
+			//Preload the textures for menus. This prevents constant reloading of them
+			//while the game is waiting on a menu.
+			m_splashTexture = ImageLoader::LoadTexture(PAUSE_SCREEN);
+			m_menuTexture = ImageLoader::LoadTexture(MAIN_MENU);
+			//m_winTexture = ImageLoader::LoadTexture(WIN_SCREEN);
+			//m_loseTexture = ImageLoader::LoadTexture(LOSE_SCREEN);
 			
 		};
 		
@@ -54,12 +61,9 @@ class Menu {
 		//game.
 		void mainMenu();//Provides the main menu presented at the start
 		//of the game.
+		void winScreen();//Provides the screen presenting the win message.
+		void loseScreen();//Provides the screen presenting the lose message.
 
-		//Extra goals, functions for the future:
-		//void inventorymenu();//Provides an inventory menu.
-		//void winScreen();//Provides the screen presenting the win message.
-		//void loseScreen();//Provides the screen presenting the lose message.
-		
 };
 
 #endif /* MENU_H_ */

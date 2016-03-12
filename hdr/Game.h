@@ -1,9 +1,9 @@
 //Edited by: Keenan Longair.
-//Last update: 2:00PM February 28th, 2016.
+//Last update: 12:00PM March 12th, 2016.
 //Purpose: Prototyping of the main "GameBoard" and its interface. This is implemented
 //as a singleton and thus can only have one instance. Use the Game::getInstance() 
 //function to gain access to the instance.
-//Version: 1.3
+//Version: 1.4
 //**************************************************************************************
 
 #ifndef GAME_H_

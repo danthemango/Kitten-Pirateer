@@ -1,5 +1,5 @@
 //Editor: Keenan Longair
-//Last update: 11:50AM February 24th, 2016.
+//Last update: 12:00PM March 12th, 2016.
 //Pupose: The Jukebox.h and .cpp files provide basic .wav sounds to begin
 //played. Use the PlaySound function with the filename as the input to 
 //play a sound.
@@ -28,6 +28,7 @@ class Jukebox {
 		static bool init();
 		//Play a sound passing the filename in as the parameter.
 		static void PlaySound(const char *file);
+		static void PlayBackground();
 		
 		//Extra goals, functions for the future::
 		//static void PlayHurt(const char *file);//Plays the sound made when hurt.

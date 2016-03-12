@@ -58,4 +58,20 @@
 //Set this to the starting tile required.
 #define START_TILE 3
 
+//Sound files:
+#define NUM_SOUNDS 5//This defines how many sounds the jukebox class will have.
+#define THEME_SONG "./sounds/Song.wav"
+//#define PICKUP_SOUND
+//#define HURT_SOUND
+//#define ATTACK_SOUND
+//#define _SOUND
+
+//Menu textures:
+//If we need to change the menu image names we can easily change them here
+//without going into the Menu.cpp or Menu.h files.
+#define MAIN_MENU "./imgs/menus/pausemenu.bmp"
+#define PAUSE_MENU "./imgs/menus/mainmenu.png"
+#define WIN_SCREEN "./imgs/menus/winscreen.png"
+#define LOSE_SCREEN "./imgs/menus/losescreen.png"
+
 #endif
