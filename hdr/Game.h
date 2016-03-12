@@ -1,5 +1,5 @@
 //Edited by: Keenan Longair.
-//Last update: 12:00PM March 12th, 2016.
+//Last update: 12:30PM March 12th, 2016.
 //Purpose: Prototyping of the main "GameBoard" and its interface. This is implemented
 //as a singleton and thus can only have one instance. Use the Game::getInstance() 
 //function to gain access to the instance.
@@ -84,11 +84,7 @@ class Game {
 		//Possible functions: These are pulled from the collision lab 
 		//to be prepared incase anything is transfered over. 
 		//Anything unused will be removed before the final due date.
-		//void changeScreen(int dir);
-		//int getArrayPos();
-		//void setArrayPos(int pos);
-		//int getWidth();
-		//int getHeight();
+		//GLfloat frand();//Random number function. Here incase we need it.
 
 		//Required functions:
 		static bool* keystates;
@@ -106,10 +102,9 @@ class Game {
 		//to be public aswell.
 		void updateTile(GLuint x);//Call this function with the next tile texture as input
 		//to change the background tile variable.
+		void restartGame();//Function to restart the game when called.
 		
-		//GLfloat frand();//Random number function. Here incase we need it.
-		//These last two functions may not be needed since Width and Height are stored within the
-		//config.h file.
+
 
 };
 

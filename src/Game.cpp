@@ -1,7 +1,7 @@
 //Edited by: Keenan Longair.
-//Last update: 12:00PM March 12th, 2016.
+//Last update: 12:30PM March 12th, 2016.
 //Purpose: Contains the body of the game file prototyped in the Game.h file.
-//Version: 1.4
+//Version: 1.5
 //**************************************************************************************
 //TODO: Add a restart function ability to the code so we can restart the game from within.
 //Not sure how to add this ability yet but I believe it would have to be part of the \
@@ -216,6 +216,16 @@ void Game::updateTile(GLuint x)
 	m_backgroundTexture = x;
 	ZombieHandler::getInstance().updateTile(x);
 	
+}
+
+void Game::restartGame()
+//This function handles restarting the game when needed.
+//TODO figure out how to enable the restart of the game. This may require the 
+//deconstructor to be called and then the constructor to restart the game
+//however at this time I am unable to test this and do not want to break the game
+//trying to implement this.
+{
+
 }
 /****End of Main Work Functions*********************************************************/
 
