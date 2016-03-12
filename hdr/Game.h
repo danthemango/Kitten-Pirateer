@@ -84,6 +84,9 @@ class Game {
 		static bool c_running;//Variable to tell update if the game is to be paused or not.
 		//The c_running variable is public, to allow other objects to alter this, in essence
 		//allowing events to pause the game if necessary.
+		static bool c_gameOver;//This variable will tell us if the game is over.
+		static bool c_winCondition;//This variable will tell us if the game's win condition
+		//was met or not. If ths is true, the player won, if false, the player lost.
 
 		//Required functions:
 		static bool* keystates;

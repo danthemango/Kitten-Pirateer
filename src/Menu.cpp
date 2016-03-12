@@ -55,7 +55,7 @@ void Menu::mainMenu()
 //this may be called more frequently.
 {
 	
-	//Call the main menu image wwe need to display at the start of the game.
+	//Call the main menu image we need to display at the start of the game.
 	//The loading of this texture occurs in the Menu.h constructor.
 	//m_menuTexture = ImageLoader::LoadTexture( "./imgs/menus/mainmenu.png" );
 
@@ -76,7 +76,7 @@ void Menu::winScreen()
 //winScreen simply displays the end game victory screen.
 {
 	
-	//Call the main menu image wwe need to display at the start of the game.
+	//Call the main menu image we need to display at the start of the game.
 	//The loading of this texture occurs in the Menu.h constructor.
 	//m_winTexture = ImageLoader::LoadTexture( "./imgs/menus/winscreen.png" );
 

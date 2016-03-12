@@ -33,6 +33,10 @@ bool Game::c_run = false;//Set the game to display the main menu. Once changed t
 //moves the game along.
 bool Game::c_running = false;//Set the running state to false to start the game
 //with the splashscreen displayed.
+bool Game::c_gameOver = false;//Variable to tell if the game is over.
+bool Game::c_winCondition = false;//Variable to tell if the game's win condition was true.
+//The c_winCondition will be checked if the c_gameOver variable is set to true so that 
+//the proper win/lose screen is displayed. 
 bool* Game::keystates = new bool[256];
 int Game::m_lastSong = 6000000;
 
