@@ -39,7 +39,7 @@ class Menu {
 	
 		//Contructor
 		Menu() {
-			try {
+			//try {
 			//These size variables may not be needed since
 			//all menu does is loads and displays a bmp.
 			m_width = SCREEN_SIZE_X - 100;//Need a set width.			
@@ -50,9 +50,9 @@ class Menu {
 			//m_menuTexture = ImageLoader::LoadTexture(MAIN_MENU);
 			//m_winTexture = ImageLoader::LoadTexture(WIN_SCREEN);
 			//m_loseTexture = ImageLoader::LoadTexture(LOSE_SCREEN);
-			} catch (exception &e) {
-				cout << e.what() << endl;
-			}
+			//} catch (exception &e) {
+				//cout << e.what() << endl;
+			//}
 		};
 		
 		
