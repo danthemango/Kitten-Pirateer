@@ -22,6 +22,11 @@ void Menu::init()
 //Prepare any Menu variables here.
 {
 
+	m_splashTexture = ImageLoader::LoadTexture(PAUSE_MENU);
+	m_menuTexture = ImageLoader::LoadTexture(MAIN_MENU);
+	//m_winTexture = ImageLoader::LoadTexture(WIN_SCREEN);
+	//m_loseTexture = ImageLoader::LoadTexture(LOSE_SCREEN);
+
 }
 
 void Menu::update()
