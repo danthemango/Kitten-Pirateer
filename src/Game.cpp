@@ -85,7 +85,7 @@ void Game::init()
 	//Place init here for the main GameObject (probably the PC character).
 	Player::getInstance().init();
 	ZombieHandler::getInstance();
-	m_menu->init();
+	m_menu.init();
 	
 	//Run the main glut loop for processing the game. 
     glutMainLoop(); //glutMainLoop enters the GLUT event processing loop. 

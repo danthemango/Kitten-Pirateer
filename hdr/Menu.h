@@ -39,20 +39,10 @@ class Menu {
 	
 		//Contructor
 		Menu() {
-			//try {
-			//These size variables may not be needed since
-			//all menu does is loads and displays a bmp.
+
 			m_width = SCREEN_SIZE_X - 100;//Need a set width.			
 			m_height = SCREEN_SIZE_Y - 100;//Need a set height.
-			//Preload the textures for menus. This prevents constant reloading of them
-			//while the game is waiting on a menu.
-			//m_splashTexture = ImageLoader::LoadTexture(PAUSE_MENU);
-			//m_menuTexture = ImageLoader::LoadTexture(MAIN_MENU);
-			//m_winTexture = ImageLoader::LoadTexture(WIN_SCREEN);
-			//m_loseTexture = ImageLoader::LoadTexture(LOSE_SCREEN);
-			//} catch (exception &e) {
-				//cout << e.what() << endl;
-			//}
+
 		};
 		
 		
@@ -63,8 +53,8 @@ class Menu {
 		//game.
 		void mainMenu();//Provides the main menu presented at the start
 		//of the game.
-		void winScreen();//Provides the screen presenting the win message.
-		void loseScreen();//Provides the screen presenting the lose message.
+		//void winScreen();//Provides the screen presenting the win message.
+		//void loseScreen();//Provides the screen presenting the lose message.
 
 };
 

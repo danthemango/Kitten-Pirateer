@@ -40,7 +40,7 @@ void Menu::splashScreen()
 {
 	
 	//Call the menu image we need to display when pausing the game.
-	//The loading of this texture occurs in the Menu.h constructor.
+	//The loading of this texture occurs in Menu::init().
 	//m_splashTexture= ImageLoader::LoadTexture( "./imgs/menus/pausemenu.bmp" );
  
 	glEnable(GL_TEXTURE_2D);
@@ -61,7 +61,7 @@ void Menu::mainMenu()
 {
 	
 	//Call the main menu image we need to display at the start of the game.
-	//The loading of this texture occurs in the Menu.h constructor.
+	//The loading of this texture occurs in Menu::init().
 	//m_menuTexture = ImageLoader::LoadTexture( "./imgs/menus/mainmenu.png" );
 
 	glEnable(GL_TEXTURE_2D);
