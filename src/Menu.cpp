@@ -70,6 +70,7 @@ void Menu::mainMenu()
 	
 }
 
+/*
 //TODO create the winScreen and loseScreens along side the revised menu and pause screens.
 //TODO set the size of the windows and their orientation to be centered. 
 void Menu::winScreen()
@@ -109,3 +110,4 @@ void Menu::loseScreen()
 	glFlush();
 	
 }
+*/
