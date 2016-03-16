@@ -112,7 +112,7 @@ void Jukebox::PlayBackground()
 //Function to play the background theme song specifically.
 {
 	
-	const string *file = THEME_SONG;
+	const char *file = THEME_SONG;
 	int index;
 	SDL_AudioSpec wave;
 	Uint8 *data;
