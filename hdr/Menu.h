@@ -46,7 +46,7 @@ class Menu {
 			m_height = SCREEN_SIZE_Y - 100;//Need a set height.
 			//Preload the textures for menus. This prevents constant reloading of them
 			//while the game is waiting on a menu.
-			m_splashTexture = ImageLoader::LoadTexture(PAUSE_SCREEN);
+			m_splashTexture = ImageLoader::LoadTexture(PAUSE_MENU);
 			m_menuTexture = ImageLoader::LoadTexture(MAIN_MENU);
 			//m_winTexture = ImageLoader::LoadTexture(WIN_SCREEN);
 			//m_loseTexture = ImageLoader::LoadTexture(LOSE_SCREEN);
