@@ -21,6 +21,9 @@
 #include <string>
 #include <time.h>
 
+ItemObject *ItemHandler::c_itemList[MAXITEMS] = {NULL};
+
+
 void ItemHandler::addItemToInv(ItemObject* item)
 {
    bool placed;
@@ -60,15 +63,15 @@ void ItemHandler::addWeaponToInv(ItemObject* weapon)
 void ItemHandler::update()
 {
    for(int i = 0; i < m_numOfItems; i++){
-      m_itemList[i]->display();
-      m_itemList[i]->pickUp(Player::getInstance().getX(),Player::getInstance().getY());
+      c_itemList[i]->display();
+      c_itemList[i]->pickUp(Player::getInstance().getX(),Player::getInstance().getY());
    }
    if(m_itemInv[0]->getAmount() == m_lemons){
 		//std:cout<< "found all lemons" << std::endl;
 		m_itemInv[0]->setAmount(0);
 		for(int i = 0; i < m_numOfItems; i++){
-			if(m_itemList[i]->getItemID() == 13){
-				m_itemList[i]->setDisplayed(true);
+			if(c_itemList[i]->getItemID() == 13){
+				c_itemList[i]->setDisplayed(true);
 			}
 		}
 	}
@@ -150,7 +153,7 @@ void ItemHandler::buildItemArray(std::string file)
 						damage = 0;
 						break;
 				}
-				m_itemList[itempos] = ItemsFactory::createItem
+				c_itemList[itempos] = ItemsFactory::createItem
 				(
 					m_3DItems->m_array[i][k][0],
 					m_3DItems->m_array[i][k][1],
@@ -162,7 +165,7 @@ void ItemHandler::buildItemArray(std::string file)
 			}
 		}
 	}
-	m_itemList[itempos] = ItemsFactory::createItem(10, 420, 785, "Lemon", 0, 5, -1, -1);
+	c_itemList[itempos] = ItemsFactory::createItem(10, 420, 785, "Lemon", 0, 5, -1, -1);
 	m_lemons++;
 	itempos++; 
 	
@@ -197,7 +200,7 @@ void ItemHandler::buildItemArray(std::string file)
 			break;
 	}
 	
-	m_itemList[itempos] = ItemsFactory::createItem(3, x, y, "Boomerang", 350 , tile, 3, 0);
+	c_itemList[itempos] = ItemsFactory::createItem(3, x, y, "Boomerang", 350 , tile, 3, 0);
 	itempos++;
 	m_numOfItems = itempos;
 }
