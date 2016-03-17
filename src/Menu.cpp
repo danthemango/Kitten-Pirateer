@@ -1,10 +1,10 @@
 //Edited by: Keenan Longair.
-//Last update: 12:00PM March 12th, 2016.
+//Last update: 12:30PM March 17th, 2016.
 //Purpose: To implement the prototyped functions found in the Menu.h file
 //which will provide the menus of the game.
-//Version: 0.8
-//TODO create the win/lose screens aswell as a finalized menu and pause menu.
-//TODO work out the x/y coordinates for the win/lose menu. 
+//Version: 0.9
+//TODO create the win/lose screens aswell as the finalized menu and pause screen.
+//TODO Fix the positioning of the windows to be centered.
 
 //Libraries required:
 #include <stdlib.h>
@@ -22,10 +22,11 @@ void Menu::init()
 //Prepare any Menu variables here.
 {
 
-	m_splashTexture = ImageLoader::LoadTexture(PAUSE_MENU);
 	m_menuTexture = ImageLoader::LoadTexture(MAIN_MENU);
+	m_splashTexture = ImageLoader::LoadTexture(PAUSE_MENU);	
 	//m_winTexture = ImageLoader::LoadTexture(WIN_SCREEN);
 	//m_loseTexture = ImageLoader::LoadTexture(LOSE_SCREEN);
+	//m_quitTexture = ImageLoader::LoadTexture(QUIT_SCREEN);
 
 }
 
@@ -76,7 +77,7 @@ void Menu::mainMenu()
 }
 
 /*
-//TODO create the winScreen and loseScreens along side the revised menu and pause screens.
+//TODO create the quitScreen, winScreen and loseScreens along side the revised menu and pause screens.
 //TODO set the size of the windows and their orientation to be centered. 
 void Menu::winScreen()
 //winScreen simply displays the end game victory screen.
@@ -89,7 +90,7 @@ void Menu::winScreen()
 	glEnable(GL_TEXTURE_2D);
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
-	glBindTexture (GL_TEXTURE_2D, m_menuTexture);
+	glBindTexture (GL_TEXTURE_2D, m_winTexture);
    	ImageLoader::rectangle(200, 250, 800, 600);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
@@ -108,7 +109,26 @@ void Menu::loseScreen()
 	glEnable(GL_TEXTURE_2D);
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
-	glBindTexture (GL_TEXTURE_2D, m_menuTexture);
+	glBindTexture (GL_TEXTURE_2D, m_loseTexture);
+   	ImageLoader::rectangle(200, 250, 800, 600);//x, y, width, height.
+
+	glDisable(GL_TEXTURE_2D);
+	glFlush();
+	
+}
+
+void Menu::quitScreen()
+//loseScreen simply displays the end game lose screen.
+{
+	
+	//Call the main menu image we need to display at the start of the game.
+	//The loading of this texture occurs in the Menu.h constructor.
+	//m_quitTexture = ImageLoader::LoadTexture( "./imgs/menus/quitscreen.png" );
+
+	glEnable(GL_TEXTURE_2D);
+
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
+	glBindTexture (GL_TEXTURE_2D, m_quitTexture);
    	ImageLoader::rectangle(200, 250, 800, 600);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);

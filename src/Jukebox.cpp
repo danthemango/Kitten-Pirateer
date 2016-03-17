@@ -165,6 +165,412 @@ void Jukebox::PlayBackground()
 	
 }
 
+/*
+void Jukebox::PlayItemPickUp()
+//Function to play the background theme song specifically.
+{
+	
+	const char *file = ITEM_PICKUP_SOUND;
+	int index;
+	SDL_AudioSpec wave;
+	Uint8 *data;
+	Uint32 dlen;
+	SDL_AudioCVT cvt;
+
+	//Look for an empty (or finished) sound slot
+	for ( index=0; index<NUM_SOUNDS; ++index ) {
+		
+		if ( sounds[index].dpos == sounds[index].dlen ) {
+			
+			break;
+			
+		}
+		
+	}
+	if ( index == NUM_SOUNDS ) {
+		
+		return;
+
+	}
+	
+	// Load the sound file and convert it to 16-bit stereo at 22kHz
+	if ( SDL_LoadWAV(file, &wave, &data, &dlen) == NULL ) {
+		
+		fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
+		return;
+		
+	}
+	
+	SDL_BuildAudioCVT(&cvt, wave.format, wave.channels, wave.freq, AUDIO_S16, 2, 22050);
+    cvt.buf = (Uint8*)malloc(dlen*cvt.len_mult);
+	memcpy(cvt.buf, data, dlen);
+	cvt.len = dlen;
+	SDL_ConvertAudio(&cvt);
+	SDL_FreeWAV(data);
+
+	// Put the sound data in the slot (it starts playing immediately)
+	if (sounds[index].data) {
+		
+		free(sounds[index].data);
+		
+	}
+	
+	SDL_LockAudio();
+	sounds[index].data = cvt.buf;
+	sounds[index].dlen = cvt.len_cvt;
+	sounds[index].dpos = 0;
+	SDL_UnlockAudio();
+	
+}*/
+
+/*
+void Jukebox::PlayHealthPotionSound()
+//Function to play the background theme song specifically.
+{
+	
+	const char *file = HEALTH_POTION_SOUND;
+	int index;
+	SDL_AudioSpec wave;
+	Uint8 *data;
+	Uint32 dlen;
+	SDL_AudioCVT cvt;
+
+	//Look for an empty (or finished) sound slot
+	for ( index=0; index<NUM_SOUNDS; ++index ) {
+		
+		if ( sounds[index].dpos == sounds[index].dlen ) {
+			
+			break;
+			
+		}
+		
+	}
+	if ( index == NUM_SOUNDS ) {
+		
+		return;
+
+	}
+	
+	// Load the sound file and convert it to 16-bit stereo at 22kHz
+	if ( SDL_LoadWAV(file, &wave, &data, &dlen) == NULL ) {
+		
+		fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
+		return;
+		
+	}
+	
+	SDL_BuildAudioCVT(&cvt, wave.format, wave.channels, wave.freq, AUDIO_S16, 2, 22050);
+    cvt.buf = (Uint8*)malloc(dlen*cvt.len_mult);
+	memcpy(cvt.buf, data, dlen);
+	cvt.len = dlen;
+	SDL_ConvertAudio(&cvt);
+	SDL_FreeWAV(data);
+
+	// Put the sound data in the slot (it starts playing immediately)
+	if (sounds[index].data) {
+		
+		free(sounds[index].data);
+		
+	}
+	
+	SDL_LockAudio();
+	sounds[index].data = cvt.buf;
+	sounds[index].dlen = cvt.len_cvt;
+	sounds[index].dpos = 0;
+	SDL_UnlockAudio();
+	
+}*/
+
+/*
+void Jukebox::PlayStepSound()
+//Function to play the background theme song specifically.
+{
+	
+	const char *file = STEP_SOUND;
+	int index;
+	SDL_AudioSpec wave;
+	Uint8 *data;
+	Uint32 dlen;
+	SDL_AudioCVT cvt;
+
+	//Look for an empty (or finished) sound slot
+	for ( index=0; index<NUM_SOUNDS; ++index ) {
+		
+		if ( sounds[index].dpos == sounds[index].dlen ) {
+			
+			break;
+			
+		}
+		
+	}
+	if ( index == NUM_SOUNDS ) {
+		
+		return;
+
+	}
+	
+	// Load the sound file and convert it to 16-bit stereo at 22kHz
+	if ( SDL_LoadWAV(file, &wave, &data, &dlen) == NULL ) {
+		
+		fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
+		return;
+		
+	}
+	
+	SDL_BuildAudioCVT(&cvt, wave.format, wave.channels, wave.freq, AUDIO_S16, 2, 22050);
+    cvt.buf = (Uint8*)malloc(dlen*cvt.len_mult);
+	memcpy(cvt.buf, data, dlen);
+	cvt.len = dlen;
+	SDL_ConvertAudio(&cvt);
+	SDL_FreeWAV(data);
+
+	// Put the sound data in the slot (it starts playing immediately)
+	if (sounds[index].data) {
+		
+		free(sounds[index].data);
+		
+	}
+	
+	SDL_LockAudio();
+	sounds[index].data = cvt.buf;
+	sounds[index].dlen = cvt.len_cvt;
+	sounds[index].dpos = 0;
+	SDL_UnlockAudio();
+	
+}*/
+
+/*
+void Jukebox::PlayBossTheme()
+//Function to play the background theme song specifically.
+{
+	
+	const char *file = BOSS_THEME;
+	int index;
+	SDL_AudioSpec wave;
+	Uint8 *data;
+	Uint32 dlen;
+	SDL_AudioCVT cvt;
+
+	//Look for an empty (or finished) sound slot
+	for ( index=0; index<NUM_SOUNDS; ++index ) {
+		
+		if ( sounds[index].dpos == sounds[index].dlen ) {
+			
+			break;
+			
+		}
+		
+	}
+	if ( index == NUM_SOUNDS ) {
+		
+		return;
+
+	}
+	
+	// Load the sound file and convert it to 16-bit stereo at 22kHz
+	if ( SDL_LoadWAV(file, &wave, &data, &dlen) == NULL ) {
+		
+		fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
+		return;
+		
+	}
+	
+	SDL_BuildAudioCVT(&cvt, wave.format, wave.channels, wave.freq, AUDIO_S16, 2, 22050);
+    cvt.buf = (Uint8*)malloc(dlen*cvt.len_mult);
+	memcpy(cvt.buf, data, dlen);
+	cvt.len = dlen;
+	SDL_ConvertAudio(&cvt);
+	SDL_FreeWAV(data);
+
+	// Put the sound data in the slot (it starts playing immediately)
+	if (sounds[index].data) {
+		
+		free(sounds[index].data);
+		
+	}
+	
+	SDL_LockAudio();
+	sounds[index].data = cvt.buf;
+	sounds[index].dlen = cvt.len_cvt;
+	sounds[index].dpos = 0;
+	SDL_UnlockAudio();
+	
+}*/
+
+/*
+void Jukebox::PlayHeartPickUp()
+//Function to play the background theme song specifically.
+{
+	
+	const char *file = HEART_PICKUP_SOUND;
+	int index;
+	SDL_AudioSpec wave;
+	Uint8 *data;
+	Uint32 dlen;
+	SDL_AudioCVT cvt;
+
+	//Look for an empty (or finished) sound slot
+	for ( index=0; index<NUM_SOUNDS; ++index ) {
+		
+		if ( sounds[index].dpos == sounds[index].dlen ) {
+			
+			break;
+			
+		}
+		
+	}
+	if ( index == NUM_SOUNDS ) {
+		
+		return;
+
+	}
+	
+	// Load the sound file and convert it to 16-bit stereo at 22kHz
+	if ( SDL_LoadWAV(file, &wave, &data, &dlen) == NULL ) {
+		
+		fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
+		return;
+		
+	}
+	
+	SDL_BuildAudioCVT(&cvt, wave.format, wave.channels, wave.freq, AUDIO_S16, 2, 22050);
+    cvt.buf = (Uint8*)malloc(dlen*cvt.len_mult);
+	memcpy(cvt.buf, data, dlen);
+	cvt.len = dlen;
+	SDL_ConvertAudio(&cvt);
+	SDL_FreeWAV(data);
+
+	// Put the sound data in the slot (it starts playing immediately)
+	if (sounds[index].data) {
+		
+		free(sounds[index].data);
+		
+	}
+	
+	SDL_LockAudio();
+	sounds[index].data = cvt.buf;
+	sounds[index].dlen = cvt.len_cvt;
+	sounds[index].dpos = 0;
+	SDL_UnlockAudio();
+	
+}*/
+
+/*
+void Jukebox::PlayAttack()
+//Function to play the background theme song specifically.
+{
+	
+	const char *file = ATTACK_SOUND;
+	int index;
+	SDL_AudioSpec wave;
+	Uint8 *data;
+	Uint32 dlen;
+	SDL_AudioCVT cvt;
+
+	//Look for an empty (or finished) sound slot
+	for ( index=0; index<NUM_SOUNDS; ++index ) {
+		
+		if ( sounds[index].dpos == sounds[index].dlen ) {
+			
+			break;
+			
+		}
+		
+	}
+	if ( index == NUM_SOUNDS ) {
+		
+		return;
+
+	}
+	
+	// Load the sound file and convert it to 16-bit stereo at 22kHz
+	if ( SDL_LoadWAV(file, &wave, &data, &dlen) == NULL ) {
+		
+		fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
+		return;
+		
+	}
+	
+	SDL_BuildAudioCVT(&cvt, wave.format, wave.channels, wave.freq, AUDIO_S16, 2, 22050);
+    cvt.buf = (Uint8*)malloc(dlen*cvt.len_mult);
+	memcpy(cvt.buf, data, dlen);
+	cvt.len = dlen;
+	SDL_ConvertAudio(&cvt);
+	SDL_FreeWAV(data);
+
+	// Put the sound data in the slot (it starts playing immediately)
+	if (sounds[index].data) {
+		
+		free(sounds[index].data);
+		
+	}
+	
+	SDL_LockAudio();
+	sounds[index].data = cvt.buf;
+	sounds[index].dlen = cvt.len_cvt;
+	sounds[index].dpos = 0;
+	SDL_UnlockAudio();
+	
+}*/
+
+/*
+void Jukebox::PlayZAttack()
+//Function to play the background theme song specifically.
+{
+	
+	const char *file = Z_ATTACK_SOUND;
+	int index;
+	SDL_AudioSpec wave;
+	Uint8 *data;
+	Uint32 dlen;
+	SDL_AudioCVT cvt;
+
+	//Look for an empty (or finished) sound slot
+	for ( index=0; index<NUM_SOUNDS; ++index ) {
+		
+		if ( sounds[index].dpos == sounds[index].dlen ) {
+			
+			break;
+			
+		}
+		
+	}
+	if ( index == NUM_SOUNDS ) {
+		
+		return;
+
+	}
+	
+	// Load the sound file and convert it to 16-bit stereo at 22kHz
+	if ( SDL_LoadWAV(file, &wave, &data, &dlen) == NULL ) {
+		
+		fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
+		return;
+		
+	}
+	
+	SDL_BuildAudioCVT(&cvt, wave.format, wave.channels, wave.freq, AUDIO_S16, 2, 22050);
+    cvt.buf = (Uint8*)malloc(dlen*cvt.len_mult);
+	memcpy(cvt.buf, data, dlen);
+	cvt.len = dlen;
+	SDL_ConvertAudio(&cvt);
+	SDL_FreeWAV(data);
+
+	// Put the sound data in the slot (it starts playing immediately)
+	if (sounds[index].data) {
+		
+		free(sounds[index].data);
+		
+	}
+	
+	SDL_LockAudio();
+	sounds[index].data = cvt.buf;
+	sounds[index].dlen = cvt.len_cvt;
+	sounds[index].dpos = 0;
+	SDL_UnlockAudio();
+	
+}*/
+
 bool Jukebox::init()
 {
     SDL_AudioSpec fmt;

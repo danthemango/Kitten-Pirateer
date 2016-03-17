@@ -1,9 +1,9 @@
 //Edited by: Keenan Longair.
-//Last update: 12:30PM March 12th, 2016.
+//Last update: 12:30PM March 17th, 2016.
 //Purpose: Prototyping of the main "GameBoard" and its interface. This is implemented
 //as a singleton and thus can only have one instance. Use the Game::getInstance() 
 //function to gain access to the instance.
-//Version: 1.4
+//Version: 1.5
 //**************************************************************************************
 
 #ifndef GAME_H_
@@ -27,6 +27,8 @@ class Obstacle;//Gives access to the Obstacle.
 class ImageLoader;//Gives access to the ImageLoader.
 class Menu;//Gives access to the Menu.
 
+//TODO Determine if the c_ variables need to be altered to be m_ variables.
+
 //Class definition of Game below:
 class Game {
 	
@@ -36,17 +38,18 @@ class Game {
 		//the public section.
         Game()
 		{
-			
-           m_margine = MARGINE;
-           m_width = SCREEN_SIZE_X;
-           m_height = SCREEN_SIZE_Y;
-           //m_menu = new Menu();
+			//Test if these are needed.
+			m_margine = HUD_WIDTH;
+			m_width = SCREEN_SIZE_X;
+			m_height = SCREEN_SIZE_Y;
+			//m_menu = new Menu();
 		   
         };//Default Constructor.
         
 		Game(Game const&);           //Don't Implement
         void operator=(Game const&); //Don't implement
 		
+		//Do not implement
 		//Deconstructor:
 		//~Game() {
 			

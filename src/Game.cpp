@@ -1,7 +1,7 @@
 //Edited by: Keenan Longair.
-//Last update: 12:30PM March 12th, 2016.
+//Last update: 12:30PM March 17th, 2016.
 //Purpose: Contains the body of the game file prototyped in the Game.h file.
-//Version: 1.5
+//Version: 1.6
 //**************************************************************************************
 //TODO: Add a restart function ability to the code so we can restart the game from within.
 //Not sure how to add this ability yet but I believe it would have to be part of the \
@@ -25,7 +25,7 @@
 #include "../hdr/MapHandler.h"//Dependancy for the Map.
 #include "../hdr/Player.h"//Dependancy for the Player.
 #include "../hdr/ItemHandler.h"//Dependancy for the item handler.
-#include "../hdr/HUDHandler.h" //HUD Dependency
+#include "../hdr/HUDHandler.h" //HUD Dependency.
 #include "../hdr/ZombieHandler.h"//Zombie Handler dependancy.
 
 //Main Variables:
@@ -39,6 +39,14 @@ bool Game::c_winCondition = false;//Variable to tell if the game's win condition
 //the proper win/lose screen is displayed. 
 bool* Game::keystates = new bool[256];
 int Game::m_lastSong = 6000000;
+int Game::m_windowID;//This variable will store the window id when glut creates a new 
+//window. This allows the quit command to use the glut function glutDestroyWindow(m_windowID);
+bool m_quit = false;//This variable will tell us if we need to bring up the quit confirmation
+//window. If the variable is set to true, then the quit confirmation should be displayed. 
+//If it is false, then we do not display the quit confirmation. Thus if it is true, then
+//while paused the player may hit the enter key to quit, but if it is false enter will
+//do nothing. Pressing escape again should swap the m_quit from true to false turning off
+//the confirmation window.
 
 
 /****Main Work Functions***************************************************************/
@@ -53,7 +61,7 @@ void Game::init()
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGB);//Use double buffering for smoother images
     glutInitWindowSize(m_width+HUD_WIDTH, m_height);
     glutInitWindowPosition(0, 0);
-    glutCreateWindow("Kitten Pirateer - Adventure of Zombie Island");
+    m_windowID = glutCreateWindow("Kitten Pirateer - Adventure of Zombie Island");
 
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glShadeModel(GL_SMOOTH);
@@ -93,6 +101,8 @@ void Game::init()
                     //Once called, this routine will never return. 
                     //It will call as necessary any callbacks that have been registered.
 
+	return;//Exit the init once the glutMainLoop() is exited.
+	
 }
 
 void Game::update()
@@ -148,7 +158,10 @@ void Game::update()
 			//using the space bar.
 			return m_menu.splashScreen();
 
-			
+//TODO Add code to allow the quit confirmation to be displayed around this area. 
+//Thus if the game is paused and the user hits escape, the m_quit variable should swap to true
+//and the quit confirmation should be displayed. Then if the enter key is hit, the game exits, but
+//if the escape key is hit again, the menu should disapear and the m_quit reset to false. 
 		}
 	 
 	}
@@ -225,10 +238,11 @@ void Game::updateTile(GLuint x)
 
 void Game::restartGame()
 //This function handles restarting the game when needed.
-//TODO figure out how to enable the restart of the game. This may require the 
-//deconstructor to be called and then the constructor to restart the game
-//however at this time I am unable to test this and do not want to break the game
-//trying to implement this.
+//TODO figure out how to enable the restart of the game. This may require the
+//deconstructor to be called and then the constructor to restart but that does
+//not appear to be appropriate. From the research I have done, it appears that each
+//class needs to have a reset ability to be called to reset all of the positions
+//and variables they use to their initial state.
 {
 
 }
@@ -253,15 +267,21 @@ void Game::key(unsigned char key, int x, int y)
 				//and c_running to true and allow the game to run.
 				Game::c_run = !Game::c_run;
 				Game::c_running = !Game::c_running;
-				Jukebox::PlaySound("./sounds/Song.wav");
-                m_lastSong = glutGet(GLUT_ELAPSED_TIME);
+				if (m_quit) m_quit = false;//If we had set the m_quit value to true, but then
+				//started the game again, we make sure to reset m_quit to false so that it 
+				//will not allow the user to hit space followed by enter to quit by mistake. 
+				Jukebox::PlayBackground();//This should play the background song.
+                m_lastSong = glutGet(GLUT_ELAPSED_TIME);//This logs when the sound was started.
 				
             } else {
 				
 				//If c_run has changed to true, then the game has been started and 
 				//we simply deal with the c_running variable to decide upon displaying
 				//the pause screen or allowing game play.
-				Game::c_running = !Game::c_running;
+				Game::c_running = !Game::c_running
+				if (m_quit) m_quit = false;//If we had set the m_quit value to true, but then
+				//started the game again, we make sure to reset m_quit to false so that it
+				//will not allow the user to hit space followed by enter to quit by mistake.
 				
             }
 			break;
@@ -301,6 +321,7 @@ void Game::key(unsigned char key, int x, int y)
 			}
 				
 		case 'j':
+		
 			if (c_running) {	
 
 				//If the game is running allow attacks.
@@ -330,19 +351,20 @@ void Game::key(unsigned char key, int x, int y)
 				break;
 				
 			}
-			
-		//TODO fill in the restart command code.
-		/*	
-		case '':
-			
-			//This case is a prototype for the restart function during a menu. 
-			if (!c_running) {
+		
+		//TODO Add a confirmation for quitting the game. That way it is not possible
+		//to quit by mistake.
+/*		
+		case 13://13 is the ascii code for the enter key but that does not work yet.
+				//This case is a prototype for the quit confirmation.
+			 
+			if ((!c_running) && (m_quit)) {
 				
-				//If the game is paused allow the user to indicate if they wish 
-				//to restart the game. This will also be used for restarting from
-				//a win or lose.
-				//Code to confirm a restart and cause the restart either through
-				//a function call or code to do so.
+				//If the game is paused allow the user to hit escape followed by enter
+				//to quit the game.
+				glutDestroyWindow(m_windowID);//m_windowID should contain the windows
+				//ID number so that we can destroy it.
+				exit(0);//Exits the program.
 				break;
 			
 			} else {
@@ -351,7 +373,7 @@ void Game::key(unsigned char key, int x, int y)
 				break;
 			
 			}
-		*/	
+*/		
     }
 	
     //glutPostRedisplay();
@@ -413,8 +435,48 @@ void Game::keyOperations()
 	
 		}
 
+	} else if (!c_running) {
+		
+		if(keystates[27]) {
+			
+			if (m_quit == false) {
+				
+				m_quit = true;
+				if (DEBUG) {
+					
+					cout << "Debug-Game.cpp: m_quit set to true\n";
+					
+				}
+			
+			} else if ( m_quit == true) {
+				
+				m_quit = false;
+				if (DEBUG) {
+					
+					cout << "Debug-Game.cpp: m_quit set to false\n";
+					
+				}
+				
+			}
+			
+		}
+		
+		if(keystates[13]) {//13 is the enter key. This states that if the enter key is
+		//pressed while the game is paused do the following.
+			
+			if (m_quit == true) {
+				
+				//If the game is paused, and the m_quit is set to true, allow enter
+				//to exit the game. 
+				glutDestroyWindow(m_windowID);
+				//glutLeaveMainLoop();//This needs to be tested to see if the glutMainLoop()
+				//will exit allowing the Game.cpp main funciton to return and close the audio.
+				exit(0);
+				
+			}
+			
+		}
 	}
-	
 	//Otherwise do nothing.
 		
 }
@@ -461,6 +523,10 @@ int main(int argc, char **argv)
     Game::getInstance().init();
 	//Once the game is ended, close the audio.
     SDL_CloseAudio();
+	if(DEBUG) {
+		cout << "Debug-Game.cpp-523: Shutting Down...\n";
+	}
+	return 0;//Ensure the program exits.
 	
 }
 /****End Main Function*****************************************************************/

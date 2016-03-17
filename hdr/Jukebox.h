@@ -1,9 +1,9 @@
 //Editor: Keenan Longair
-//Last update: 12:00PM March 12th, 2016.
+//Last update: 12:40PM March 17th, 2016.
 //Pupose: The Jukebox.h and .cpp files provide basic .wav sounds to begin
 //played. Use the PlaySound function with the filename as the input to 
 //play a sound.
-//Version: 0.4
+//Version: 0.5
 
 #ifndef Jukebox_H_
 #define Jukebox_H_
@@ -28,12 +28,16 @@ class Jukebox {
 		static bool init();
 		//Play a sound passing the filename in as the parameter.
 		static void PlaySound(const char *file);
-		static void PlayBackground();
+		static void PlayBackground();//This plays the background song.
 		
 		//Extra goals, functions for the future::
-		//static void PlayHurt(const char *file);//Plays the sound made when hurt.
-		//static void PlayAttack(const char *file);//Plays the sound made when attacking.
-		//static void PlayMoan(const char *file);//Plays the sound made by Zombies.
+		//static void PlayItemPickUp();//Plays the sound made when picking up an item.
+		//static void PlayAttack();//Plays the sound made when attacking.
+		//static void PlayHealthPotionSound();//Plays the health potion use sound.
+		//static void PlayStepSound();//Plays the sound of a step in the game.
+		//static void PlayBossTheme();//Plays the Boss theme song.
+		//static void PlayHeartPickUp();//Plays the sound made when picking up a heart.
+		//static void PlayZAttack();//Plays the attack sound made by Zombies.
 	 
 };
 
