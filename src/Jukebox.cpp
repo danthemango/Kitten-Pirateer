@@ -106,6 +106,7 @@ void Jukebox::PlaySound(const char *file)
 	sounds[index].dlen = cvt.len_cvt;
 	sounds[index].dpos = 0;
 	SDL_UnlockAudio();
+	
 }
 
 void Jukebox::PlayBackground()

@@ -48,11 +48,18 @@ bool m_quit = false;//This variable will tell us if we need to bring up the quit
 //do nothing. Pressing escape again should swap the m_quit from true to false turning off
 //the confirmation window.
 
+//ORALEXAM Lines: Creator justification line 58.
 
 /****Main Work Functions***************************************************************/
 void Game::init()
 //Initialization function.
 {
+	
+	//ORALEXAM/Creator: The creator pattern is in use because in Game's init It must
+	//create the other classes within the game. Either indirectly or directly the other
+	//classes are created. 
+	
+	//Creator information:
 	
 	//TODO remove the next 2 lines if the random number function is not needed.
     //Set the seed for the random variable generator just in case we need it.

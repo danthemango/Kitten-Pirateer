@@ -11,7 +11,7 @@
 
 //Required Libraries:
 #include <stdlib.h>
-#include <GL/glut.h>    /* glut.h includes gl.h and glu.h */
+#include <GL/glut.h>/*glut.h includes gl.h and glu.h*/
 
 //Required .h files:
 #include "../hdr/config.h"//Include the configuration settings.
@@ -27,6 +27,8 @@ class Obstacle;//Gives access to the Obstacle.
 class ImageLoader;//Gives access to the ImageLoader.
 class Menu;//Gives access to the Menu.
 
+//ORALEXAM: Singleton located on line 76. 
+
 //TODO Determine if the c_ variables need to be altered to be m_ variables.
 
 //Class definition of Game below:
@@ -39,9 +41,9 @@ class Game {
         Game()
 		{
 			//Test if these are needed.
-			m_margine = HUD_WIDTH;
-			m_width = SCREEN_SIZE_X;
-			m_height = SCREEN_SIZE_Y;
+			//m_margine = HUD_WIDTH;
+			//m_width = SCREEN_SIZE_X;
+			//m_height = SCREEN_SIZE_Y;
 			//m_menu = new Menu();
 		   
         };//Default Constructor.
@@ -59,9 +61,9 @@ class Game {
 		//up the screens refresh rate and fps.
 
 		//Game Variables:
-		int m_width;
-		int m_height;
-		int m_margine;
+		//int m_width;
+		//int m_height;
+		//int m_margine;
 		Menu m_menu;
 		
 		//Background texture:
@@ -77,6 +79,13 @@ class Game {
             //Instantiated on first use.
             return instance;
         };
+		
+		//ORALEXAM/Singleton: A singleton is used not only due to the requirements but due to
+		//the fact that a singleton is perfect for a game which only requires one instance.
+		//With the game being a single player non networked game, a singleton allows us to have
+		//only one instance of the Game and allows us to call its methods and functions.
+		
+		//Singleton information:
 		
 		//Public Variables:
 		static int m_lastSong;//Stores the last song time stamp.

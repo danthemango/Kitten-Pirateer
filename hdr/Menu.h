@@ -28,8 +28,8 @@ class Menu {
 	private:
 
 		//Menu and splashScreen height and width variables.
-		int m_width;//Variables storing the width of the max menu size.
-		int m_height;//Variable storing the height of the max menu size.
+		//int m_width;//Variables storing the width of the max menu size.
+		//int m_height;//Variable storing the height of the max menu size.
 		GLuint m_splashTexture;//Variable storing the pause texture.
 		GLuint m_menuTexture;//Variable storing the menu texture.
 		GLuint m_winTexture;//Variable storing the win texture.
@@ -43,8 +43,8 @@ class Menu {
 
 			//Varify the if these are really needed. So far it appears that menu
 			//does not need to know this.
-			m_width = SCREEN_SIZE_X - 100;//Need a set width.			
-			m_height = SCREEN_SIZE_Y - 100;//Need a set height.
+			//m_width = SCREEN_SIZE_X - 100;//Need a set width.			
+			//m_height = SCREEN_SIZE_Y - 100;//Need a set height.
 
 		};
 		
