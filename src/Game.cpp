@@ -4,10 +4,8 @@
 //Version: 1.6
 //**************************************************************************************
 //TODO: Add a restart function ability to the code so we can restart the game from within.
-//Not sure how to add this ability yet but I believe it would have to be part of the \
+//Not sure how to add this ability yet but I believe it would have to be part of the 
 //win/lose code. So far only a win/lose screen from menu has been coded. 
-//TODO: Test the key input during paused to ensure that the player cannot move, or do 
-//anything except unpause the game. 
 
 //Required Libraries:
 #include <cstdio>
@@ -48,7 +46,7 @@ bool m_quit = false;//This variable will tell us if we need to bring up the quit
 //do nothing. Pressing escape again should swap the m_quit from true to false turning off
 //the confirmation window.
 
-//ORALEXAM Lines: Creator justification line 58.
+//ORALEXAM Lines: Creator justification line 56. Info on line 60.
 
 /****Main Work Functions***************************************************************/
 void Game::init()
@@ -60,7 +58,20 @@ void Game::init()
 	//classes are created. 
 	
 	//Creator information:
-	
+	//Problem: Who should be responsible for creating a new instance of some class?
+	//Solution: Assign class B the responcibility to create an instance of class A if one 
+	//of these is true (& the more the better)... B "Contains" or compositely aggregates A.
+	//B records A. B closely uses A. Or B has initializing data for A.
+	//Game closely uses the Menu class and is an expert on creating the other classes. 
+	//The "Creator" principle is meant to help us achieve low coupling, increased clarity, 
+	//increased encapsulation, and inscreased reusability. 
+	//Discussion: Intent is to support low coupling, initializing data is sometimes as
+	//of a good Creator. Some object cosntructors have complex signatures, which objects 
+	//have the information needed to supply parameter values for such constructors?
+	//Contraindications: Creation can be complex, may wish to use Factory Method or Abstract
+	//Factory instead in these cases.
+	//Benefits: Low coupling has already been mentioned, why is this good?
+		
 	//TODO remove the next 2 lines if the random number function is not needed.
     //Set the seed for the random variable generator just in case we need it.
     //srandom(time(NULL));

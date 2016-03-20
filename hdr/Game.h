@@ -1,5 +1,5 @@
 //Edited by: Keenan Longair.
-//Last update: 12:30PM March 17th, 2016.
+//Last update: 12:30PM March 20th, 2016.
 //Purpose: Prototyping of the main "GameBoard" and its interface. This is implemented
 //as a singleton and thus can only have one instance. Use the Game::getInstance() 
 //function to gain access to the instance.
@@ -27,7 +27,7 @@ class Obstacle;//Gives access to the Obstacle.
 class ImageLoader;//Gives access to the ImageLoader.
 class Menu;//Gives access to the Menu.
 
-//ORALEXAM: Singleton located on line 76. 
+//ORALEXAM: Singleton justification located on line 83. Info on line 88.
 
 //TODO Determine if the c_ variables need to be altered to be m_ variables.
 
@@ -85,7 +85,26 @@ class Game {
 		//With the game being a single player non networked game, a singleton allows us to have
 		//only one instance of the Game and allows us to call its methods and functions.
 		
-		//Singleton information:
+		//Singleton information: 
+		//Intent: Ensure a class only ever has one instance, and provide a global point of 
+		//access to it.
+		//Applicability: When there must be exactly one instance of a class, and it must be 
+		//accessible from a well-known access point. When the sole instance should be 
+		//extensible by subclassing, and clients should be able to use an extended instance 
+		//without modifying their code. 
+		//Consequences: Reduces namespace pollution, makes it easy to change your mind and 
+		//allow more than one instance, allows extension by subclassing, same drawbacks of a
+		//global if	misused, implementation may be less efficient than a global, and Concurrency
+		//pitfalls. Also controlled access to sole instance, permits refinement of operations and
+		//representations, permits a variable number of instances and is more flexible than class
+		//operations.
+		//Note: The singletons do add coupling, and when implementing a class as a singleton 
+		//every application must use this class exactly the same way, every application only 
+		//ever needs one instance of the class, and clients of the class are unaware of which 
+		//application they belong to.
+		//Implementation: Static instance operation and registering of the singleton instance.
+		//Known Uses: Smalltalk-80 ChangeSet, the set of change to code, InterViews Session object,
+		//and Unidraw's Unidraw object.
 		
 		//Public Variables:
 		static int m_lastSong;//Stores the last song time stamp.
