@@ -45,8 +45,8 @@ void Menu::splashScreen()
 	//m_splashTexture= ImageLoader::LoadTexture( "./imgs/menus/pausemenu.bmp" );
  
 	glEnable(GL_TEXTURE_2D);
-	ImageLoader::rectangle(420, 127, 600, 215);//x, y, width, height.
-   
+	ImageLoader::rectangle(127, 420, 600, 215);//x, y, width, height.
+
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_splashTexture);
    
@@ -69,7 +69,7 @@ void Menu::mainMenu()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_menuTexture);
-   	ImageLoader::rectangle(227, 27, 800, 600);//x, y, width, height.
+   	ImageLoader::rectangle(27, 227, 800, 600);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
@@ -116,6 +116,7 @@ void Menu::loseScreen()
 	glFlush();
 	
 }
+*/
 
 void Menu::quitScreen()
 //loseScreen simply displays the end game lose screen.
@@ -129,10 +130,9 @@ void Menu::quitScreen()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_quitTexture);
-   	ImageLoader::rectangle(200, 250, 800, 600);//x, y, width, height.
+   	ImageLoader::rectangle(227, 427, 400, 200);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
 	
 }
-*/

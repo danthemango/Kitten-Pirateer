@@ -29,8 +29,6 @@ class Menu;//Gives access to the Menu.
 
 //ORALEXAM: Singleton justification located on line 83. Info on line 88.
 
-//TODO Determine if the c_ variables need to be altered to be m_ variables.
-
 //Class definition of Game below:
 class Game {
 	
@@ -55,15 +53,20 @@ class Game {
 		//Deconstructor:
 		//~Game() {
 			
+			//TODO Try to set up the deconstructor to be used in order to call the proper delete
+			//methods of the classes. Ask Dr. J to help direct me on how to properly have this 
+			//called.
+			
 		//};
 		
 		const static int c_interval = 1000 / 60;//60 frames per second, c_interval sets 
 		//up the screens refresh rate and fps.
 
-		//Game Variables:
+		//Game Variables: //TODO verify the need for these variables.
 		//int m_width;
 		//int m_height;
 		//int m_margine;
+		
 		Menu m_menu;
 		
 		//Background texture:
@@ -108,17 +111,20 @@ class Game {
 		
 		//Public Variables:
 		static int m_lastSong;//Stores the last song time stamp.
-		static bool c_run;//Variable to handle the start up of the game. When this is set
+		static bool m_run;//Variable to handle the start up of the game. When this is set
 		//to false, the game waits on the main menu. Once this is changed to true, the game
 		//runs until the c_running variable is changed. This variable allows us to possibly
 		//implement a system of restarting the game through a wide scope control variable.
-		static bool c_running;//Variable to tell update if the game is to be paused or not.
+		static bool m_running;//Variable to tell update if the game is to be paused or not.
 		//The c_running variable is public, to allow other objects to alter this, in essence
 		//allowing events to pause the game if necessary.
-		static bool c_gameOver;//This variable will tell us if the game is over.
-		static bool c_winCondition;//This variable will tell us if the game's win condition
-		//was met or not. If ths is true, the player won, if false, the player lost.
-
+		static bool m_gameOver;//This variable will tell us if the game is over.
+		static bool m_winCondition;//This variable will tell us if the game's win condition
+		//was met or not. If this is true, the player won, if false, the player lost.
+		static int m_windowID;//This variable stores the window id when the game is created.
+		static bool m_quit;//This variable enables or disables the ability to hit enter and
+		//quit during a time where the game is currently considered paused.
+		
 		//Required functions:
 		static bool* keystates;
 		static void keyUp(unsigned char key, int x, int y);
@@ -130,12 +136,15 @@ class Game {
 		static void timer(int id);//Times and calls the update on the screen.
 		void update();//Update handles updating the display screen and calling update on each object.
 		void reshape(GLsizei newwidth, GLsizei newheight);//Reshapes the window as needed.
-		int LoadImage(char *filename);//Required for loading an image.
 		void init();//Set to be public incase any objects inheriting from this needs their init
 		//to be public aswell.
 		void updateTile(GLuint x);//Call this function with the next tile texture as input
 		//to change the background tile variable.
-		void restartGame();//Function to restart the game when called.
+		void restartGame();//Function to restart the game when called. TODO Ask Dr. J to help direct
+		//me on this section.
+		
+		//TODO Verify the need for this method. Does not appear in the original .cpp
+		int LoadImage(char *filename);//Required for loading an image.		
 		
 		//Possible functions: These are pulled from the collision lab 
 		//to be prepared incase anything is transfered over. 

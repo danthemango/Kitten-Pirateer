@@ -61,7 +61,7 @@ class Menu {
 		//but a restart ability eludes me.
 		//void winScreen();//Provides the screen presenting the win message.
 		//void loseScreen();//Provides the screen presenting the lose message.
-		//void quitScreen();//Provides the quit confirmation screen.
+		void quitScreen();//Provides the quit confirmation screen.
 
 };
 
