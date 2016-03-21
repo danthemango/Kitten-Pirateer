@@ -59,7 +59,7 @@ class Game {
 			
 		//};
 		
-		const static int c_interval = 1000 / 60;//60 frames per second, c_interval sets 
+		const static int m_interval = 1000 / 60;//60 frames per second, c_interval sets 
 		//up the screens refresh rate and fps.
 
 		//Game Variables:
