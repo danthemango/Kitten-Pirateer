@@ -47,8 +47,7 @@ class Menu {
 			//m_height = SCREEN_SIZE_Y - 100;//Need a set height.
 
 		};
-		
-		
+				
 		//Required Functions:
 		void init();//Prepares the various files.
 		void update();//Handles updateing any menu information if needed.
@@ -56,12 +55,14 @@ class Menu {
 		//game.
 		void mainMenu();//Provides the main menu presented at the start
 		//of the game.
-		//Win/lose screen's need to give the option of quitting or restarting.
+		void quitScreen();//Provides the quit confirmation screen.
+		
+		//TODO win/lose screen's need to give the option of quitting or restarting.
 		//So far there is the ability to quit through a key (currently = '-')
 		//but a restart ability eludes me.
 		//void winScreen();//Provides the screen presenting the win message.
 		//void loseScreen();//Provides the screen presenting the lose message.
-		void quitScreen();//Provides the quit confirmation screen.
+
 
 };
 

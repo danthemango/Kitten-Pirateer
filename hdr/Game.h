@@ -74,6 +74,8 @@ class Game {
 		
 	public:
 	
+		//DrJ Pattern Singleton
+		
 	    //Insead of a constructor, use this static method to create an instance
         //(or use the already created instance) of Game making this a singleton.
         static Game& getInstance()
@@ -83,30 +85,33 @@ class Game {
             return instance;
         };
 		
-		//ORALEXAM/Singleton: A singleton is used not only due to the requirements but due to
-		//the fact that a singleton is perfect for a game which only requires one instance.
+		//JUSTIFICATION:
+		//A singleton is used not only due to the requirements but due to the fact that a 
+		//singleton is perfect for a game which only requires one instance.
 		//With the game being a single player non networked game, a singleton allows us to have
-		//only one instance of the Game and allows us to call its methods and functions.
+		//only one instance of the Game and allows us to call its methods and functions. This 
+		//also allows us to cut down on resources being used by only manageing one instance of
+		//the game at a time.
 		
 		//Singleton information: 
-		//Intent: Ensure a class only ever has one instance, and provide a global point of 
+		//INTENT: Ensure a class only ever has one instance, and provide a global point of 
 		//access to it.
-		//Applicability: When there must be exactly one instance of a class, and it must be 
+		//APPLICABILITY: When there must be exactly one instance of a class, and it must be 
 		//accessible from a well-known access point. When the sole instance should be 
 		//extensible by subclassing, and clients should be able to use an extended instance 
 		//without modifying their code. 
-		//Consequences: Reduces namespace pollution, makes it easy to change your mind and 
+		//CONSEQUENCES: Reduces namespace pollution, makes it easy to change your mind and 
 		//allow more than one instance, allows extension by subclassing, same drawbacks of a
 		//global if	misused, implementation may be less efficient than a global, and Concurrency
 		//pitfalls. Also controlled access to sole instance, permits refinement of operations and
 		//representations, permits a variable number of instances and is more flexible than class
 		//operations.
-		//Note: The singletons do add coupling, and when implementing a class as a singleton 
+		//NOTE: The singletons do add coupling, and when implementing a class as a singleton 
 		//every application must use this class exactly the same way, every application only 
 		//ever needs one instance of the class, and clients of the class are unaware of which 
 		//application they belong to.
-		//Implementation: Static instance operation and registering of the singleton instance.
-		//Known Uses: Smalltalk-80 ChangeSet, the set of change to code, InterViews Session object,
+		//IMPLEMENTATION: Static instance operation and registering of the singleton instance.
+		//KNOWN USES: Smalltalk-80 ChangeSet, the set of change to code, InterViews Session object,
 		//and Unidraw's Unidraw object.
 		
 		//Public Variables:
@@ -154,3 +159,30 @@ class Game {
 };
 
 #endif /* GAME_H_ */
+
+//DrJ Team Contribution
+
+//What functionality did I provide?
+//I provide the main game loop through creation and management of a single Game instance.
+//This allows our game to loop using the GLutMainLoop function which provides the ability to 
+//repeatedly call update and display on the games objects. This allows us to present the 
+//objects without trying ot manage various instances. I also provide the menu's to be displayed
+//and the control input methods. This means that I created a Menu class which handles displaying
+//the desired menu along with the controls to handle the users input at the menus and during
+//gameplay. Jukebox is also my responcibility and as such I try to maintain and make sure the 
+//interface is simple and understood. To me Game's continued management has been the biggest 
+//contribution due to the fact that the Game class really puts all the pieces together in order
+//to allow us to have a running program. Game initializes everything and creates any instances
+//that are required before locking into its main loop to allow the game to play out. I feel that
+//my code could be much neater and cleaner however I am struggling to understand the full reaches 
+//of the glut libraries.
+
+//How did I make it easy for them to user/interface with?
+//I kept the interfaces simple, clear and well documented. By keeping everything simple and clear,
+//my fellow team mates have an easy time reading what a method should do or what a variable is for.
+//Keeping the interface clear allows to only further improved my team mates chances of understanding
+//the interface when used with the simplistic design. To further improve this I have tried to make
+//sure all my interface code is well documented and up to date. Combining all of these creates a
+//good base for my team mates to understand my interfaces but also allows me to quickly review 
+//my interface and answer any questions or fix any bugs that may arise. I have kept my interface as
+//similar to previous labs to allow us all to have a decent starting point, from which to work on.

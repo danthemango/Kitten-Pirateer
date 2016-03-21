@@ -44,6 +44,7 @@ bool Game::m_quit = false;//This variable will tell us if we need to bring up th
 //while paused the player may hit the enter key to quit, but if it is false enter will
 //do nothing. Pressing escape again should swap the m_quit from true to false turning off
 //the confirmation window.
+int Game::m_windowID;//Define the window ID variable.
 
 //ORALEXAM Lines: Creator justification line 56. Info on line 60.
 
@@ -442,11 +443,11 @@ void Game::keyOperations()
 	   
 			Player::getInstance().left();
 			Player::getInstance().update();
-			Player::getInstance().m_left = true;
+			//Player::getInstance().m_left = true;
 	  
 		} else {
 	   
-			Player::getInstance().m_left = false;
+			//Player::getInstance().m_left = false;
 	
 		}
    
@@ -454,11 +455,11 @@ void Game::keyOperations()
 	   
 			Player::getInstance().up();
 			Player::getInstance().update();
-			Player::getInstance().m_up = true;
+			//Player::getInstance().m_up = true;
 	  
 		} else {
 	   
-			Player::getInstance().m_up = false;
+			//Player::getInstance().m_up = false;
 	
 		}
    
@@ -466,11 +467,11 @@ void Game::keyOperations()
 	   
 			Player::getInstance().right();
 			Player::getInstance().update();
-			Player::getInstance().m_right = true;
+			//Player::getInstance().m_right = true;
 	  
 		} else {
 	   
-			Player::getInstance().m_right = false;
+			//Player::getInstance().m_right = false;
 	
 		}
    
@@ -478,11 +479,11 @@ void Game::keyOperations()
 	   
 			Player::getInstance().down();
 			Player::getInstance().update();
-			Player::getInstance().m_down = true;
+			//Player::getInstance().m_down = true;
 	  
 		} else {
 	   
-			Player::getInstance().m_down = false;
+			//Player::getInstance().m_down = false;
 	
 		}
 
