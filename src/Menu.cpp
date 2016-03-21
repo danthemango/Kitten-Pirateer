@@ -26,7 +26,7 @@ void Menu::init()
 	m_splashTexture = ImageLoader::LoadTexture(PAUSE_MENU);	
 	//m_winTexture = ImageLoader::LoadTexture(WIN_SCREEN);
 	//m_loseTexture = ImageLoader::LoadTexture(LOSE_SCREEN);
-	//m_quitTexture = ImageLoader::LoadTexture(QUIT_SCREEN);
+	m_quitTexture = ImageLoader::LoadTexture(QUIT_SCREEN);
 
 }
 
