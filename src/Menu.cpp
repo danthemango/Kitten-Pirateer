@@ -45,7 +45,7 @@ void Menu::splashScreen()
 	//m_splashTexture= ImageLoader::LoadTexture( "./imgs/menus/pausemenu.bmp" );
  
 	glEnable(GL_TEXTURE_2D);
-	ImageLoader::rectangle(127, 420, 600, 215);//x, y, width, height.
+	ImageLoader::rectangle(227, 420, 600, 215);//x, y, width, height.
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_splashTexture);
@@ -69,7 +69,7 @@ void Menu::mainMenu()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_menuTexture);
-   	ImageLoader::rectangle(27, 227, 800, 600);//x, y, width, height.
+   	ImageLoader::rectangle(127, 227, 800, 600);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
@@ -130,7 +130,7 @@ void Menu::quitScreen()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_quitTexture);
-   	ImageLoader::rectangle(227, 427, 400, 200);//x, y, width, height.
+   	ImageLoader::rectangle(327, 427, 400, 200);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
