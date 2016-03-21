@@ -38,10 +38,10 @@ class Game {
 		//the public section.
         Game()
 		{
-			//Test if these are needed.
-			//m_margine = HUD_WIDTH;
-			//m_width = SCREEN_SIZE_X;
-			//m_height = SCREEN_SIZE_Y;
+			
+			m_margine = HUD_WIDTH;
+			m_width = SCREEN_SIZE_X;
+			m_height = SCREEN_SIZE_Y;
 			//m_menu = new Menu();
 		   
         };//Default Constructor.
@@ -62,10 +62,10 @@ class Game {
 		const static int c_interval = 1000 / 60;//60 frames per second, c_interval sets 
 		//up the screens refresh rate and fps.
 
-		//Game Variables: //TODO verify the need for these variables.
-		//int m_width;
-		//int m_height;
-		//int m_margine;
+		//Game Variables:
+		int m_width;
+		int m_height;
+		int m_margine;
 		
 		Menu m_menu;
 		
