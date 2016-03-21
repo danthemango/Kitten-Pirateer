@@ -106,7 +106,7 @@ void Game::init()
     //glutIdleFunc(Game::run);//Wait time between frames.
 	
 	//Load the default texture into the member variable:
-	m_backgroundTexture = MapHandler::getInstance().getTile(START_TILE);
+	Game::m_backgroundTexture = MapHandler::getInstance().getTile(START_TILE);
 	
 	//Place init here for the main GameObject (probably the PC character).
 	Player::getInstance().init();
@@ -251,7 +251,7 @@ void Game::updateTile(GLuint x)
 //Function which allows the background texture variable to be altered when required.
 {
 	
-	m_backgroundTexture = x;
+	Game::m_backgroundTexture = x;
 	ZombieHandler::getInstance().updateTile(x);
 	
 }
@@ -300,7 +300,7 @@ void Game::key(unsigned char key, int x, int y)
 				//If m_run has changed to true, then the game has been started and 
 				//we simply deal with the m_running variable to decide upon displaying
 				//the pause screen or allowing game play.
-				Game::m_running = !Game::m_running
+				Game::m_running = !Game::m_running;
 				if (Game::m_quit) Game::m_quit = false;//If we had set the m_quit value to true, but then
 				//started the game again, we make sure to reset m_quit to false so that it
 				//will not allow the user to hit space followed by enter to quit by mistake.
@@ -313,7 +313,7 @@ void Game::key(unsigned char key, int x, int y)
 		//this will allow us to test them ass we need them.
         case 'k':
 			
-			if (m_running) {
+			if (Game::m_running) {
 				
 				//If the game is running, allow item use.
 				ItemHandler::getInstance().iUse();
@@ -329,7 +329,7 @@ void Game::key(unsigned char key, int x, int y)
 			
 		case 'i':
 		
-			if (m_running) {
+			if (Game::m_running) {
 				
 				//If the game is running, allow item swapping.
 				//i will handle item swap.
@@ -345,7 +345,7 @@ void Game::key(unsigned char key, int x, int y)
 				
 		case 'j':
 		
-			if (m_running) {	
+			if (Game::m_running) {	
 
 				//If the game is running allow attacks.
 				//j uses the currently equipted weapon to attack or do something else.
@@ -361,7 +361,7 @@ void Game::key(unsigned char key, int x, int y)
 			
 		case 'u':
 		
-			if (m_running) {	
+			if (Game::m_running) {	
 
 				//If the game is running allow weapon swapping.
 				//u handles weapon swap.
