@@ -410,7 +410,7 @@ void Game::key(unsigned char key, int x, int y)
 		case 13://13 is the enter key. This states that if the enter key is
 		//pressed while the game is paused do the following.
 			 
-			if ((Game::!m_running) && (Game::m_quit)) {
+			if ((!Game::m_running) && (Game::m_quit)) {
 				
 				//If the game is paused allow the user to hit escape followed by enter
 				//to quit the game.
@@ -487,7 +487,7 @@ void Game::keyOperations()
 	
 		}
 
-	} else if (Game::!m_running) {
+	} else if (!Game::m_running) {
 		
 	//27 refers to the escape key Ascii code. When the escape key is hit the game 
 	//will check the m_quit variables state. If that state is false switch it to 
