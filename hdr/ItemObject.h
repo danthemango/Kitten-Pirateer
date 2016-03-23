@@ -16,6 +16,50 @@
 #include <string>
 #include <iostream>
 
+// DrJ Static and dynamic types and bindings
+/*
+ * Static type of an instance for Weapon, is ItemObject, dynamic type is
+ * Weapon
+ * 
+ */
+ 
+ // DrJ Constructor
+/*
+ * Default constructer is the constructer that is exists by default.
+ * It does not always exist if you define your own, to create a new one
+ * in a subclass you have to define it.
+ * 
+ * for example of calling specific constructor see AOESpell.h
+ * 
+ */
+ 
+ //DrJ Pattern 1 Template
+ /*
+  * Name:
+  * 	Template Method
+  * Problem:
+  * 	Two different components have significant similarites, but 
+  * 	demonstate no reuse of common interface or implementation. if a
+  * 	change common to both components become necessary, duplicate 
+  * 	effort must be expended
+  * 
+  * Solution:
+  * 	implement invariant aspects of an algorithm once and let 
+  * 	subclasses define variant parts 
+  * 
+  * 	localize common behavior in a class to increase code reuse
+  * 
+  * 	control sublclass extensions
+  * 
+  * Consequences and Trade Offs:
+  * 	+Leads to inversion of control ("Hollywood principle" : don't 
+  * 	 call us, we'll call you)
+  * 	+Promotes cold reuse
+  * 	+lets you enforce overrideing rules
+  * 	-must sublcass to specialize behavior
+  * 
+  * 
+  */
 
 class ItemObject {
 	protected:

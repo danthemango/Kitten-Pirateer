@@ -25,7 +25,7 @@ void AOESpell::use()
 	}
 }
 
-
+/*
 AOESpell::AOESpell(int id, int x, int y, std::string name, bool display, int r, int tile, int type, int d)
 {
 	m_damage = d;
@@ -41,3 +41,4 @@ AOESpell::AOESpell(int id, int x, int y, std::string name, bool display, int r, 
    m_tilePos = tile;
    m_itemTexture = ImageLoader::LoadTexture("./imgs/AOEScroll.png");
 }
+*/

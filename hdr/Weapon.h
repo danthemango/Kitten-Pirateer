@@ -13,6 +13,26 @@
 #include "ItemObject.h"
 #include <string>
 
+// DrJ Inheritance
+/*
+ * inheritance is when an object or class is based on another object 
+ * (prototypal inheritance) or class (class-based inheritance), using 
+ * the same implementation (inheriting from an object or class) 
+ * specifying implementation to maintain the same behavior (realizing 
+ * an interface; inheriting behavior).
+ * 
+ *  It is a mechanism for code reuse and to allow independent 
+ * extensions of the original software via public classes and 
+ * interfaces.
+ * 
+ * I use inheritance in pretty much all my classes. Here I inherit from
+ * ItemObject, which is a template method class.
+ * 
+ * A method is bound during runtime.
+ * 
+ */
+
+
 class Weapon: public ItemObject{
 	public:	
 		virtual void use();

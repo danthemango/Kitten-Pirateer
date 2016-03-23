@@ -26,7 +26,7 @@ void Boomerang::displayProjectileMove()
 			int size = ItemHandler::getInstance().getNumOfItems();
 
 			for(int i=0;i<size;i++){
-				ItemHandler::getInstance().m_itemList[i]->pickUp(m_x, m_y);		
+				ItemHandler::getInstance().c_itemList[i]->pickUp(m_x, m_y);		
 			}
 
 		}

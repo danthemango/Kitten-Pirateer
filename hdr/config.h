@@ -11,6 +11,10 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+//Debug message variable. True = display debug messages in terminal. False = do not display debug
+//messages in terminal.
+#define DEBUG true
+
 // default sprite size
 #define SPRITE_SIZE_X 30
 #define SPRITE_SIZE_Y 30
@@ -49,6 +53,7 @@
 //TODO set up the correct margine size.
 #define MARGINE 5
 #define HUD_WIDTH 200
+
 //Max number of Objects.
 //TODO determine if this is needed when the handlers are in control
 //of how many obects there are.
@@ -57,5 +62,26 @@
 //Starting tile:
 //Set this to the starting tile required.
 #define START_TILE 3
+
+//Sound files:
+#define NUM_SOUNDS 10//This defines how many sounds the jukebox class will have.
+#define THEME_SONG "./sounds/Song.wav"
+#define ITEM_PICKUP_SOUND "./sounds/ItemPickUp.wav"
+#define Z_ATTACK_SOUND "./sounds/ZombieAttack2.wav"
+#define ATTACK_SOUND "./sounds/Sword2.wav"
+#define HEART_PICKUP_SOUND "./sounds/HeartPickUp.wav"
+#define HEALTH_POTION_SOUND "./sounds/HealthPotionUse.wav"
+#define BOSS_THEME "./sounds/BossMusic.wav"
+#define STEP_SOUND "./sounds/Step.wav"
+
+//Menu textures:
+//If we need to change the menu image names we can easily change them here
+//without going into the Menu.cpp or Menu.h files.
+#define MAIN_MENU "./imgs/menus/mainmenu.png"
+#define PAUSE_MENU "./imgs/menus/pausemenu.bmp"
+#define WIN_SCREEN "./imgs/menus/winscreen.png"
+#define LOSE_SCREEN "./imgs/menus/losescreen.png"
+#define QUIT_SCREEN "./imgs/menus/quitscreen.png"
+//#define OBJECTIVE_SCREEN ""//Possibility to have a screen to display the objective.
 
 #endif
