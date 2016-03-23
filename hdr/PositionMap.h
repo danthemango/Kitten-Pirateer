@@ -37,41 +37,31 @@ class PositionMap{
       int m_num;
    public: 
       // this is an iterator which is able to traverse the list of positions
-      // PATTERN: iterator
+      /* DrJ Pattern 1: iterator
+       Problem: how to traverse a collection of elements which are probably not
+                kept non-contiguously but still have a clear order that can be 
+                algorithmically deduced? (ex. breadth-first-search in a binary search tree)
+       Solution: create an iterator, which abstracts the whole "go to next" or "go to prev" problem 
+       away so we don't have to bother with knowing the internal data structure.
+       contraindicatiors: 
+            - maybe the internal data structure is important and we might be throwing out
+              the entire benefit of the data structure
+            - maybe the traversal is very costly
+       */
       class Iterator
       {
          public:
-            Iterator(node* start):
-               m_cur_node(start){}
-            // prefix increment
-            const Iterator &operator++()
-            {
-               m_cur_node = m_cur_node->next;
-               return *this;
-            }
-            // postfix increment
-            Iterator operator++(int)
-            {
-               Iterator temp = *this;
-               m_cur_node = m_cur_node->next;
-               return temp;
-            }
-            // dereferencer
-            Point* operator*()
-            {
-               if(m_cur_node){
-                  return m_cur_node->data;
-               }else{
-                  return NULL;
-               }
-            }
-            bool operator!=(Iterator const &other){
-               return other.m_cur_node != m_cur_node;
-            }
-            Iterator &operator=(Iterator& other){
-               m_cur_node = other.m_cur_node;
-               return *this;
-            }
+            // initialize (ex. use Iterator i(map.Begin())):w
+            Iterator(node* start);
+            // go to the next element in map
+            const Iterator &operator++();
+            Iterator operator++(int);
+            // get position from element
+            Point* operator*();
+            // check if two iterators aren't equal
+            bool operator!=(Iterator const &other);
+            // assignment
+            Iterator &operator=(Iterator& other);
          private:
             node* m_cur_node;
       };
@@ -79,6 +69,7 @@ class PositionMap{
       Iterator Begin(){
          return Iterator(m_head);
       }
+      // iterator to the end of the list
       Iterator End(){
          return Iterator(m_tail);
       }

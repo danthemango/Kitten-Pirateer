@@ -12,6 +12,7 @@
 
 #ifndef SHAPES_H
 #define SHAPES_H
+#include <vector>
 
 // coordinate plane point
 class Point{
@@ -26,25 +27,46 @@ class Point{
       int m_x,m_y;
 };
 
+/* DrJ Static Typing
+ static typing languages like C++ require the programmer to decide the type of a 
+ variable at declaration, that is every variable is typed at compile time (with few exceptions) 
+ this is in contrast to a language like python and perl where the type is determined at run-time,
+ where the type of a variable is usually determined by the context
+ */
+
+/* DrJ Static and dynamic types and bindings
+
+   Be prepared to explain how a method is bound and on which conditions it will be bound on the
+   static type and when it will be bound on the dynamic type.
+ */
+
 // abstract shape class
 class Shape{
    public:
       virtual bool isIn(Point& P) = 0;
-      virtual bool collides(Shape& S) = 0;
+      virtual bool collides(Shape* S) = 0;
 };
 
+/* DrJ Polymorphism
+   Here we get an idea that Triangle is a shape, but we don't really have to
+   what because we can use it as any shape
+*/
 // Triangle object
 // defined by three points
 class Triangle: public Shape{
    public:
+      /* DrJ Constructor
+         This is not a default constructor, and since it is implemented the default constructor doesn't exist.
+         if I wanted to call a specific constructor in the superclass I could do so in the initialization list
+       */
       Triangle(Point& A, Point& B, Point& C);
       // returns true if a point is within a triangle
       bool isIn(Point& P);
       // returns true if triangle T is entirely with this triangle
       bool isIn(Triangle& T);
       // returns true if parameter collides with this triangle
-      bool collides(Triangle& T);
-      bool collides(Shape& S);
+      bool collides(Triangle* T);
+      bool collides(Shape* S);
    private:
       Point m_A, m_B, m_C;
 };
@@ -57,14 +79,27 @@ class Circle{
       //
 };
 
-// complex shape object is defined by a series of circles and triangles
-//TODO
-class complexShape{
+// composite shape
+/* DrJ Pattern 2: Composite Pattern
+ Problem: 
+   - we want to be able to handle an object (square, triangle), or a combination of them (compositeShape)
+ Solution:
+   - create a class that contains other objects
+ */
+class CompositeShape: public Shape{
    public:
-      //
+      // create the polygon
+      CompositeShape();
+      // adds the shape to be part of the shape
+      void add(Shape* S);
+      // returns true when point P is in the shape
+      bool isIn(Point& P);
+      // returns true when any point in S is in this shape
+      bool collides(Shape* S);
    private:
-      //
-};
+      // subshape array
+      std::vector <Shape*> children;
+}; 
 
 // Line object
 // Defined by two points
@@ -102,13 +137,17 @@ class Square{
       bool isIn(int x, int y);
       // returns true if the other Square collided with this Square
       bool collides(Square& other);
-   private:
-      // m_x1, m_y1 - coordinates of the bottom left corner
-      // m_x2, m_y2 - coordinates of the top right corner
-      int m_x1, m_y1, m_x2, m_y2;
+      // returns the bottom left corner-point of square
+      Point getPoint();
+      // returns height
+      int getHeight();
+      // returns the width
+      int getWidth();
+   protected:
+      // bottomleft corner of square
+      int m_x, m_y;
+      // height and width
+      int m_height, m_width;
 };
 
-// 
-class ComplexShape: public Square{
-};
 #endif // SHAPES_H

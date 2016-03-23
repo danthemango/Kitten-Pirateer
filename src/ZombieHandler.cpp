@@ -66,6 +66,11 @@ ZombieHandler::ZombieHandler()
 
 ZombieHandler::~ZombieHandler()
 {
+   /* DrJ Clean Room
+      - objects on the heap exist until they are out of context
+      - objects called with 'new' exist forever or until 'delete' is called
+      - the lifetime of a static instance is the lifetime of the program
+    */
    for(int i = 0; i < MAXZOMBIES; i++){
       delete m_ZombieList[i];
    }

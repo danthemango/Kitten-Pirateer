@@ -38,22 +38,44 @@ float Point::distance(Point& other){
 // (x2,y2) - top right corner
 Square::Square(int x1, int y1, int x2, int y2)
 {  
-   m_x1 = x1;
-   m_y1 = y1;
-   m_x2 = x2;
-   m_y2 = y2;
+   m_x = x1;
+   m_y = y1;
+   m_width = x2 - x1;
+   m_height = y2 - y1;
 }
 
 // returns true if point is inside of Square
 bool Square::isIn(int x, int y){
-   return x >= m_x1 && x <= m_x2 && y >= m_y1 && y <= m_y2;
+   // true if point is both within the width or height
+   bool inwidth = x >= m_x && x <= m_x + m_width;
+   bool inheight = y >= m_y && y <= m_y + m_height;
+   return inwidth && inheight;
 }
 
 // returns true if the other Square collided with this Square
 bool Square::collides(Square& other)
 {
-   return !(other.m_x1 > m_x2 || other.m_x2 < m_x1 
-         || other.m_y1 > m_y2 || other.m_y2 < m_y1);
+   // true if any corner in the other square is inside us
+   return isIn(other.m_x,other.m_y) || isIn(other.m_x + m_width, other.m_y) 
+      || isIn(other.m_x, other.m_y + m_height) || isIn(other.m_x + m_width, other.m_y + m_height);
+}
+
+// returns the bottom left corner-point of square
+Point Square::getPoint()
+{
+   return Point(m_x,m_y);
+}
+
+// returns height
+int Square::getHeight()
+{
+   return m_height;
+}
+
+// returns the width
+int Square::getWidth()
+{
+   return m_width;
 }
 
 // **************** LINE ****************
@@ -136,20 +158,53 @@ bool Triangle::isIn(Point& P)
 }
 
 // returns true if triangle T collides with this triangle
-bool Triangle::collides(Triangle& T)
+bool Triangle::collides(Triangle* T)
 {
-   // triangle T if any point in T is in this triangle
-   return isIn(T.m_A) || isIn(T.m_B) || isIn(T.m_C);
+   // true if any point in T is in this triangle
+   return isIn(T->m_A) || isIn(T->m_B) || isIn(T->m_C);
 }
 
-bool Triangle::collides(Shape& S)
+bool Triangle::collides(Shape* S)
 {
-   return S.collides(*this);
+   return S->collides(this);
 }
 
 // returns true if triangle T is entirely with this triangle
 bool Triangle::isIn(Triangle& T)
 {
-   // all points are going to be within this triangle
+   // true if all points of T are within this triangle
    return isIn(T.m_A) && isIn(T.m_B) && isIn(T.m_C);
+}
+
+// ******************************** POLYGON *********************************
+CompositeShape::CompositeShape()
+{
+   //
+}
+
+void CompositeShape::add(Shape* S)
+{
+   children.push_back(S);
+}
+
+// returns true when point P is in the shape
+bool CompositeShape::isIn(Point& P)
+{
+   for(int i = 0; i < children.size(); i++){
+      if(children[i]->isIn(P)){
+         return true;
+      }
+   }
+   return false;
+}
+
+// returns true when any point in S is in this shape
+bool CompositeShape::collides(Shape* S)
+{
+   for(int i = 0; i < children.size(); i++){
+      if(children[i]->collides(S)){
+         return true;
+      }
+   }
+   return false;
 }

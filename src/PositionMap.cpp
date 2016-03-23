@@ -60,3 +60,42 @@ int PositionMap::size()
 {
    return m_num;
 }
+
+// initialize
+PositionMap::Iterator::Iterator(node* start):
+   m_cur_node(start)
+{}
+
+// prefix increment
+const PositionMap::Iterator& PositionMap::Iterator::operator++()
+{
+   m_cur_node = m_cur_node->next;
+   return *this;
+}
+
+// postfix increment
+PositionMap::Iterator PositionMap::Iterator::operator++(int)
+{
+   Iterator temp = *this;
+   m_cur_node = m_cur_node->next;
+   return temp;
+}
+
+// dereferencer
+Point* PositionMap::Iterator::operator*()
+{
+   if(m_cur_node){
+      return m_cur_node->data;
+   }else{
+      return NULL;
+   }
+}
+
+bool PositionMap::Iterator::operator!=(Iterator const &other){
+   return other.m_cur_node != m_cur_node;
+}
+
+PositionMap::Iterator& PositionMap::Iterator::operator=(Iterator& other){
+   m_cur_node = other.m_cur_node;
+   return *this;
+}

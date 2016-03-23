@@ -22,11 +22,12 @@
 #define RIGHT 3
 
 Zombie::Zombie()
+:Square(0,0,SPRITE_SIZE_X, SPRITE_SIZE_Y)
 {
    m_visible = false;
    m_speed = 1;
    m_dead = false;
-   m_direction = UP;
+   m_state = state::up;
    // this is the attack strength of the zombie
    m_damage = 5;
    m_attackRange = SPRITE_SIZE_Y /2;
@@ -70,17 +71,17 @@ void Zombie::update(int x, int y)
    // follow the player
    if(x < m_x){
       m_x -= m_speed;
-      m_direction = LEFT;
+      m_state = state::left;
    }else if(x > m_x){
       m_x += m_speed;
-      m_direction = RIGHT;
+      m_state = state::right;
    }
    if(y < m_y){
       m_y -= m_speed;
-      m_direction = DOWN;
+      m_state = state::down;
    }else if(y > m_y){
       m_y += m_speed;
-      m_direction = UP;
+      m_state = state::up;
    }
 }
 
@@ -129,14 +130,14 @@ void Zombie::display()
    static curframe = 0;
    // draw a sprite with respect to the direction and current frame
    switch(m_direction){
-      case(UP):
+      case(state::up):
          
          break;
-      case(DOWN):
+      case(state::down):
          break;
-      case(LEFT):
+      case(state::left):
          break;
-      case(RIGHT):
+      case(state::right):
          break;
    }
    */
