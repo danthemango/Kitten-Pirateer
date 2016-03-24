@@ -307,7 +307,6 @@ void Game::restartGame()
 	glutDestroyWindow(Game::c_windowID);
 	
 	//Now delete all of the variables created in the init.
-	delete m_menu;
 	
 	//Finally call init
 	Game::getInstance().init();

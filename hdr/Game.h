@@ -152,10 +152,10 @@ class Game {
 		static void run();//Run is the computing loop which calls update.
 		static void idle();//Handles the delay between screen updates. 
 		static void timer(int id);//Times and calls the update on the screen.
-		static void reshape(GLsizei newwidth, GLsizei newheight);//Reshapes the window as needed.
-		static void updateTile(GLuint x);//Call this function with the next tile texture as input
+		void reshape(GLsizei newwidth, GLsizei newheight);//Reshapes the window as needed.
+		void updateTile(GLuint x);//Call this function with the next tile texture as input
 		//to change the background tile variable.
-		static void restartGame();//Function to restart the game when called. TODO Ask Dr. J to help direct
+		void restartGame();//Function to' restart the game when called. TODO Ask Dr. J to help direct
 		//me on this section.
 		
 		//DrJ Static and dynamic types and bindings
