@@ -1,9 +1,9 @@
 //Edited by: Keenan Longair.
-//Last update: 12:30PM March 20th, 2016.
+//Last update: 5:30PM March 23rd, 2016.
 //Purpose: Prototyping of the main "GameBoard" and its interface. This is implemented
 //as a singleton and thus can only have one instance. Use the Game::getInstance() 
 //function to gain access to the instance.
-//Version: 1.5
+//Version: 1.6
 //**************************************************************************************
 
 #ifndef GAME_H_
@@ -21,19 +21,22 @@
 #include "../hdr/ZombieHandler.h"//Include the ZombieHandler.h
 #include "../hdr/Menu.h"//Include the menu class.
 
-//Various required classes:
-class Player;//Gives access to the Player.
-class Obstacle;//Gives access to the Obstacle.
-class ImageLoader;//Gives access to the ImageLoader.
-class Menu;//Gives access to the Menu.
-
-//ORALEXAM: Singleton justification located on line 83. Info on line 88.
-
 //Class definition of Game below:
 class Game {
 	
     private:
 	
+		//DrJ Constuctor
+		//What is the default constructor? Does it always exist?
+		//A default constructor is always created automatically unless we create any
+		//other constructor. This is because it is the responcibility of the subclass 
+		//constructor to invoke the appropriate superclass constructors. 
+		//Yes a default constructor always exists because they are automatically created.
+		//How do you call a specific Constructor in the super class?
+		//If the constructor you want to call is located within the super class AND
+		//has no parameters, it will be called by default, however if there are parameters
+		//the subclass has to specifically call that constructor with its parameters.
+		
         //If you want to get the instance use Game::getInstance() function provided in 
 		//the public section.
         Game()
@@ -42,22 +45,32 @@ class Game {
 			m_margine = HUD_WIDTH;
 			m_width = SCREEN_SIZE_X;
 			m_height = SCREEN_SIZE_Y;
-			//m_menu = new Menu();
 		   
         };//Default Constructor.
         
 		Game(Game const&);           //Don't Implement
         void operator=(Game const&); //Don't implement
 		
-		//Do not implement
-		//Deconstructor:
-		//~Game() {
-			
-			//TODO Try to set up the deconstructor to be used in order to call the proper delete
-			//methods of the classes. Ask Dr. J to help direct me on how to properly have this 
-			//called.
-			
-		//};
+		//DrJ Clean Room
+		//What are two ways to create an instance of an object?
+		//We can create one by using either Foo * foo1 = new Foo () which creats the object
+		//in dynamic memory. Or we can create an object by using Foo foo2 which creates 
+		//the object in automatic storage. 
+		//What is the lifetime of each? 
+		//If the first object described is not deleted, its considered a memory leak as it
+		//is left in memory until power is lost or it is forcibly overwritten.
+		//The second however will automatically be deleted when the program is terminated
+		//or the object goes out of scope.
+		//What is the lifetime of an instance that is declared static (ie: static Ball myBall;)?
+		//The instance is created the first time the program encounters the declaration and it
+		//it is terminated when the program terminates.
+		//How do you free up the memory when you are done? 
+		//You have to delete the objects you create in dynamic memory to free up that memory.
+		//If the objects are not in dynamic memory, then the memory will be freed up when the
+		//program terminates. Typically you can delete objects by using the deconstructor 
+		//however you can also delete them when your done. I am still not very good at making
+		//sure I free up memory because I have yet to be shown a method which can be used 
+		//universally or even have had a huge ephasis on deletion.
 		
 		const static int m_interval = 1000 / 60;//60 frames per second, c_interval sets 
 		//up the screens refresh rate and fps.
@@ -66,7 +79,6 @@ class Game {
 		int m_width;
 		int m_height;
 		int m_margine;
-		
 		Menu m_menu;
 		
 		//Background texture:
@@ -115,46 +127,49 @@ class Game {
 		//and Unidraw's Unidraw object.
 		
 		//Public Variables:
-		static int m_lastSong;//Stores the last song time stamp.
-		static bool m_run;//Variable to handle the start up of the game. When this is set
+		static int c_lastSong;//Stores the last song time stamp.
+		static bool c_run;//Variable to handle the start up of the game. When this is set
 		//to false, the game waits on the main menu. Once this is changed to true, the game
 		//runs until the c_running variable is changed. This variable allows us to possibly
 		//implement a system of restarting the game through a wide scope control variable.
-		static bool m_running;//Variable to tell update if the game is to be paused or not.
+		static bool c_running;//Variable to tell update if the game is to be paused or not.
 		//The c_running variable is public, to allow other objects to alter this, in essence
 		//allowing events to pause the game if necessary.
-		static bool m_gameOver;//This variable will tell us if the game is over.
-		static bool m_winCondition;//This variable will tell us if the game's win condition
+		static bool c_gameOver;//This variable will tell us if the game is over.
+		static bool c_winCondition;//This variable will tell us if the game's win condition
 		//was met or not. If this is true, the player won, if false, the player lost.
-		static int m_windowID;//This variable stores the window id when the game is created.
-		static bool m_quit;//This variable enables or disables the ability to hit enter and
+		static int c_windowID;//This variable stores the window id when the game is created.
+		static bool c_quit;//This variable enables or disables the ability to hit enter and
 		//quit during a time where the game is currently considered paused.
 		
 		//Required functions:
 		static bool* keystates;
 		static void keyUp(unsigned char key, int x, int y);
-		void keyOperations();
+		static void keyOperations();
 		static void key(unsigned char key, int x, int y);//Key takes in the key commands 
 		//used to call the switch control functions.
 		static void run();//Run is the computing loop which calls update.
 		static void idle();//Handles the delay between screen updates. 
 		static void timer(int id);//Times and calls the update on the screen.
-		void update();//Update handles updating the display screen and calling update on each object.
-		void reshape(GLsizei newwidth, GLsizei newheight);//Reshapes the window as needed.
-		void init();//Set to be public incase any objects inheriting from this needs their init
-		//to be public aswell.
-		void updateTile(GLuint x);//Call this function with the next tile texture as input
+		static void reshape(GLsizei newwidth, GLsizei newheight);//Reshapes the window as needed.
+		static void updateTile(GLuint x);//Call this function with the next tile texture as input
 		//to change the background tile variable.
-		void restartGame();//Function to restart the game when called. TODO Ask Dr. J to help direct
+		static void restartGame();//Function to restart the game when called. TODO Ask Dr. J to help direct
 		//me on this section.
 		
+		//DrJ Static and dynamic types and bindings
+		//What is the static type of the instance?
+		//The static type binds on compile time. Thus the static type of this instance is Game as it is
+		//the highest point of the hierarchy.
+		//What is the dynamic type?
+		//The dynamic type binds on runtime. Thus the dynamic type of update method from those that inherit
+		//from Game is dynamic. 
+		virtual void update();//Update handles updating the display screen and calling update on each object.
+		virtual void init();//Set to be public incase any objects inheriting from this needs their init
+		//to be public aswell.
+
 		//TODO Verify the need for this method. Does not appear in the original .cpp
 		int LoadImage(char *filename);//Required for loading an image.		
-		
-		//Possible functions: These are pulled from the collision lab 
-		//to be prepared incase anything is transfered over. 
-		//Anything unused will be removed before the final due date.
-		//GLfloat frand();//Random number function. Here incase we need it.
 
 };
 

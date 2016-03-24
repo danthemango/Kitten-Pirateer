@@ -1,5 +1,5 @@
 //Edited by: Keenan Longair.
-//Last update: 12:30PM March 17th, 2016.
+//Last update:  5:30PM March 23rd, 2016.
 //Purpose: To prototype the interface needed to create a spash screen
 //and main menu.
 //Version: 0.9
@@ -18,9 +18,6 @@
 //Required files:
 #include "../hdr/ImageLoader.h"
 #include "../hdr/config.h"
-
-//Classes required:
-class imageLoader;
 
 //Class description below:
 class Menu {

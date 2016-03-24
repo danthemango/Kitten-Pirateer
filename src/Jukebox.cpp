@@ -4,7 +4,7 @@
  * ./sounds/_.wav
  *************************************************************/
 //Editor: Keenan Longair
-//Last update: 12:00PM March 12th, 2016.
+//Last update:  5:30PM March 23rd, 2016.
 //Purpose: Handles the work for playing a .wav file.
 //Version: 0.5
 
@@ -166,7 +166,7 @@ void Jukebox::PlayBackground()
 	
 }
 
-/*
+
 void Jukebox::PlayItemPickUp()
 //Function to play the background theme song specifically.
 {
@@ -222,9 +222,9 @@ void Jukebox::PlayItemPickUp()
 	sounds[index].dpos = 0;
 	SDL_UnlockAudio();
 	
-}*/
+}
 
-/*
+
 void Jukebox::PlayHealthPotionSound()
 //Function to play the background theme song specifically.
 {
@@ -280,9 +280,9 @@ void Jukebox::PlayHealthPotionSound()
 	sounds[index].dpos = 0;
 	SDL_UnlockAudio();
 	
-}*/
+}
 
-/*
+
 void Jukebox::PlayStepSound()
 //Function to play the background theme song specifically.
 {
@@ -338,9 +338,9 @@ void Jukebox::PlayStepSound()
 	sounds[index].dpos = 0;
 	SDL_UnlockAudio();
 	
-}*/
+}
 
-/*
+
 void Jukebox::PlayBossTheme()
 //Function to play the background theme song specifically.
 {
@@ -396,9 +396,9 @@ void Jukebox::PlayBossTheme()
 	sounds[index].dpos = 0;
 	SDL_UnlockAudio();
 	
-}*/
+}
 
-/*
+
 void Jukebox::PlayHeartPickUp()
 //Function to play the background theme song specifically.
 {
@@ -454,9 +454,9 @@ void Jukebox::PlayHeartPickUp()
 	sounds[index].dpos = 0;
 	SDL_UnlockAudio();
 	
-}*/
+}
 
-/*
+
 void Jukebox::PlayAttack()
 //Function to play the background theme song specifically.
 {
@@ -512,9 +512,9 @@ void Jukebox::PlayAttack()
 	sounds[index].dpos = 0;
 	SDL_UnlockAudio();
 	
-}*/
+}
 
-/*
+
 void Jukebox::PlayZAttack()
 //Function to play the background theme song specifically.
 {
@@ -570,7 +570,7 @@ void Jukebox::PlayZAttack()
 	sounds[index].dpos = 0;
 	SDL_UnlockAudio();
 	
-}*/
+}
 
 bool Jukebox::init()
 {
@@ -597,28 +597,3 @@ bool Jukebox::init()
 	SDL_PauseAudio(0);
     return true;
 }
-
-
-
-//Next code used for the debugging of this file only.
-/*
-int main(int argc, char *argv[])
-{
-   if(!Jukebox::init())
-      exit;
-
-
-
-	for (int i = 1; i < argc; i++) {
-		fprintf(stderr, "%s", argv[i]);
-		Jukebox::PlaySound(argv[i]);
-
-
-sleep(2);
-	}
-
-	SDL_CloseAudio();
-
-	return EXIT_SUCCESS;
-}
-*/
