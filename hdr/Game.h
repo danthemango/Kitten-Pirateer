@@ -141,9 +141,10 @@ class Game {
 		static int c_windowID;//This variable stores the window id when the game is created.
 		static bool c_quit;//This variable enables or disables the ability to hit enter and
 		//quit during a time where the game is currently considered paused.
+		static bool* c_keystates;
+
 		
 		//Required functions:
-		static bool* keystates;
 		static void keyUp(unsigned char key, int x, int y);
 		static void keyOperations();
 		static void key(unsigned char key, int x, int y);//Key takes in the key commands 
