@@ -81,7 +81,9 @@
 #define PAUSE_MENU "./imgs/menus/pausemenu.bmp"
 #define WIN_SCREEN "./imgs/menus/winscreen.png"
 #define LOSE_SCREEN "./imgs/menus/losescreen.png"
-#define QUIT_SCREEN "./imgs/menus/quitscreen.png"
+#define QUIT_SCREEN "./imgs/menus/quitconfirmation.png"
+#define ESCAPE_SCREEN "./imgs/menus/escapescreen.png"
+#define RESTART_SCREEN "./imgs/menus/restartconfirmation.png"
 //#define OBJECTIVE_SCREEN ""//Possibility to have a screen to display the objective.
 
 #endif
