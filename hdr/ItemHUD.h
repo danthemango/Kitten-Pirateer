@@ -36,7 +36,12 @@ class ItemHUD : public HUD {
 	protected:
 	
 	public:
-		ItemHUD(int m_width, int m_height) {}; // Default Constructor
+		// Dr J - Default Constructor
+      // This is thedefault constructor for the ItemHUD class
+      // Definiton: A default constructor is a constructor that doesnt have any
+      // arguements. 
+      ItemHUD();
+      ItemHUD(int m_width, int m_height) {}; // Default Constructor
 
 		void displayHUD(); // Display all the weapon and items associated with the player
 };
