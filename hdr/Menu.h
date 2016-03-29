@@ -1,8 +1,9 @@
 //Edited by: Keenan Longair.
-//Last update:  5:30PM March 23rd, 2016.
+//Last update: 5:45PM March 25th, 2016.
 //Purpose: To prototype the interface needed to create a spash screen
 //and main menu.
-//Version: 0.9
+//Version: 1.0
+//**************************************************************************************
 
 #ifndef MENU_H_
 #define MENU_H_
@@ -27,11 +28,13 @@ class Menu {
 		//Menu and splashScreen height and width variables.
 		//int m_width;//Variables storing the width of the max menu size.
 		//int m_height;//Variable storing the height of the max menu size.
-		GLuint m_splashTexture;//Variable storing the pause texture.
+		GLuint m_pauseTexture;//Variable storing the pause texture.
 		GLuint m_menuTexture;//Variable storing the menu texture.
 		GLuint m_winTexture;//Variable storing the win texture.
 		GLuint m_loseTexture;//Variable storing the lose texture.
-		GLuint m_quitTexture;//Variable storing the quit texture.
+		GLuint m_quitTexture;//Variable storing the quit confirmation texture.
+		GLuint m_restartTexture;//Variable storing the restart confirmation texture.
+		GLuint m_escapeTexture;//Variable storing the escape menu.
 
 	public:
 	
@@ -45,22 +48,24 @@ class Menu {
 
 		};
 				
+		//TODO Rename spashScreen to pauseScreen.
+		//Also try to see if we can use update in anyway or remove it.
 		//Required Functions:
 		void init();//Prepares the various files.
 		void update();//Handles updateing any menu information if needed.
-		void splashScreen();//Provides the spashscreen for pausing the
+		void pauseScreen();//Provides the spashscreen for pausing the
 		//game.
 		void mainMenu();//Provides the main menu presented at the start
 		//of the game.
-		void quitScreen();//Provides the quit confirmation screen.
+		void quitConf();//Provides the quit confirmation screen.
+		void restartConf();//Provides the screen presenting the restart confirmation
+		//message.
+		void escapeScreen();//Provides the quit/restart option screen.	
 		
-		//TODO win/lose screen's need to give the option of quitting or restarting.
-		//So far there is the ability to quit through a key (currently = '-')
-		//but a restart ability eludes me.
-		//void winScreen();//Provides the screen presenting the win message.
-		//void loseScreen();//Provides the screen presenting the lose message.
-
-
+		//TODO win/lose screen's need to give the option to quit.
+		void winScreen();//Provides the screen presenting the win message.
+		void loseScreen();//Provides the screen presenting the lose message.
+		
 };
 
 #endif /* MENU_H_ */
