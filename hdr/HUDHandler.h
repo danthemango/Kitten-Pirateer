@@ -5,6 +5,27 @@ Purpose:
         Singleton used to generate the HUD via an array
 */
 
+/*
+DrJ -- Header File
+
+What functionality is provided:
+
+The HUD object provides information to the actor that relays current status
+about the character. The actor is informed of the health level of the character
+as it is decreased when being attacked by zombies. It also displays any health
+increases when the player recieved a heart item or uses a potion. Which brings us to
+the item section of the HUD: the curent weapon is displayed and the maximum damage
+capability of the weapon is listed underneath. This allows the actor to assess the 
+amount of damage daelt to the zombies in return for hurting the character. Underneath
+that are usable items and the quanitity listed. These items (and can be rotated, as like
+the weapon) can be selected and used to benefit the player.
+
+How did I make it easy for others to interface/use objects:
+
+I made all the HUD objects easy to use by creating a HUDHandler object that is
+a singleton to implements all the subclassed HUD classes displayHUD() function automatically.
+*/
+
 #pragma once 
 #ifndef HUDHANDLER_H
 #define HUDHANDLER_H
@@ -23,7 +44,7 @@ int m_width, m_height;
 GLuint m_backgroundHUD;
 
 HUDHandler() {
-            // Define the game width and height from initial generation.
+         // Define the game width and height from initial generation.
 			m_width = SCREEN_SIZE_X;
 			m_height = SCREEN_SIZE_Y;
 			m_backgroundHUD = ImageLoader::LoadTexture("./imgs/backgroundHUD.png");

@@ -46,7 +46,7 @@ class HealthHUD : public HUD {
 
 		int m_health; // health amount of the player
 		std::string m_healthString; // String to convert player health to be printed to HUD
-		const char * m_printHealth;
+		const char * m_printHealth; // ^
 		int m_posX, m_posY; // Position of the character
       GLuint m_healthLabel = ImageLoader::LoadTexture("./imgs/HUD/1.png");
 		
@@ -56,9 +56,9 @@ class HealthHUD : public HUD {
       // Default constructor for the HealthHUD class
       // Definition: Default constructors are a constructor that can be called without
       // any arguements.
-      HealthHUD();
+      HealthHUD(); // Defeault Constructor
 		HealthHUD(int m_width, int m_height) {}; // Constructor
-		~HealthHUD();
+		~HealthHUD(); // Default Destructor
 
       // DrJ -- Instance Method
       // This method is implemented by HealthHUD and pertains to the specific behavior
