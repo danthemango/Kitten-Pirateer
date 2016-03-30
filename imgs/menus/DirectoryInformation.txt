@@ -6,14 +6,8 @@ Any comments, suggestions or ideas to help make these images more interesting an
 engaging can be passed along to him at any time. He is no expert at graphics, but 
 is happy for help.
 
-The following list contains files which are to be removed once the main images are
-enabled and working.
-
-Files to be removed:
--quitscreen.png
--mainmenu2.png
--pausemenu.bmp
--pausemenuV2.png
+Within the old sub-directory, the images previously used are stored. These may be 
+cleaned out once they are deemed unnecessary.
 
 Within the resources sub-directory, the xcf files are located for editing of these
 images when necessary. These will be updated everytime a change occurs. 
