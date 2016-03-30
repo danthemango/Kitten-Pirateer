@@ -47,9 +47,7 @@ class Menu {
 			//m_height = SCREEN_SIZE_Y - 100;//Need a set height.
 
 		};
-				
-		//TODO Rename spashScreen to pauseScreen.
-		//Also try to see if we can use update in anyway or remove it.
+		
 		//Required Functions:
 		void init();//Prepares the various files.
 		void update();//Handles updateing any menu information if needed.
@@ -62,7 +60,8 @@ class Menu {
 		//message.
 		void escapeScreen();//Provides the quit/restart option screen.	
 		
-		//TODO win/lose screen's need to give the option to quit.
+		//TODO create the win/lose textures and win/lose screen's need to give the 
+		//option to quit.
 		void winScreen();//Provides the screen presenting the win message.
 		void loseScreen();//Provides the screen presenting the lose message.
 		

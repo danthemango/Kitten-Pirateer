@@ -4,8 +4,8 @@
 //which will provide the menus of the game.
 //Version: 1.2
 //**************************************************************************************
-//TODO create the win/lose screens aswell as the finalize menu, quit confirmation 
-//screen and pause screen.
+//TODO create the win/lose screens aswell as the finalize menu, quit confirmation, 
+//and pause screens.
 
 //Libraries required:
 #include <stdlib.h>
