@@ -191,7 +191,7 @@ void Game::update()
 				
 				//If the user hits the escape key on the main menu, allow the quit
 				//confirmation screen to be displayed instead of the main menu.
-				return m_menu.quitScreen();
+				return m_menu.quitConf();
 				
 			} else {
 				
@@ -205,13 +205,13 @@ void Game::update()
 		
 			//This should display the quitScreen when ever the c_quit variable is 
 			//set to true. TODO TEST THIS CODE.
-			return m_menu.quitScreen();
+			return m_menu.quitConf();
 		
 		} else {
 			
 			//This will call the splash screen when ever the user pauses the game
 			//using the space bar.
-			return m_menu.splashScreen();
+			return m_menu.pauseScreen();
 
 		}
 	 
