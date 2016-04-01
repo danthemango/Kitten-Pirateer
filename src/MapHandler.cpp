@@ -58,3 +58,11 @@ Square* MapHandler::zombieSpawnArea()
 	
 }
 
+void MapHandler::updateLevel(int x)
+{
+	delete m_ObstacleArr;
+	
+	
+	
+	
+}
