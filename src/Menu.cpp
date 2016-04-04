@@ -1,11 +1,11 @@
 //Edited by: Keenan Longair.
-//Last update: 5:45PM March 25th, 2016.
+//Last update: 3:15PM March 29th, 2016.
 //Purpose: To implement the prototyped functions found in the Menu.h file
 //which will provide the menus of the game.
-//Version: 1.2
+//Version: 1.3
 //**************************************************************************************
-//TODO create the win/lose screens aswell as the finalize menu, quit confirmation, 
-//and pause screens.
+//TODO create the win/lose screens aswell as the finalize menu, quit confirmation 
+//screen and pause screen.
 
 //Libraries required:
 #include <stdlib.h>
