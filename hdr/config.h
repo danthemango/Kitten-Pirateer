@@ -78,10 +78,12 @@
 //If we need to change the menu image names we can easily change them here
 //without going into the Menu.cpp or Menu.h files.
 #define MAIN_MENU "./imgs/menus/mainmenu.png"
-#define PAUSE_MENU "./imgs/menus/pausemenu.bmp"
+#define PAUSE_MENU "./imgs/menus/pausemenu.png"
 #define WIN_SCREEN "./imgs/menus/winscreen.png"
 #define LOSE_SCREEN "./imgs/menus/losescreen.png"
-#define QUIT_SCREEN "./imgs/menus/quitscreen.png"
+#define QUIT_SCREEN "./imgs/menus/quitconfirmation.png"
+#define ESCAPE_SCREEN "./imgs/menus/escapemenu.png"
+#define RESTART_SCREEN "./imgs/menus/restartconfirmation.png"
 //#define OBJECTIVE_SCREEN ""//Possibility to have a screen to display the objective.
 
 #endif

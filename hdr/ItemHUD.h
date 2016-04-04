@@ -28,7 +28,7 @@ class ItemHUD : public HUD {
 		const char * itemName;
 		// Amount of the current item equipped
 		int itemAmount;
-	        const char * amount;
+	   const char * amount;
 		// Damage of the weapon equipped
 		int dmg;
 		const char * damage;
@@ -36,7 +36,12 @@ class ItemHUD : public HUD {
 	protected:
 	
 	public:
-		ItemHUD(int m_width, int m_height) {}; // Default Constructor
+		// Dr J - Default Constructor
+      // This is thedefault constructor for the ItemHUD class
+      // Definiton: A default constructor is a constructor that doesnt have any
+      // arguements. 
+      ItemHUD();
+      ItemHUD(int m_width, int m_height) {}; // Default Constructor
 
 		void displayHUD(); // Display all the weapon and items associated with the player
 };

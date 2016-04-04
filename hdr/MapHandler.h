@@ -21,7 +21,9 @@
 #ifndef MAPHANDLER_H_
 #define MAPHANDLER_H_
 #define NUMTILES 9
-#define MAXOBS 40
+#define NUMLEVELS 2
+#define MAXOBS 45
+#define STARTINGLEVEL 0
 
 #include "Game.h"
 #include "Obstacle.h"
@@ -34,6 +36,30 @@
 class MapHandler {
 
 private:
+	
+	int m_levelStartTile[NUMLEVELS] = {3,2};
+	
+	const char* m_level0TilesetPNG[NUMTILES] = {
+			"./config/PNG/level0/tile0.png",
+			"./config/PNG/level0/tile1.png",
+			"./config/PNG/level0/tile2.png",
+			"./config/PNG/level0/tile3.png",
+			"./config/PNG/level0/tile4.png",
+			"./config/PNG/level0/tile5.png",
+			"./config/PNG/level0/tile6.png",
+			"./config/PNG/level0/tile7.png",
+			"./config/PNG/level0/tile8.png"};
+			
+	const char* m_level1TilesetPNG[NUMTILES] = {
+			"./config/PNG/level1/tile0.png",
+			"./config/PNG/level1/tile1.png",
+			"./config/PNG/level1/tile2.png",
+			"./config/PNG/level1/tile3.png",
+			"./config/PNG/level1/tile4.png",
+			"./config/PNG/level1/tile5.png",
+			"./config/PNG/level1/tile6.png",
+			"./config/PNG/level1/tile7.png",
+			"./config/PNG/level1/tile8.png"};
 	
 	//Array of Obstacles set to the Max amount
 	Obstacle m_obs[MAXOBS];
@@ -60,23 +86,19 @@ private:
     MapHandler()
     {
 		//	Initializes the MapHandler setting up the First Level
-		m_currTile = 3;
+		m_currTile = m_levelStartTile[STARTINGLEVEL];
 		
 		//Creates a new 3D Obstacle Array that contains the obstacle Data
-		m_ObstacleArr = new ObsArr("./config/INPUT_OBS");
+		m_ObstacleArr = new ObsArr("./config/INPUT_OBS_LEVEL0");
 		m_numTiles = m_ObstacleArr->numTiles();
 		m_numObs = m_ObstacleArr->numObsArr();
 		
 		//Sets up the Array of texture for the First Level
-		m_tileTextureArray[0] = ImageLoader::LoadTexture("./imgs/tile0.png");
-		m_tileTextureArray[1] = ImageLoader::LoadTexture("./imgs/tile1.png");
-		m_tileTextureArray[2] = ImageLoader::LoadTexture("./imgs/tile2.png");
-		m_tileTextureArray[3] = ImageLoader::LoadTexture("./imgs/tile3.png");
-		m_tileTextureArray[4] = ImageLoader::LoadTexture("./imgs/tile4.png");
-		m_tileTextureArray[5] = ImageLoader::LoadTexture("./imgs/tile5.png");
-		m_tileTextureArray[6] = ImageLoader::LoadTexture("./imgs/tile6.png");
-		m_tileTextureArray[7] = ImageLoader::LoadTexture("./imgs/tile7.png");
-		m_tileTextureArray[8] = ImageLoader::LoadTexture("./imgs/tile8.png");
+		for (int i = 0;i<NUMTILES;i++)
+		{
+			m_tileTextureArray[i] = ImageLoader::LoadTexture(m_level0TilesetPNG[i]);
+		}
+		
 		 
 		//creates the first array of Obstacles for the initial Tile
 		
@@ -129,6 +151,14 @@ public:
 	
 	// Returns a Rectangle(square) that the zombies can spawn in on the current tile
 	Square* zombieSpawnArea(); 
+	
+	
+	// Updates the Level to the selected level (level 0 being the first level and so forth)
+	// in this level the 2 tile(upper right hand corner is set to the start tile.
+	// as if you fell down the hole. This function ahs been tested and should work 
+	// to call this to change to the next level in our game use int x = 1;
+	
+	void updateLevel(int x);
 	
 };
 

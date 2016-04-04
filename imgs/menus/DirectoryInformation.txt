@@ -1,0 +1,13 @@
+Within this directory is the various menu's and prompt images that are used with in
+the game.
+
+These images were modified and/or created by Keenan Longair.
+Any comments, suggestions or ideas to help make these images more interesting and
+engaging can be passed along to him at any time. He is no expert at graphics, but 
+is happy for help.
+
+Within the old sub-directory, the images previously used are stored. These may be 
+cleaned out once they are deemed unnecessary.
+
+Within the resources sub-directory, the xcf files are located for editing of these
+images when necessary. These will be updated everytime a change occurs. 

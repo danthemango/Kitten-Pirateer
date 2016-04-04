@@ -30,6 +30,6 @@ Bomb::Bomb(int id, int x, int y, std::string name, bool display, int r, int tile
    m_y = y;
    m_tilePos = tile;
    m_itemWidth = 20;
-   m_itemTexture = ImageLoader::LoadTexture("./imgs/lemon.png");
+   m_itemTexture = ImageLoader::LoadTexture("./imgs/bomb.png");
 	
 }

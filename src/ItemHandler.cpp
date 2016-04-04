@@ -203,6 +203,7 @@ void ItemHandler::buildItemArray(std::string file)
 	c_itemList[itempos] = ItemsFactory::createItem(3, x, y, "Boomerang", 350 , tile, 3, 0);
 	itempos++;
 	m_numOfItems = itempos;
+	
 }
 
 bool ItemHandler::randomize(int id)

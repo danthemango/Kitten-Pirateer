@@ -58,3 +58,44 @@ Square* MapHandler::zombieSpawnArea()
 	
 }
 
+void MapHandler::updateLevel(int x)
+{
+	
+	// Deallocated the memory used for the array that holds the obstacle data
+	delete m_ObstacleArr;
+	
+	
+	if(x==1)
+	{
+		for (int i = 0;i<NUMTILES;i++)
+			{
+				// loads the new image data to an array of textures
+				m_tileTextureArray[i] = ImageLoader::LoadTexture(m_level1TilesetPNG[i]);
+			}
+		// allocates the new 3dArray of obstacle data
+		m_ObstacleArr = new ObsArr("./config/INPUT_OBS_LEVEL1");
+	}
+	
+	// Gathers the amount of tiles in the array
+	m_numTiles = m_ObstacleArr->numTiles();
+	
+	// Gathers the amount of obstacles per tile in the array
+	m_numObs = m_ObstacleArr->numObsArr();
+	
+	//sets the Start tile for the level
+	m_currTile = m_levelStartTile[x];
+	
+	// Builds the first tiles Obstacles 
+	for(int i=0;i<m_numObs[m_currTile];i++)
+		{
+			m_obs[i] = ObjectFactory::createObstacle
+			(
+				m_ObstacleArr->m_array[m_currTile][i][0],
+				m_ObstacleArr->m_array[m_currTile][i][1],
+				m_ObstacleArr->m_array[m_currTile][i][2],
+				m_ObstacleArr->m_array[m_currTile][i][3],
+				m_ObstacleArr->m_array[m_currTile][i][4]
+			);
+		}
+	
+}
