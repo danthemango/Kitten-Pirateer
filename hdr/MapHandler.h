@@ -153,7 +153,10 @@ public:
 	Square* zombieSpawnArea(); 
 	
 	
-	// Updates the Level to the selected level (level0 being the first level and so forth)
+	// Updates the Level to the selected level (level 0 being the first level and so forth)
+	// in this level the 2 tile(upper right hand corner is set to the start tile.
+	// as if you fell down the hole. This function ahs been tested and should work 
+	// to call this to change to the next level in our game use int x = 1;
 	
 	void updateLevel(int x);
 	
