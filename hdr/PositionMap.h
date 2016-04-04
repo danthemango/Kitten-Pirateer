@@ -37,17 +37,6 @@ class PositionMap{
       int m_num;
    public: 
       // this is an iterator which is able to traverse the list of positions
-      /* DrJ Pattern 1: iterator
-       Problem: how to traverse a collection of elements which are probably not
-                kept non-contiguously but still have a clear order that can be 
-                algorithmically deduced? (ex. breadth-first-search in a binary search tree)
-       Solution: create an iterator, which abstracts the whole "go to next" or "go to prev" problem 
-       away so we don't have to bother with knowing the internal data structure.
-       contraindicatiors: 
-            - maybe the internal data structure is important and we might be throwing out
-              the entire benefit of the data structure
-            - maybe the traversal is very costly
-       */
       class Iterator
       {
          public:

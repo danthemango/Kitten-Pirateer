@@ -13,7 +13,6 @@
 #ifndef NPC_H
 #define NPC_H
 
-// DrJ dynamic typing
 class NPC{
    public:
       // update should be run in every frame that the game is going on for

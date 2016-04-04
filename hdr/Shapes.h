@@ -27,19 +27,6 @@ class Point{
       int m_x,m_y;
 };
 
-/* DrJ Static Typing
- static typing languages like C++ require the programmer to decide the type of a 
- variable at declaration, that is every variable is typed at compile time (with few exceptions) 
- this is in contrast to a language like python and perl where the type is determined at run-time,
- where the type of a variable is usually determined by the context
- */
-
-/* DrJ Static and dynamic types and bindings
-
-   Be prepared to explain how a method is bound and on which conditions it will be bound on the
-   static type and when it will be bound on the dynamic type.
- */
-
 // abstract shape class
 class Shape{
    public:
@@ -47,18 +34,10 @@ class Shape{
       virtual bool collides(Shape* S) = 0;
 };
 
-/* DrJ Polymorphism
-   Here we get an idea that Triangle is a shape, but we don't really have to
-   what because we can use it as any shape
-*/
 // Triangle object
 // defined by three points
 class Triangle: public Shape{
    public:
-      /* DrJ Constructor
-         This is not a default constructor, and since it is implemented the default constructor doesn't exist.
-         if I wanted to call a specific constructor in the superclass I could do so in the initialization list
-       */
       Triangle(Point& A, Point& B, Point& C);
       // returns true if a point is within a triangle
       bool isIn(Point& P);
@@ -80,12 +59,6 @@ class Circle{
 };
 
 // composite shape
-/* DrJ Pattern 2: Composite Pattern
- Problem: 
-   - we want to be able to handle an object (square, triangle), or a combination of them (compositeShape)
- Solution:
-   - create a class that contains other objects
- */
 class CompositeShape: public Shape{
    public:
       // create the polygon
