@@ -19,6 +19,8 @@
 #include "Shapes.h"
 #include "ImageLoader.h"
 #include "../hdr/Timer.h"
+// the number of states the zombie can be in
+#define NUMSTATES 5
 
 class Zombie: public HostileNPC, public Square{
    public:
@@ -42,6 +44,9 @@ class Zombie: public HostileNPC, public Square{
       // (x1,y1) - bottom left corner of the area 
       void attacked(int x1, int y1, int x2, int y2, int damage);
    private:
+      // the textures of the zombies
+      // one for each state
+      GLuint m_textures[NUMSTATES];
       // attack the player
       void attack();
       // amount of damage the zombie can take

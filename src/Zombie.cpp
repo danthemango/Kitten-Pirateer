@@ -15,12 +15,6 @@
 #include "../hdr/Player.h"
 #include "../hdr/Jukebox.h"
 
-// define the directions
-#define UP 0
-#define DOWN 1
-#define LEFT 2 
-#define RIGHT 3
-
 Zombie::Zombie()
 :Square(0,0,SPRITE_SIZE_X, SPRITE_SIZE_Y)
 {
@@ -34,6 +28,10 @@ Zombie::Zombie()
    m_attackDelay = 800;
    m_animDelay = 200;
    m_disappearTime = 3000;
+   m_textures[(int) state::down] = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/DownA.png");
+   m_textures[(int) state::up] = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/UpA.png");
+   m_textures[(int) state::left] = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/LeftA.png");
+   m_textures[(int) state::right] = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/RightA.png");
 }
 
 // determine the absolute difference between two numbers
@@ -110,13 +108,15 @@ void Zombie::display()
       }
       if(m_killedTime.elapsed(m_disappearTime)){
          m_killedTime.unSet();
+         // remove from screen after time is up
          disappear();
       }else{
          m_texture = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/Dead.png");
       }
    }else{
-      m_texture = ImageLoader::LoadTexture("imgs/Sprites/zombies/ZombieA/DownA.png");
-   }
+      // otherwise display texture
+         m_texture = m_textures[(int) m_state];
+      }
 
    /*TODO animation
    // ensure that the frame either needs to be updated or the zombie has changed direction
