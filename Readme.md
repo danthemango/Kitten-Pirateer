@@ -5,19 +5,20 @@ This is a game developed as a group project for CSCI 331 at [VIU](https://www2.v
 
 Background:
 Kitten Piratier: Adventure of Zombie Island is a top down adventure game in which you play as the 
-Kitten Piratier!
+famous feline pirate, known as the Kitten Piratier!
 
 As the Kitten Piratier was sailing around the ocean in search of adventure, his ships supplies 
-started to run low. In search of new supplies the Kitten Piratier ventured to a near by island.
+started to run low. In search of new supplies the Kitten Piratier ventured to a nearby island.
 Unknown to the Piratier, the Island was crawling with danger. The Piratier stepped forth and
 started searching for supplies to prevent his crew from getting scurvy. Your job as the piratier
 is to collect as many lemons as you can from the Island before returning to your ship to gather
 a bomb that will open up the hidden Mine. Once the Mine is open you will be tasked with 
 entering the Mine and collecting what lemons remain. 
+
 As you adventure onto this Island you will need to collect items and use them to survive the 
 dangers that exist. As you may have assumed, you will need to navigate the Island with Zombies 
-chasing you. Can you defeat the Zombies and collect all of the Lemons? Or will the island claim 
-you as one of its shambling horrors?
+persuing your tasty flesh. Can you defeat the Zombies and collect all of the Lemons? Or will the 
+Island claim you as one of its shambling horrors?
 
 Objective Breakdown:
 Your objective is to first collect all the lemons that randomly appear around the Island.
