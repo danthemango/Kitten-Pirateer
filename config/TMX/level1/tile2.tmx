@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="33" height="33" tilewidth="32" tileheight="32" nextobjectid="20">
- <tileset firstgid="1" name="tilea2" tilewidth="32" tileheight="32" tilecount="192" columns="16">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="33" height="33" tilewidth="32" tileheight="32" nextobjectid="27">
+ <tileset firstgid="1" name="tilea2" tilewidth="32" tileheight="32">
   <image source="../../../../TILED/tilea2.png" width="512" height="384"/>
  </tileset>
- <tileset firstgid="193" name="tilea4" tilewidth="32" tileheight="32" tilecount="240" columns="16">
+ <tileset firstgid="193" name="tilea4" tilewidth="32" tileheight="32">
   <image source="../../../../TILED/tilea4.png" width="512" height="480"/>
  </tileset>
- <tileset firstgid="433" name="tilea1" tilewidth="32" tileheight="32" tilecount="192" columns="16">
+ <tileset firstgid="433" name="tilea1" tilewidth="32" tileheight="32">
   <image source="../../../../TILED/tilea1.png" width="512" height="384"/>
  </tileset>
- <tileset firstgid="625" name="9ywlq" tilewidth="32" tileheight="32" tilecount="192" columns="16">
+ <tileset firstgid="625" name="9ywlq" tilewidth="32" tileheight="32">
   <image source="../../../../TILED/KP_Map/9ywlq.png" width="512" height="384"/>
  </tileset>
- <tileset firstgid="817" name="tileeee" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+ <tileset firstgid="817" name="tileeee" tilewidth="32" tileheight="32">
   <image source="../../../../TILED/tileeee.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="1073" name="scbw_tiles" tilewidth="32" tileheight="32" tilecount="588" columns="28">
+ <tileset firstgid="1073" name="scbw_tiles" tilewidth="32" tileheight="32">
   <image source="../../../../TILED/scbw_tiles.png" width="918" height="678"/>
  </tileset>
- <tileset firstgid="1661" name="pirate-themed-tilee" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+ <tileset firstgid="1661" name="pirate-themed-tilee" tilewidth="32" tileheight="32">
   <image source="../../../../TILED/KP_Map/pirate-themed-tilee.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="1917" name="tiled" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+ <tileset firstgid="1917" name="tiled" tilewidth="32" tileheight="32">
   <image source="../../../../TILED/KP_Map/tiled.png" width="512" height="512"/>
  </tileset>
  <layer name="Ground" width="33" height="33">
@@ -228,5 +228,14 @@
  </objectgroup>
  <objectgroup name="Zombie Spawn Area">
   <object id="19" x="118" y="214" width="573" height="821"/>
+ </objectgroup>
+ <objectgroup name="Items">
+  <object id="20" name="10" x="34" y="203"/>
+  <object id="21" name="10" x="747" y="1012"/>
+  <object id="22" name="11" x="407" y="400"/>
+  <object id="23" name="11" x="788" y="641"/>
+  <object id="24" name="11" x="60" y="732"/>
+  <object id="25" name="12" x="600" y="781"/>
+  <object id="26" name="2" x="619" y="184"/>
  </objectgroup>
 </map>
