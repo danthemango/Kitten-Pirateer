@@ -19,12 +19,14 @@ void Bomb::use()
       && playerY > (1054-624) && playerY+height < 1054-531 && Player::getInstance().getTile() == 2){
       m_amount = 0;
       Jukebox::PlaySound("./sounds/Bomb.wav");
-     /*
+     
       MapHandler::getInstance().updateLevel(1);
       ItemHandler::getInstance().removeItems();
+      ItemHandler::getInstance().setLevel(1);
       ItemHandler::getInstance().buildItemArray("./config/INPUT_ITEMS_LEVEL1");
-      Game::getInstance().updateTile(2);
-      */
+      MapHandler::getInstance().updateTile(2);
+      ItemHandler::getInstance().setLevel(1);
+      
 	}
 	
 }

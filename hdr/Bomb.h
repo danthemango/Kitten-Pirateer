@@ -10,6 +10,7 @@ class Bomb: public Items{
 	
 		Bomb(int id, int x, int y, std::string name, bool display, int r, int tile);
 		Bomb(){};
+		~Bomb(){};
 };
 
 #endif

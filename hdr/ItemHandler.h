@@ -46,6 +46,14 @@
 #include "ObsArr.h"
 #include <string>
 
+/*
+#define PERCENT_LEMON 100
+#define PERCENT_AOE 100
+#define PERCENT_FIREBALL 100
+#define PERCENT_HEART 100
+#define PERCENT_HEALTHPOTION 100
+*/
+
 #define PERCENT_LEMON 30
 #define PERCENT_AOE 20
 #define PERCENT_FIREBALL 30
@@ -177,6 +185,7 @@ class ItemHandler {
 	private:
 		ItemHandler(){
         m_currWeapon = 0;
+        m_level = 0;
         m_currItem = 0;
         m_lastWeapon = 0;
         m_lastItem = 0;
@@ -211,6 +220,7 @@ class ItemHandler {
          int m_currTile;
          int m_lemons;
          bool m_bombPlaced;
+         int m_level;
       
    public:
 		int getNumOfItems(){return m_numOfItems;}
@@ -246,5 +256,6 @@ class ItemHandler {
 		bool randomize(int id);
 		void resetLemons();
 		void removeItems();
+		void setLevel(int x) {m_level = x;}
 };
 #endif

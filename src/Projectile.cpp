@@ -9,7 +9,7 @@
 void Projectile::display()
 {
 	if(Player::getInstance().getTile() == m_tilePos){
-   
+		
 		if(m_displayed == true){
 			//draw image
 			glEnable(GL_TEXTURE_2D);
