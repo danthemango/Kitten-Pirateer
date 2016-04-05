@@ -154,11 +154,11 @@ void Game::update()
 
 	if (Game::c_gameOver) {
 		
-		return m.menu.loseScreen();
+		return m_menu.loseScreen();
 		
 	} else if (Game::c_winCondition) {
 		
-		return m.menu.winScreen();
+		return m_menu.winScreen();
 		
 	}
 	
