@@ -146,9 +146,20 @@ void Game::update()
 
 	//Check the game status and respond appropriatly.
 	//If the players health reaches 0:
-	if(Player::getInstance().getHealth() <= 0) {
+	if((Player::getInstance().getHealth() <= 0) && (!Game::c_gameOver)) {
 		
 		Game::getInstance().setLose();
+
+	}
+
+	if (Game::c_gameOver) {
+		
+		return m_menu.loseScreen();
+		
+	} else if (Game::c_winCondition) {
+		
+		return m_menu.winScreen();
+		
 	}
 	
 	//If the game is paused:
@@ -310,7 +321,7 @@ void Game::setWin()
 	Game::c_quit = true;//Quit will occur soon, set to true.
 	Game::c_escape = true;//Escape needs to be set to true.
 	Game::c_running = false;//Game is no longer running, set to false.
-	return m_menu.winScreen();//Bring up the win screen.
+	//return m_menu.winScreen();//Bring up the win screen.
 	//Once the win screen is displayed, only enter is allowed to function which allows
 	//the plahyer to quit the game. In the future if possible the restart function 
 	//will be allowed in this screen aswell.
@@ -327,7 +338,7 @@ void Game::setLose()
 	Game::c_quit = true;//Quit will occur soon, set to true.
 	Game::c_escape = true;//Escape needs to be set to true.
 	Game::c_running = false;//Game is no longer running, set to false.
-	return m_menu.loseScreen();//Bring up the lose screen.
+	//return m_menu.loseScreen();//Bring up the lose screen.
 	//Once the lose screen is displayed, only enter is allowed to function which
 	//allows the player to quit the game. In the future if possible the restart function
 	//will be allowed in this screen aswell.

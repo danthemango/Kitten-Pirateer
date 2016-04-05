@@ -46,6 +46,14 @@
 #include "ObsArr.h"
 #include <string>
 
+/*
+#define PERCENT_LEMON 100
+#define PERCENT_AOE 100
+#define PERCENT_FIREBALL 100
+#define PERCENT_HEART 100
+#define PERCENT_HEALTHPOTION 100
+*/
+
 #define PERCENT_LEMON 30
 #define PERCENT_AOE 20
 #define PERCENT_FIREBALL 30
@@ -177,14 +185,17 @@ class ItemHandler {
 	private:
 		ItemHandler(){
         m_currWeapon = 0;
+        m_level = 0;
         m_currItem = 0;
         m_lastWeapon = 0;
         m_lastItem = 0;
-        m_lemons = 1;
+        m_lemons = 0;
+        m_bombPlaced = false;
         //m_numOfItems = 21;
         //start with a sword and 1 lemon
         m_weaponInv[0] = new Weapon(0,-1,-1,"Sword", false, 25,-1,0,10);
-        m_itemInv[0] = new Items(10,-1,-1,"Lemon",false,0,-1);         
+        m_itemInv[0] = new Items(10,-1,-1,"Lemon",false,0,-1);  
+        m_itemInv[0]->setAmount(0);       
         
 		init();
       }
@@ -208,6 +219,8 @@ class ItemHandler {
          int m_numTiles;
          int m_currTile;
          int m_lemons;
+         bool m_bombPlaced;
+         int m_level;
       
    public:
 		int getNumOfItems(){return m_numOfItems;}
@@ -241,6 +254,8 @@ class ItemHandler {
 		void iUse();
 		void buildItemArray(std::string file);
 		bool randomize(int id);
-
+		void resetLemons();
+		void removeItems();
+		void setLevel(int x) {m_level = x;}
 };
 #endif

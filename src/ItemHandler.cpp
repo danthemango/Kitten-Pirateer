@@ -13,10 +13,6 @@
 #include "../hdr/ObsArr.h"
 #include "../hdr/Player.h"
 
-/*
-#include "../hdr/ItemHandler.h"
-#include "../hdr/Items.h"
-*/
 #include <iostream>
 #include <string>
 #include <time.h>
@@ -37,7 +33,52 @@ void ItemHandler::addItemToInv(ItemObject* item)
    if(placed == false){
 		//std::cout << "add item" << std::endl;
       m_lastItem++;
-      m_itemInv[m_lastItem] = item;
+      int id = item->getItemID();
+		std:string name;
+		int damage;
+		int range;
+		int type;
+			//TEST
+		switch (id) {
+					
+			case 10:
+				name = "Lemon";
+				range = 0;
+				type = -1; //n/a
+				damage = -1;
+				break;
+			case 11:
+				name = "Heart";
+				range = 0;
+				type = -1;
+				damage = -1;
+				break;
+			case 12:
+				name = "Health Potion";
+				range = 0;
+				type = -1;
+				damage = -1;
+				break;
+			case 13:
+				name = "Bomb";
+				range = 0;
+				type = -1;
+				damage = 0;
+				break;
+			}
+			m_itemInv[m_lastItem] = ItemsFactory::createItem
+			(
+				id, 0, 0, name, range, -1, type, damage
+			);
+			m_itemInv[m_lastItem]->setDisplayed(false);
+      
+      
+      
+      
+      
+      
+      
+     // m_itemInv[m_lastItem] = item;
    }
 }
 
@@ -54,7 +95,48 @@ void ItemHandler::addWeaponToInv(ItemObject* weapon)
    if(placed == false){
 	   //std::cout << "test2" << std::endl;
       m_lastWeapon++;
-      m_weaponInv[m_lastWeapon] = weapon;
+      
+      int id = weapon->getItemID();
+		std:string name;
+		int damage;
+		int range;
+		int type;
+			//TEST
+		switch (id) {
+			case 0:
+				name = "Sword";
+				range = 25;
+				damage = 10;
+				type = 0;
+				break;
+			case 1:
+				name = "AOE Spell";
+				range = 100;
+				damage = 50;
+				type = 2; //change this later.
+				break;
+			case 2:
+				name = "Fire Ball";
+				range = 900;
+				damage  = 5;
+				type = 2;
+				break;
+			case 3:
+				name = "Boomerang";
+				range = 350;
+				damage = 0;
+				type = 3;
+				break;
+			}
+			m_weaponInv[m_lastWeapon] = ItemsFactory::createItem
+			(
+				id, 0, 0, name, range, -1, type, damage
+			);
+			m_weaponInv[m_lastWeapon]->setDisplayed(false);
+      
+		
+      
+      //m_weaponInv[m_lastWeapon] = weapon;
    }	
 	
 }
@@ -62,16 +144,28 @@ void ItemHandler::addWeaponToInv(ItemObject* weapon)
 
 void ItemHandler::update()
 {
+	
+	if(m_level == 1 && m_itemInv[0]->getAmount() == m_lemons){
+		Game::getInstance().setWin();
+		return;
+	}
+	
    for(int i = 0; i < m_numOfItems; i++){
       c_itemList[i]->display();
       c_itemList[i]->pickUp(Player::getInstance().getX(),Player::getInstance().getY());
    }
+   for(int i=0;i<=m_lastWeapon; i++){
+		m_weaponInv[i]->display();
+	}
    if(m_itemInv[0]->getAmount() == m_lemons){
 		//std:cout<< "found all lemons" << std::endl;
-		m_itemInv[0]->setAmount(0);
-		for(int i = 0; i < m_numOfItems; i++){
-			if(c_itemList[i]->getItemID() == 13){
-				c_itemList[i]->setDisplayed(true);
+	//m_itemInv[0]->setAmount(0);
+		if(m_bombPlaced == false){
+			for(int i = 0; i < m_numOfItems; i++){
+				if(c_itemList[i]->getItemID() == 13){
+					c_itemList[i]->setDisplayed(true);
+					m_bombPlaced = true;
+				}
 			}
 		}
 	}
@@ -80,11 +174,12 @@ void ItemHandler::update()
 
 void ItemHandler::init()
 {
-	buildItemArray("./config/INPUT_ITEMS");
+	buildItemArray("./config/INPUT_ITEMS_LEVEL0");
 }
 
 void ItemHandler::buildItemArray(std::string file)
 {
+	
 	srand (time(NULL));
 	m_3DItems = new ObsArr(file);
 	m_numTiles = m_3DItems->numTiles();
@@ -169,40 +264,44 @@ void ItemHandler::buildItemArray(std::string file)
 	m_lemons++;
 	itempos++; 
 	
-	int iRand = rand() % 5;
-	int x, y, tile; 
 	
-	switch(iRand){
-		case 0:
-			x = 363;
-			y = 642;
-			tile = 1;
-			break;
-		case 1:
-			x = 704;
-			y = 382;
-			tile = 2;
-			break;
-		case 2:
-			x = 156;
-			y = 578;
-			tile = 4;
-			break;
-		case 3:
-			x = 736;
-			y = 350;
-			tile = 6;
-			break;
-		case 4:
-			x = 800;
-			y = 190;
-			tile = 8;
-			break;
+	if(m_level == 0){
+	
+		int iRand = rand() % 5;
+		int x, y, tile; 
+	
+		switch(iRand){
+			case 0:
+				x = 363;
+				y = 642;
+				tile = 1;
+				break;
+			case 1:
+				x = 704;
+				y = 382;
+				tile = 2;
+				break;
+			case 2:
+				x = 156;
+				y = 578;
+				tile = 4;
+				break;
+			case 3:
+				x = 736;
+				y = 350;
+				tile = 6;
+				break;
+			case 4:
+				x = 800;
+				y = 190;
+				tile = 8;
+				break;
+		}
+	
+		c_itemList[itempos] = ItemsFactory::createItem(3, x, y, "Boomerang", 350 , tile, 3, 0);
+		itempos++;
 	}
-	
-	c_itemList[itempos] = ItemsFactory::createItem(3, x, y, "Boomerang", 350 , tile, 3, 0);
-	itempos++;
-	m_numOfItems = itempos;
+		m_numOfItems = itempos;
 	
 }
 
@@ -273,5 +372,28 @@ void ItemHandler::iUse()
    getItem()->use();
 }
 
+void ItemHandler::resetLemons()
+{
+	m_lemons = 0;
+	m_itemInv[0]->setAmount(0);
+	
+}
 
-
+void ItemHandler::removeItems()
+{
+	for(int i = 0; i < m_numOfItems; i++){
+		delete c_itemList[i];
+	}
+	/*m_currItem = 0;
+	m_currWeapon = 0;
+	
+	for(int i = 1; i < m_lastItem; i++){
+		delete m_itemInv[i];
+	}
+	for(int i = 1; i< m_lastWeapon; i++){
+		delete m_weaponInv[i];
+	}
+	m_lastItem = 0;
+	m_lastWeapon = 0;*/
+	m_numOfItems = 0;
+}
