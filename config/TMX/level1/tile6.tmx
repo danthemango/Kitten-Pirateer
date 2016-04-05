@@ -246,7 +246,7 @@
   <object id="30" name="11" x="379" y="378"/>
   <object id="32" name="11" x="1006" y="775"/>
   <object id="33" name="12" x="520" y="711"/>
-  <object id="34" x="424" y="674"/>
+  <object id="34" name="1" x="424" y="674"/>
   <object id="35" name="2" x="918" y="208"/>
   <object id="36" name="2" x="683" y="820"/>
  </objectgroup>

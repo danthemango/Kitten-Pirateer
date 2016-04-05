@@ -13,10 +13,6 @@
 #include "../hdr/ObsArr.h"
 #include "../hdr/Player.h"
 
-/*
-#include "../hdr/ItemHandler.h"
-#include "../hdr/Items.h"
-*/
 #include <iostream>
 #include <string>
 #include <time.h>
@@ -66,7 +62,7 @@ void ItemHandler::update()
       c_itemList[i]->display();
       c_itemList[i]->pickUp(Player::getInstance().getX(),Player::getInstance().getY());
    }
-   if(m_itemInv[0]->getAmount() == m_lemons){
+   //if(m_itemInv[0]->getAmount() == m_lemons){
 		//std:cout<< "found all lemons" << std::endl;
 		//m_itemInv[0]->setAmount(0);
 		if(m_bombPlaced == false){
@@ -77,7 +73,7 @@ void ItemHandler::update()
 				}
 			}
 		}
-	}
+	//}
    
 }
 
@@ -284,4 +280,10 @@ void ItemHandler::resetLemons()
 	
 }
 
-
+void ItemHandler::removeItems()
+{
+	for(int i = 0; i < m_numOfItems; i++){
+		delete c_itemList[i];
+	}
+	//m_numOfItems = 0;
+}

@@ -245,6 +245,6 @@ class ItemHandler {
 		void buildItemArray(std::string file);
 		bool randomize(int id);
 		void resetLemons();
-
+		void removeItems();
 };
 #endif
