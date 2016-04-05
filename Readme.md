@@ -31,12 +31,14 @@ Be warned! If you let your health reach 0, you will lose the game.
 Good luck, brave Kitten! You will need it!
 
 Installation:
-1. Download the game, bring up a terminal and enter the directory you wish to place the game in.
-2. Next simply enter the command: git clone https://github.com/danthemango/Kitten-Pirateer
-3. After entering this command and allowing the game to download, enter make into the terminal.
-4. Once make is finished compiling the game, you can start the game at any time by entering bin/game
-   in the command line.
+1. Download the zip file containing the game files.
+2. Once the download is complete, open a terminal and unzip the file.
+3. Once the file is unzipped, enter the directory within the terminal and enter "make" without the 
+   qoutes.
+4. Once make is finished compiling the game, you can start the game at any time by entering "bin/game"
+   within the Kitten-Pirateer directory in the command line.
 5. This will bring up the game's screen. Be patient though as it may take a minute to load.
+6. Enjoy being hunted by zombies and collecting lemons.
 
 Controls:
 To move the character use the following commands:
