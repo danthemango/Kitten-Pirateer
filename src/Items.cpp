@@ -55,7 +55,8 @@ void Items::pickUp(int x, int y)
                break;
             case 13:
 			   Jukebox::PlaySound("./sounds/ItemPickUp.wav");
-               ItemHandler::getInstance().addItemToInv(this); 
+               ItemHandler::getInstance().addItemToInv(this);
+               ItemHandler::getInstance().resetLemons();
                m_displayed = false;
       
          }

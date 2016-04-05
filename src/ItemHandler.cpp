@@ -68,10 +68,13 @@ void ItemHandler::update()
    }
    if(m_itemInv[0]->getAmount() == m_lemons){
 		//std:cout<< "found all lemons" << std::endl;
-		m_itemInv[0]->setAmount(0);
-		for(int i = 0; i < m_numOfItems; i++){
-			if(c_itemList[i]->getItemID() == 13){
-				c_itemList[i]->setDisplayed(true);
+		//m_itemInv[0]->setAmount(0);
+		if(m_bombPlaced == false){
+			for(int i = 0; i < m_numOfItems; i++){
+				if(c_itemList[i]->getItemID() == 13){
+					c_itemList[i]->setDisplayed(true);
+					m_bombPlaced = true;
+				}
 			}
 		}
 	}
@@ -80,11 +83,12 @@ void ItemHandler::update()
 
 void ItemHandler::init()
 {
-	buildItemArray("./config/INPUT_ITEMS");
+	buildItemArray("./config/INPUT_ITEMS_LEVEL0");
 }
 
 void ItemHandler::buildItemArray(std::string file)
 {
+	
 	srand (time(NULL));
 	m_3DItems = new ObsArr(file);
 	m_numTiles = m_3DItems->numTiles();
@@ -273,5 +277,11 @@ void ItemHandler::iUse()
    getItem()->use();
 }
 
+void ItemHandler::resetLemons()
+{
+	m_lemons = 0;
+	m_itemInv[0]->setAmount(0);
+	
+}
 
 
