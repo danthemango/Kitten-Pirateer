@@ -72,6 +72,9 @@ when the player transitions to the next level.
 -On occasion a slight animation glitch can occur with the player character. This glitch simply makes
 the character appear to jump by very small amounts. This glitch appears to be within the glut functions
 themselves.
+-Known Bug/Feature: Some collisions in various locations can cause undesired effects. These effects
+include the possible ability to leave the playable area and exit the map or launch the players 
+character through an object that would normaly block the characters movement. 
 
 ###Directory Layout:
 
