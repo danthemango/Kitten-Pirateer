@@ -116,6 +116,8 @@ class Square{
       int getHeight();
       // returns the width
       int getWidth();
+      // returns a random point in the square
+      Point randPoint();
    protected:
       // bottomleft corner of square
       int m_x, m_y;

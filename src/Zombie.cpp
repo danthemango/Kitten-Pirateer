@@ -192,12 +192,12 @@ void Zombie::attacked(int x1, int y1, int x2, int y2, int damage)
    }
 }
 
-void Zombie::update(Point &playerpos)
+void Zombie::update(Point playerpos)
 {
    update(playerpos.getX(),playerpos.getY());
 }
 
-void Zombie::spawn(Point &pos)
+void Zombie::spawn(Point pos)
 {
    spawn(pos.getX(),pos.getY());
 }

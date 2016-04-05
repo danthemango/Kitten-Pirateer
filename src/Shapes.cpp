@@ -10,6 +10,7 @@
 // ************************************************
 
 #include "../hdr/Shapes.h"
+#include <random>
 #include <cmath>
 using namespace std;
 
@@ -76,6 +77,14 @@ int Square::getHeight()
 int Square::getWidth()
 {
    return m_width;
+}
+
+Point Square::randPoint()
+{
+   random_device rd;
+   int x = (m_x + rd()) % (m_x+m_width);
+   int y = (m_y + rd()) % (m_y+m_height);
+   return Point(x,y);
 }
 
 // **************** LINE ****************

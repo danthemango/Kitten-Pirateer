@@ -12,12 +12,14 @@
 #include "../hdr/ZombieHandler.h"
 #include "../hdr/config.h"
 #include "../hdr/Player.h"
+#include "../hdr/MapHandler.h"
 
 // load the positions of the zombies 
 void ZombieHandler::loadZombies()
 {
    // TODO put zombies in better positions
    // add the positions of the zombies
+   /*
    m_map[1].add(3,3);
    m_map[1].add(300,300);
    m_map[1].add(500,300);
@@ -45,6 +47,7 @@ void ZombieHandler::loadZombies()
    m_map[9].add(3,3);
    m_map[9].add(300,300);
    m_map[9].add(500,300);
+   */
 }
 
 // returns the current instance
@@ -122,10 +125,11 @@ void ZombieHandler::updateTile(int x)
       return;
    }
    m_tile = x;
-   // get the current zombie map
-   PositionMap &curmap = m_map[m_tile];
-   m_num_zombies = curmap.size();
+   //// get the current zombie map
+   //PositionMap &curmap = m_map[m_tile];
+   //m_num_zombies = curmap.size();
    
+   m_num_zombies = NUM_ZOMBIES;
    // cap the number of zombies
    if(m_num_zombies > MAXZOMBIES){
       m_num_zombies = MAXZOMBIES;
@@ -136,10 +140,15 @@ void ZombieHandler::updateTile(int x)
    }
    int i = 0;
    // spawn the zombies at the specified locations
-   for(PositionMap::Iterator zombiePoint = curmap.Begin();
-         zombiePoint != curmap.End(); zombiePoint++){
-      Point ZombiePos(**zombiePoint);
-      m_ZombieList[i]->spawn(ZombiePos);
-      i++;
+   //for(PositionMap::Iterator zombiePoint = curmap.Begin();
+   //      zombiePoint != curmap.End(); zombiePoint++){
+   //   Point ZombiePos(**zombiePoint);
+   //   m_ZombieList[i]->spawn(ZombiePos);
+   //   i++;
+   //}
+   // get spawnable area
+   Square* spawnarea = MapHandler::getInstance().zombieSpawnArea();
+   for(int i = 0; i < m_num_zombies; i++){
+      m_ZombieList[i]->spawn(spawnarea->randPoint());
    }
 }

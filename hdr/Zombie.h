@@ -26,7 +26,7 @@ class Zombie: public HostileNPC, public Square{
       // update takes in the player's position
       // this function will act as the NPC's 'AI' 
       void update(int x, int y);
-      void update(Point &playerpos);
+      void update(Point playerpos);
       // display is used to draw this object
       virtual void display();
       // causes damage to the zombie (reduces health by amount)
@@ -37,7 +37,7 @@ class Zombie: public HostileNPC, public Square{
       void disappear();
       // make the zombie appear at a position
       void spawn(int x, int y);
-      void spawn(Point &pos);
+      void spawn(Point pos);
       // receives damage if zombie is in the area of the rectangle specified
       // (x1,y1) - bottom left corner of the area 
       void attacked(int x1, int y1, int x2, int y2, int damage);

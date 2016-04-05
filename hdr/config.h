@@ -46,6 +46,9 @@
 
 // maximum number of zombies on a single screen-tile
 #define MAXZOMBIES 20
+/// number of zombies in each tile
+#define NUM_ZOMBIES 3
+
 // path to the zombie configuration file
 #define ZOMBIE_CONFIG_PATH "../config/Zombies"
 
