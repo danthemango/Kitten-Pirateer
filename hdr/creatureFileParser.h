@@ -13,7 +13,7 @@
 #define CREATUREFILEPARSER_H
 
 #include <string>
-#include <ifstream>
+#include <fstream>
 using namespace std;
 
 // container for a creature's signature
@@ -23,7 +23,7 @@ class creatureSignature{
       // creates the signature with a specific position
       creatureSignature(string name, int world, int tile, int x, int y);
       // creates a signature with random position
-      creatureSignature(string name, int world, int tile)
+      creatureSignature(string name, int world, int tile);
       // returns true if the creature has been created with random position
       bool isRandom();
       // returns the creature's position
@@ -42,6 +42,8 @@ class creatureSignature{
       bool m_isRandom;
 };
 
+// creatureFileParser
+// allows for developing creatureSignatures based on a well formatted creature-configuration-file
 class creatureFileParser{
    public:
       // opens the file specified in filename
@@ -49,7 +51,7 @@ class creatureFileParser{
       // closes the file
       ~creatureFileParser();
       // returns true when creature's signature can be received with get()
-      // false at the end of the file
+      // false at the end of the file or if an error was encountered
       bool next();
       // returns the current creature's profile
       // (retains ownership of the pointer)

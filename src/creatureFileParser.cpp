@@ -9,12 +9,14 @@
 //    reads the creatureFile and returns a creature's signature
 // ************************************************
 
+#include "../hdr/config.h"
 #include <iostream>
+#include "../hdr/creatureFileParser.h"
 using namespace std;
 
 // *************** creatureSignature ************
 // creates the signature with a specific position
-creatureSignature::creatureSignature(string name, int x, int y)
+creatureSignature::creatureSignature(string name, int world, int tile, int x, int y)
 {
    // initialize contents
    m_name = name;
@@ -74,7 +76,7 @@ creatureFileParser::creatureFileParser(string filename)
    if(m_file.fail()){
       cerr << "creatureFileParser:: " << filename << "could not be opened" << endl;
    }
-   creatureSignature = NULL;
+   m_curr = NULL;
 }
 
 // closes the file
@@ -95,7 +97,7 @@ creatureFileParser::~creatureFileParser()
 bool creatureFileParser::next()
 {
    // ensure a file is open to be read
-   if(!m_file.open()){
+   if(!m_file.is_open()){
       return false;
    }
    
@@ -110,7 +112,7 @@ bool creatureFileParser::next()
 }
 
 // returns the current creature's profile
-creatureSignature creatureFileParser::get()
+creatureSignature* creatureFileParser::get()
 {
    return m_curr;
 }
