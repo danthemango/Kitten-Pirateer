@@ -1,8 +1,8 @@
 //Edited by: Keenan Longair.
-//Last update: 5:45PM March 25th, 2016.
+//Last update: 3:15PM March 29th, 2016.
 //Purpose: To prototype the interface needed to create a spash screen
 //and main menu.
-//Version: 1.0
+//Version: 1.1
 //**************************************************************************************
 
 #ifndef MENU_H_
@@ -47,7 +47,8 @@ class Menu {
 			//m_height = SCREEN_SIZE_Y - 100;//Need a set height.
 
 		};
-		
+				
+		//Also try to see if we can use update in anyway or remove it.
 		//Required Functions:
 		void init();//Prepares the various files.
 		void update();//Handles updateing any menu information if needed.
@@ -59,9 +60,6 @@ class Menu {
 		void restartConf();//Provides the screen presenting the restart confirmation
 		//message.
 		void escapeScreen();//Provides the quit/restart option screen.	
-		
-		//TODO create the win/lose textures and win/lose screen's need to give the 
-		//option to quit.
 		void winScreen();//Provides the screen presenting the win message.
 		void loseScreen();//Provides the screen presenting the lose message.
 		
