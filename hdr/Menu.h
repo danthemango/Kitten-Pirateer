@@ -48,7 +48,6 @@ class Menu {
 
 		};
 				
-		//TODO Rename spashScreen to pauseScreen.
 		//Also try to see if we can use update in anyway or remove it.
 		//Required Functions:
 		void init();//Prepares the various files.
@@ -61,8 +60,6 @@ class Menu {
 		void restartConf();//Provides the screen presenting the restart confirmation
 		//message.
 		void escapeScreen();//Provides the quit/restart option screen.	
-		
-		//TODO win/lose screen's need to give the option to quit.
 		void winScreen();//Provides the screen presenting the win message.
 		void loseScreen();//Provides the screen presenting the lose message.
 		

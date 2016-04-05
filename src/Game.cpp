@@ -145,7 +145,14 @@ void Game::update()
 	//possible even if a menu is displayed.
 
 	//Check the game status and respond appropriatly.
-	if(!Game::c_running) {
+	//If the players health reaches 0:
+	if(Player::getInstance().getHealth() <= 0) {
+		
+		Game::getInstance().setLose();
+	}
+	
+	//If the game is paused:
+	if((!Game::c_running) && (!Game::c_gameOver) && (!Game::c_winCondition)) {
 		//If the game is paused and c_running is false, the we check to see what
 		//stat the game was left in.
 		
@@ -220,14 +227,17 @@ void Game::update()
 	 
 	}
 		
-
-	//Display and update the zombies:
-	ZombieHandler::getInstance().display();
-	ZombieHandler::getInstance().update();
-	//Update the items:
-	ItemHandler::getInstance().update();
-	//Player display should be one of the very last, if not last.
-	Player::getInstance().display();
+	if ((!Game::c_gameOver) && (!Game::c_winCondition)) {
+		
+		//Display and update the zombies:
+		ZombieHandler::getInstance().display();
+		ZombieHandler::getInstance().update();
+		//Update the items:
+		ItemHandler::getInstance().update();
+		//Player display should be one of the very last, if not last.
+		Player::getInstance().display();
+		
+	}
 	
 }
 
@@ -293,19 +303,34 @@ void Game::updateTile(GLuint x)
 
 //Use of this method indicates that the win condition has been achived by the player.
 void Game::setWin()
-//Simple function to change the winCondition variable to true.
+//Simple function to end the game on a win.
 {
 	
-	c_winCondition = true;
+	Game::c_winCondition = true;//Game is now over, set to true.
+	Game::c_quit = true;//Quit will occur soon, set to true.
+	Game::c_escape = true;//Escape needs to be set to true.
+	Game::c_running = false;//Game is no longer running, set to false.
+	return m_menu.winScreen();//Bring up the win screen.
+	//Once the win screen is displayed, only enter is allowed to function which allows
+	//the plahyer to quit the game. In the future if possible the restart function 
+	//will be allowed in this screen aswell.
+	
 	
 }
 
 //Use of this method indicates that the player has lost the game.
 void Game::setLose()
-//Simple function to change the gameOver variable to true.
+//Simple function to end the game on a loss.
 {
 	
-	c_gameOver = true;
+	Game::c_gameOver = true;//Game is now over, set to true.
+	Game::c_quit = true;//Quit will occur soon, set to true.
+	Game::c_escape = true;//Escape needs to be set to true.
+	Game::c_running = false;//Game is no longer running, set to false.
+	return m_menu.loseScreen();//Bring up the lose screen.
+	//Once the lose screen is displayed, only enter is allowed to function which
+	//allows the player to quit the game. In the future if possible the restart function
+	//will be allowed in this screen aswell.
 	
 }
 
@@ -425,7 +450,7 @@ void Game::key(unsigned char key, int x, int y)
 		//When the escape key is hit the game will check the c_quit variables state. 
 		//If that state is false switch it to true, it if is true, switch it to false.
 		
-			if (!Game::c_running) {
+			if ((!Game::c_running) && (!Game::c_gameOver) && (!Game::c_winCondition)) {
 				
 				Game::c_escape = !Game::c_escape;
 				if (Game::c_quit) Game::c_quit = false;//Reset c_quit to prevent accidental

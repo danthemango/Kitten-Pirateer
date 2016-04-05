@@ -28,8 +28,8 @@ void Menu::init()
 	m_quitTexture = ImageLoader::LoadTexture(QUIT_SCREEN);
 	m_restartTexture = ImageLoader::LoadTexture(RESTART_SCREEN);
 	m_escapeTexture = ImageLoader::LoadTexture(ESCAPE_SCREEN);
-	//m_winTexture = ImageLoader::LoadTexture(WIN_SCREEN);
-	//m_loseTexture = ImageLoader::LoadTexture(LOSE_SCREEN);
+	m_winTexture = ImageLoader::LoadTexture(WIN_SCREEN);
+	m_loseTexture = ImageLoader::LoadTexture(LOSE_SCREEN);
 
 }
 
@@ -115,10 +115,7 @@ void Menu::escapeScreen()
 	glFlush();
 	
 }
-
-
-//TODO create the winScreen and loseScreens.
-//TODO set the size of the windows and their orientation to be centered. 
+ 
 void Menu::winScreen()
 //winScreen simply displays the end game victory screen.
 {
@@ -127,7 +124,7 @@ void Menu::winScreen()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_winTexture);
-   	ImageLoader::rectangle(200, 250, 800, 600);//x, y, width, height.
+   	ImageLoader::rectangle(127, 227, 800, 600);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
@@ -142,7 +139,7 @@ void Menu::loseScreen()
 
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,GL_REPLACE);
 	glBindTexture (GL_TEXTURE_2D, m_loseTexture);
-   	ImageLoader::rectangle(200, 250, 800, 600);//x, y, width, height.
+   	ImageLoader::rectangle(127, 227, 800, 600);//x, y, width, height.
 
 	glDisable(GL_TEXTURE_2D);
 	glFlush();
