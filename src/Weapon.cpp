@@ -10,6 +10,7 @@
 #include "../hdr/ImageLoader.h"
 #include "../hdr/Player.h"
 #include "../hdr/ItemHandler.h"
+#include "../hdr/Jukebox.h"
 //#include "../hdr/ZombieHandler.h"
 #include <GL/glut.h>
 #include <GL/freeglut.h>
@@ -35,6 +36,7 @@ void Weapon::pickUp(int x, int y)
 		Player::getInstance().getTile() == m_tilePos){
 		if(m_displayed == true){//if Item hasn't been picked up yet
 			ItemHandler::getInstance().addWeaponToInv(this);
+			Jukebox::PlaySound("./sounds/ItemPickUp.wav");
 			m_displayed = false;
 		}
 	}

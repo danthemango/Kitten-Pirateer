@@ -157,9 +157,8 @@ void ItemHandler::update()
    for(int i=0;i<=m_lastWeapon; i++){
 		m_weaponInv[i]->display();
 	}
-   if(m_itemInv[0]->getAmount() == m_lemons){
+	if(m_itemInv[0]->getAmount() == m_lemons){
 		//std:cout<< "found all lemons" << std::endl;
-	//m_itemInv[0]->setAmount(0);
 		if(m_bombPlaced == false){
 			for(int i = 0; i < m_numOfItems; i++){
 				if(c_itemList[i]->getItemID() == 13){

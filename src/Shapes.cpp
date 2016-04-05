@@ -12,6 +12,8 @@
 #include "../hdr/Shapes.h"
 #include <random>
 #include <cmath>
+#include <iostream>
+#include "../hdr/config.h"
 using namespace std;
 
 // **************** POINT ****************
@@ -82,8 +84,12 @@ int Square::getWidth()
 Point Square::randPoint()
 {
    random_device rd;
-   int x = (m_x + rd()) % (m_x+m_width);
-   int y = (m_y + rd()) % (m_y+m_height);
+   int temp = rd();
+   int x = 0 + (abs(temp) % SCREEN_SIZE_X);
+
+   temp = rd();
+   int y = 0 + (abs(temp) % SCREEN_SIZE_Y);
+
    return Point(x,y);
 }
 

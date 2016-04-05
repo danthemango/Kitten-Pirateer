@@ -15,6 +15,7 @@
 #include "../hdr/MapHandler.h"
 #include <string.h>
 #include "../hdr/ObjectFactory.h"
+#include <iostream>
 
 //***********************************************************//
 
@@ -39,6 +40,7 @@ void MapHandler::updateTile(int x)
    }
 	
 	Game::getInstance().updateTile(m_tileTextureArray[x]);
+	ZombieHandler::getInstance().updateTile(x);
 
 }
 
