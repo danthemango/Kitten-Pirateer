@@ -13,7 +13,7 @@
 
 //Debug message variable. True = display debug messages in terminal. False = do not display debug
 //messages in terminal.
-#define DEBUG true
+#define DEBUG false
 
 // default sprite size
 #define SPRITE_SIZE_X 30
