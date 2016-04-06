@@ -55,12 +55,12 @@ void Weapon::use()
 		case 0:
 			//up
 			ZombieHandler::getInstance().attacked(playerX, playerY+playerHeight,
-							playerX + playerWidth, playerY + m_range, m_damage);                      
+							playerX + playerWidth, playerY - m_range, m_damage);                      
 			break;
 		case 1:
 			//right
-			ZombieHandler::getInstance().attacked(playerX + playerWidth, playerY,
-							playerX + m_range, playerY + playerHeight, m_damage);
+			ZombieHandler::getInstance().attacked(playerX, playerY,
+							playerX + playerWidth + m_range, playerY + playerHeight, m_damage);
 			break;
 		case 2:
 			//down
