@@ -41,7 +41,10 @@ Good luck, brave Kitten! You will need it!
 5. This will bring up the game's screen. Be patient though as it may take a minute to load.
 6. Enjoy being hunted by zombies and collecting lemons.
 
-##Controls:
+###Build Requirements (Ubuntu 15.10)
+`sudo apt-get install g++ freeglut3-dev libsoil-dev libghc-sdl-mixer1.2-dev`
+
+##Controls
 To move the character use the following commands:
 ```
 Key:            Action:
