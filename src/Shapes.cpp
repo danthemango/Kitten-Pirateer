@@ -37,14 +37,21 @@ float Point::distance(Point& other){
 
 // **************** SQUARE ****************
 // creates a Square with the points specified
-// (x1,y1) - bottom left corner
-// (x2,y2) - top right corner
+// (x1,y1,x2,y2) corner points
 Square::Square(int x1, int y1, int x2, int y2)
-{  
+{
+   // make m_x the lower of x1 and x2
    m_x = x1;
+   if (x2 < x1)
+      m_x = x2;
+   
+   // make m_y the lower of y1 and y2
    m_y = y1;
-   m_width = x2 - x1;
-   m_height = y2 - y1;
+   if (y2 < y1)
+      m_y = y2;
+
+   m_width = std::abs(x2 - x1);
+   m_height = std::abs(y2 - y1);
 }
 
 // returns true if point is inside of Square
